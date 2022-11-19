@@ -18,15 +18,17 @@
 				</h1>
 				<ul>
 					<li><i class="fa-solid fa-chart-pie"></i><a href="">Dashboard</a></li>
-					<li><i class="fa-solid fa-user"></i><a href=""> Meu Cliente</a></li>
-					<li><i class="fa-solid fa-hand-holding-dollar"></i><a href="">Empréstimo</a></li>
+					<li><i class="fa-solid fa-user"></i><a href="">    Meu Cliente</a></li>
+					<li><i class="fa-solid fa-hand-holding-dollar"></i><a href="">  Empréstimo</a></li>
 					<li><i class="fa-solid fa-money-bill-transfer"></i><a href="">Movimentos</a></li>
-					<li><i class="fa-solid fa-sack-dollar"></i><a href=""> Meu Caixa</a></li>
+					<li><i class="fa-solid fa-sack-dollar"></i><a href=""> Meu
+							Caixa</a></li>
 				</ul>
 			</div>
 			<div>
 				<ul>
-					<li><i class="fa-solid fa-gear"></i><a href=""> Configuração</a>
+					<li><i class="fa-solid fa-gear"></i><a href="">
+							Configuração</a>
 					<li><i class="fa-sharp fa-solid fa-right-to-bracket"></i><a
 						href=""> Sair Sistema</a></li>
 				</ul>
@@ -49,7 +51,56 @@
 						</div>
 					</div>
 				</div>
-				<div>Links clicados</div>
+				<div>
+					<div class="visual">
+						<div class="vi">
+							<div>
+								<h4>Entradas</h4>
+							</div>
+							<div>
+								<h2>R$ 0,00</h2>
+								<p>Entradas de hoje</p>
+							</div>
+						</div>
+						<div class="vi">
+							<div>
+								<h4>Saídas</h4>
+							</div>
+							<div>
+								<h2>R$ 0,00</h2>
+								<p>Saídas de hoje</p>
+							</div>
+						</div>
+						<div class="vi">
+							<div>
+								<h4>Lucro</h4>
+							</div>
+							<div>
+								<h2>R$ 0,00</h2>
+								<p>Lucro de hoje</p>
+							</div>
+						</div>
+						<div class="vi">
+							<div>
+								<h4>Parcelas Activas</h4>
+							</div>
+							<div>
+								<h2>R$ 0,00</h2>
+								<p>Parcelas dos últimos 28 dias</p>
+							</div>
+						</div>
+						<!-- <div class="vi"></div> -->
+					</div>
+					<div class="tabela">
+						<div>
+							<h3>Empréstimos recentes</h3>
+						</div>
+						<div>
+							<table>
+							</table>
+						</div>
+					</div>
+				</div>
 			</div>
 			<div class="rodape">
 				<p>&copy;2022 - Todos direitos reservados</p>

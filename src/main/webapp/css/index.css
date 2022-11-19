@@ -7,7 +7,7 @@
 	list-style: none;
 	text-decoration: none;
 	/*overflow-x: hidden;*/
-	font-family: Poppins,sans-serif;
+	font-family: Roboto,sans-serif;
 	box-sizing: border-box;
 }
 
@@ -41,12 +41,12 @@ html, body {
 
 .navegacao ul li i{
 	font-size:20px;
-	color:white;
+	color:#f7f7f7;
 }
 
 .navegacao ul li a{
 	font-size:16px;
-	color:white;
+	color:#f7f7f7;
 	padding-left:10px;
 	width:100%;
 }
@@ -56,13 +56,14 @@ html, body {
 }
 
 .logo {
-	background-color: #344059; /* #e1e1e1;*/
+	background-color: #6382ae;/*#6587b7;  #e1e1e1;*/
 	padding: 11px 0px;
 	padding-left:10px;
+	height:60px;
 }
 
 .logo a{
-	color:white;
+	color:#f7f7f7;
 }
 
 /**/
@@ -78,8 +79,9 @@ html, body {
 	flex-direction: row;
 	align-items: center;
 	justify-content: space-between;
-	background-color: #f7f7f7;
+	background-color: #6685b1;
 	padding: 10px 15px 10px 10px;
+	height:61px;
 }
 
 .conta .select{
@@ -94,7 +96,8 @@ html, body {
 }
 
 .conta i{
-	font-size:20px;
+	font-size:26px;
+	color:#f7f7f7;
 }
 
 .usuario {
@@ -106,6 +109,40 @@ html, body {
 .usuario div:nth-child(2){
 	padding-left:5px;
 }
+
+/**/
+.visual{
+	display:flex;
+	flex-direction:row;
+	padding: 10px;
+	justify-content:space-between;
+}
+
+.visual .vi{
+	width:265px;
+	height:110px;
+	border:none;
+	border-bottom:4px solid #3d4a65;
+	display:flex;
+	flex-direction:column;
+	justify-content:space-between;
+	padding:5px 10px;
+	background-color:#f7f7f7;
+}
+
+.vi:nth-child(1){
+	border-bottom:4px solid #26bd70;
+}
+
+.vi:nth-child(2){
+	border-bottom:4px solid #c64b4b;
+}
+
+.tabela{
+	margin-top: 40px;
+	padding: 10px;
+}
+
 
 /**/
 .rodape {
