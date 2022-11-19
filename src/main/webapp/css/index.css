@@ -27,7 +27,7 @@ html, body {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
-	background-color: #3d4a65;
+	background-color: #38445e;
 	height: 100%;
 }
 
@@ -56,7 +56,7 @@ html, body {
 }
 
 .logo {
-	background-color: #6382ae;/*#6587b7;  #e1e1e1;*/
+	background-color: #414f6d;/*#6587b7;  #e1e1e1;*/
 	padding: 11px 0px;
 	padding-left:10px;
 	height:60px;
@@ -64,6 +64,10 @@ html, body {
 
 .logo a{
 	color:#f7f7f7;
+}
+
+.navegacao .lg{
+	width:30px;
 }
 
 /**/
@@ -79,7 +83,7 @@ html, body {
 	flex-direction: row;
 	align-items: center;
 	justify-content: space-between;
-	background-color: #6685b1;
+	background-color: #6382ae;
 	padding: 10px 15px 10px 10px;
 	height:61px;
 }
@@ -97,6 +101,10 @@ html, body {
 
 .conta i{
 	font-size:26px;
+	color:#f7f7f7;
+}
+
+.conta p{
 	color:#f7f7f7;
 }
 
@@ -123,6 +131,7 @@ html, body {
 	height:110px;
 	border:none;
 	border-bottom:4px solid #3d4a65;
+	border-radius:5px;
 	display:flex;
 	flex-direction:column;
 	justify-content:space-between;
@@ -138,9 +147,32 @@ html, body {
 	border-bottom:4px solid #c64b4b;
 }
 
+.vi:nth-child(4){
+	border-bottom:4px solid #6382ae;
+}
+
 .tabela{
 	margin-top: 40px;
 	padding: 10px;
+}
+
+/**/
+table{
+	border-collapse:collapse;
+	width:100%;
+	background-color:#f4f4f4;
+	border-radius:5px 5px 0px 0px;;
+}
+
+table thead tr td{
+	padding:5px;
+	font-weight:500;
+}
+
+table thead tr td div{
+	display:flex;
+	flex-direction:row;
+	justify-content:space-between;
 }
 
 

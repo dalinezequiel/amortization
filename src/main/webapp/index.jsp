@@ -17,20 +17,26 @@
 					<a href="">SIMORTIZE</a>
 				</h1>
 				<ul>
-					<li><i class="fa-solid fa-chart-pie"></i><a href="">Dashboard</a></li>
-					<li><i class="fa-solid fa-user"></i><a href="">    Meu Cliente</a></li>
-					<li><i class="fa-solid fa-hand-holding-dollar"></i><a href="">  Empréstimo</a></li>
+				<!-- <li><div><i class="fa-solid fa-chart-pie"></i></div><a href="">Dashboard</a></li>
+					<li><i class="fa-solid fa-user"></i><a href=""> Meu
+							Cliente</a></li>
+					<li><i class="fa-solid fa-hand-holding-dollar"></i><a href="">
+							Empréstimo</a></li>
 					<li><i class="fa-solid fa-money-bill-transfer"></i><a href="">Movimentos</a></li>
 					<li><i class="fa-solid fa-sack-dollar"></i><a href=""> Meu
-							Caixa</a></li>
+							Caixa</a></li> -->
+					<li><div class="lg"><i class="fa-solid fa-chart-pie"></i></div><a href="">Dashboard</a></li>
+					<li><div class="lg"><i class="fa-solid fa-user"></i></div><a href="">Meu Cliente</a></li>
+					<li><div class="lg"><i class="fa-solid fa-hand-holding-dollar"></i></div><a href="">Empréstimo</a></li>
+					<li><div class="lg"><i class="fa-solid fa-money-bill-transfer"></i></div><a href="">Movimentos</a></li>
+					<li><div class="lg"><i class="fa-solid fa-sack-dollar"></i></div><a href="">Meu Caixa</a></li>
+					<li><div class="lg"><i class="fa-solid fa-file"></i></div><a href="">Relatório Diário</a>
 				</ul>
 			</div>
 			<div>
 				<ul>
-					<li><i class="fa-solid fa-gear"></i><a href="">
-							Configuração</a>
-					<li><i class="fa-sharp fa-solid fa-right-to-bracket"></i><a
-						href=""> Sair Sistema</a></li>
+					<li><div class="lg"><i class="fa-solid fa-gear"></i></div><a href="">Configuração</a>
+					<li><div class="lg"><i class="fa-sharp fa-solid fa-right-to-bracket"></i></div><a href="">Sair Sistema</a></li>
 				</ul>
 			</div>
 		</div>
@@ -43,11 +49,10 @@
 					</div>
 					<div class="usuario">
 						<div>
-							<i class="fa-solid fa-circle-user"></i>
+							<img src="img/user.png">
 						</div>
 						<div>
-							<p>Perfil</p>
-							<p>Usuário</p>
+							<p>Usuario001</p>
 						</div>
 					</div>
 				</div>
@@ -82,14 +87,13 @@
 						</div>
 						<div class="vi">
 							<div>
-								<h4>Parcelas Activas</h4>
+								<h4>Lucro Total</h4>
 							</div>
 							<div>
 								<h2>R$ 0,00</h2>
-								<p>Parcelas dos últimos 28 dias</p>
+								<p>Lucro total dos últimos 28 dias</p>
 							</div>
 						</div>
-						<!-- <div class="vi"></div> -->
 					</div>
 					<div class="tabela">
 						<div>
@@ -97,6 +101,17 @@
 						</div>
 						<div>
 							<table>
+								<thead>
+									<tr>
+										<td><div>Cód. Cliente<i class="fa-solid fa-arrow-down-a-z"></i></div></td>
+										<td><div>Cliente<i class="fa-solid fa-arrow-down-a-z"></i></div></td>
+										<td><div>Taxa<i class="fa-solid fa-arrow-down-a-z"></i></div></td>
+										<td><div>Juros<i class="fa-solid fa-arrow-down-a-z"></i></div></td>
+										<td><div>Capital<i class="fa-solid fa-arrow-down-a-z"></i></div></td>
+										<td><div>Data Empréstimo<i class="fa-solid fa-arrow-down-a-z"></i></div></td>
+									</tr>
+								</thead>
+								<tbody></tbody>
 							</table>
 						</div>
 					</div>
