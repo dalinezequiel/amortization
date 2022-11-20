@@ -41,16 +41,16 @@ html, body {
 
 .navegacao ul li i{
 	font-size:20px;
-	color:#f7f7f7;
+	color:#ffffff;
 }
 
-/*.navegacao .u1 li:nth-child(1){
-	background-color:#405580;
-}*/
+.navegacao .u1 li:nth-child(1){
+	background-color:#2b7450;
+}
 
 .navegacao ul li a{
 	font-size:16px;
-	color:#f7f7f7;
+	color:#ffffff;
 	padding-left:10px;
 	width:100%;
 }

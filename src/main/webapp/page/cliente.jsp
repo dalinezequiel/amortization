@@ -6,6 +6,7 @@
 <meta charset="ISO-8859-1">
 <title>SIMOR - Sistema de Amortização</title>
 <link rel="stylesheet" type="text/css" href="../css/index.css">
+<link rel="stylesheet" type="text/css" href="../css/cliente.css">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
 </head>
@@ -19,7 +20,7 @@
 				<ul class="u1">
 					<li><div class="lg">
 							<i class="fa-solid fa-chart-pie"></i>
-						</div> <a href="">Dashboard</a></li>
+						</div> <a href="../index.jsp">Dashboard</a></li>
 					<li><div class="lg">
 							<i class="fa-solid fa-user"></i>
 						</div> <a href="">Meu Cliente</a></li>
@@ -33,10 +34,11 @@
 							<i class="fa-solid fa-sack-dollar"></i>
 						</div> <a href="">Meu Caixa</a></li>
 					<li><div class="lg">
-							<i class="fa-solid fa-file"></i>
+							<i class="fa-solid fa-calculator"></i>
 						</div> <a href="">Calcular VP</a></li>
 					<li><div class="lg">
-							<i class="fa-solid fa-file"></i>
+							<!-- <i class="fa-solid fa-check-double"></i> -->
+							<i class="fa-solid fa-money-check-dollar"></i>
 						</div> <a href="">Comparador</a></li>
 				</ul>
 			</div>
@@ -69,74 +71,92 @@
 				</div>
 				<div>
 					<div class="visual">
-						<!-- <div class="vi">
-							<div>
-								<h4>Entradas</h4>
+						<form action="">
+							<div class="identificacao">
+								<div>
+									<label>Código</label> <input type="number" autocomplete="off"
+										required>
+								</div>
+								<div>
+									<label>CPF</label> <input type="number" autocomplete="off"
+										required>
+								</div>
+								<div>
+									<label>CEP</label> <input type="number" autocomplete="off"
+										required>
+								</div>
+								<div>
+									<label>Nome Cliente</label> <input type="text" required>
+								</div>
 							</div>
-							<div>
-								<h2>R$ 0,00</h2>
-								<p>Entradas de hoje</p>
+							<div class="endereco">
+								<div class="ender">
+									<div>
+										<label>Estado</label> <select required>
+											<option selected disabled>Selecione seu estado</option>
+											<option>São Paulo</option>
+											<option>Rio de Janeiro</option>
+											<option>Paraíba</option>
+											<option>Rio Grande do Norte</option>
+										</select>
+									</div>
+									<div>
+										<label>Cidade</label> <input type="text" required>
+									</div>
+									<div>
+										<label>Bairro</label> <input type="text">
+									</div>
+								</div>
+								<div class="ender">
+									<div>
+										<label>Avenida/ Rua</label> <input type="text" required>
+									</div>
+									<div>
+										<label>Número</label> <input type="text">
+									</div>
+								</div>
 							</div>
-						</div>
-						<div class="vi">
-							<div>
-								<h4>Saídas</h4>
+							<div class="contacto">
+								<div class="contac">
+									<div>
+										<label>Email</label> <input type="email">
+									</div>
+									<div>
+										<label>Telefone Celular</label> <input type="text" required>
+									</div>
+									<div>
+										<label>Telefone Fixo</label> <input type="text">
+									</div>
+								</div>
+								<div class="contac">
+									<div>
+										<label>WhatsApp</label> <input type="text">
+									</div>
+								</div>
 							</div>
-							<div>
-								<h2>R$ 0,00</h2>
-								<p>Saídas de hoje</p>
+							<div class="check-cliente">
+								<div>
+									<input id="check" type="checkbox"> <label for="check">Preencher
+										com o número do campo de telefone celular?</label>
+								</div>
 							</div>
-						</div>
-						<div class="vi">
-							<div>
-								<h4>Lucro</h4>
+							<div class="estado">
+								<div>
+									<label>Cliente Activo</label> <input type="text">
+								</div>
+								<div>
+									<label>Data Registo</label> <input type="date">
+								</div>
 							</div>
-							<div>
-								<h2>R$ 0,00</h2>
-								<p>Lucro de hoje</p>
+							<div class="botao">
+								<div class="salvar">
+									<button>Salvar</button>
+								</div>
+								<div class="resetar">
+									<button>Consulta</button>
+								</div>
 							</div>
-						</div>
-						<div class="vi">
-							<div>
-								<h4>Lucro Total</h4>
-							</div>
-							<div>
-								<h2>R$ 0,00</h2>
-								<p>Lucro total dos últimos 28 dias</p>
-							</div>
-						</div> -->
-					</div>
-					<div class="tabela">
-						<!-- <div>
-							<h3>Empréstimos recentes</h3>
-						</div>
-						<div>
-							<table>
-								<thead>
-									<tr>
-										<td><div>
-												Cód. Cliente<i class="fa-solid fa-arrow-down-a-z"></i>
-											</div></td>
-										<td><div>
-												Cliente<i class="fa-solid fa-arrow-down-a-z"></i>
-											</div></td>
-										<td><div>
-												Taxa<i class="fa-solid fa-arrow-down-a-z"></i>
-											</div></td>
-										<td><div>
-												Juros<i class="fa-solid fa-arrow-down-a-z"></i>
-											</div></td>
-										<td><div>
-												Capital<i class="fa-solid fa-arrow-down-a-z"></i>
-											</div></td>
-										<td><div>
-												Data Empréstimo<i class="fa-solid fa-arrow-down-a-z"></i>
-											</div></td>
-									</tr>
-								</thead>
-								<tbody></tbody>
-							</table>
-						</div> -->
+						</form>
 					</div>
 				</div>
 			</div>
