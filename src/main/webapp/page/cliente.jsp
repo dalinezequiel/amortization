@@ -5,7 +5,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>SIMOR - Sistema de Amortização</title>
-<link rel="stylesheet" type="text/css" href="css/index.css">
+<link rel="stylesheet" type="text/css" href="../css/index.css">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
 </head>
@@ -19,45 +19,35 @@
 				<ul class="u1">
 					<li><div class="lg">
 							<i class="fa-solid fa-chart-pie"></i>
-						</div>
-						<a href="">Dashboard</a></li>
+						</div> <a href="">Dashboard</a></li>
 					<li><div class="lg">
 							<i class="fa-solid fa-user"></i>
-						</div>
-						<a href="page/cliente.jsp">Meu Cliente</a></li>
+						</div> <a href="">Meu Cliente</a></li>
 					<li><div class="lg">
 							<i class="fa-solid fa-hand-holding-dollar"></i>
-						</div>
-						<a href="">Empréstimo</a></li>
+						</div> <a href="">Empréstimo</a></li>
 					<li><div class="lg">
 							<i class="fa-solid fa-money-bill-transfer"></i>
-						</div>
-						<a href="">Movimentos</a></li>
+						</div> <a href="">Movimentos</a></li>
 					<li><div class="lg">
 							<i class="fa-solid fa-sack-dollar"></i>
-						</div>
-						<a href="">Meu Caixa</a></li>
+						</div> <a href="">Meu Caixa</a></li>
 					<li><div class="lg">
-							<i class="fa-solid fa-calculator"></i>
-						</div>
-						<a href="">Calcular VP</a></li>
+							<i class="fa-solid fa-file"></i>
+						</div> <a href="">Calcular VP</a></li>
 					<li><div class="lg">
-							<!-- <i class="fa-solid fa-check-double"></i> -->
-							<i class="fa-solid fa-money-check-dollar"></i>
-						</div>
-						<a href="">Comparador</a></li>
+							<i class="fa-solid fa-file"></i>
+						</div> <a href="">Comparador</a></li>
 				</ul>
 			</div>
 			<div>
 				<ul>
 					<li><div class="lg">
 							<i class="fa-solid fa-gear"></i>
-						</div>
-						<a href="">Configuração</a>
+						</div> <a href="">Configuração</a>
 					<li><div class="lg">
 							<i class="fa-sharp fa-solid fa-right-to-bracket"></i>
-						</div>
-						<a href="">Sair Sistema</a></li>
+						</div> <a href="">Sair Sistema</a></li>
 				</ul>
 			</div>
 		</div>
@@ -66,11 +56,11 @@
 				<div class="conta">
 					<div class="select">
 						<i class="fa-solid fa-bars"></i>
-						<p>Dashboard</p>
+						<p>Cliente</p>
 					</div>
 					<div class="usuario">
 						<div>
-							<img src="img/user.png">
+							<img src="../img/user.png">
 						</div>
 						<div>
 							<p>Usuario001</p>
@@ -79,7 +69,7 @@
 				</div>
 				<div>
 					<div class="visual">
-						<div class="vi">
+						<!-- <div class="vi">
 							<div>
 								<h4>Entradas</h4>
 							</div>
@@ -114,10 +104,10 @@
 								<h2>R$ 0,00</h2>
 								<p>Lucro total dos últimos 28 dias</p>
 							</div>
-						</div>
+						</div> -->
 					</div>
 					<div class="tabela">
-						<div>
+						<!-- <div>
 							<h3>Empréstimos recentes</h3>
 						</div>
 						<div>
@@ -146,7 +136,7 @@
 								</thead>
 								<tbody></tbody>
 							</table>
-						</div>
+						</div> -->
 					</div>
 				</div>
 			</div>
