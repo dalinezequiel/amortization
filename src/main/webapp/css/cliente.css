@@ -6,7 +6,7 @@
 }
 
 .navegacao .u1 li:nth-child(2){
-	background-color:#2b7450;
+	background-color:#286d4b;
 }
 
 .endereco{
@@ -64,16 +64,12 @@
 	width:260px;
  }
 
-.identificacao div label, .endereco .ender label, .contacto .contac label, .estado div label{
+/*.identificacao div label, .endereco .ender label, .contacto .contac label, .estado div label{
 	font-weight:300;
-}
-
-.input:hover{
-	border:5px solid #14854c;
-}
+}*/
 
 .check-cliente label{
-	font-weight:300;
+	/*font-weight:300;*/
 	cursor:pointer;
 }
 
@@ -96,7 +92,7 @@
 }
 
 .botao .salvar button{
-	background-color:#53b584;
+	background-color:#286d4b;
 }
 
 .botao .resetar button{

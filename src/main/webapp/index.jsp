@@ -28,7 +28,7 @@
 					<li><div class="lg">
 							<i class="fa-solid fa-hand-holding-dollar"></i>
 						</div>
-						<a href="">Empréstimo</a></li>
+						<a href="page/emprestimo.jsp">Empréstimo</a></li>
 					<li><div class="lg">
 							<i class="fa-solid fa-money-bill-transfer"></i>
 						</div>

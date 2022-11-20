@@ -6,7 +6,7 @@
 <meta charset="ISO-8859-1">
 <title>SIMOR - Sistema de Amortização</title>
 <link rel="stylesheet" type="text/css" href="../css/index.css">
-<link rel="stylesheet" type="text/css" href="../css/cliente.css">
+<link rel="stylesheet" type="text/css" href="../css/emprestimo.css">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
 </head>
@@ -58,7 +58,7 @@
 				<div class="conta">
 					<div class="select">
 						<i class="fa-solid fa-bars"></i>
-						<p>Cliente</p>
+						<p>Empréstimo</p>
 					</div>
 					<div class="usuario">
 						<div>
@@ -72,88 +72,90 @@
 				<div>
 					<div class="visual">
 						<form action="">
-							<div class="identificacao">
-								<div>
-									<label>Código</label> <input type="number" autocomplete="off"
-										required>
+							<div>
+								<div class="identificacao">
+									<div class="d-1">
+										<label>Código</label> <input type="text">
+									</div>
+									<div class="d-1">
+										<label>Cód. Cliente</label> <input type="text">
+									</div>
+									<div class="nome">
+										<div>
+											<label>Nome cliente</label>
+										</div>
+										<div>
+											<input type="text">
+											<div>
+												<button>:::</button>
+											</div>
+										</div>
+									</div>
 								</div>
-								<div>
-									<label>CPF</label> <input type="number" autocomplete="off"
-										required>
-								</div>
-								<div>
-									<label>CEP</label> <input type="number" autocomplete="off"
-										required>
-								</div>
-								<div>
-									<label>Nome Cliente</label> <input type="text" required>
-								</div>
-							</div>
-							<div class="endereco">
-								<div class="ender">
+								<div class="capital">
 									<div>
-										<label>Estado</label> <select required>
-											<option selected disabled>Selecione seu estado</option>
-											<option>São Paulo</option>
-											<option>Rio de Janeiro</option>
-											<option>Paraíba</option>
-											<option>Rio Grande do Norte</option>
+										<label>Capital</label> <input type="text" placeholder="0,00">
+									</div>
+									<div>
+										<label>Juros (%)</label> <input type="text">
+									</div>
+									<div>
+										<label>Juros</label> <input type="text" placeholder="0,00">
+									</div>
+									<div>
+										<label>Juros atr.(%)</label> <input type="text">
+									</div>
+									<div>
+										<label>Juros atraso</label> <input type="text"
+											placeholder="0,00">
+									</div>
+								</div>
+								<div class="parcela">
+									<div>
+										<label>Número de parcelas</label> <input type="number">
+									</div>
+									<div>
+										<!-- <label>Parcela única</label> <input type="text"> -->
+										<label>Parcela única</label> <select>
+											<option>Sim</option>
+											<option>Não</option>
 										</select>
 									</div>
 									<div>
-										<label>Cidade</label> <input type="text" required>
+										<label>Primeira parcela</label> <input type="date">
 									</div>
 									<div>
-										<label>Bairro</label> <input type="text">
+										<label>Última parcela</label> <input type="date">
 									</div>
 								</div>
-								<div class="ender">
-									<div>
-										<label>Avenida/ Rua</label> <input type="text" required>
+								<div class="total">
+									<div class="tot-1">
+										<div>
+											<label>Data Registo</label> <input type="date">
+										</div>
 									</div>
-									<div>
-										<label>Número</label> <input type="text">
-									</div>
-								</div>
-							</div>
-							<div class="contacto">
-								<div class="contac">
-									<div>
-										<label>Email</label> <input type="email">
-									</div>
-									<div>
-										<label>Telefone Celular</label> <input type="text" required>
-									</div>
-									<div>
-										<label>Telefone Fixo</label> <input type="text">
-									</div>
-								</div>
-								<div class="contac">
-									<div>
-										<label>WhatsApp</label> <input type="text">
+									<div class="tot-1">
+										<div>
+											<label>Juros total</label> <input type="text"
+												placeholder="0,00">
+										</div>
+										<div>
+											<label>Mont. em dívida</label> <input type="text"
+												placeholder="0,00">
+										</div>
+										<div>
+											<label>Montante total</label> <input type="text"
+												placeholder="0,00">
+										</div>
 									</div>
 								</div>
-							</div>
-							<div class="check-cliente">
-								<div>
-									<input id="check" type="checkbox"> <label for="check">Preencher
-										com o número do campo de telefone celular?</label>
-								</div>
-							</div>
-							<div class="estado">
-								<div>
-									<label>Cliente Activo</label> <input type="text">
-								</div>
-								<div>
-									<label>Data Registo</label> <input type="date">
-								</div>
-							</div>
-							<div class="botao">
-								<div class="salvar">
-									<button>Salvar</button>
-								</div>
-								<div class="resetar">
-									<button>Consulta</button>
+								<div class="botao">
+									<div class="salvar">
+										<button>Salvar</button>
+									</div>
+									<div class="resetar">
+										<button>Consulta</button>
+									</div>
 								</div>
 							</div>
 						</form>

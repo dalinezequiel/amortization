@@ -45,7 +45,7 @@ html, body {
 }
 
 .navegacao .u1 li:nth-child(1){
-	background-color:#2b7450;
+	background-color:#286d4b;
 }
 
 .navegacao ul li a{
@@ -56,25 +56,21 @@ html, body {
 }
 
 .navegacao ul li:hover{
-	background-color:#2b7450;
+	background-color:#286d4b;
 }
 
 .logo {
-	background-color:#14854c;/* #38445e;#6587b7;  #e1e1e1;*/
+	/*background-color:#14854c;*//* #38445e;#6587b7;  #e1e1e1;*/
 	padding: 11px 0px;
 	padding-left:10px;
 	height:60px;
-	border-bottom: 1px solid #1c8c53;
+	border-bottom: 1px solid #286d4b;
+	box-shadow:-3px 10px 10px #2b7450;
 }
 
 .logo a{
 	color:#ffffff;
 }
-
-/*.logo span:nth-child(1){
-	color:#6382ae;
-	font-weight:900;
-}*/
 
 .navegacao .lg{
 	width:30px;
@@ -93,10 +89,10 @@ html, body {
 	flex-direction: row;
 	align-items: center;
 	justify-content: space-between;
-	background-color: #f7f7f7;
+	background-color: #ffffff;
 	padding: 10px 15px 10px 10px;
 	height:61px;
-	/*box-shadow:0px 5px 8px #ebebeb;*/
+	box-shadow:3px 2px 5px #f7f7f7;
 }
 
 .conta .select{
@@ -112,12 +108,9 @@ html, body {
 
 .conta i{
 	font-size:28px;
-	color:#38445e;
+	/*color:#38445e;*/
+	color:#14854c;
 }
-
-/*.conta p{
-	color:#f7f7f7;
-}*/
 
 .usuario {
 	display: flex;
