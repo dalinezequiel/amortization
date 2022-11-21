@@ -64,12 +64,7 @@
 	width:260px;
  }
 
-/*.identificacao div label, .endereco .ender label, .contacto .contac label, .estado div label{
-	font-weight:300;
-}*/
-
 .check-cliente label{
-	/*font-weight:300;*/
 	cursor:pointer;
 }
 

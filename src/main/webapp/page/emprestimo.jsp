@@ -29,10 +29,10 @@
 						</div> <a href="emprestimo.jsp">Empréstimo</a></li>
 					<li><div class="lg">
 							<i class="fa-solid fa-money-bill-transfer"></i>
-						</div> <a href="">Movimentos</a></li>
+						</div> <a href="movimento.jsp">Movimentos</a></li>
 					<li><div class="lg">
 							<i class="fa-solid fa-sack-dollar"></i>
-						</div> <a href="">Meu Caixa</a></li>
+						</div> <a href="caixa.jsp">Meu Caixa</a></li>
 					<li><div class="lg">
 							<i class="fa-solid fa-calculator"></i>
 						</div> <a href="">Calcular VP</a></li>

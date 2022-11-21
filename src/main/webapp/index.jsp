@@ -32,17 +32,16 @@
 					<li><div class="lg">
 							<i class="fa-solid fa-money-bill-transfer"></i>
 						</div>
-						<a href="">Movimentos</a></li>
+						<a href="page/movimento.jsp">Movimentos</a></li>
 					<li><div class="lg">
 							<i class="fa-solid fa-sack-dollar"></i>
 						</div>
-						<a href="">Meu Caixa</a></li>
+						<a href="page/caixa.jsp">Meu Caixa</a></li>
 					<li><div class="lg">
 							<i class="fa-solid fa-calculator"></i>
 						</div>
 						<a href="">Calcular VP</a></li>
 					<li><div class="lg">
-							<!-- <i class="fa-solid fa-check-double"></i> -->
 							<i class="fa-solid fa-money-check-dollar"></i>
 						</div>
 						<a href="">Comparador</a></li>
@@ -53,7 +52,7 @@
 					<li><div class="lg">
 							<i class="fa-solid fa-gear"></i>
 						</div>
-						<a href="">Configuração</a>
+						<a href="page/configuracao.jsp">Configuração</a>
 					<li><div class="lg">
 							<i class="fa-sharp fa-solid fa-right-to-bracket"></i>
 						</div>
