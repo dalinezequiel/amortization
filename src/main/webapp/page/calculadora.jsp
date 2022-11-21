@@ -6,7 +6,7 @@
 <meta charset="ISO-8859-1">
 <title>SIMOR - Sistema de Amortização</title>
 <link rel="stylesheet" type="text/css" href="../css/index.css">
-<link rel="stylesheet" type="text/css" href="../css/movimento.css">
+<link rel="stylesheet" type="text/css" href="../css/calculadora.css">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
 </head>
@@ -58,7 +58,7 @@
 				<div class="conta">
 					<div class="select">
 						<i class="fa-solid fa-bars"></i>
-						<p>Movimentos</p>
+						<p>Calcular VP</p>
 					</div>
 					<div class="usuario">
 						<div>
@@ -69,48 +69,35 @@
 						</div>
 					</div>
 				</div>
-				<div class="pesquisa">
-					<div class="p-1">
+				<div class="calculadora">
+					<div class="c-1">
 						<div>
-							<label>Cód. Movim.</label> <input type="number">
+							<label>Parcela (PMT)</label> <input type="text" placeholder="0,00">
 						</div>
 						<div>
-							<label>Cód. Cliente</label> <input type="number">
+							<label>Taxa (a.m.)</label> <input type="text" placeholder="0,00%">
 						</div>
 						<div>
-							<label>Nome do cliente</label> <input type="text">
-						</div>
-						<div>
-							<label>Primeira parcela</label> <input type="date">
-						</div>
-						<div>
-							<label>Última parcela</label> <input type="date">
+							<label>Prazo (a.m.)</label> <input type="number" placeholder="0">
 						</div>
 					</div>
-					<div class="p-2">
-						<button>Pesquisar</button>
-					</div>
-					<div class="tabel">
+					<div class="c-1-1">
 						<div>
-							<h4>Lista de movimentos</h4>
+							<label>Valor pago adicional</label> <input type="text" placeholder="0,00">
+						</div>
+					</div>
+					<div class="c-2">
+						<button>Calcular VP</button>
+					</div>
+					<div class="c-3">
+						<div>
+							<label>Valor do empréstimo (VP)</label> <input type="text" placeholder="0,00">
 						</div>
 						<div>
-							<table>
-								<thead>
-									<tr>
-										<td>Código</td>
-										<td>Operação</td><!-- Entrada/Saída -->
-										<td>Descrição</td><!-- SALDO, Emprestimo, Financiamento -->
-										<td>Cliente</td>
-										<td>Capital</td>
-										<td>Juros</td>
-										<td>Juros atraso</td>
-										<td>Data Pagamento</td>
-									</tr>
-								</thead>
-								<tbody>
-								</tbody>
-							</table>
+							<label>Valor que você irá pagar</label> <input type="text" placeholder="0,00">
+						</div>
+						<div>
+							<label>Total pago</label> <input type="text" placeholder="0,00">
 						</div>
 					</div>
 				</div>

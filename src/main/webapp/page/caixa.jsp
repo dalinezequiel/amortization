@@ -35,7 +35,7 @@
 						</div> <a href="caixa.jsp">Meu Caixa</a></li>
 					<li><div class="lg">
 							<i class="fa-solid fa-calculator"></i>
-						</div> <a href="">Calcular VP</a></li>
+						</div> <a href="calculadora.jsp">Calcular VP</a></li>
 					<li><div class="lg">
 							<!-- <i class="fa-solid fa-check-double"></i> -->
 							<i class="fa-solid fa-money-check-dollar"></i>

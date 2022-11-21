@@ -40,7 +40,7 @@
 					<li><div class="lg">
 							<i class="fa-solid fa-calculator"></i>
 						</div>
-						<a href="">Calcular VP</a></li>
+						<a href="page/calculadora.jsp">Calcular VP</a></li>
 					<li><div class="lg">
 							<i class="fa-solid fa-money-check-dollar"></i>
 						</div>
