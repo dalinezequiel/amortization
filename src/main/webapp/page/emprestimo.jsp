@@ -93,7 +93,7 @@
 									</div>
 								</div>
 								<div class="capital">
-									<div>
+									<div class="cpt">
 										<label>Capital</label> <input type="text" placeholder="0,00">
 									</div>
 									<div>
@@ -128,13 +128,34 @@
 										<label>Última parcela</label> <input type="date">
 									</div>
 								</div>
+								<div class="tabel">
+									<div>
+										<h4>Distribuição das parcelas</h4>
+									</div>
+									<div>
+										<table>
+											<thead>
+												<tr>
+													<td>Código</td>
+													<td>Parcela</td>
+													<td>Capital</td>
+													<td>Juros</td>
+													<td>Juros atraso</td>
+													<td>Data Pagamento</td>
+												</tr>
+											</thead>
+											<tbody>
+											</tbody>
+										</table>
+									</div>
+								</div>
 								<div class="total">
 									<div class="tot-1">
 										<div>
 											<label>Data Registo</label> <input type="date">
 										</div>
 									</div>
-									<div class="tot-1">
+									<div class="tot-2">
 										<div>
 											<label>Juros total</label> <input type="text"
 												placeholder="0,00">
