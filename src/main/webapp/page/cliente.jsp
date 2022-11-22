@@ -46,7 +46,7 @@
 				<ul>
 					<li><div class="lg">
 							<i class="fa-solid fa-gear"></i>
-						</div> <a href="">Configuração</a>
+						</div> <a href="configuracao.jsp">Configuração</a>
 					<li><div class="lg">
 							<i class="fa-sharp fa-solid fa-right-to-bracket"></i>
 						</div> <a href="">Sair Sistema</a></li>

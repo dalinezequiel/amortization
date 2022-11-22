@@ -5,103 +5,155 @@
 	;
 
 
-.config {
-	display: flex;
-	flex-direction: column;
-	padding: 10px;
-	width:35%;
-}
-/*
-.config .btn-1 button {
-	padding: 15px 10px;
-	font-size: 16px;
-	display: flex;
-	width: 100%;
-	border: none;
-	cursor: pointer;
-	color: #ffffff;
-	border-radius: 3px;
-	background-color: #478e6a;
-	text-align:center;
+.navegacao .u1 li:nth-child(1) {
+	background-color: #14854c;
 }
 
-.config .btn-1 {
-	display: flex;
-	width: 150px;
-	flex-direction: column;
+.navegacao .u1 li:nth-child(2) {
+	background-color: #14854c;
 }
 
-.config .btn-1 div:nth-child(2) {
-	padding: 10px 0px;
-	margin-right: 10px;
+.navegacao .u1 li:nth-child(3) {
+	background-color: #14854c;
 }
 
-.config .btn-1 div {
-	margin-right: 10px;
-}
-*/
-
-.config input {
-	padding: 6px 10px;
-	font-size: 16px;
-	outline: none;
-	margin: 2px 0px 10px 0px;
-	border: 1px solid #e1e1e1;
-	border-radius: 3px;
+.navegacao .u1 li:nth-child(4) {
+	background-color: #14854c;
 }
 
-.config .c-db {
-	padding-bottom:20px;
+.navegacao .u1 li:nth-child(5) {
+	background-color: #14854c;
 }
 
-.cf {
-	display: flex;
-	flex-direction: column;
+.navegacao .u1 li:nth-child(6) {
+	background-color: #14854c;
 }
 
-.config select {
-	padding: 5px 10px;
-	font-size: 16px;
-	outline: none;
-	margin: 2px 0px 10px 0px;
-	border: 1px solid #e1e1e1;
-	border-radius: 3px;
-}
-
-.botao {
-	display: flex;
-	flex-direction: row;
-	/*justify-content:space-between;*/
-}
-
-.botao div button {
-	padding: 10px 30px;
-	font-size: 16px;
-	border: none;
-	cursor: pointer;
-	color: #ffffff;
-	border-radius: 3px;
-}
-
-.botao div {
-	margin-top: 30px;
-	/*width: 140px;*/
-}
-
-/*.botao div:nth-child(2) {
-	padding: 0px 10px;
-}*/
-
-.botao div:nth-child(1) {
-	padding-right: 10px;
-}
-
-.botao .salvar button {
+.navegacao .u2 li:nth-child(1) {
 	background-color: #286d4b;
 }
 
-.botao .resetar button {
-	background-color: #5d6d7e;
-	width: 150px;
-	padding: 10px 0px;
+/**/
+.config{
+	display:flex;
+	flex-direction:row;
+	padding:10px;
+}
+
+.config .butoe, .config .info, .config .serv{
+	height:580px;
+}
+
+.config .butoe{
+	width:200px;
+	border-right:1px solid #ededed;
+	display:flex;
+	flex-direction:column;
+}
+
+.config .info{
+	width:600px;
+	border-right:1px solid #ededed;
+}
+
+.config .serv{
+	width:250px;
+}
+
+.config .info{
+	margin:0px 10px;
+}
+
+.config .butoe button{
+	background-color:#ffffff;
+	padding:10px 0px;
+	border:none;
+	border-left:3px solid #ffffff;
+	cursor:pointer;
+	font-size:15px;
+}
+
+.config .butoe button:hover{
+	border-left:3px solid #14854c;
+	background-color:#ededed;
+}
+
+.config .butoe button:nth-child(1){
+	border-left:3px solid #14854c;
+	background-color:#ededed;
+}
+
+/**/
+.config .info{
+	display:flex;
+	flex-direction:column;
+	padding-right:20px;
+}
+
+.config .info .cf{
+	display:flex;
+	flex-direction:column;
+}
+
+.config label{
+	font-size:15px;
+}
+
+.config .info .cf input{
+	padding: 6px 10px;
+	font-size: 15px;
+	outline: none;
+	margin: 2px 0px 10px 0px;
+	border: 1px solid #e1e1e1;
+	border-radius: 3px;
+}
+
+.config .info .cf select{
+	padding: 5px 10px;
+	font-size: 15px;
+	outline: none;
+	margin: 2px 0px 10px 0px;
+	border: 1px solid #e1e1e1;
+	border-radius: 3px;
+}
+
+/**/
+.config .botao{
+	display:flex;
+}
+
+.config .botao button{
+	padding: 10px 15px;
+	font-size: 16px;
+	border: none;
+	cursor: pointer;
+	color: #ffffff;
+	border-radius: 3px;
+	background-color: #286d4b;
+}
+
+.config .botao button:hover{
+	background-color:#14854c;
+}
+
+.config .botao div:nth-child(2){
+	margin:0px 10px;
+}
+
+/**/
+.config .serv{
+	display:flex;
+	flex-direction:column;
+	justify-content:space-between;
+}
+
+.config .serv .ser-2 i{
+	font-size:28px;
+	padding-right:5px;
+	color:#d5d5d5;
+}
+
+.config .serv .ser-2 label{
+	color:#c64b4b;
+	font-weight:500;
 }

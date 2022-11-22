@@ -29,13 +29,13 @@
 						</div> <a href="emprestimo.jsp">Empréstimo</a></li>
 					<li><div class="lg">
 							<i class="fa-solid fa-money-bill-transfer"></i>
-						</div> <a href="">Movimentos</a></li>
+						</div> <a href="movimento.jsp">Movimentos</a></li>
 					<li><div class="lg">
 							<i class="fa-solid fa-sack-dollar"></i>
-						</div> <a href="">Meu Caixa</a></li>
+						</div> <a href="caixa.jsp">Meu Caixa</a></li>
 					<li><div class="lg">
 							<i class="fa-solid fa-calculator"></i>
-						</div> <a href="">Calcular VP</a></li>
+						</div> <a href="calculadora.jsp">Calcular VP</a></li>
 					<li><div class="lg">
 							<!-- <i class="fa-solid fa-check-double"></i> -->
 							<i class="fa-solid fa-money-check-dollar"></i>
@@ -43,10 +43,10 @@
 				</ul>
 			</div>
 			<div>
-				<ul>
+				<ul class="u2">
 					<li><div class="lg">
 							<i class="fa-solid fa-gear"></i>
-						</div> <a href="">Configuração</a>
+						</div> <a href="configuracao.jsp">Configuração</a>
 					<li><div class="lg">
 							<i class="fa-sharp fa-solid fa-right-to-bracket"></i>
 						</div> <a href="">Sair Sistema</a></li>
@@ -70,23 +70,12 @@
 					</div>
 				</div>
 				<div class="config">
-					<!-- <div class="btn-1">
-						<div class="salvar">
-							<button>Salvar</button>
-						</div>
-						<div class="resetar">
-							<button>Testar Conexão</button>
-						</div>
-						<div class="salvar">
-							<button>Localize</button>
-						</div>
-					</div> -->
-					<div class="c-db">
-						<h2>
-							Configuração do banco de dados
-						</h2>
+					<div class="butoe">
+						<button>Database</button>
+						<button>User</button>
+						<button>Help And Support</button>
 					</div>
-					<div>
+					<div class="info">
 						<div class="cf">
 							<label>Database Management System</label> <select>
 								<option>Microsoft Access</option>
@@ -114,15 +103,30 @@
 							<div class="salvar">
 								<button>Salvar</button>
 							</div>
-							<!-- <div class="resetar">
+							<div class="resetar">
 								<button>Testar Conexão</button>
-							</div> -->
+							</div>
 							<div class="salvar">
 								<button>Localize</button>
 							</div>
 						</div>
 					</div>
-					<div></div>
+					<div class="serv">
+						<div class="ser-1">
+							<div>
+								<label>Server: N/E</label>
+							</div>
+							<div>
+								<label>Database: N/E</label>
+							</div>
+							<div>
+								<label>Port: N/E</label>
+							</div>
+						</div>
+						<div class="ser-2">
+							<i class="fa-solid fa-database"></i><label>Disconnected</label>
+						</div>
+					</div>
 				</div>
 			</div>
 			<div class="rodape">
@@ -131,6 +135,6 @@
 			</div>
 		</div>
 	</div>
-	<script type="text/javascript" src="../script/index.js"></script>
+	<script type="text/javascript" src="../script/configuracao.js"></script>
 </body>
 </html>
