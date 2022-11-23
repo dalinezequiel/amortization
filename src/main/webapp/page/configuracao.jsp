@@ -76,38 +76,83 @@
 						<button>Help And Support</button>
 					</div>
 					<div class="info">
-						<div class="cf">
-							<label>Database Management System</label> <select>
-								<option>Microsoft Access</option>
-								<option>Microsoft SQL Server</option>
-								<option>MySQL</option>
-								<option>PostgreSQL</option>
-							</select>
-						</div>
-						<div class="cf">
-							<label>Server</label> <input type="text">
-						</div>
-						<div class="cf">
-							<label>Database</label> <input type="text">
-						</div>
-						<div class="cf">
-							<label>Port</label> <input type="number">
-						</div>
-						<div class="cf">
-							<label>Username</label> <input type="text">
-						</div>
-						<div class="cf">
-							<label>Password</label> <input type="password">
-						</div>
-						<div class="botao">
-							<div class="salvar">
-								<button>Salvar</button>
+						<div class="in-1">
+							<div class="cf">
+								<label>Database Management System</label> <select>
+									<option disabled>Microsoft Access</option>
+									<option disabled>Microsoft SQL Server</option>
+									<option disabled>MySQL</option>
+									<option>PostgreSQL</option>
+								</select>
 							</div>
-							<div class="resetar">
-								<button>Testar Conexão</button>
+							<div class="cf">
+								<label>Server</label> <input type="text"
+									placeholder="Default: localhost">
 							</div>
-							<div class="salvar">
-								<button>Localize</button>
+							<div class="cf">
+								<label>Database</label> <input type="text">
+							</div>
+							<div class="cf">
+								<label>Port</label> <input type="number"
+									placeholder="Default: 5432">
+							</div>
+							<div class="cf">
+								<label>Username</label> <input type="text"
+									placeholder="Default: postgres">
+							</div>
+							<div class="cf">
+								<label>Password</label> <input type="password">
+							</div>
+							<div class="botao">
+								<div class="salvar">
+									<button>Salvar</button>
+								</div>
+								<div class="resetar">
+									<button>Testar Conexão</button>
+								</div>
+							</div>
+						</div>
+						<div class="in-2">
+							<div class="cf">
+								<label>Perfil</label> <select>
+									<option>Administrador</option>
+									<option>Normal</option>
+								</select>
+							</div>
+							<div>
+								<label>Usuário</label><input type="text">
+							</div>
+							<div>
+								<label>Senha</label><input type="password">
+							</div>
+							<div>
+								<label>Comfirmar Senha</label><input type="password">
+							</div>
+							<div class="bota">
+								<div class="salvar">
+									<button>Salvar</button>
+								</div>
+								<div class="resetar">
+									<button>Excluir</button>
+								</div>
+							</div>
+						</div>
+						<div class="in-3">
+							<div>
+								<label>Sobre Aplicação</label>
+								<p>
+									Categoria "Sistema Finânceiro"<br> Sub Categoria "Gestão
+									de Amortização"<br> Versão 1.0.0 <br> &copy;2022
+									Dalin Academy&#8482;<br> &copy;Todos direitos reservados
+								</p>
+							</div>
+							<div>
+								<label>Website Oficial</label> <a
+									href="https://www.dalinacademy.com">https://www.dalinacdemy.com</a>
+							</div>
+							<div>
+								<label>Ajuda e Suporte</label> <a
+									href="https://www.dalinacademy.com/suporte">https://www.dalinacdemy.com/suporte.jsp</a>
 							</div>
 						</div>
 					</div>

@@ -109,7 +109,7 @@
 }
 
 .config .info .cf select{
-	padding: 5px 10px;
+	padding: 5px 6px;
 	font-size: 15px;
 	outline: none;
 	margin: 2px 0px 10px 0px;
@@ -156,4 +156,58 @@
 .config .serv .ser-2 label{
 	color:#c64b4b;
 	font-weight:500;
+}
+
+
+/**/
+/*.info .in-1{
+	display:none;
+}*/
+
+.info .in-2 div{
+	display:flex;
+	flex-direction:column;
+}
+
+.info .in-2 div input{
+	padding: 6px 10px;
+	font-size: 15px;
+	outline: none;
+	margin: 2px 0px 10px 0px;
+	border: 1px solid #e1e1e1;
+	border-radius: 3px;
+}
+
+.info .in-2 .bota{
+	display:flex;
+	flex-direction:row;
+}
+
+.info .in-2 .bota button{
+	padding: 10px 15px;
+	font-size: 16px;
+	border: none;
+	cursor: pointer;
+	color: #ffffff;
+	border-radius: 3px;
+	background-color: #286d4b;
+}
+
+.info .in-2 .bota button:hover{
+	background-color:#14854c;
+}
+
+.info .in-2 .bota div:nth-child(2){
+	margin:0px 10px;
+}
+
+/**/
+.info .in-3 div{
+	padding-bottom:20px;
+	display:flex;
+	flex-direction:column;
+}
+
+.info .in-3 p, .info .in-3 a{
+	font-weight:300;
 }
