@@ -5,8 +5,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>SIMOR - Sistema de Amortização</title>
-<link rel="stylesheet" type="text/css" href="../css/index.css">
-<link rel="stylesheet" type="text/css" href="../css/calculadora.css">
+<link rel="stylesheet" type="text/css" href="../css/compare.css">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
 </head>
@@ -48,7 +47,7 @@
 				<div class="conta">
 					<div class="select">
 						<i class="fa-solid fa-bars"></i>
-						<p>Calcular valor presente</p>
+						<p>Comparador</p>
 					</div>
 					<div class="usuario">
 						<div>
@@ -59,43 +58,51 @@
 						</div>
 					</div>
 				</div>
-				<div class="calculadora">
-					<div>
-						<h3>Calcular valor real do empréstimo | PRICE</h3>
-					</div>
-					<div class="c-1">
+				<div>
+					<div class="tabela">
 						<div>
-							<label>Parcela (PMT)</label> <input type="text"
-								placeholder="0,00">
+							<h3>Comparador entre sistemas | Cálculo normal</h3>
+						</div>
+						<div class="tab">
+							<div>
+								<label>Valor do emprest. ou finânciamento</label> <input
+									type="text" placeholder="0,00">
+							</div>
+							<!-- <div>
+								<button>Comparar</button>
+							</div> -->
+							<div class="cap-05">
+								<div>
+									<a>Comparar</a>
+								</div>
+								<div>
+									<a>Limpar</a>
+								</div>
+							</div>
 						</div>
 						<div>
-							<label>Taxa (a.m.)</label> <input type="text" placeholder="0,00%">
-						</div>
-						<div>
-							<label>Prazo (a.m.)</label> <input type="number" placeholder="0">
-						</div>
-					</div>
-					<div class="c-1-1">
-						<div>
-							<label>Valor pago adicional</label> <input type="text"
-								placeholder="0,00">
-						</div>
-					</div>
-					<div class="c-2">
-						<button>Calcular</button>
-						<button>Limpar</button>
-					</div>
-					<div class="c-3">
-						<div>
-							<label>Valor do empréstimo (VP)</label> <input type="text"
-								placeholder="0,00">
-						</div>
-						<div>
-							<label>Valor que você irá pagar</label> <input type="text"
-								placeholder="0,00">
-						</div>
-						<div>
-							<label>Total pago</label> <input type="text" placeholder="0,00">
+							<table>
+								<thead>
+									<tr>
+										<td><div>
+												Sistema<i class="fa-solid fa-arrow-down-a-z"></i>
+											</div></td>
+										<td><div>
+												1ª Parcela<i class="fa-solid fa-arrow-down-a-z"></i>
+											</div></td>
+										<td><div>
+												Última parcela<i class="fa-solid fa-arrow-down-a-z"></i>
+											</div></td>
+										<td><div>
+												Total de juros<i class="fa-solid fa-arrow-down-a-z"></i>
+											</div></td>
+										<td><div>
+												Total Pago<i class="fa-solid fa-arrow-down-a-z"></i>
+											</div></td>
+									</tr>
+								</thead>
+								<tbody></tbody>
+							</table>
 						</div>
 					</div>
 				</div>

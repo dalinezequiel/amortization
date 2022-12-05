@@ -1,0 +1,218 @@
+@charset "UTF-8";
+
+@import
+	url('https://fonts.googleapis.com/css2?family=Montserrat:wght@900&family=Mulish:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;0,1000;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900;1,1000&family=Oswald:wght@200;300;400;500;600;700&family=Oxygen:wght@300;400;700&family=Poppins:wght@100;200;300;400&family=Roboto:wght@900&display=swap')
+	;
+
+* {
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
+	text-decoration: none;
+	font-family: Mulish, sans-serif;
+	box-sizing: border-box;
+}
+
+html, body {
+	height: 100%;
+}
+
+.parent {
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	flex-direction: row;
+}
+
+.parent .pa-1 {
+	background-color: #286d4b;
+	width: 40%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	color: #ffffff; /*#dfdfdf; #f2f2f2;*/
+}
+
+.parent .pa-1 .pa-1-1{
+	padding:30px 40px 50px 40px;
+}
+
+.parent .pa-1 .pa-1-2{
+	padding:50px 40px;
+}
+
+.parent .copi{
+	padding:20px 40px;
+}
+
+.parent .copi p{
+	color:#dfdfdf;
+}
+
+.parent .pa-1 .pa-1-1 h1{
+	font-size:40px;
+	font-weight:900;
+	color:#f2f2f2;
+}
+
+/*.parent .pa-1 .pa-1-1 p{
+	color:#35c168;
+}*/
+
+
+.pa-1-2 .p-1-2-1, .pa-1-2 .p-1-2-2{
+	display:flex;
+	flex-direction:row;
+	margin-bottom:20px;
+}
+
+.pa-1-2 .p-1-2-0{
+	margin-bottom:30px;
+}
+
+.pa-1-2 .p-1-2-0 h2{
+	font-weight:900;
+}
+
+.pa-1-2 .p-1-2-0 span{
+	color:#35c168;
+}
+
+.pa-1-2 .p-1-2-3{
+	margin-top:30px;
+}
+
+.pa-1-2 .p-1-2-3 a{
+	text-decoration:underline;
+	color:#f2f2f2;
+	/*color:#35c168;*/
+} 
+
+.parent .pa-2{
+	background-color:#f7f7f7;
+	display:flex;
+	flex-direction:column;
+}
+
+.parent .pa-2 .p-2-1 {
+	display:flex;
+	flex-direction:column;
+	align-items: initial;
+}
+
+.parent .pa-2 .p-2-1 h2 {
+	/*padding-bottom: 10px;*/
+	font-size:28px;
+	font-weight:700;
+	text-align:left;
+}
+
+/*.parent .pa-2 .p-2-1 a {
+	padding-left: 5px;
+	text-decoration: underline;
+	font-weight: 500;
+	color: #28ac6a;
+}*/
+
+.parent a:hover{
+	text-decoration:none;
+}
+
+.parent .p-2-1 label, .parent .p-2-2 label {
+	font-size: 15px;
+	font-weight: 500;
+	color:#858585;
+}
+
+.parent .pa-2 .p-2-1 {
+	padding: 60px 0px 20px 0px;
+	display:flex;
+	flex-direction: column;
+	text-align:left;
+}
+
+.parent .pa-2 .p-2-1 p{
+	font-size:15px;
+	color:#858585;
+}
+
+.parent .pa-2 {
+	display: flex;
+	flex-direction: column;
+	/*justify-content: center;*/
+	align-items: center;
+	width: 100%;
+}
+
+.pa-2 .p-2-2 .cf {
+	display: flex;
+	flex-direction: column;
+}
+
+.pa-2 .p-2-2 div input[type="text"], 
+.pa-2 .p-2-2 div input[type="password"], 
+.pa-2 .p-2-2 div input[type="email"]
+	{
+	padding: 12px 15px; /*12*/
+	font-size: 16px;
+	outline: none;
+	margin: 2px 0px 10px 0px;
+	border: 1px solid #eaeaea;
+	width: 450px;
+	border-radius: 3px;
+}
+
+.pa-2 .p-2-2 div select{
+	padding: 12px 6px;
+	font-size: 15px;
+	outline: none;
+	margin: 2px 0px 10px 0px;
+	border: 1px solid #e1e1e1;
+	border-radius: 3px;
+}
+
+.pa-1-2 i{
+	margin-right:10px;
+	font-size:22px;
+}
+
+.p-butoe button {
+	padding: 14px 15px;
+	font-size: 16px;
+	border: none;
+	cursor: pointer;
+	color: #ffffff;
+	border-radius: 3px;
+	/*background-color: #286d4b;*/ /*#35c168*/
+}
+
+.pa-2 .p-2-2 div:nth-child(1) button:hover{
+	background-color: #14854c;
+}
+
+.pa-2 .p-2-2 div:nth-child(2) button:hover{
+	background-color:#dadada;
+}
+
+.p-butoe{
+	display:flex;
+	flex-direction:row;
+	padding-top:10px;
+}
+
+.p-butoe button{
+	width:110px;
+}
+
+.p-butoe div:nth-child(1) button{
+	background-color: #286d4b;
+}
+
+.p-butoe div:nth-child(2) button{
+	background-color:#e1e1e1;
+	color:#286d4b;
+}
+
+.p-butoe div:nth-child(2){
+	margin-left:10px;
+}

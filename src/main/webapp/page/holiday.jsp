@@ -5,8 +5,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>SIMOR - Sistema de Amortização</title>
-<link rel="stylesheet" type="text/css" href="../css/index.css">
-<link rel="stylesheet" type="text/css" href="../css/calculadora.css">
+<link rel="stylesheet" type="text/css" href="../css/holiday.css">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
 </head>
@@ -48,7 +47,7 @@
 				<div class="conta">
 					<div class="select">
 						<i class="fa-solid fa-bars"></i>
-						<p>Calcular valor presente</p>
+						<p>Feriados</p>
 					</div>
 					<div class="usuario">
 						<div>
@@ -59,43 +58,51 @@
 						</div>
 					</div>
 				</div>
-				<div class="calculadora">
-					<div>
-						<h3>Calcular valor real do empréstimo | PRICE</h3>
+				<div>
+					<div class="camp-head">
+						<h3>Lista de feriados para cálculo de encargos por atraso
+							1960 a 2050</h3>
 					</div>
-					<div class="c-1">
-						<div>
-							<label>Parcela (PMT)</label> <input type="text"
-								placeholder="0,00">
+					<div class="camp">
+						<div class="cap-01">
+							<div>
+								<label>Data</label> <input type="date">
+							</div>
+							<div>
+								<label>Descrição</label> <input type="text">
+							</div>
+							<div>
+								<label>Ano</label> <input type="text">
+							</div>
+
 						</div>
-						<div>
-							<label>Taxa (a.m.)</label> <input type="text" placeholder="0,00%">
-						</div>
-						<div>
-							<label>Prazo (a.m.)</label> <input type="number" placeholder="0">
+						<div class="cap-05">
+							<div>
+								<a>Salvar</a>
+							</div>
+							<div>
+								<a>Limpar</a>
+							</div>
 						</div>
 					</div>
-					<div class="c-1-1">
+					<div class="tabela">
 						<div>
-							<label>Valor pago adicional</label> <input type="text"
-								placeholder="0,00">
-						</div>
-					</div>
-					<div class="c-2">
-						<button>Calcular</button>
-						<button>Limpar</button>
-					</div>
-					<div class="c-3">
-						<div>
-							<label>Valor do empréstimo (VP)</label> <input type="text"
-								placeholder="0,00">
-						</div>
-						<div>
-							<label>Valor que você irá pagar</label> <input type="text"
-								placeholder="0,00">
-						</div>
-						<div>
-							<label>Total pago</label> <input type="text" placeholder="0,00">
+							<table>
+								<thead>
+									<tr>
+										<td><div>
+												Data<i class="fa-solid fa-arrow-down-a-z"></i>
+											</div></td>
+										<td><div>
+												Decrição<i class="fa-solid fa-arrow-down-a-z"></i>
+											</div></td>
+										<td><div>
+												Ano<i class="fa-solid fa-arrow-down-a-z"></i>
+											</div></td>
+									</tr>
+								</thead>
+								<tbody></tbody>
+							</table>
 						</div>
 					</div>
 				</div>

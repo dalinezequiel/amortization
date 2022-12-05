@@ -4,6 +4,18 @@
 	url('https://fonts.googleapis.com/css2?family=Montserrat:wght@900&family=Mulish:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;0,1000;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900;1,1000&family=Oswald:wght@200;300;400;500;600;700&family=Oxygen:wght@300;400;700&family=Poppins:wght@100;200;300;400&family=Roboto:wght@900&display=swap')
 	;
 
+.navegacao .u1 li:nth-child(1) {
+	background-color: #286d4b;
+}
+
+.navegacao .u1 li:nth-child(2) {
+	background-color: #286d4b;
+}
+
+.navegacao .u1 li:nth-child(3) {
+	background-color: #1e804f;
+}
+
 * {
 	margin: 0px;
 	padding: 0px;
@@ -44,10 +56,6 @@ html, body {
 .navegacao ul li i {
 	font-size: 20px;
 	color: #f7f7f7;
-}
-
-.navegacao .u1 li:nth-child(1) {
-	background-color: #1e804f;
 }
 
 .navegacao ul li a {
@@ -146,7 +154,7 @@ html, body {
 	box-shadow: 0px 0px 10px #f7f7f7;
 }
 
-.vi:nth-child(1) {
+/*.vi:nth-child(1) {
 	border-left: 5px solid #14854c;
 }
 
@@ -160,11 +168,11 @@ html, body {
 
 .vi:nth-child(4) {
 	border-left: 5px solid #6382ae;
-}
+}*/
 
 .tabela {
-	margin-top: 30px;
-	padding: 10px;
+	margin-top: 20px;
+	padding: 10px 200px 10px 10px;
 }
 
 /**/
@@ -221,29 +229,25 @@ table thead tr td div {
 	margin-top:20px;
 }
 
-.camp .cap-05 div:nth-child(1) a, .camp .cap-05 div:nth-child(2) a, .camp .cap-05 div:nth-child(3) a {
+.camp .cap-05 div:nth-child(1) a {
 	background-color: #286d4b;
 	color: #ffffff;
 }
 
-.camp .cap-05 div:nth-child(1) a:hover, .camp .cap-05 div:nth-child(2) a:hover, .camp .cap-05 div:nth-child(3) a:hover {
+.camp .cap-05 div:nth-child(1) a:hover {
 	background-color: #14854c;
 }
 
 .camp .cap-05 div:nth-child(2){
-	padding: 10px 0px;
+	margin-top:10px;
 }
 
-.camp .cap-05 div:nth-child(4){
-	padding-top:18px;
-}
-
-.camp .cap-05 div:nth-child(4) a {
+.camp .cap-05 div:nth-child(2) a {
 	background-color:#e1e1e1;
 	color:#286d4b;
 }
 
-.camp .cap-05 div:nth-child(4) a:hover {
+.camp .cap-05 div:nth-child(2) a:hover {
 	background-color:#dadada;
 }
 
@@ -256,6 +260,10 @@ table thead tr td div {
 	padding:10px;
 }
 
+.camp-head{
+	padding:10px;
+}
+
 .camp input {
 	padding: 6px 10px;
 	font-size: 16px;
@@ -263,7 +271,7 @@ table thead tr td div {
 	margin: 2px 0px 10px 0px;
 	border: 1px solid #e1e1e1;
 	border-radius: 3px;
-	width:270px;
+	width:260px;
 }
 
 .camp select {
@@ -276,19 +284,15 @@ table thead tr td div {
 	/*width:260px;*/
 }
 
-.camp input[type="text"]{
+/*.camp input[type="text"]{
 	text-align:right;
-}
+}*/
 
 .camp .cap-01 div, .camp .cap-02 div, .camp .cap-03 div {
 	display: flex;
 	flex-direction: column;
 }
 
-.camp .cap-01 div:nth-child(1) input{
-	font-weight:700;
-}
-
-.camp .cap-03{
+/*.camp .cap-03{
 	padding:0px 20px;
-}
+}*/

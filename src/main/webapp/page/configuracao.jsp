@@ -15,31 +15,21 @@
 		<div class="navegacao">
 			<div>
 				<h1 class="logo">
-					<a href=""><span>SIMOR</span><span>TIZE</span></a>
+					<a href="">SIMOR</a>
 				</h1>
 				<ul class="u1">
 					<li><div class="lg">
 							<i class="fa-solid fa-chart-pie"></i>
-						</div> <a href="../index.jsp">Dashboard</a></li>
-					<li><div class="lg">
-							<i class="fa-solid fa-user"></i>
-						</div> <a href="cliente.jsp">Meu Cliente</a></li>
-					<li><div class="lg">
-							<i class="fa-solid fa-hand-holding-dollar"></i>
-						</div> <a href="emprestimo.jsp">Empréstimo</a></li>
-					<li><div class="lg">
-							<i class="fa-solid fa-money-bill-transfer"></i>
-						</div> <a href="movimento.jsp">Movimentos</a></li>
-					<li><div class="lg">
-							<i class="fa-solid fa-sack-dollar"></i>
-						</div> <a href="caixa.jsp">Meu Caixa</a></li>
+						</div> <a href="home.jsp">Dashboard</a></li>
 					<li><div class="lg">
 							<i class="fa-solid fa-calculator"></i>
 						</div> <a href="calculadora.jsp">Calcular VP</a></li>
 					<li><div class="lg">
-							<!-- <i class="fa-solid fa-check-double"></i> -->
-							<i class="fa-solid fa-money-check-dollar"></i>
-						</div> <a href="">Comparador</a></li>
+							<i class="fa-solid fa-calendar"></i>
+						</div> <a href="holiday.jsp">Feriados</a></li>
+					<li><div class="lg">
+							<i class="fa-solid fa-money-bill-transfer"></i>
+						</div> <a href="compare.jsp">Comparador</a></li>
 				</ul>
 			</div>
 			<div>
@@ -49,7 +39,7 @@
 						</div> <a href="configuracao.jsp">Configuração</a>
 					<li><div class="lg">
 							<i class="fa-sharp fa-solid fa-right-to-bracket"></i>
-						</div> <a href="">Sair Sistema</a></li>
+						</div> <a href="../index.jsp">Sair Sistema</a></li>
 				</ul>
 			</div>
 		</div>
@@ -104,10 +94,10 @@
 								<label>Password</label> <input type="password">
 							</div>
 							<div class="botao">
-								<div class="salvar">
+								<div>
 									<button>Salvar</button>
 								</div>
-								<div class="resetar">
+								<div>
 									<button>Testar Conexão</button>
 								</div>
 							</div>
@@ -115,9 +105,12 @@
 						<div class="in-2">
 							<div class="cf">
 								<label>Perfil</label> <select>
-									<option>Administrador</option>
+									<option disabled>Administrador</option>
 									<option>Normal</option>
 								</select>
+							</div>
+							<div>
+								<label>Email</label><input type="email">
 							</div>
 							<div>
 								<label>Usuário</label><input type="text">
@@ -129,10 +122,10 @@
 								<label>Comfirmar Senha</label><input type="password">
 							</div>
 							<div class="bota">
-								<div class="salvar">
+								<div>
 									<button>Salvar</button>
 								</div>
-								<div class="resetar">
+								<div>
 									<button>Excluir</button>
 								</div>
 							</div>
@@ -148,11 +141,7 @@
 							</div>
 							<div>
 								<label>Website Oficial</label> <a
-									href="https://www.dalinacademy.com">https://www.dalinacdemy.com</a>
-							</div>
-							<div>
-								<label>Ajuda e Suporte</label> <a
-									href="https://www.dalinacademy.com/suporte">https://www.dalinacdemy.com/suporte.jsp</a>
+									href="https://www.simor.com">https://www.simor.com</a>
 							</div>
 						</div>
 					</div>

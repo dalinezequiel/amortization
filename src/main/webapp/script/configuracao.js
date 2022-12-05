@@ -6,7 +6,7 @@ const in_1 = document.querySelector('.config .info .in-1');
 const in_2 = document.querySelector('.config .info .in-2');
 const in_3 = document.querySelector('.config .info .in-3');
 
-//BLOQUEAR
+//BLOQUEAR A DIV DE USER E HELP AND SUPPORT
 window.addEventListener('load', function(){
 	in_1.style.display = "flex";
 	in_1.style.flexDirection = "column";

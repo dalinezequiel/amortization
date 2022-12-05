@@ -15,7 +15,7 @@
 		<div class="navegacao">
 			<div>
 				<h1 class="logo">
-					<a href=""><span>SIMOR</span><span>TIZE</span></a>
+					<a href="">SIMOR</a>
 				</h1>
 				<ul class="u1">
 					<li><div class="lg">
@@ -49,7 +49,7 @@
 						</div> <a href="configuracao.jsp">Configuração</a>
 					<li><div class="lg">
 							<i class="fa-sharp fa-solid fa-right-to-bracket"></i>
-						</div> <a href="">Sair Sistema</a></li>
+						</div> <a href="../index.jsp">Sair Sistema</a></li>
 				</ul>
 			</div>
 		</div>
@@ -99,8 +99,10 @@
 								<thead>
 									<tr>
 										<td>Código</td>
-										<td>Operação</td><!-- Entrada/Saída -->
-										<td>Descrição</td><!-- SALDO, Emprestimo, Financiamento -->
+										<td>Operação</td>
+										<!-- Entrada/Saída -->
+										<td>Descrição</td>
+										<!-- SALDO, Emprestimo, Financiamento -->
 										<td>Cliente</td>
 										<td>Capital</td>
 										<td>Juros</td>
@@ -121,6 +123,5 @@
 			</div>
 		</div>
 	</div>
-	<script type="text/javascript" src="../script/index.js"></script>
 </body>
 </html>

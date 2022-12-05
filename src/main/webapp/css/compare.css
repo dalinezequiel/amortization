@@ -4,6 +4,22 @@
 	url('https://fonts.googleapis.com/css2?family=Montserrat:wght@900&family=Mulish:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;0,1000;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900;1,1000&family=Oswald:wght@200;300;400;500;600;700&family=Oxygen:wght@300;400;700&family=Poppins:wght@100;200;300;400&family=Roboto:wght@900&display=swap')
 	;
 
+.navegacao .u1 li:nth-child(1) {
+	background-color: #286d4b;
+}
+
+.navegacao .u1 li:nth-child(2) {
+	background-color: #286d4b;
+}
+
+.navegacao .u1 li:nth-child(3) {
+	background-color: #286d4b;
+}
+
+.navegacao .u1 li:nth-child(4) {
+	background-color: #1e804f;
+}
+
 * {
 	margin: 0px;
 	padding: 0px;
@@ -46,19 +62,11 @@ html, body {
 	color: #f7f7f7;
 }
 
-.navegacao .u1 li:nth-child(1) {
-	background-color: #1e804f;
-}
-
 .navegacao ul li a {
 	font-size: 16px;
 	color: #f7f7f7;
 	padding-left: 10px;
 	width: 100%;
-}
-
-.navegacao ul li:hover {
-	background-color: #1e804f;
 }
 
 .logo {
@@ -163,9 +171,59 @@ html, body {
 }
 
 .tabela {
-	margin-top: 30px;
-	padding: 10px;
+	margin-top: 15px;
+	padding: 10px 200px 10px 10px;
 }
+
+.tabela .tab div:nth-child(1) input {
+	width:278px;
+}
+
+.tabela .tab{
+	padding:15px 0px;
+	/*display:flex;
+	flex-direction:row;*/
+}
+
+.tabela .tab a{
+	padding: 10px 67px;
+	font-size: 16px;
+	border: none;
+	cursor: pointer;
+	border-radius: 3px;
+	background-color: #286d4b;
+	color: #ffffff;
+	height:50px;
+	width:80px;
+	display:flex;
+	align-items:center;
+	justify-content:center;
+}
+
+.tabela .tab div:nth-child(2){
+	display:flex;
+}
+
+.tabela .tab input{
+	padding: 6px 10px;
+	font-size: 16px;
+	outline: none;
+	margin: 2px 0px 10px 0px;
+	border: 1px solid #e1e1e1;
+	border-radius: 3px;
+	/*width:260px;*/
+	text-align:right;
+	font-weight:700;
+}
+
+.tabela .tab div:nth-child(1){
+	display:flex;
+	flex-direction:column;
+}
+
+/*.tabela .tab div:nth-child(2){
+	padding:15px 0px 10px 10px;
+}*/
 
 /**/
 table {
@@ -198,7 +256,35 @@ table thead tr td div {
 }
 
 /**/
-.camp .cap-05 div{
+
+.tab .cap-05{
+	padding-bottom:40px;
+}
+
+
+.tab .cap-05 div:nth-child(1) a {
+	background-color: #286d4b;
+	color: #ffffff;
+}
+
+.tab .cap-05 div:nth-child(1) a:hover {
+	background-color: #14854c;
+}
+
+.tab .cap-05 div:nth-child(2){
+	margin-left:10px;
+}
+
+.tab .cap-05 div:nth-child(2) a {
+	background-color:#e1e1e1;
+	color:#286d4b;
+}
+
+.tab .cap-05 div:nth-child(2) a:hover {
+	background-color:#dadada;
+}
+
+/*.camp .cap-05 div{
 	display:flex;
 }
 
@@ -208,10 +294,10 @@ table thead tr td div {
 	border: none;
 	cursor: pointer;
 	border-radius: 3px;
-	height:50px;
+	height:60px;
 	width:80px;
-	margin-left:20px;
-	/*margin-top:20px;*/
+	margin-left:10px;
+
 	display:flex;
 	align-items:center;
 	justify-content:center;
@@ -221,37 +307,31 @@ table thead tr td div {
 	margin-top:20px;
 }
 
-.camp .cap-05 div:nth-child(1) a, .camp .cap-05 div:nth-child(2) a, .camp .cap-05 div:nth-child(3) a {
+.camp .cap-05 div:nth-child(1) a {
 	background-color: #286d4b;
 	color: #ffffff;
 }
 
-.camp .cap-05 div:nth-child(1) a:hover, .camp .cap-05 div:nth-child(2) a:hover, .camp .cap-05 div:nth-child(3) a:hover {
+.camp .cap-05 div:nth-child(1) a:hover {
 	background-color: #14854c;
 }
 
 .camp .cap-05 div:nth-child(2){
-	padding: 10px 0px;
+	margin-top:10px;
 }
 
-.camp .cap-05 div:nth-child(4){
-	padding-top:18px;
-}
-
-.camp .cap-05 div:nth-child(4) a {
+.camp .cap-05 div:nth-child(2) a {
 	background-color:#e1e1e1;
 	color:#286d4b;
 }
 
-.camp .cap-05 div:nth-child(4) a:hover {
+.camp .cap-05 div:nth-child(2) a:hover {
 	background-color:#dadada;
 }
 
-/**/
 .camp {
 	display: flex;
 	flex-direction: row;
-	/*justify-content:space-between;*/
 	padding: 2px;
 	padding:10px;
 }
@@ -263,7 +343,7 @@ table thead tr td div {
 	margin: 2px 0px 10px 0px;
 	border: 1px solid #e1e1e1;
 	border-radius: 3px;
-	width:270px;
+	width:260px;
 }
 
 .camp select {
@@ -273,7 +353,6 @@ table thead tr td div {
 	margin: 2px 0px 10px 0px;
 	border: 1px solid #e1e1e1;
 	border-radius: 3px;
-	/*width:260px;*/
 }
 
 .camp input[type="text"]{
@@ -290,5 +369,5 @@ table thead tr td div {
 }
 
 .camp .cap-03{
-	padding:0px 20px;
-}
+	padding:0px 10px;
+}*/

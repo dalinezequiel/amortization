@@ -5,7 +5,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>SIMOR - Sistema de Amortização</title>
-<link rel="stylesheet" type="text/css" href="css/login.css">
+<link rel="stylesheet" type="text/css" href="../css/credencial.css">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
 </head>
@@ -28,7 +28,8 @@
 							<i class="fa-solid fa-user-shield"></i>
 						</div>
 						<div>
-							<p>Use suas credênciais para acessar o sistema gerenciador de empréstimos.</p>
+							<p>Use suas credênciais para acessar o sistema gerenciador de
+								empréstimos.</p>
 						</div>
 					</div>
 					<div class="p-1-2-2">
@@ -36,7 +37,8 @@
 							<i class="fa-solid fa-rotate-right"></i>
 						</div>
 						<div>
-							<p>Não partilhe as suas credênciais com terceiros, garanta a segurança do seu negócio.</p>
+							<p>Não partilhe as suas credênciais com terceiros, garanta a
+								segurança do seu negócio.</p>
 						</div>
 					</div>
 					<div class="p-1-2-3">
@@ -51,45 +53,46 @@
 			</div>
 		</div>
 		<div class="pa-2">
-			<div class="p-2-1">
+			<!-- <div class="p-2-1">
+			<h2>Credêncial</h2>
 				<div>
-					<h2>Olá, bem vindo!</h2>
+					<h2>Credêncial</h2>
 				</div>
-				<div>
-					<label>Novo no Simor?<a href="page/credencial.jsp">Criar credênciais</a></label>
+			</div> -->
+			<form action="">
+				<div class="p-2-1">
+					<h2>Credêncial</h2>
+					<p>Criação de credênciais</p>
+					<!-- <div>
+					<h2>Credêncial</h2>
+				</div> -->
 				</div>
-			</div>
-			<form action="indexa.jsp">
 				<div class="p-2-2">
-					<div>
-						<label>Usuário ou email</label> <input type="text">
+					<div class="cf">
+						<label>Perfil</label> <select>
+							<option disabled>Administrador</option>
+							<option>Normal</option>
+						</select>
 					</div>
-					<div>
-						<label>Senha</label> <input type="password">
+					<div class="cf">
+						<label>Email</label><input type="email">
 					</div>
-					<div class="error">
-						<p>Usuário ou Senha incorrectos!</p>
+					<div class="cf">
+						<label>Usuário</label><input type="text">
 					</div>
-					<div>
-						<button onclick='this.form.action="page/home.jsp"'>Log in</button>
+					<div class="cf">
+						<label>Senha</label><input type="password">
 					</div>
-					<div class="p-2-2-1">
+					<div class="cf">
+						<label>Comfirmar Senha</label><input type="password">
+					</div>
+					<div class="p-butoe">
 						<div>
-							<input id="check" type="checkbox"><label for="check">Lembre-me</label>
+							<button>Salvar</button>
 						</div>
 						<div>
-							<a href="page/forgot.jsp">Esqueceu a senha?</a>
+							<button onclick='this.form.action="../index.jsp"'>Voltar</button>
 						</div>
-					</div>
-				</div>
-				<div class="social">
-					<div>
-						<p></p>
-					</div>
-					<div>
-						<i class="fa-brands fa-facebook"></i> <i
-							class="fa-brands fa-instagram"></i> <i
-							class="fa-brands fa-twitter"></i>
 					</div>
 				</div>
 			</form>
