@@ -24,7 +24,7 @@
 							<i class="fa-solid fa-calculator"></i>
 						</div> <a href="calculadora.jsp">Calcular VP</a></li>
 					<li><div class="lg">
-							<i class="fa-solid fa-calendar"></i>
+							<i class="fa-solid fa-calendar-days"></i>
 						</div> <a href="holiday.jsp">Feriados</a></li>
 					<li><div class="lg">
 							<i class="fa-solid fa-money-bill-transfer"></i>
@@ -46,7 +46,8 @@
 			<div>
 				<div class="conta">
 					<div class="select">
-						<i class="fa-solid fa-bars"></i>
+						<!-- <i class="fa-solid fa-bars"></i> -->
+						<i class="fa-solid fa-money-bill-transfer"></i>
 						<p>Comparador</p>
 					</div>
 					<div class="usuario">

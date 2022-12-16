@@ -24,7 +24,7 @@
 							<i class="fa-solid fa-calculator"></i>
 						</div> <a href="calculadora.jsp">Calcular VP</a></li>
 					<li><div class="lg">
-							<i class="fa-solid fa-calendar"></i>
+							<i class="fa-solid fa-calendar-days"></i>
 						</div> <a href="holiday.jsp">Feriados</a></li>
 					<li><div class="lg">
 							<i class="fa-solid fa-money-bill-transfer"></i>
@@ -46,7 +46,8 @@
 			<div>
 				<div class="conta">
 					<div class="select">
-						<i class="fa-solid fa-bars"></i>
+					<!-- <i class="fa-solid fa-bars"></i> -->
+						<i class="fa-solid fa-chart-pie"></i>
 						<p>Dashboard</p>
 					</div>
 					<div class="usuario">
@@ -66,14 +67,14 @@
 									type="text" placeholder="0,00">
 							</div>
 							<div>
-								<label>Taxa</label> <input type="text" placeholder="0,00">
+								<label>Taxa (%)</label> <input type="text" placeholder="0,00">
 							</div>
 							<div>
-								<label>Essa será sua taxa mensal</label> <input type="text"
+								<label>Essa será sua taxa mensal (%)</label> <input type="text"
 									placeholder="0,00">
 							</div>
 							<div>
-								<label>Essa será sua taxa anual</label> <input type="text"
+								<label>Essa será sua taxa anual (%)</label> <input type="text"
 									placeholder="0,00">
 							</div>
 
@@ -139,28 +140,28 @@
 								<thead>
 									<tr>
 										<td><div>
-												N°<!-- <i class="fa-solid fa-arrow-down-a-z"></i> -->
+												N°<i class="fa-solid fa-arrow-down-a-z"></i>
 											</div></td>
 										<td><div>
-												Vencimento<!-- <i class="fa-solid fa-arrow-down-a-z"></i> -->
+												Vencimento<i class="fa-solid fa-arrow-down-a-z"></i>
 											</div></td>
 										<td><div>
-												Prestação<!-- <i class="fa-solid fa-arrow-down-a-z"></i> -->
+												Prestação<i class="fa-solid fa-arrow-down-a-z"></i>
 											</div></td>
 										<td><div>
-												Balcão
+												Balcão<i class="fa-solid fa-arrow-down-a-z"></i>
 											</div></td>
 										<td><div>
-												Juros
+												Juros<i class="fa-solid fa-arrow-down-a-z"></i>
 											</div></td>
 										<td><div>
-												Amortização
+												Amortização<i class="fa-solid fa-arrow-down-a-z"></i>
 											</div></td>
 										<td><div>
-												Saldo Devedor
+												Saldo Devedor<i class="fa-solid fa-arrow-down-a-z"></i>
 											</div></td>
 										<td><div>
-												Índice
+												Índice<i class="fa-solid fa-arrow-down-a-z"></i>
 											</div></td>
 										<!-- <td><div>
 												Actualização mon.<i class="fa-solid fa-arrow-down-a-z"></i>
@@ -169,13 +170,13 @@
 												Outro<i class="fa-solid fa-arrow-down-a-z"></i>
 											</div></td> -->
 										<td><div>
-												Pagamento
+												Pagamento<i class="fa-solid fa-arrow-down-a-z"></i>
 											</div></td>
 										<td><div>
-												Multa
+												Multa<i class="fa-solid fa-arrow-down-a-z"></i>
 											</div></td>
 										<td><div>
-												Juros atraso
+												Juros atraso<i class="fa-solid fa-arrow-down-a-z"></i>
 											</div></td>
 										<!-- <td><div>
 												Enc. Totais<i class="fa-solid fa-arrow-down-a-z"></i>

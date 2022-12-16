@@ -7,30 +7,16 @@ function tLeave(comp, index) {
 	comp[index].addEventListener('mouseleave', function() {
 		let tex = comp[index].value;
 		let n = new Intl.NumberFormat().format(tex);
-
-		let f = n.trim(",");
-		
 		let ki = "";
-		/*for (var i = 0; i < f.length; i++) {
-
-			if (f[i] == ",") {
-				ki += ".";
-			} else {
-				ki += f[i];
-			}
-		}*/
 		for (var i = 0; i < n.length; i++) {
-			if (n.charAt(g) == ",") {
+			if (n.charAt(i) == ",") {
 				ki += ".";
 			} else {
 				ki += n.charAt(i);
 			}
 		}
-
-
 		let z = ",00";
 		comp[index].value = ki + z;
-
 	})
 }
 
@@ -54,7 +40,7 @@ function tOver(comp, index) {
 				ki += tex[i];
 			}
 		}
-		
+
 		let f = ki.split(",");
 		let z = f[0];
 		comp[index].value = z;
