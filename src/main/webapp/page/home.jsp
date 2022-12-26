@@ -46,7 +46,7 @@
 			<div>
 				<div class="conta">
 					<div class="select">
-					<!-- <i class="fa-solid fa-bars"></i> -->
+						<!-- <i class="fa-solid fa-bars"></i> -->
 						<i class="fa-solid fa-chart-pie"></i>
 						<p>Dashboard</p>
 					</div>
@@ -60,80 +60,95 @@
 					</div>
 				</div>
 				<div>
-					<div class="camp">
-						<div class="cap-01">
-							<div>
-								<label>Valor do emprest. ou finânciamento</label> <input
-									type="text" placeholder="0,00">
-							</div>
-							<div>
-								<label>Taxa (%)</label> <input type="text" placeholder="0,00">
-							</div>
-							<div>
-								<label>Essa será sua taxa mensal (%)</label> <input type="text"
-									placeholder="0,00">
-							</div>
-							<div>
-								<label>Essa será sua taxa anual (%)</label> <input type="text"
-									placeholder="0,00">
-							</div>
+					<form action="" method="POST">
+						<div class="camp">
+							<div class="cap-01">
+								<div>
+									<label>Valor do emprest. ou finânciamento</label> <input
+										type="text" placeholder="0,00" name="emprest_financia">
+								</div>
+								<div>
+									<label>Taxa (%)</label> <input type="text" placeholder="0,00" name="taxa">
+								</div>
+								<div>
+									<label>Essa será sua taxa mensal (%)</label> <input type="text"
+										placeholder="0,00" name="taxa_mensal">
+								</div>
+								<div>
+									<label>Essa será sua taxa anual (%)</label> <input type="text"
+										placeholder="0,00" name="taxa_anual">
+								</div>
 
+							</div>
+							<div class="cap-03">
+								<div>
+									<label>Prazo</label> <input type="text" placeholder="0,00" name="prazo">
+								</div>
+								<div>
+									<label>Índice de actualização</label> <select>
+										<option>*Sem índice</option>
+										<option>CDI</option>
+										<option>CUB-SC</option>
+										<option>IGP-M</option>
+										<option>INCC-DI</option>
+										<option>INPC</option>
+										<option>IPCA</option>
+										<option>SELIC</option>
+									</select>
+								</div>
+								<div>
+									<label>Carência</label> <input type="text" placeholder="0,00">
+								</div>
+								<div>
+									<label>Sistema de amortização</label> <select>
+										<option>Gaus</option>
+										<option>PRICE</option>
+										<option>SAC.JS</option>
+										<option>SACRE</option>
+									</select>
+								</div>
+							</div>
+							<div class="cap-02">
+								<div>
+									<label>Data da contratação</label> <input type="date">
+								</div>
+								<div>
+									<label>Data da primeira parcela]</label> <input type="date">
+								</div>
+								<div>
+									<label>Tipo do balão</label> <select>
+										<option>Balões e parcelas</option>
+										<option>Sem balões</option>
+									</select>
+								</div>
+								<div>
+									<label>Calcular atraso?</label> <select>
+										<option>Sim</option>
+										<option>Não</option>
+									</select>
+								</div>
+							</div>
+							<div class="cap-05">
+								<div>
+									<!-- <a>Calcular</a> -->
+									<button onclick='this.form.action="../Home"'>Calcular</button>
+									<!-- onclick='this.form.action="../index.jsp"' -->
+								</div>
+								<div>
+									<!-- <a>Salvar</a> -->
+									<button>Salvar</button>
+								</div>
+								<div>
+									<!-- <a>Consultar</a> -->
+									<button>Consultar</button>
+								</div>
+								<div>
+									<!-- <a>Limpar</a> -->
+									<button>Limpar</button>
+								</div>
+							</div>
 						</div>
-						<div class="cap-03">
-							<div>
-								<label>Prazo</label> <input type="text" placeholder="0,00">
-							</div>
-							<div>
-								<label>Índice de actualização</label> <input type="text"
-									placeholder="0,00">
-							</div>
-							<div>
-								<label>Carência</label> <input type="text" placeholder="0,00">
-							</div>
-							<div>
-								<label>Sistema de amortização</label> <select>
-									<option>Gaus</option>
-									<option>PRICE</option>
-									<option>SAC.JS</option>
-									<option>SACRE</option>
-								</select>
-							</div>
-						</div>
-						<div class="cap-02">
-							<div>
-								<label>Data da contratação</label> <input type="date">
-							</div>
-							<div>
-								<label>Data da primeira parcela]</label> <input type="date">
-							</div>
-							<div>
-								<label>Tipo do balcão</label> <select>
-									<option>Balcões e parcelas</option>
-									<option>Sem balcões</option>
-								</select>
-							</div>
-							<div>
-								<label>Calcular atraso?</label> <select>
-									<option>Sim</option>
-									<option>Não</option>
-								</select>
-							</div>
-						</div>
-						<div class="cap-05">
-							<div>
-								<a>Calcular</a>
-							</div>
-							<div>
-								<a>Salvar</a>
-							</div>
-							<div>
-								<a>Consultar</a>
-							</div>
-							<div>
-								<a>Limpar</a>
-							</div>
-						</div>
-					</div>
+					</form>
 					<div class="tabela">
 						<div>
 							<table>
@@ -169,9 +184,9 @@
 										<td><div>
 												Outro<i class="fa-solid fa-arrow-down-a-z"></i>
 											</div></td> -->
-										<td><div>
+										<!-- <td><div>
 												Pagamento<i class="fa-solid fa-arrow-down-a-z"></i>
-											</div></td>
+											</div></td> -->
 										<td><div>
 												Multa<i class="fa-solid fa-arrow-down-a-z"></i>
 											</div></td>
@@ -195,6 +210,6 @@
 			</div>
 		</div>
 	</div>
-	<script src="../script/inicio.js"></script>
+	<!-- <script src="../script/inicio.js"></script> -->
 </body>
 </html>

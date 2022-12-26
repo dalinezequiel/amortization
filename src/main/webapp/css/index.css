@@ -217,16 +217,31 @@ table thead tr td div {
 	justify-content:center;
 }
 
+.camp .cap-05 button {
+	padding: 10px 67px;
+	font-size: 16px;
+	border: none;
+	cursor: pointer;
+	border-radius: 3px;
+	height:50px;
+	width:80px;
+	margin-left:20px;
+	/*margin-top:20px;*/
+	display:flex;
+	align-items:center;
+	justify-content:center;
+}
+
 .camp .cap-05 div:nth-child(1){
 	margin-top:20px;
 }
 
-.camp .cap-05 div:nth-child(1) a, .camp .cap-05 div:nth-child(2) a, .camp .cap-05 div:nth-child(3) a {
+.camp .cap-05 div:nth-child(1) button, .camp .cap-05 div:nth-child(2) button, .camp .cap-05 div:nth-child(3) button {
 	background-color: #286d4b;
 	color: #ffffff;
 }
 
-.camp .cap-05 div:nth-child(1) a:hover, .camp .cap-05 div:nth-child(2) a:hover, .camp .cap-05 div:nth-child(3) a:hover {
+.camp .cap-05 div:nth-child(1) button:hover, .camp .cap-05 div:nth-child(2) button:hover, .camp .cap-05 div:nth-child(3) button:hover {
 	background-color: #14854c;
 }
 
@@ -238,12 +253,12 @@ table thead tr td div {
 	padding-top:18px;
 }
 
-.camp .cap-05 div:nth-child(4) a {
+.camp .cap-05 div:nth-child(4) button {
 	background-color:#e1e1e1;
 	color:#286d4b;
 }
 
-.camp .cap-05 div:nth-child(4) a:hover {
+.camp .cap-05 div:nth-child(4) button:hover {
 	background-color:#dadada;
 }
 

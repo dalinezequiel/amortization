@@ -26,7 +26,7 @@ tLeave(moeda, 2);
 tLeave(moeda, 3);
 tLeave(moeda, 4);
 tLeave(moeda, 5);
-tLeave(moeda, 6);
+/*tLeave(moeda, 6);*/
 
 function tOver(comp, index) {
 	moeda[index].addEventListener('mouseover', function() {
@@ -53,4 +53,4 @@ tOver(moeda, 2);
 tOver(moeda, 3);
 tOver(moeda, 4);
 tOver(moeda, 5);
-tOver(moeda, 6);
+/*tOver(moeda, 6);*/
