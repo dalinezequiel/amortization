@@ -1,5 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+
+<%@page import="com.simor.controller.HomeCalculoController"
+        import="java.util.*"
+        import="com.simor.dao.*"
+        import="com.simor.model.*"
+%>
+
+<!-- import="jakarta.servlet.ServletException"
+        import="jakarta.servlet.http.HttpServlet"
+        import="jakarta.servlet.http.HttpServletRequest"
+        import="jakarta.servlet.http.HttpServletResponse"
+        import="java.io.IOException" -->
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -68,7 +81,8 @@
 										type="text" placeholder="0,00" name="emprest_financia">
 								</div>
 								<div>
-									<label>Taxa (%)</label> <input type="text" placeholder="0,00" name="taxa">
+									<label>Taxa (%)</label> <input type="text" placeholder="0,00"
+										name="taxa">
 								</div>
 								<div>
 									<label>Essa será sua taxa mensal (%)</label> <input type="text"
@@ -82,7 +96,8 @@
 							</div>
 							<div class="cap-03">
 								<div>
-									<label>Prazo</label> <input type="text" placeholder="0,00" name="prazo">
+									<label>Prazo</label> <input type="text" placeholder="0,00"
+										name="prazo">
 								</div>
 								<div>
 									<label>Índice de actualização</label> <select>
@@ -198,7 +213,30 @@
 											</div></td> -->
 									</tr>
 								</thead>
-								<tbody></tbody>
+								<tbody>
+									<%
+									   //HomeCalculoController homeCalculo = new HomeCalculoController();
+									     ArrayList<CacheModel> list = CacheDAO.listaCache();
+									     //CacheDAO che = new CacheDAO();
+									   //out.print("2");
+									   //String c = request.getParameter("emprest_financia").trim();
+									  // Home h = new Home();
+									   //HomeModel homeModel = homeCalculo.requestHomeModel(request, response);
+
+									   if(list != null){
+										   //homeModel = sr.requestHomeModel(request, response);
+										   //hc = new HomeCalculoController(homeModel);
+										   
+										   //for(int i=0; i<=homeModel.getPrazo(); i++){
+											   %>
+											   <tr>
+											    <td><%out.print(HomeCalculoController.mascaraMoeda(3467)); %></td>
+											   </tr>
+											   <%
+										   //}
+									   }
+									%>
+								</tbody>
 							</table>
 						</div>
 					</div>

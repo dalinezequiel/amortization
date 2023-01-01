@@ -6,8 +6,11 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+import com.simor.model.CacheModel;
 import com.simor.model.HomeModel;
 import com.simor.controller.*;
+import com.simor.dao.CacheDAO;
+import com.simor.dao.ConnectionDAO;
 
 /**
  * Servlet implementation class Home
@@ -15,15 +18,18 @@ import com.simor.controller.*;
 public class Home extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	private HomeModel hm = null;
-	private HomeCalculoController hc = null;
+	private HomeModel homeModelGlobal = null;
+	private HomeCalculoController homeCalculoGlobal = null;
+	private CacheModel cacheModelGlobal = null;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
 	public Home() {
 		super();
-		//hc = new HomeCalculoController();
+		homeModelGlobal = new HomeModel();
+		cacheModelGlobal = new CacheModel();
+		// hc = new HomeCalculoController();
 	}
 
 	/**
@@ -33,34 +39,56 @@ public class Home extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
+
+		homeCalculoGlobal = new HomeCalculoController(this.requestHomeModel(request, response));
+
+		this.cacheModelGlobal.setPrestacao(this.homeCalculoGlobal.getCalculoDePrestacao());
+		this.cacheModelGlobal.setJuro(this.homeCalculoGlobal.getCalculoDeJuro());
+		this.cacheModelGlobal.setAmortizacao(this.homeCalculoGlobal.getCalculoDeAmortizacao());
+		this.cacheModelGlobal.setSaldoDevedor(this.homeCalculoGlobal.getCalculoDeSaldoDevedor());
+
+		/*System.out.println(homeCalculoGlobal.formateMoeda(this.cacheModelGlobal.getPrestacao()));
+		System.out.println(homeCalculoGlobal.formateMoeda(this.cacheModelGlobal.getJuro()));
+		System.out.println(homeCalculoGlobal.formateMoeda(this.cacheModelGlobal.getAmortizacao()));
+		System.out.println(homeCalculoGlobal.formateMoeda(this.cacheModelGlobal.getSaldoDevedor()));*/
+
+		 CacheDAO.insertIntoCache(this.cacheModelGlobal);
+		 System.out.println(ConnectionDAO.getConnection());
 		
-		hc = new HomeCalculoController(this.requestHomeModel(request, response));
-		System.out.println(hc.getCalculoDePrestacao());
-		
-		//System.out.println(hm.getValorEmprestFinancia());
-		//System.out.println(hc.calcularPrestacao(this.requestHomeModel(request, response)));
-		//System.out.println(this.isNullOrEmpty(this.requestHomeModel(request, response).getValorEmprestFinancia(),true));
+		//if (CacheDAO.insertIntoCache(cacheModelGlobal)) {
+			response.sendRedirect("page/home.jsp");
+		//}
 	}
 
 	public HomeModel requestHomeModel(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		hm = new HomeModel();
-		hm.setValorEmprestFinancia(request.getParameter("emprest_financia").trim());
-		hm.setTaxa(Double.parseDouble(request.getParameter("taxa").trim()));
-		hm.setTaxaMensal(Double.parseDouble(request.getParameter("taxa_mensal").trim()));
-		hm.setTaxaAnual(Double.parseDouble(request.getParameter("taxa_anual").trim()));
-		hm.setPrazo(Integer.parseInt(request.getParameter("prazo").trim()));
-		return hm;
+		this.homeModelGlobal
+				.setValorEmprestFinancia(this.isNullOrEmpty(request.getParameter("emprest_financia").trim()));
+		this.homeModelGlobal.setTaxa(Double.parseDouble(this.isNullOrEmpty(request.getParameter("taxa").trim())));
+		this.homeModelGlobal
+				.setTaxaMensal(Double.parseDouble(this.isNullOrEmpty(request.getParameter("taxa_mensal").trim())));
+		this.homeModelGlobal
+				.setTaxaAnual(Double.parseDouble(this.isNullOrEmpty(request.getParameter("taxa_anual").trim())));
+		this.homeModelGlobal.setPrazo(Integer.parseInt(this.isNullOrEmpty(request.getParameter("prazo").trim())));
+
+		return this.homeModelGlobal;
 	}
 
-	public String isNullOrEmpty(String valor, boolean isNumber) {
-		if (valor.isEmpty() || valor == null) {
-			if (isNumber) {
-				return "0";
-			} else {
-				return "";
-			}
+	public String isNullOrEmpty(String value) {
+		if (value.isEmpty() || value == null) {
+			return "0";
 		}
-		return valor;
+		return value;
+	}
+
+	public boolean canPrint() {
+		if (this.homeModelGlobal != null) {
+			return true;
+		}
+		return false;
+	}
+
+	public HomeModel getHomeModel() {
+		return this.homeModelGlobal;
 	}
 }

@@ -2,12 +2,13 @@ package com.simor.controller;
 
 import java.text.DecimalFormat;
 import com.simor.model.*;
+import com.simor.servelet.Home;
 
 public class HomeCalculoController {
-	private DecimalFormat moeda = null;
-	
+	private static DecimalFormat moeda = null;
+
 	private HomeCalculoModel calculo;
-	private HomeModel homeModel;
+	private HomeModel homeModelGlobal;
 	private Auxilio aux = null;
 
 	public HomeCalculoController() {
@@ -15,63 +16,71 @@ public class HomeCalculoController {
 		moeda = new DecimalFormat("###,###.00");
 		aux = new Auxilio();
 	}
-	
+
 	public HomeCalculoController(HomeModel homeModel) {
 		super();
-		this.homeModel = homeModel;
+		this.homeModelGlobal = homeModel;
 		aux = new Auxilio();
-		moeda = new DecimalFormat("###,###.00");
 	}
+
+	// REQUEST & RESPONSE
+	/*public HomeModel requestHomeModel(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		this.homeModelGlobal
+				.setValorEmprestFinancia(this.isNullOrEmpty(request.getParameter("emprest_financia").trim()));
+		this.homeModelGlobal.setTaxa(Double.parseDouble(this.isNullOrEmpty(request.getParameter("taxa").trim())));
+		this.homeModelGlobal
+				.setTaxaMensal(Double.parseDouble(this.isNullOrEmpty(request.getParameter("taxa_mensal").trim())));
+		this.homeModelGlobal
+				.setTaxaAnual(Double.parseDouble(this.isNullOrEmpty(request.getParameter("taxa_anual").trim())));
+		this.homeModelGlobal.setPrazo(Integer.parseInt(this.isNullOrEmpty(request.getParameter("prazo").trim())));
+
+		return this.homeModelGlobal;
+	}*/
 
 	// CALCULAR PRESTAÇÃO
 	public double getCalculoDePrestacao() {
-		aux.setIntAux(1);
 		calculo = new HomeCalculoModel();
-		calculo.setValorPresenteOuActual(Double.parseDouble(homeModel.getValorEmprestFinancia()));
-		calculo.setTaxa(homeModel.getTaxa());
-		calculo.setNumeroPrestacao(homeModel.getPrazo());
-		
+		calculo.setValorPresenteOuActual(Double.parseDouble(this.homeModelGlobal.getValorEmprestFinancia()));
+		calculo.setTaxa(this.homeModelGlobal.getTaxa());
+		calculo.setNumeroPrestacao(this.homeModelGlobal.getPrazo());
+
 		aux = new Auxilio(4);
-		//PRIMEIRO CALCÚLO
+		aux.setIntAux(1);
+
+		// PRIMEIRO CALCÚLO
 		aux.adicionaDoubleAnyArray(0, aux.getIntAux() + this.getPercentual(calculo.getTaxa()));
-		
-		//SEGUNDO CALCÚLO
+
+		// SEGUNDO CALCÚLO
 		aux.adicionaDoubleAnyArray(1, Math.pow(aux.getDoubleAnyArray()[0], calculo.getNumeroPrestacao()));
-		
-		//TERCEIRO CALCÚLO
-		aux.adicionaDoubleAnyArray(2, aux.getDoubleAnyArray()[1] * this.getPercentual(calculo.getTaxa()) / (aux.getDoubleAnyArray()[1] - aux.getIntAux()));
-		
-		//QUARTO CALCÚLO
+
+		// TERCEIRO CALCÚLO
+		aux.adicionaDoubleAnyArray(2, aux.getDoubleAnyArray()[1] * this.getPercentual(calculo.getTaxa())
+				/ (aux.getDoubleAnyArray()[1] - aux.getIntAux()));
+
+		// QUARTO CALCÚLO
 		aux.adicionaDoubleAnyArray(3, calculo.getValorPresenteOuActual() * aux.getDoubleAnyArray()[2]);
-		
+
 		calculo.setPrestacao(aux.getDoubleAnyArray()[3]);
-		
-		/*double c2 = aux.getIntAux() + this.getPercentual(calculo.getTaxa()); // correcto
-		double c22 = Math.pow(c2, calculo.getNumeroPrestacao()); // correcto
-
-		double c3 = (c22 * this.getPercentual(calculo.getTaxa())) / (c22 - aux.getIntAux());
-		double c1 = calculo.getValorPresenteOuActual() * c3;
-
-		calculo.setPrestacao(c1);*/
-		return this.arredondaDuasCasasDecimal(calculo.getPrestacao());
+		return calculo.getPrestacao();
 	}
 
 	// CALCULAR JUROS
 	public double getCalculoDeJuro() {
 		this.getCalculoDePrestacao();
-		return this.arredondaDuasCasasDecimal2(this.getPercentual(calculo.getTaxa()) * calculo.getValorPresenteOuActual());
+		return this.getPercentual(calculo.getTaxa()) * calculo.getValorPresenteOuActual();
 	}
 
 	// CALCULAR AMORTIZAÇÃO
 	public double getCalculoDeAmortizacao() {
 		this.getCalculoDePrestacao();
-		return this.arredondaDuasCasasDecimal(this.getCalculoDePrestacao() - this.getCalculoDeJuro());
+		return this.getCalculoDePrestacao() - this.getCalculoDeJuro();
 	}
 
 	// CALCULAR SALDO DEVEDOR
 	public double getCalculoDeSaldoDevedor() {
 		this.getCalculoDePrestacao();
-		return this.arredondaDuasCasasDecimal(calculo.getValorPresenteOuActual() - this.getCalculoDeAmortizacao());
+		return this.calculo.getValorPresenteOuActual() - this.getCalculoDeAmortizacao();
 	}
 
 	// CALCULAR PRECENTUAL
@@ -79,32 +88,36 @@ public class HomeCalculoController {
 		return (valor / 100);
 	}
 
-	// ARRENDONADR A DUAS CASAS DECIMAIS
-	private double arredondaDuasCasasDecimal(double valor) {
-		return Math.round(valor * 100) / 100.0;
-	}
-
-	// ARRENDONADR A DUAS CASAS DECIMAIS
-	private double arredondaDuasCasasDecimal2(double valor) {
-		return Math.round(valor * 100) / 100.0;
-	}
-	
-	private String getFormat(double num) {
+	// FORMATAR A DUAS CASAS DECIMAIS
+	public static String mascaraMoeda(double num) {
+		moeda = new DecimalFormat("###,###.00");
 		return moeda.format(num);
 	}
 
+	// VALIADAÇÃO
+	public String isNullOrEmpty(String value) {
+		if (value.isEmpty() || value == null) {
+			return "0";
+		}
+		return value;
+	}
+
 	public static void main(String[] args) {
-		/*System.out.println(new HomeCalculoController().calcularPrestacao());
-		System.out.println(new HomeCalculoController().calcularJuro());
-		System.out.println(new HomeCalculoController().calcularAmortizacao());
-		System.out.println(new HomeCalculoController().calcularSaldoDevedor());
-		System.out.println(new HomeCalculoController().getFormat(5000000));*/
 		HomeModel m = new HomeModel();
 		m.setValorEmprestFinancia("50000");
 		m.setPrazo(12);
 		m.setTaxa(1);
-		
-		HomeCalculoController hc = new HomeCalculoController(m);
-		System.out.println(hc.getFormat(hc.getCalculoDePrestacao()));
+
+		Home hm = new Home();
+		System.out.println(hm.isNullOrEmpty(""));
+		System.out.println(HomeCalculoController.mascaraMoeda(34678));
+
+		/*
+		 * HomeCalculoController hc = new HomeCalculoController(m);
+		 * System.out.println(hc.formateMoeda(hc.getCalculoDePrestacao()));
+		 * System.out.println(hc.formateMoeda(hc.getCalculoDeJuro()));
+		 * System.out.println(hc.formateMoeda(hc.getCalculoDeAmortizacao()));
+		 * System.out.println(hc.formateMoeda(hc.getCalculoDeSaldoDevedor()));
+		 */
 	}
 }

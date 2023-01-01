@@ -1,0 +1,5 @@
+localhost
+simor
+5432
+postgres
+hund,70
