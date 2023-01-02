@@ -75,28 +75,29 @@
 				<div>
 					<form action="" method="POST">
 						<div class="camp">
+							<div class="cap">
 							<div class="cap-01">
 								<div>
-									<label>Valor do emprest. ou finânciamento</label> <input
-										type="text" placeholder="0,00" name="emprest_financia">
+									<label>Valor do emprest. ou finânc.</label> <input
+										type="text" placeholder="0.00" name="emprest_financia">
 								</div>
 								<div>
-									<label>Taxa (%)</label> <input type="text" placeholder="0,00"
+									<label>Taxa (%)</label> <input type="text" placeholder="0.00"
 										name="taxa">
 								</div>
 								<div>
 									<label>Essa será sua taxa mensal (%)</label> <input type="text"
-										placeholder="0,00" name="taxa_mensal">
+										placeholder="0.00" name="taxa_mensal">
 								</div>
 								<div>
 									<label>Essa será sua taxa anual (%)</label> <input type="text"
-										placeholder="0,00" name="taxa_anual">
+										placeholder="0.00" name="taxa_anual">
 								</div>
 
 							</div>
 							<div class="cap-03">
 								<div>
-									<label>Prazo</label> <input type="text" placeholder="0,00"
+									<label>Prazo</label> <input type="number" min="0" placeholder="0"
 										name="prazo">
 								</div>
 								<div>
@@ -112,7 +113,7 @@
 									</select>
 								</div>
 								<div>
-									<label>Carência</label> <input type="text" placeholder="0,00">
+									<label>Carência</label> <input type="number" min="0" placeholder="0">
 								</div>
 								<div>
 									<label>Sistema de amortização</label> <select>
@@ -128,7 +129,7 @@
 									<label>Data da contratação</label> <input type="date">
 								</div>
 								<div>
-									<label>Data da primeira parcela]</label> <input type="date">
+									<label>Primeira parcela</label> <input type="date">
 								</div>
 								<div>
 									<label>Tipo do balão</label> <select>
@@ -142,6 +143,21 @@
 										<option>Não</option>
 									</select>
 								</div>
+							</div>
+							<div class="cap-04">
+								<div>
+									<label>Periocidicidade do balão</label> <input type="number" min="0" placeholder="0">
+								</div>
+								<div>
+									<label>Quantidade de balões</label> <input type="number" min="0" placeholder="0">
+								</div>
+								<div>
+									<label>Valor do balão</label> <input type="text" placeholder="0.00">
+								</div>
+								<div>
+									<label>Juros de atraso (%)</label> <input type="text" placeholder="0.00">
+								</div>
+							</div>
 							</div>
 							<div class="cap-05">
 								<div>
@@ -208,32 +224,32 @@
 										<td><div>
 												Juros atraso<i class="fa-solid fa-arrow-down-a-z"></i>
 											</div></td>
-										<!-- <td><div>
+										<td><div>
 												Enc. Totais<i class="fa-solid fa-arrow-down-a-z"></i>
-											</div></td> -->
+											</div></td>
 									</tr>
 								</thead>
 								<tbody>
 									<%
-									   //HomeCalculoController homeCalculo = new HomeCalculoController();
-									     ArrayList<CacheModel> list = CacheDAO.listaCache();
-									     //CacheDAO che = new CacheDAO();
-									   //out.print("2");
-									   //String c = request.getParameter("emprest_financia").trim();
-									  // Home h = new Home();
-									   //HomeModel homeModel = homeCalculo.requestHomeModel(request, response);
-
-									   if(list != null){
-										   //homeModel = sr.requestHomeModel(request, response);
-										   //hc = new HomeCalculoController(homeModel);
-										   
-										   //for(int i=0; i<=homeModel.getPrazo(); i++){
+									   ArrayList<CacheModel> list = CacheDAO.listaCache();
+									   if(!list.isEmpty()){ 
+										   for(int i=0; i<=12; i++){
 											   %>
 											   <tr>
-											    <td><%out.print(HomeCalculoController.mascaraMoeda(3467)); %></td>
+											    <td><%out.print(i); %></td>
+											    <td></td>
+											    <td><%out.print(HomeCalculoController.mascaraMoeda(list.get(0).getPrestacao())); %></td> 
+											    <td></td>
+											    <td><%out.print(HomeCalculoController.mascaraMoeda(list.get(0).getJuro())); %></td>
+											    <td><%out.print(HomeCalculoController.mascaraMoeda(list.get(0).getAmortizacao())); %></td>
+											    <td><%out.print(HomeCalculoController.mascaraMoeda(list.get(0).getSaldoDevedor())); %></td>
+											    <td></td>
+											    <td></td>
+											    <td></td>
+											    <td><%out.print(HomeCalculoController.mascaraMoeda(list.get(0).getPrestacao())); %></td>
 											   </tr>
 											   <%
-										   //}
+										   }
 									   }
 									%>
 								</tbody>

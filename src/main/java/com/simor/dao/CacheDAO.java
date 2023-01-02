@@ -68,5 +68,11 @@ public class CacheDAO {
 	}
 	public static void main(String []args) {
 		System.out.println(ConnectionDAO.getConnection());
+		System.out.println(CacheDAO.listaCache());
+		if(CacheDAO.listaCache().isEmpty()) {
+			System.out.println("Vazia");
+		}else {
+			System.out.println("Preenchida");
+		}
 	}
 }

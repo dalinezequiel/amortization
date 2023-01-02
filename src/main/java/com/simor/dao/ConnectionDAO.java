@@ -50,7 +50,7 @@ public class ConnectionDAO {
 
 	// LEITURA DOS DADOS DE CONFIGURAÇÃO DO BANCO DO FICHEIRO
 	public static void readFromFile() {
-		file = new File("C:\\Users\\Public\\simor_set.txt");
+		file = new File("C:\\Users\\Public\\simor_set.txt");//C:\\Users\\Public\\simor_set.txt
 		try {
 			fileReader = new FileReader(file);
 			bufferedReader = new BufferedReader(fileReader);
@@ -86,7 +86,7 @@ public class ConnectionDAO {
 	}
 
 	public static void main(String[] args) {
-		System.out.println(ConnectionDAO.getConnection());
+		//System.out.println(ConnectionDAO.getConnection());
 		System.out.println(ConnectionDAO.getDatabaseModel().getDatabase());
 	}
 }

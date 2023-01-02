@@ -23,21 +23,6 @@ public class HomeCalculoController {
 		aux = new Auxilio();
 	}
 
-	// REQUEST & RESPONSE
-	/*public HomeModel requestHomeModel(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		this.homeModelGlobal
-				.setValorEmprestFinancia(this.isNullOrEmpty(request.getParameter("emprest_financia").trim()));
-		this.homeModelGlobal.setTaxa(Double.parseDouble(this.isNullOrEmpty(request.getParameter("taxa").trim())));
-		this.homeModelGlobal
-				.setTaxaMensal(Double.parseDouble(this.isNullOrEmpty(request.getParameter("taxa_mensal").trim())));
-		this.homeModelGlobal
-				.setTaxaAnual(Double.parseDouble(this.isNullOrEmpty(request.getParameter("taxa_anual").trim())));
-		this.homeModelGlobal.setPrazo(Integer.parseInt(this.isNullOrEmpty(request.getParameter("prazo").trim())));
-
-		return this.homeModelGlobal;
-	}*/
-
 	// CALCULAR PRESTAÇÃO
 	public double getCalculoDePrestacao() {
 		calculo = new HomeCalculoModel();
@@ -111,13 +96,5 @@ public class HomeCalculoController {
 		Home hm = new Home();
 		System.out.println(hm.isNullOrEmpty(""));
 		System.out.println(HomeCalculoController.mascaraMoeda(34678));
-
-		/*
-		 * HomeCalculoController hc = new HomeCalculoController(m);
-		 * System.out.println(hc.formateMoeda(hc.getCalculoDePrestacao()));
-		 * System.out.println(hc.formateMoeda(hc.getCalculoDeJuro()));
-		 * System.out.println(hc.formateMoeda(hc.getCalculoDeAmortizacao()));
-		 * System.out.println(hc.formateMoeda(hc.getCalculoDeSaldoDevedor()));
-		 */
 	}
 }
