@@ -86,7 +86,7 @@ public class ConnectionDAO {
 	}
 
 	public static void main(String[] args) {
-		//System.out.println(ConnectionDAO.getConnection());
+		System.out.println(ConnectionDAO.getConnection());
 		System.out.println(ConnectionDAO.getDatabaseModel().getDatabase());
 	}
 }

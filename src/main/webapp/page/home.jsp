@@ -1,17 +1,57 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 
-<%@page import="com.simor.controller.HomeCalculoController"
+<%@page import="com.simor.controller.*"
         import="java.util.*"
         import="com.simor.dao.*"
         import="com.simor.model.*"
 %>
+<%!
+  HomeModel homeModelGlobal = new HomeModel();
+  HomeCalculoController homeCalculoGlobal = null;
+  CacheModel cacheModelGlobal = new CacheModel();
+  Auxilio aux = new Auxilio();
+  
+  CalPriceController calPriceController = new CalPriceController();
+  CalPriceModel calPriceModel = new CalPriceModel();
+  CalculoModel calculoModel = null;
+%>
+<%
+double val = 0;
+if(request.getParameter("calcular") != null){
+	
+	calPriceController.getCalculoModelData(request, response);
+	
+	homeModelGlobal.setValorEmprestFinancia(SistemaController.isNullOrEmpty(request.getParameter("emprest_financia").trim()));
+	homeModelGlobal.setTaxa(Double.parseDouble(SistemaController.isNullOrEmpty(request.getParameter("taxa").trim())));
+	homeModelGlobal.setTaxaMensal(Double.parseDouble(SistemaController.isNullOrEmpty(request.getParameter("taxa_mensal").trim())));
+	homeModelGlobal.setTaxaAnual(Double.parseDouble(SistemaController.isNullOrEmpty(request.getParameter("taxa_anual").trim())));
+	homeModelGlobal.setPrazo(Integer.parseInt(SistemaController.isNullOrEmpty(request.getParameter("prazo").trim())));
+	
+	val = Double.parseDouble(homeModelGlobal.getValorEmprestFinancia());
+	homeCalculoGlobal = new HomeCalculoController(homeModelGlobal);
 
-<!-- import="jakarta.servlet.ServletException"
-        import="jakarta.servlet.http.HttpServlet"
-        import="jakarta.servlet.http.HttpServletRequest"
-        import="jakarta.servlet.http.HttpServletResponse"
-        import="java.io.IOException" -->
+	cacheModelGlobal.setIdCache(SistemaController.getId());
+	cacheModelGlobal.setPrestacao(homeCalculoGlobal.getCalculoDePrestacao());
+	cacheModelGlobal.setJuro(homeCalculoGlobal.getCalculoDeJuro());
+	cacheModelGlobal.setAmortizacao(homeCalculoGlobal.getCalculoDeAmortizacao());
+	cacheModelGlobal.setSaldoDevedor(homeCalculoGlobal.getCalculoDeSaldoDevedor());
+	cacheModelGlobal.setData(SistemaController.getFormatedDate(request.getParameter("ultima_parcela")).trim());
+	
+	CacheDAO.deleteCache();
+	if(CacheDAO.insertIntoCache(cacheModelGlobal)){
+	int a=0;
+	}else{
+		%>
+		<h3>Ocorreu um erro ao cadastrar prestação!</h3>
+		<%
+		
+	}
+}else{
+	cacheModelGlobal.setData("00-00-0000");
+}
+
+%>
 
 <!DOCTYPE html>
 <html>
@@ -79,11 +119,11 @@
 							<div class="cap-01">
 								<div>
 									<label>Valor do emprest. ou finânc.</label> <input
-										type="text" placeholder="0.00" name="emprest_financia">
+										type="text" placeholder="0.00" name="emprest_financia" required>
 								</div>
 								<div>
 									<label>Taxa (%)</label> <input type="text" placeholder="0.00"
-										name="taxa">
+										name="taxa" required>
 								</div>
 								<div>
 									<label>Essa será sua taxa mensal (%)</label> <input type="text"
@@ -98,7 +138,7 @@
 							<div class="cap-03">
 								<div>
 									<label>Prazo</label> <input type="number" min="0" placeholder="0"
-										name="prazo">
+										name="prazo" required>
 								</div>
 								<div>
 									<label>Índice de actualização</label> <select>
@@ -129,7 +169,7 @@
 									<label>Data da contratação</label> <input type="date">
 								</div>
 								<div>
-									<label>Primeira parcela</label> <input type="date">
+									<label>Primeira parcela</label> <input type="date" name="ultima_parcela" required>
 								</div>
 								<div>
 									<label>Tipo do balão</label> <select>
@@ -162,12 +202,12 @@
 							<div class="cap-05">
 								<div>
 									<!-- <a>Calcular</a> -->
-									<button onclick='this.form.action="../Home"'>Calcular</button>
+									<button name="calcular">Calcular</button>
 									<!-- onclick='this.form.action="../index.jsp"' -->
 								</div>
 								<div>
 									<!-- <a>Salvar</a> -->
-									<button>Salvar</button>
+									<button name="salvar">Salvar</button>
 								</div>
 								<div>
 									<!-- <a>Consultar</a> -->
@@ -181,6 +221,7 @@
 						</div>
 					</form>
 					<div class="tabela">
+					    <h4>Lista de resultados</h4>
 						<div>
 							<table>
 								<thead>
@@ -232,17 +273,38 @@
 								<tbody>
 									<%
 									   ArrayList<CacheModel> list = CacheDAO.listaCache();
-									   if(!list.isEmpty()){ 
-										   for(int i=0; i<=12; i++){
+									   if(!list.isEmpty() && list.get(0).getJuro() != 0.0){ 
+										   //double val = homeModelGlobal.getValorEmprestFinancia();
+										   double vd = val;
+										   double prt = cacheModelGlobal.getPrestacao();
+										   double jri = HomeCalculoController.getPercentual(homeModelGlobal.getTaxa());
+										   double jr = 1;
+										   double am = jr;
+										   //double vd = am;
+										   //calculoModel = calPriceController.getCalculoModelData(request, response);
+										   calculoModel = new CalPriceController(request, response).calculoModelTeste();
+										   
+										   calPriceModel.setValorEmprestFinac(calculoModel.getValorEmprestFinancia());
+										   calPriceModel.setJuro(CalPriceController.getPercentualPriceCalculado());
+										   
+										   System.out.println("Teste devo: " + calculoModel.getValorEmprestFinancia());
+										   System.out.println("Teste prestação devo: " + new CalPriceController().getCalculoDePrestacao(calculoModel));
+										   for(int i=0; i<12; i++){
+											   jr = jri * vd;
+											   am = prt - jr;
+											   vd -= am;
+											   //homeModelGlobal.setValorEmprestFinancia(Double.parseDouble(homeModelGlobal.getValorEmprestFinancia()) - i+"");
+											   //calPriceModel.setAmortizacao(amortizacao)
 											   %>
 											   <tr>
-											    <td><%out.print(i); %></td>
+											    <td><%out.print(calPriceModel.getJuro()); %></td>
+											    <!-- <td><%//out.print(i+1); %></td> -->
+											    <td><%out.print(cacheModelGlobal.getData()); %></td>
+											    <td><%out.print(HomeCalculoController.mascaraMoeda(prt)); %></td>
 											    <td></td>
-											    <td><%out.print(HomeCalculoController.mascaraMoeda(list.get(0).getPrestacao())); %></td> 
-											    <td></td>
-											    <td><%out.print(HomeCalculoController.mascaraMoeda(list.get(0).getJuro())); %></td>
-											    <td><%out.print(HomeCalculoController.mascaraMoeda(list.get(0).getAmortizacao())); %></td>
-											    <td><%out.print(HomeCalculoController.mascaraMoeda(list.get(0).getSaldoDevedor())); %></td>
+											    <td><%out.print(HomeCalculoController.mascaraMoeda(jr)); %></td>
+											    <td><%out.print(HomeCalculoController.mascaraMoeda(am)); %></td>
+											    <td><%out.print(HomeCalculoController.mascaraMoeda(vd)); %></td>
 											    <td></td>
 											    <td></td>
 											    <td></td>
@@ -251,6 +313,7 @@
 											   <%
 										   }
 									   }
+									   CacheDAO.deleteCache();
 									%>
 								</tbody>
 							</table>
@@ -260,7 +323,7 @@
 			</div>
 			<div class="rodape">
 				<p>&copy;2022 - Todos direitos reservados</p>
-				<p>00-00-0000</p>
+				<p><%out.print(SistemaController.getDataActual()); %></p>
 			</div>
 		</div>
 	</div>

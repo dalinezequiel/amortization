@@ -19,4 +19,34 @@
     <servlet-name>Home</servlet-name>
     <url-pattern>/Home</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ContaServ</display-name>
+    <servlet-name>ContaServ</servlet-name>
+    <servlet-class>com.simor.servelet.ContaServ</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ContaServ</servlet-name>
+    <url-pattern>/ContaServ</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>forgotServ</display-name>
+    <servlet-name>forgotServ</servlet-name>
+    <servlet-class>com.simor.servelet.forgotServ</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>forgotServ</servlet-name>
+    <url-pattern>/forgotServ</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>FeriadoServ</display-name>
+    <servlet-name>FeriadoServ</servlet-name>
+    <servlet-class>com.simor.servelet.FeriadoServ</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>FeriadoServ</servlet-name>
+    <url-pattern>/FeriadoServ</url-pattern>
+  </servlet-mapping>
 </web-app>

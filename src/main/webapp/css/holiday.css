@@ -195,6 +195,10 @@ table thead tr td div {
 	/*color:#ffffff;*/
 }
 
+table tbody tr td{
+	padding:5px;
+}
+
 /**/
 .rodape {
 	display: flex;
@@ -210,7 +214,7 @@ table thead tr td div {
 	display:flex;
 }
 
-.camp .cap-05 a {
+.camp .cap-05 a, .camp .cap-05 button {
 	padding: 10px 67px;
 	font-size: 16px;
 	border: none;
@@ -229,12 +233,12 @@ table thead tr td div {
 	margin-top:20px;
 }
 
-.camp .cap-05 div:nth-child(1) a {
+.camp .cap-05 div:nth-child(1) button {
 	background-color: #286d4b;
 	color: #ffffff;
 }
 
-.camp .cap-05 div:nth-child(1) a:hover {
+.camp .cap-05 div:nth-child(1) button:hover {
 	background-color: #14854c;
 }
 
@@ -271,7 +275,7 @@ table thead tr td div {
 	margin: 2px 0px 10px 0px;
 	border: 1px solid #e1e1e1;
 	border-radius: 3px;
-	width:260px;
+	width:380px;
 }
 
 .camp select {
@@ -284,9 +288,6 @@ table thead tr td div {
 	/*width:260px;*/
 }
 
-/*.camp input[type="text"]{
-	text-align:right;
-}*/
 
 .camp .cap-01 div, .camp .cap-02 div, .camp .cap-03 div {
 	display: flex;

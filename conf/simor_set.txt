@@ -1,5 +1,0 @@
-localhost
-sae
-5432
-postgres
-hund,70

@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+	
+<%@ page
+   import="com.simor.dao.*, com.simor.model.*"
+   import="java.util.*"
+ %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -46,7 +51,6 @@
 			<div>
 				<div class="conta">
 					<div class="select">
-						<!-- <i class="fa-solid fa-bars"></i> -->
 						<i class="fa-solid fa-calendar-days"></i>
 						<p>Feriados</p>
 					</div>
@@ -64,30 +68,37 @@
 						<h3>Lista de feriados para cálculo de encargos por atraso
 							1960 a 2050</h3>
 					</div>
+					<form action="../FeriadoServ" method="post">
 					<div class="camp">
 						<div class="cap-01">
 							<div>
-								<label>Data</label> <input type="date">
+								<label>Data</label> <input type="date" name="data_feriado" required>
 							</div>
 							<div>
-								<label>Descrição</label> <input type="text">
+								<label>Descrição</label> <input type="text" name="descricao" required>
 							</div>
 							<div>
-								<label>Ano</label> <input type="text">
+								<label>Ano</label> <input type="number" min="1960" name="ano" required>
 							</div>
 
 						</div>
 						<div class="cap-05">
 							<div>
-								<a>Salvar</a>
+							    <!-- <a>Salvar</a> -->
+								<button name="salva">Salvar</button>
 							</div>
 							<div>
 								<a>Limpar</a>
 							</div>
 						</div>
 					</div>
+					</form>
 					<div class="tabela">
 						<div>
+						    <%
+						        FeriadoDAO feria=new FeriadoDAO();
+						        ArrayList<FeriadoModel> listFeriado = null;
+						    %>
 							<table>
 								<thead>
 									<tr>
@@ -102,7 +113,22 @@
 											</div></td>
 									</tr>
 								</thead>
-								<tbody></tbody>
+								<tbody>
+								 <%
+								 listFeriado = FeriadoDAO.listaFeriado();
+								  if(feria != null){
+									  for(int i=0; i<listFeriado.size(); i++){
+									  %>
+									   <tr>
+									       <td><%out.print(listFeriado.get(i).getDataFeriado()); %></td>
+									       <td><%out.print(listFeriado.get(i).getDescricao()); %></td>
+									       <td><%out.print(listFeriado.get(i).getAno()); %></td>
+									   </tr>
+									  <%
+									  }
+								  }
+								 %>
+								</tbody>
 							</table>
 						</div>
 					</div>
@@ -114,5 +140,6 @@
 			</div>
 		</div>
 	</div>
+	<script src="../script/feriado.js"></script>
 </body>
 </html>

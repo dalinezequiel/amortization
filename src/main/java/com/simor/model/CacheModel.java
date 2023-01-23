@@ -7,6 +7,7 @@ public class CacheModel extends HomeCalculoModel {
 	private double juro;
 	private double amortizacao;
 	private double saldoDevedor;
+	private String data;
 
 	public CacheModel() {
 		super();
@@ -69,5 +70,13 @@ public class CacheModel extends HomeCalculoModel {
 
 	public void setSaldoDevedor(double saldoDevedor) {
 		this.saldoDevedor = saldoDevedor;
+	}
+
+	public String getData() {
+		return data;
+	}
+
+	public void setData(String data) {
+		this.data = data;
 	}
 }

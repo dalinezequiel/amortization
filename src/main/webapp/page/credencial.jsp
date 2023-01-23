@@ -53,45 +53,37 @@
 			</div>
 		</div>
 		<div class="pa-2">
-			<!-- <div class="p-2-1">
-			<h2>Credêncial</h2>
-				<div>
-					<h2>Credêncial</h2>
-				</div>
-			</div> -->
-			<form action="">
+			<form action="../ContaServ" method="post">
 				<div class="p-2-1">
 					<h2>Credêncial</h2>
 					<p>Criação de credênciais</p>
-					<!-- <div>
-					<h2>Credêncial</h2>
-				</div> -->
 				</div>
 				<div class="p-2-2">
 					<div class="cf">
-						<label>Perfil</label> <select>
+						<label>Perfil</label> <select name="perfil">
 							<option disabled>Administrador</option>
 							<option>Normal</option>
 						</select>
 					</div>
 					<div class="cf">
-						<label>Email</label><input type="email">
+						<label>Email</label><input type="email" name="email" required>
 					</div>
 					<div class="cf">
-						<label>Usuário</label><input type="text">
+						<label>Usuário</label><input type="text" name="usuario" required>
 					</div>
 					<div class="cf">
-						<label>Senha</label><input type="password">
+						<label>Senha</label><input type="password" name="senha" required>
 					</div>
 					<div class="cf">
-						<label>Comfirmar Senha</label><input type="password">
+						<label>Comfirmar Senha</label><input type="password" name="comfirma_senha" required>
 					</div>
 					<div class="p-butoe">
 						<div>
 							<button>Salvar</button>
 						</div>
 						<div>
-							<button onclick='this.form.action="../index.jsp"'>Voltar</button>
+							<!-- <button onclick='this.form.action="../index.jsp"'>Voltar</button> -->
+							<a href="../index.jsp">Voltar</a>
 						</div>
 					</div>
 				</div>

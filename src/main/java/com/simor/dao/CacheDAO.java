@@ -23,10 +23,7 @@ public class CacheDAO {
 			String SQL_INSERT_QUERY = "INSERT INTO tb_cache(id_cache, email, prestacao, juro, amortizacao, saldo_devedor) values(?,?,?,?,?,?)";
 			con = ConnectionDAO.getConnection();
 			pst = con.prepareStatement(SQL_INSERT_QUERY);
-
-			/*pst.setInt(1, cache.getIdCache());
-			pst.setString(2, cache.getEmail());*/
-			pst.setInt(1, 2023);
+			pst.setInt(1, cache.getIdCache());
 			pst.setString(2, "email");
 			pst.setDouble(3, cache.getPrestacao());
 			pst.setDouble(4, cache.getJuro());
@@ -66,13 +63,20 @@ public class CacheDAO {
 		}
 		return listaChe;
 	}
-	public static void main(String []args) {
-		System.out.println(ConnectionDAO.getConnection());
-		System.out.println(CacheDAO.listaCache());
-		if(CacheDAO.listaCache().isEmpty()) {
-			System.out.println("Vazia");
-		}else {
-			System.out.println("Preenchida");
+	
+	//DELETE CACHE
+	public static boolean deleteCache() {
+		try {
+			String SQL_DELETE_QUERY = "DELETE FROM tb_cache";
+			con = ConnectionDAO.getConnection();
+			pst = con.prepareStatement(SQL_DELETE_QUERY);
+			pst.executeUpdate();
+			pst.close();
+
+			return true;
+		} catch (SQLException e) {
+			System.out.println("Ocorreu um erro!\n" + e.getMessage());
 		}
+		return false;
 	}
 }

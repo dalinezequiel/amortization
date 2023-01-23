@@ -34,13 +34,13 @@ public class HomeCalculoController {
 		aux.setIntAux(1);
 
 		// PRIMEIRO CALCÚLO
-		aux.adicionaDoubleAnyArray(0, aux.getIntAux() + this.getPercentual(calculo.getTaxa()));
+		aux.adicionaDoubleAnyArray(0, aux.getIntAux() + getPercentual(calculo.getTaxa()));
 
 		// SEGUNDO CALCÚLO
 		aux.adicionaDoubleAnyArray(1, Math.pow(aux.getDoubleAnyArray()[0], calculo.getNumeroPrestacao()));
 
 		// TERCEIRO CALCÚLO
-		aux.adicionaDoubleAnyArray(2, aux.getDoubleAnyArray()[1] * this.getPercentual(calculo.getTaxa())
+		aux.adicionaDoubleAnyArray(2, aux.getDoubleAnyArray()[1] * getPercentual(calculo.getTaxa())
 				/ (aux.getDoubleAnyArray()[1] - aux.getIntAux()));
 
 		// QUARTO CALCÚLO
@@ -53,7 +53,7 @@ public class HomeCalculoController {
 	// CALCULAR JUROS
 	public double getCalculoDeJuro() {
 		this.getCalculoDePrestacao();
-		return this.getPercentual(calculo.getTaxa()) * calculo.getValorPresenteOuActual();
+		return getPercentual(calculo.getTaxa()) * calculo.getValorPresenteOuActual();
 	}
 
 	// CALCULAR AMORTIZAÇÃO
@@ -69,7 +69,7 @@ public class HomeCalculoController {
 	}
 
 	// CALCULAR PRECENTUAL
-	private double getPercentual(double valor) {
+	public static double getPercentual(double valor) {
 		return (valor / 100);
 	}
 
@@ -85,16 +85,5 @@ public class HomeCalculoController {
 			return "0";
 		}
 		return value;
-	}
-
-	public static void main(String[] args) {
-		HomeModel m = new HomeModel();
-		m.setValorEmprestFinancia("50000");
-		m.setPrazo(12);
-		m.setTaxa(1);
-
-		Home hm = new Home();
-		System.out.println(hm.isNullOrEmpty(""));
-		System.out.println(HomeCalculoController.mascaraMoeda(34678));
 	}
 }
