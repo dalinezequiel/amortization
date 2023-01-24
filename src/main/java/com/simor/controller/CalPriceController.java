@@ -4,56 +4,54 @@ import java.io.IOException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.*;
 
 import com.simor.model.*;
 
 public class CalPriceController {
 	private CalculoModel calculoModel = null;
-	private static CalPriceModel calPriceModel = null;
-	
-	//private CalPriceModel calculo;
+	private static CalPriceModel calPriceModel, calPrice = null;
 	private Auxilio aux = null;
+	private static ArrayList<CalPriceModel> listaPrice = null;
 
-	public CalPriceController() {
-		calculoModel = new CalculoModel();
-		calPriceModel = new CalPriceModel();
-	}
-	
-	public CalPriceController(HttpServletRequest request, HttpServletResponse response) 
+	public CalPriceController(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		calculoModel = new CalculoModel();
 		calPriceModel = new CalPriceModel();
 		this.calculoModel = getCalculoModelData(request, response);
 	}
-	
-	public CalculoModel calculoModelTeste() {
+
+	public CalculoModel calculoModelObject() {
 		return this.calculoModel;
 	}
-	
+
 	// CALCULAR PRESTAÇÃO
-		public double getCalculoDePrestacao(CalculoModel calModel) {
-			aux = new Auxilio(4);
-			aux.setIntAux(1);
+	public double getCalculoDePrestacao() {
+		aux = new Auxilio(4);
+		aux.setIntAux(1);
 
-			// PRIMEIRO CALCÚLO
-			aux.adicionaDoubleAnyArray(0, aux.getIntAux() + getPercentualPriceCalculado(calModel.getValorEmprestFinancia(),calModel.getTaxa()));
+		// PRIMEIRO CALCÚLO
+		aux.adicionaDoubleAnyArray(0, aux.getIntAux()
+				+ getPercentualPriceCalculado(calculoModel.getValorEmprestFinancia(), calculoModel.getTaxa()));
 
-			// SEGUNDO CALCÚLO
-			aux.adicionaDoubleAnyArray(1, Math.pow(aux.getDoubleAnyArray()[0], calModel.getPrazo()));
+		// SEGUNDO CALCÚLO
+		aux.adicionaDoubleAnyArray(1, Math.pow(aux.getDoubleAnyArray()[0], calculoModel.getPrazo()));
 
-			// TERCEIRO CALCÚLO
-			aux.adicionaDoubleAnyArray(2, aux.getDoubleAnyArray()[1] * getPercentualPriceCalculado(calModel.getValorEmprestFinancia(),calModel.getTaxa())
-					/ (aux.getDoubleAnyArray()[1] - aux.getIntAux()));
+		// TERCEIRO CALCÚLO
+		aux.adicionaDoubleAnyArray(2,
+				aux.getDoubleAnyArray()[1]
+						* getPercentualPriceCalculado(calculoModel.getValorEmprestFinancia(), calculoModel.getTaxa())
+						/ (aux.getDoubleAnyArray()[1] - aux.getIntAux()));
 
-			// QUARTO CALCÚLO
-			aux.adicionaDoubleAnyArray(3, calModel.getValorEmprestFinancia() * aux.getDoubleAnyArray()[2]);
+		// QUARTO CALCÚLO
+		aux.adicionaDoubleAnyArray(3, calculoModel.getValorEmprestFinancia() * aux.getDoubleAnyArray()[2]);
 
-			calPriceModel.setPrestacao(aux.getDoubleAnyArray()[3]);
-			return calPriceModel.getPrestacao();
-		}
+		calPriceModel.setPrestacao(aux.getDoubleAnyArray()[3]);
+		return calPriceModel.getPrestacao();
+	}
 
 	// PEGAR VALORES INFORMADOS NA PAGINA
-	public CalculoModel getCalculoModelData(HttpServletRequest request, HttpServletResponse response)
+	private CalculoModel getCalculoModelData(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		this.calculoModel.setValorEmprestFinancia(
 				Double.parseDouble(SistemaController.isNullOrEmpty(request.getParameter("emprest_financia").trim())));
@@ -72,10 +70,39 @@ public class CalPriceController {
 	}
 
 	// CALCULAR PRECENTUAL
-	public static double getPercentualPriceCalculado() {
-		return calPriceModel.getValorEmprestFinac() * (calPriceModel.getJuroInicial() / 100);
-	}
-	public double getPercentualPriceCalculado(double valorEmprestFinanc, double juroInicial) {
+	private double getPercentualPriceCalculado(double valorEmprestFinanc, double juroInicial) {
 		return juroInicial / 100;
+	}
+
+	// CALCULAR PRECENTUAL BRUTO
+	public double getTaxaPriceCalculado() {
+		return this.calculoModel.getTaxa() / 100;
+	}
+
+	// ARRAYLIST DO RESULTADOS DO CALCULO
+	public ArrayList<CalPriceModel> listaCalPriceModel() {
+		listaPrice = new ArrayList<CalPriceModel>();
+		if (this.calculoModel != null) {
+			calPriceModel.setValorEmprestFinac(this.calculoModel.getValorEmprestFinancia());
+			calPriceModel.setPrestacao(this.getCalculoDePrestacao());
+			calPriceModel.setJuroInicial(this.getTaxaPriceCalculado());
+			System.out.println(calPriceModel.getJuroInicial());
+			System.out.println(calPriceModel.getValorEmprestFinac());
+
+			for (int i = 0; i < this.calculoModel.getPrazo(); i++) {
+				calPrice = new CalPriceModel();
+				calPriceModel.setJuro(calPriceModel.getJuroInicial() * calPriceModel.getValorEmprestFinac());
+				calPriceModel.setAmortizacao(calPriceModel.getPrestacao() - calPriceModel.getJuro());
+				calPriceModel
+						.setValorEmprestFinac(calPriceModel.getValorEmprestFinac() - calPriceModel.getAmortizacao());
+				calPrice.setPrestacao(calPriceModel.getPrestacao());
+				calPrice.setJuro(calPriceModel.getJuro());
+				System.out.println(calPrice.getJuro());
+				calPrice.setAmortizacao(calPriceModel.getAmortizacao());
+				calPrice.setValorEmprestFinac(calPriceModel.getValorEmprestFinac());
+				listaPrice.add(calPrice);
+			}
+		}
+		return listaPrice;
 	}
 }

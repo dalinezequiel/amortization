@@ -8,8 +8,15 @@ import java.text.*;
 import java.time.LocalDate;
 
 public class SistemaController {
+	private static DecimalFormat moeda = null;
 	private static Auxilio aux = null;
 	private static Random random = null;
+	
+	
+	public SistemaController() {
+		super();
+		moeda = new DecimalFormat("###,###.00");
+	}
 
 	// GERAR CÓDIGO
 	public static int getId() {
@@ -42,5 +49,11 @@ public class SistemaController {
 	// PEGAR A DATA ACTUAL
 	public static String getDataActual() {
 		return new SimpleDateFormat("dd-MM-yyyy").format(Date.valueOf(LocalDate.now()));
+	}
+	
+	// FORMATAR A DUAS CASAS DECIMAIS
+	public static String mascaraMoeda(double num) {
+		moeda = new DecimalFormat("###,###.00");
+		return moeda.format(num);
 	}
 }

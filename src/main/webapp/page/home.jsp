@@ -7,49 +7,19 @@
         import="com.simor.model.*"
 %>
 <%!
-  HomeModel homeModelGlobal = new HomeModel();
-  HomeCalculoController homeCalculoGlobal = null;
   CacheModel cacheModelGlobal = new CacheModel();
-  Auxilio aux = new Auxilio();
-  
-  CalPriceController calPriceController = new CalPriceController();
+
   CalPriceModel calPriceModel = new CalPriceModel();
   CalculoModel calculoModel = null;
+  ArrayList<CalPriceModel> listaPrice = null;
 %>
 <%
-double val = 0;
-if(request.getParameter("calcular") != null){
-	
-	calPriceController.getCalculoModelData(request, response);
-	
-	homeModelGlobal.setValorEmprestFinancia(SistemaController.isNullOrEmpty(request.getParameter("emprest_financia").trim()));
-	homeModelGlobal.setTaxa(Double.parseDouble(SistemaController.isNullOrEmpty(request.getParameter("taxa").trim())));
-	homeModelGlobal.setTaxaMensal(Double.parseDouble(SistemaController.isNullOrEmpty(request.getParameter("taxa_mensal").trim())));
-	homeModelGlobal.setTaxaAnual(Double.parseDouble(SistemaController.isNullOrEmpty(request.getParameter("taxa_anual").trim())));
-	homeModelGlobal.setPrazo(Integer.parseInt(SistemaController.isNullOrEmpty(request.getParameter("prazo").trim())));
-	
-	val = Double.parseDouble(homeModelGlobal.getValorEmprestFinancia());
-	homeCalculoGlobal = new HomeCalculoController(homeModelGlobal);
-
-	cacheModelGlobal.setIdCache(SistemaController.getId());
-	cacheModelGlobal.setPrestacao(homeCalculoGlobal.getCalculoDePrestacao());
-	cacheModelGlobal.setJuro(homeCalculoGlobal.getCalculoDeJuro());
-	cacheModelGlobal.setAmortizacao(homeCalculoGlobal.getCalculoDeAmortizacao());
-	cacheModelGlobal.setSaldoDevedor(homeCalculoGlobal.getCalculoDeSaldoDevedor());
+//double val = 0;
+  if(request.getParameter("calcular") != null){
 	cacheModelGlobal.setData(SistemaController.getFormatedDate(request.getParameter("ultima_parcela")).trim());
-	
-	CacheDAO.deleteCache();
-	if(CacheDAO.insertIntoCache(cacheModelGlobal)){
-	int a=0;
-	}else{
-		%>
-		<h3>Ocorreu um erro ao cadastrar prestação!</h3>
-		<%
-		
-	}
-}else{
+  }else{
 	cacheModelGlobal.setData("00-00-0000");
-}
+  }
 
 %>
 
@@ -272,43 +242,34 @@ if(request.getParameter("calcular") != null){
 								</thead>
 								<tbody>
 									<%
-									   ArrayList<CacheModel> list = CacheDAO.listaCache();
-									   if(!list.isEmpty() && list.get(0).getJuro() != 0.0){ 
-										   //double val = homeModelGlobal.getValorEmprestFinancia();
-										   double vd = val;
-										   double prt = cacheModelGlobal.getPrestacao();
-										   double jri = HomeCalculoController.getPercentual(homeModelGlobal.getTaxa());
-										   double jr = 1;
-										   double am = jr;
-										   //double vd = am;
-										   //calculoModel = calPriceController.getCalculoModelData(request, response);
-										   calculoModel = new CalPriceController(request, response).calculoModelTeste();
-										   
+									   CalPriceController calPriceController = new CalPriceController(request, response);
+									   calculoModel = calPriceController.calculoModelObject();
+									   listaPrice = calPriceController.listaCalPriceModel();/**/
+									   if(calculoModel != null){ 
 										   calPriceModel.setValorEmprestFinac(calculoModel.getValorEmprestFinancia());
-										   calPriceModel.setJuro(CalPriceController.getPercentualPriceCalculado());
-										   
-										   System.out.println("Teste devo: " + calculoModel.getValorEmprestFinancia());
-										   System.out.println("Teste prestação devo: " + new CalPriceController().getCalculoDePrestacao(calculoModel));
-										   for(int i=0; i<12; i++){
-											   jr = jri * vd;
-											   am = prt - jr;
-											   vd -= am;
-											   //homeModelGlobal.setValorEmprestFinancia(Double.parseDouble(homeModelGlobal.getValorEmprestFinancia()) - i+"");
-											   //calPriceModel.setAmortizacao(amortizacao)
+
+										   calPriceModel.setPrestacao(calPriceController.getCalculoDePrestacao());
+										   calPriceModel.setJuroInicial(calPriceController.getTaxaPriceCalculado());
+										   for(int i=0; i<calculoModel.getPrazo(); i++){
+											   
+											   calPriceModel.setJuro(calPriceModel.getJuroInicial() * calPriceModel.getValorEmprestFinac());
+											   calPriceModel.setAmortizacao(calPriceModel.getPrestacao() - calPriceModel.getJuro());
+											   calPriceModel.setValorEmprestFinac(calPriceModel.getValorEmprestFinac() - calPriceModel.getAmortizacao());
 											   %>
 											   <tr>
-											    <td><%out.print(calPriceModel.getJuro()); %></td>
-											    <!-- <td><%//out.print(i+1); %></td> -->
+											    <td><%out.print(i+1); %></td>
 											    <td><%out.print(cacheModelGlobal.getData()); %></td>
-											    <td><%out.print(HomeCalculoController.mascaraMoeda(prt)); %></td>
+											    <td><%out.print(HomeCalculoController.mascaraMoeda(calPriceModel.getPrestacao())); %></td>
 											    <td></td>
-											    <td><%out.print(HomeCalculoController.mascaraMoeda(jr)); %></td>
-											    <td><%out.print(HomeCalculoController.mascaraMoeda(am)); %></td>
-											    <td><%out.print(HomeCalculoController.mascaraMoeda(vd)); %></td>
+											    <td><%out.print(HomeCalculoController.mascaraMoeda(calPriceModel.getJuro())); %></td>
+											    <td><%out.print(HomeCalculoController.mascaraMoeda(calPriceModel.getAmortizacao())); %></td>
+											    <td><%if(calPriceModel.getValorEmprestFinac() > 0.00001){
+											    	out.print(HomeCalculoController.mascaraMoeda(calPriceModel.getValorEmprestFinac()));}else
+											    	{out.print("0,00");} %></td>
 											    <td></td>
 											    <td></td>
 											    <td></td>
-											    <td><%out.print(HomeCalculoController.mascaraMoeda(list.get(0).getPrestacao())); %></td>
+											    <td><%out.print(HomeCalculoController.mascaraMoeda(calPriceModel.getPrestacao())); %></td>
 											   </tr>
 											   <%
 										   }
