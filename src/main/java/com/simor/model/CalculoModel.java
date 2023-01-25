@@ -18,6 +18,7 @@ public class CalculoModel {
 	private int quantBalao;
 	private double valorBalao;
 	private CalculoModel calculoModel;
+	private Auxilio auxilioModel;
 
 	public double getValorEmprestFinancia() {
 		return valorEmprestFinancia;
@@ -137,5 +138,13 @@ public class CalculoModel {
 
 	public void setCalculoModel(CalculoModel calculoModel) {
 		this.calculoModel = calculoModel;
+	}
+
+	public Auxilio getAuxilioModel() {
+		return auxilioModel;
+	}
+
+	public void setAuxilioModel(Auxilio auxilioModel) {
+		this.auxilioModel = auxilioModel;
 	}
 }

@@ -7,20 +7,21 @@
         import="com.simor.model.*"
 %>
 <%!
-  CacheModel cacheModelGlobal = new CacheModel();
-
-  CalPriceModel calPriceModel = new CalPriceModel();
-  CalculoModel calculoModel = null;
+  //CalPriceModel calPriceModel = new CalPriceModel();
   ArrayList<CalPriceModel> listaPrice = null;
+  CalPriceController calPriceController = null;
+  
+  ArrayList<CalculoModel1> listaGaus = null;
+  CalGausController calGausController = null;
 %>
 <%
-//double val = 0;
   if(request.getParameter("calcular") != null){
-	cacheModelGlobal.setData(SistemaController.getFormatedDate(request.getParameter("ultima_parcela")).trim());
-  }else{
-	cacheModelGlobal.setData("00-00-0000");
+	  calPriceController = new CalPriceController(request, response);
+	  listaPrice = calPriceController.listaCalPriceModel();
+	  
+	  calGausController = new CalGausController(request, response);
+	  listaGaus = calGausController.listaCalGausModel();
   }
-
 %>
 
 <!DOCTYPE html>
@@ -242,39 +243,28 @@
 								</thead>
 								<tbody>
 									<%
-									   CalPriceController calPriceController = new CalPriceController(request, response);
-									   calculoModel = calPriceController.calculoModelObject();
-									   listaPrice = calPriceController.listaCalPriceModel();/**/
-									   if(calculoModel != null){ 
-										   calPriceModel.setValorEmprestFinac(calculoModel.getValorEmprestFinancia());
-
-										   calPriceModel.setPrestacao(calPriceController.getCalculoDePrestacao());
-										   calPriceModel.setJuroInicial(calPriceController.getTaxaPriceCalculado());
-										   for(int i=0; i<calculoModel.getPrazo(); i++){
-											   
-											   calPriceModel.setJuro(calPriceModel.getJuroInicial() * calPriceModel.getValorEmprestFinac());
-											   calPriceModel.setAmortizacao(calPriceModel.getPrestacao() - calPriceModel.getJuro());
-											   calPriceModel.setValorEmprestFinac(calPriceModel.getValorEmprestFinac() - calPriceModel.getAmortizacao());
+									   if(listaPrice != null){ 
+										   for(int i=0; i<12;/*calPriceController.calculoModelObject().getPrazo();*/ i++){
 											   %>
 											   <tr>
-											    <td><%out.print(i+1); %></td>
-											    <td><%out.print(cacheModelGlobal.getData()); %></td>
-											    <td><%out.print(HomeCalculoController.mascaraMoeda(calPriceModel.getPrestacao())); %></td>
+											    <td><%out.print(SistemaController.getCounter(i)); %></td>
+											    <td><%out.print(SistemaController.getFormatedDate(calPriceController.calculoModelObject().getDataPrimeiraParcela().toString())); %></td>
+											    <td><%out.print(SistemaController.mascaraMoeda(listaGaus.get(i).getPrestacao())); %></td>
 											    <td></td>
-											    <td><%out.print(HomeCalculoController.mascaraMoeda(calPriceModel.getJuro())); %></td>
-											    <td><%out.print(HomeCalculoController.mascaraMoeda(calPriceModel.getAmortizacao())); %></td>
-											    <td><%if(calPriceModel.getValorEmprestFinac() > 0.00001){
-											    	out.print(HomeCalculoController.mascaraMoeda(calPriceModel.getValorEmprestFinac()));}else
+											    <td><%out.print(SistemaController.mascaraMoeda(listaPrice.get(i).getJuro())); %></td>
+											    <td><%out.print(SistemaController.mascaraMoeda(listaPrice.get(i).getAmortizacao())); %></td>
+											    <td><%if(listaPrice.get(i).getValorEmprestFinac() > calPriceController.calculoModelObject().getAuxilioModel().getDoubleAux()){
+											    	out.print(SistemaController.mascaraMoeda(listaPrice.get(i).getValorEmprestFinac()));}else
 											    	{out.print("0,00");} %></td>
 											    <td></td>
 											    <td></td>
 											    <td></td>
-											    <td><%out.print(HomeCalculoController.mascaraMoeda(calPriceModel.getPrestacao())); %></td>
+											    <td><%out.print(SistemaController.mascaraMoeda(listaPrice.get(i).getPrestacao())); %></td>
 											   </tr>
 											   <%
 										   }
+										   listaPrice = SistemaController.getReset();
 									   }
-									   CacheDAO.deleteCache();
 									%>
 								</tbody>
 							</table>

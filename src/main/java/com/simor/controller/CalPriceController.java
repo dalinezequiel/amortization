@@ -5,6 +5,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.*;
+import java.sql.Date;
 
 import com.simor.model.*;
 
@@ -18,6 +19,7 @@ public class CalPriceController {
 			throws ServletException, IOException {
 		calculoModel = new CalculoModel();
 		calPriceModel = new CalPriceModel();
+		aux = new Auxilio();
 		this.calculoModel = getCalculoModelData(request, response);
 	}
 
@@ -65,7 +67,10 @@ public class CalPriceController {
 				Double.parseDouble(SistemaController.isNullOrEmpty(request.getParameter("taxa_anual").trim())));
 		this.calculoModel
 				.setPrazo(Integer.parseInt(SistemaController.isNullOrEmpty(request.getParameter("prazo").trim())));
-
+		this.calculoModel.setDataPrimeiraParcela(Date.valueOf(request.getParameter("ultima_parcela").trim()));
+		aux = new Auxilio();
+		aux.setDoubleAux(0.01);
+		this.calculoModel.setAuxilioModel(aux);
 		return this.calculoModel;
 	}
 
@@ -86,8 +91,6 @@ public class CalPriceController {
 			calPriceModel.setValorEmprestFinac(this.calculoModel.getValorEmprestFinancia());
 			calPriceModel.setPrestacao(this.getCalculoDePrestacao());
 			calPriceModel.setJuroInicial(this.getTaxaPriceCalculado());
-			System.out.println(calPriceModel.getJuroInicial());
-			System.out.println(calPriceModel.getValorEmprestFinac());
 
 			for (int i = 0; i < this.calculoModel.getPrazo(); i++) {
 				calPrice = new CalPriceModel();
@@ -97,7 +100,6 @@ public class CalPriceController {
 						.setValorEmprestFinac(calPriceModel.getValorEmprestFinac() - calPriceModel.getAmortizacao());
 				calPrice.setPrestacao(calPriceModel.getPrestacao());
 				calPrice.setJuro(calPriceModel.getJuro());
-				System.out.println(calPrice.getJuro());
 				calPrice.setAmortizacao(calPriceModel.getAmortizacao());
 				calPrice.setValorEmprestFinac(calPriceModel.getValorEmprestFinac());
 				listaPrice.add(calPrice);

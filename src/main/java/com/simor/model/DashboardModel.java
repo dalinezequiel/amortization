@@ -2,8 +2,8 @@ package com.simor.model;
 
 import java.sql.Date;
 
-public class HomeModel {
-	private String valorEmprestFinancia;
+public class DashboardModel {
+	private double valorEmprestFinancia;
 	private double taxa;
 	private double taxaMensal;
 	private double taxaAnual;
@@ -17,36 +17,14 @@ public class HomeModel {
 	private int periodicidadeBalao;
 	private int quantBalao;
 	private double valorBalao;
+	private CalculoModel calculoModel;
+	private Auxilio auxilioModel;
 
-	public HomeModel() {
-		super();
-	}
-
-	public HomeModel(String valorEmprestFinancia, double taxa, double taxaMensal, double taxaAnual, int prazo,
-			String indiceActualizacao, int carencia, String sistemaAmortizacao, Date dataContratacao,
-			Date dataPrimeiraParcela, String tipoBalao, int periodicidadeBalao, int quantBalao, double valorBalao) {
-		super();
-		this.valorEmprestFinancia = valorEmprestFinancia;
-		this.taxa = taxa;
-		this.taxaMensal = taxaMensal;
-		this.taxaAnual = taxaAnual;
-		this.prazo = prazo;
-		this.indiceActualizacao = indiceActualizacao;
-		this.carencia = carencia;
-		this.sistemaAmortizacao = sistemaAmortizacao;
-		this.dataContratacao = dataContratacao;
-		this.dataPrimeiraParcela = dataPrimeiraParcela;
-		this.tipoBalao = tipoBalao;
-		this.periodicidadeBalao = periodicidadeBalao;
-		this.quantBalao = quantBalao;
-		this.valorBalao = valorBalao;
-	}
-
-	public String getValorEmprestFinancia() {
+	public double getValorEmprestFinancia() {
 		return valorEmprestFinancia;
 	}
 
-	public void setValorEmprestFinancia(String valorEmprestFinancia) {
+	public void setValorEmprestFinancia(double valorEmprestFinancia) {
 		this.valorEmprestFinancia = valorEmprestFinancia;
 	}
 
@@ -152,5 +130,21 @@ public class HomeModel {
 
 	public void setValorBalao(double valorBalao) {
 		this.valorBalao = valorBalao;
+	}
+
+	public CalculoModel getCalculoModel() {
+		return calculoModel;
+	}
+
+	public void setCalculoModel(CalculoModel calculoModel) {
+		this.calculoModel = calculoModel;
+	}
+
+	public Auxilio getAuxilioModel() {
+		return auxilioModel;
+	}
+
+	public void setAuxilioModel(Auxilio auxilioModel) {
+		this.auxilioModel = auxilioModel;
 	}
 }
