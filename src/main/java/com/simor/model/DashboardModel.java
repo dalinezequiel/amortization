@@ -17,7 +17,7 @@ public class DashboardModel {
 	private int periodicidadeBalao;
 	private int quantBalao;
 	private double valorBalao;
-	private CalculoModel calculoModel;
+	private DashboardModel dashboardModel;
 	private Auxilio auxilioModel;
 
 	public double getValorEmprestFinancia() {
@@ -131,13 +131,13 @@ public class DashboardModel {
 	public void setValorBalao(double valorBalao) {
 		this.valorBalao = valorBalao;
 	}
-
-	public CalculoModel getCalculoModel() {
-		return calculoModel;
+	
+	public DashboardModel getDashboardModel() {
+		return dashboardModel;
 	}
 
-	public void setCalculoModel(CalculoModel calculoModel) {
-		this.calculoModel = calculoModel;
+	public void setDashboardModel(DashboardModel dashboardModel) {
+		this.dashboardModel = dashboardModel;
 	}
 
 	public Auxilio getAuxilioModel() {

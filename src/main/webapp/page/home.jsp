@@ -7,20 +7,18 @@
         import="com.simor.model.*"
 %>
 <%!
-  //CalPriceModel calPriceModel = new CalPriceModel();
-  ArrayList<CalPriceModel> listaPrice = null;
+  ArrayList<CalculoModel> listaPrice = null;
   CalPriceController calPriceController = null;
   
-  ArrayList<CalculoModel1> listaGaus = null;
-  CalGausController calGausController = null;
-%>
+  /*ArrayList<CalculoModel> listaGaus = null;
+  CalGausController calGausController = null;*/%>
 <%
   if(request.getParameter("calcular") != null){
 	  calPriceController = new CalPriceController(request, response);
 	  listaPrice = calPriceController.listaCalPriceModel();
 	  
-	  calGausController = new CalGausController(request, response);
-	  listaGaus = calGausController.listaCalGausModel();
+	  /*calGausController = new CalGausController(request, response);
+	  listaGaus = calGausController.listaCalGausModel();*/
   }
 %>
 
@@ -249,7 +247,7 @@
 											   <tr>
 											    <td><%out.print(SistemaController.getCounter(i)); %></td>
 											    <td><%out.print(SistemaController.getFormatedDate(calPriceController.calculoModelObject().getDataPrimeiraParcela().toString())); %></td>
-											    <td><%out.print(SistemaController.mascaraMoeda(listaGaus.get(i).getPrestacao())); %></td>
+											    <td><%out.print(SistemaController.mascaraMoeda(listaPrice.get(i).getPrestacao())); %></td>
 											    <td></td>
 											    <td><%out.print(SistemaController.mascaraMoeda(listaPrice.get(i).getJuro())); %></td>
 											    <td><%out.print(SistemaController.mascaraMoeda(listaPrice.get(i).getAmortizacao())); %></td>

@@ -3,7 +3,7 @@ package com.simor.controller;
 import java.util.ArrayList;
 import java.util.Random;
 import com.simor.model.Auxilio;
-import com.simor.model.CalPriceModel;
+import com.simor.model.CalculoModel;
 
 import java.sql.Date;
 import java.text.*;
@@ -64,7 +64,7 @@ public class SistemaController {
 	}
 	
 	// DEVEOLVE NULL PARA RESETAR A LISTA
-	public static ArrayList<CalPriceModel> getReset() {
+	public static ArrayList<CalculoModel> getReset() {
 		return null;
 	}
 	

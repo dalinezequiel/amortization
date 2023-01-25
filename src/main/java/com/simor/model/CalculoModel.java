@@ -1,150 +1,49 @@
 package com.simor.model;
 
-import java.sql.Date;
-
 public class CalculoModel {
-	private double valorEmprestFinancia;
-	private double taxa;
-	private double taxaMensal;
-	private double taxaAnual;
-	private int prazo;
-	private String indiceActualizacao;
-	private int carencia;
-	private String sistemaAmortizacao;
-	private Date dataContratacao;
-	private Date dataPrimeiraParcela;
-	private String tipoBalao;
-	private int periodicidadeBalao;
-	private int quantBalao;
-	private double valorBalao;
-	private CalculoModel calculoModel;
-	private Auxilio auxilioModel;
+	private double valorEmprestFinac;
+	private double prestacao;
+	private double juro;
+	private double juroInicial;
+	private double amortizacao;
 
-	public double getValorEmprestFinancia() {
-		return valorEmprestFinancia;
+	public double getValorEmprestFinac() {
+		return valorEmprestFinac;
 	}
 
-	public void setValorEmprestFinancia(double valorEmprestFinancia) {
-		this.valorEmprestFinancia = valorEmprestFinancia;
+	public void setValorEmprestFinac(double valorEmprestFinac) {
+		this.valorEmprestFinac = valorEmprestFinac;
 	}
 
-	public double getTaxa() {
-		return taxa;
+	public double getPrestacao() {
+		return prestacao;
 	}
 
-	public void setTaxa(double taxa) {
-		this.taxa = taxa;
+	public void setPrestacao(double prestacao) {
+		this.prestacao = prestacao;
 	}
 
-	public double getTaxaMensal() {
-		return taxaMensal;
+	public double getJuro() {
+		return juro;
 	}
 
-	public void setTaxaMensal(double taxaMensal) {
-		this.taxaMensal = taxaMensal;
+	public void setJuro(double juro) {
+		this.juro = juro;
 	}
 
-	public double getTaxaAnual() {
-		return taxaAnual;
+	public double getJuroInicial() {
+		return juroInicial;
 	}
 
-	public void setTaxaAnual(double taxaAnual) {
-		this.taxaAnual = taxaAnual;
+	public void setJuroInicial(double juroInicial) {
+		this.juroInicial = juroInicial;
 	}
 
-	public int getPrazo() {
-		return prazo;
+	public double getAmortizacao() {
+		return amortizacao;
 	}
 
-	public void setPrazo(int prazo) {
-		this.prazo = prazo;
-	}
-
-	public String getIndiceActualizacao() {
-		return indiceActualizacao;
-	}
-
-	public void setIndiceActualizacao(String indiceActualizacao) {
-		this.indiceActualizacao = indiceActualizacao;
-	}
-
-	public int getCarencia() {
-		return carencia;
-	}
-
-	public void setCarencia(int carencia) {
-		this.carencia = carencia;
-	}
-
-	public String getSistemaAmortizacao() {
-		return sistemaAmortizacao;
-	}
-
-	public void setSistemaAmortizacao(String sistemaAmortizacao) {
-		this.sistemaAmortizacao = sistemaAmortizacao;
-	}
-
-	public Date getDataContratacao() {
-		return dataContratacao;
-	}
-
-	public void setDataContratacao(Date dataContratacao) {
-		this.dataContratacao = dataContratacao;
-	}
-
-	public Date getDataPrimeiraParcela() {
-		return dataPrimeiraParcela;
-	}
-
-	public void setDataPrimeiraParcela(Date dataPrimeiraParcela) {
-		this.dataPrimeiraParcela = dataPrimeiraParcela;
-	}
-
-	public String getTipoBalao() {
-		return tipoBalao;
-	}
-
-	public void setTipoBalao(String tipoBalao) {
-		this.tipoBalao = tipoBalao;
-	}
-
-	public int getPeriodicidadeBalao() {
-		return periodicidadeBalao;
-	}
-
-	public void setPeriodicidadeBalao(int periodicidadeBalao) {
-		this.periodicidadeBalao = periodicidadeBalao;
-	}
-
-	public int getQuantBalao() {
-		return quantBalao;
-	}
-
-	public void setQuantBalao(int quantBalao) {
-		this.quantBalao = quantBalao;
-	}
-
-	public double getValorBalao() {
-		return valorBalao;
-	}
-
-	public void setValorBalao(double valorBalao) {
-		this.valorBalao = valorBalao;
-	}
-
-	public CalculoModel getCalculoModel() {
-		return calculoModel;
-	}
-
-	public void setCalculoModel(CalculoModel calculoModel) {
-		this.calculoModel = calculoModel;
-	}
-
-	public Auxilio getAuxilioModel() {
-		return auxilioModel;
-	}
-
-	public void setAuxilioModel(Auxilio auxilioModel) {
-		this.auxilioModel = auxilioModel;
+	public void setAmortizacao(double amortizacao) {
+		this.amortizacao = amortizacao;
 	}
 }
