@@ -1,11 +1,15 @@
 package com.simor.model;
 
+import java.sql.Date;
+
 public class CalculoModel {
 	private double valorEmprestFinac;
 	private double prestacao;
 	private double juro;
 	private double juroInicial;
 	private double amortizacao;
+	private Date dataVencimento;
+	private Auxilio auxilio;
 
 	public double getValorEmprestFinac() {
 		return valorEmprestFinac;
@@ -45,5 +49,21 @@ public class CalculoModel {
 
 	public void setAmortizacao(double amortizacao) {
 		this.amortizacao = amortizacao;
+	}
+
+	public Date getDataVencimento() {
+		return dataVencimento;
+	}
+
+	public void setDataVencimento(Date dataVencimento) {
+		this.dataVencimento = dataVencimento;
+	}
+
+	public Auxilio getAuxilio() {
+		return auxilio;
+	}
+
+	public void setAuxilio(Auxilio auxilio) {
+		this.auxilio = auxilio;
 	}
 }

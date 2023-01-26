@@ -13,6 +13,7 @@ public class CalGausController {
 	private static CalculoModel calculoModel, calculo = null;
 	private Auxilio aux = null;
 	private static ArrayList<CalculoModel> listaGaus = null;
+	
 
 	public CalGausController(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -20,6 +21,7 @@ public class CalGausController {
 		calculoModel = new CalculoModel();
 		aux = new Auxilio();
 		this.dashboardModel = getCalculoModelData(request, response);
+		calculoModel.setPrestacao(this.getCalculoDePrestacao());	
 	}
 
 	public CalGausController() {
@@ -70,9 +72,6 @@ public class CalGausController {
 		this.dashboardModel
 				.setPrazo(Integer.parseInt(SistemaController.isNullOrEmpty(request.getParameter("prazo").trim())));
 		this.dashboardModel.setDataPrimeiraParcela(Date.valueOf(request.getParameter("ultima_parcela").trim()));
-		aux = new Auxilio();
-		aux.setDoubleAux(0.01);
-		this.dashboardModel.setAuxilioModel(aux);
 		return this.dashboardModel;
 	}
 
@@ -80,6 +79,32 @@ public class CalGausController {
 	public double getTaxaGausCalculado() {
 		return this.dashboardModel.getTaxa() / 100;
 	}
+	
+//	public double getCalculoJurosGaus(int index) {
+//		aux = new Auxilio(4);
+//		aux.setIntAux(1);
+//		aux.setDoubleAux(2);
+//		
+//		//CALCULO DO INDICE PONDERADO
+//		aux.adicionaDoubleAnyArray(0, (calculoModel.getPrestacao() * (dashboardModel.getPrazo() - index)) - dashboardModel.getValorEmprestFinancia());
+//		aux.adicionaDoubleAnyArray(1, (aux.getIntAux() + (dashboardModel.getPrazo() - index)) * ((dashboardModel.getPrazo() - index) / aux.getDoubleAux()));
+//		aux.adicionaDoubleAnyArray(2, (aux.getDoubleAnyArray()[0] / aux.getDoubleAnyArray()[1]));
+//		
+//		return aux.getDoubleAnyArray()[2] * (dashboardModel.getPrazo() - index);
+//	}
+	
+	public double getCalculoJurosGaus(int index, double v) {
+	aux = new Auxilio(4);
+	aux.setIntAux(1);
+	aux.setDoubleAux(2);
+	dashboardModel.setValorEmprestFinancia(v);
+	//CALCULO DO INDICE PONDERADO
+	aux.adicionaDoubleAnyArray(0, (calculoModel.getPrestacao() * (dashboardModel.getPrazo() - index)) - dashboardModel.getValorEmprestFinancia());
+	aux.adicionaDoubleAnyArray(1, (aux.getIntAux() + (dashboardModel.getPrazo() - index)) * ((dashboardModel.getPrazo() - index) / aux.getDoubleAux()));
+	aux.adicionaDoubleAnyArray(2, (aux.getDoubleAnyArray()[0] / aux.getDoubleAnyArray()[1]));
+	
+	return aux.getDoubleAnyArray()[2] * (dashboardModel.getPrazo() - index);
+}
 
 	// ARRAYLIST DO RESULTADOS DO CALCULO
 	public ArrayList<CalculoModel> listaCalGausModel() {
@@ -87,20 +112,32 @@ public class CalGausController {
 		if (this.dashboardModel != null) {
 			calculoModel.setValorEmprestFinac(this.dashboardModel.getValorEmprestFinancia());
 			calculoModel.setPrestacao(this.getCalculoDePrestacao());
-			calculoModel.setJuroInicial(this.getTaxaGausCalculado());
+			//calculoModel.setJuroInicial(this.getTaxaGausCalculado());
+			calculoModel.setDataVencimento(this.dashboardModel.getDataPrimeiraParcela());
 
 			for (int i = 0; i < this.dashboardModel.getPrazo(); i++) {
 				calculo = new CalculoModel();
-				calculoModel.setJuro(calculoModel.getJuroInicial() * calculoModel.getValorEmprestFinac());
+				calculoModel.setJuro(this.getCalculoJurosGaus(i, calculoModel.getValorEmprestFinac()));
 				calculoModel.setAmortizacao(calculoModel.getPrestacao() - calculoModel.getJuro());
 				calculoModel.setValorEmprestFinac(calculoModel.getValorEmprestFinac() - calculoModel.getAmortizacao());
+				
+				System.out.println(calculoModel.getAmortizacao());
 				calculo.setPrestacao(calculoModel.getPrestacao());
 				calculo.setJuro(calculoModel.getJuro());
 				calculo.setAmortizacao(calculoModel.getAmortizacao());
 				calculo.setValorEmprestFinac(calculoModel.getValorEmprestFinac());
+				calculo.setDataVencimento(calculoModel.getDataVencimento());
+				//this.dashboardModel.setValorEmprestFinancia();
+				
+				aux = new Auxilio();
+				aux.setDoubleAux(0.01);
+				calculo.setAuxilio(aux);
 				listaGaus.add(calculo);
 			}
 		}
 		return listaGaus;
+	}
+	public static void main (String [] args) {
+		//System.out.println("Juros: "+new CalGausController().getCalculoJurosGaus());
 	}
 }

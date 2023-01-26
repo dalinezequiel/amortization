@@ -7,18 +7,11 @@
         import="com.simor.model.*"
 %>
 <%!
-  ArrayList<CalculoModel> listaPrice = null;
-  CalPriceController calPriceController = null;
-  
-  /*ArrayList<CalculoModel> listaGaus = null;
-  CalGausController calGausController = null;*/%>
+  ArrayList<CalculoModel> list = null;
+%>
 <%
   if(request.getParameter("calcular") != null){
-	  calPriceController = new CalPriceController(request, response);
-	  listaPrice = calPriceController.listaCalPriceModel();
-	  
-	  /*calGausController = new CalGausController(request, response);
-	  listaGaus = calGausController.listaCalGausModel();*/
+	  list = new CalGausController(request, response).listaCalGausModel();
   }
 %>
 
@@ -241,27 +234,30 @@
 								</thead>
 								<tbody>
 									<%
-									   if(listaPrice != null){ 
-										   for(int i=0; i<12;/*calPriceController.calculoModelObject().getPrazo();*/ i++){
+									   if(list != null){ 
+										   CalGausController g = new CalGausController(request, response);
+										   System.out.println(g.getCalculoDePrestacao());
+										   System.out.println("Juros: "+g.getCalculoJurosGaus(0,0));
+										   for(int i=0; i<list.size(); i++){
 											   %>
 											   <tr>
 											    <td><%out.print(SistemaController.getCounter(i)); %></td>
-											    <td><%out.print(SistemaController.getFormatedDate(calPriceController.calculoModelObject().getDataPrimeiraParcela().toString())); %></td>
-											    <td><%out.print(SistemaController.mascaraMoeda(listaPrice.get(i).getPrestacao())); %></td>
+											    <td><%out.print(SistemaController.getFormatedDate(list.get(i).getDataVencimento().toString()));%></td>
+											    <td><%out.print(SistemaController.mascaraMoeda(list.get(i).getPrestacao())); %></td>
 											    <td></td>
-											    <td><%out.print(SistemaController.mascaraMoeda(listaPrice.get(i).getJuro())); %></td>
-											    <td><%out.print(SistemaController.mascaraMoeda(listaPrice.get(i).getAmortizacao())); %></td>
-											    <td><%if(listaPrice.get(i).getValorEmprestFinac() > calPriceController.calculoModelObject().getAuxilioModel().getDoubleAux()){
-											    	out.print(SistemaController.mascaraMoeda(listaPrice.get(i).getValorEmprestFinac()));}else
+											    <td><%out.print(SistemaController.mascaraMoeda(list.get(i).getJuro())); %></td>
+											    <td><%out.print(SistemaController.mascaraMoeda(list.get(i).getAmortizacao())); %></td>
+											    <td><%if(list.get(i).getValorEmprestFinac() > list.get(i).getAuxilio().getDoubleAux()){
+											    	out.print(SistemaController.mascaraMoeda(list.get(i).getValorEmprestFinac()));}else
 											    	{out.print("0,00");} %></td>
 											    <td></td>
 											    <td></td>
 											    <td></td>
-											    <td><%out.print(SistemaController.mascaraMoeda(listaPrice.get(i).getPrestacao())); %></td>
+											    <td><%out.print(SistemaController.mascaraMoeda(list.get(i).getPrestacao())); %></td>
 											   </tr>
 											   <%
 										   }
-										   listaPrice = SistemaController.getReset();
+										   list = SistemaController.getReset();
 									   }
 									%>
 								</tbody>

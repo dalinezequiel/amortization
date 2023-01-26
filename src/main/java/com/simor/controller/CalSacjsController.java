@@ -1,58 +1,68 @@
 package com.simor.controller;
 
 import java.io.IOException;
+import java.sql.Date;
+import java.util.ArrayList;
+import com.simor.model.*;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.util.*;
-import java.sql.Date;
 
-import com.simor.model.*;
-
-public class CalPriceController {
+public class CalSacjsController {
 	private DashboardModel dashboardModel = null;
 	private static CalculoModel calculoModel, calculo = null;
 	private Auxilio aux = null;
-	private static ArrayList<CalculoModel> listaPrice = null;
+	private static ArrayList<CalculoModel> listaSacjs = null;
 
-	public CalPriceController(HttpServletRequest request, HttpServletResponse response)
+	public CalSacjsController(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		dashboardModel = new DashboardModel();
 		calculoModel = new CalculoModel();
 		aux = new Auxilio();
-		this.dashboardModel = getDashboardModelData(request, response);
+		this.dashboardModel = getCalculoModelData(request, response);
 	}
 
-	public DashboardModel dashboardModelObject() {
+	public CalSacjsController() {
+		super();
+	}
+
+	// DEVOLVE O OBJECTO CALCULO
+	public DashboardModel calculoModelObject() {
 		return this.dashboardModel;
 	}
 
 	// CALCULAR PRESTAÇÃO
 	public double getCalculoDePrestacao() {
-		aux = new Auxilio(4);
-		aux.setIntAux(1);
-
+		aux = new Auxilio(5);
+		aux.setIntAux(2);
+		aux.setDoubleAux(3);
+		
+		dashboardModel.setValorEmprestFinancia(20);
+		dashboardModel.setPrazo(12);
+		dashboardModel.setTaxa(1.0);
+		
 		// PRIMEIRO CALCÚLO
-		aux.adicionaDoubleAnyArray(0, aux.getIntAux()
-				+ getPercentualPriceCalculado(dashboardModel.getValorEmprestFinancia(), dashboardModel.getTaxa()));
+		aux.adicionaDoubleAnyArray(0,
+				dashboardModel.getValorEmprestFinancia() * this.getTaxaSacjsCalculado() * aux.getDoubleAux());
 
 		// SEGUNDO CALCÚLO
-		aux.adicionaDoubleAnyArray(1, Math.pow(aux.getDoubleAnyArray()[0], dashboardModel.getPrazo()));
+		aux.adicionaDoubleAnyArray(1, (aux.getIntAux() * dashboardModel.getPrazo() * this.getTaxaSacjsCalculado()) - (aux.getIntAux() * this.getTaxaSacjsCalculado()) + aux.getDoubleAux());
 
 		// TERCEIRO CALCÚLO
-		aux.adicionaDoubleAnyArray(2, aux.getDoubleAnyArray()[1]
-				* getPercentualPriceCalculado(dashboardModel.getValorEmprestFinancia(), dashboardModel.getTaxa())
-				/ (aux.getDoubleAnyArray()[1] - aux.getIntAux()));
-
-		// QUARTO CALCÚLO
-		aux.adicionaDoubleAnyArray(3, dashboardModel.getValorEmprestFinancia() * aux.getDoubleAnyArray()[2]);
-
-		calculoModel.setPrestacao(aux.getDoubleAnyArray()[3]);
+		aux.adicionaDoubleAnyArray(2, ((aux.getDoubleAnyArray()[1] + aux.getDoubleAux()) * dashboardModel.getPrazo()));
+		
+		//QUARTO CALCÚLO
+		aux.adicionaDoubleAnyArray(3, (aux.getDoubleAnyArray()[0] / aux.getDoubleAnyArray()[2]));
+		
+		//QUINTO CALCÚLO
+		aux.adicionaDoubleAnyArray(4,
+				(dashboardModel.getValorEmprestFinancia() / dashboardModel.getPrazo()) + (this.getTaxaSacjsCalculado() * dashboardModel.getValorEmprestFinancia()));
+		calculoModel.setPrestacao(aux.getDoubleAnyArray()[0]);
 		return calculoModel.getPrestacao();
 	}
 
 	// PEGAR VALORES INFORMADOS NA PAGINA
-	private DashboardModel getDashboardModelData(HttpServletRequest request, HttpServletResponse response)
+	private DashboardModel getCalculoModelData(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		this.dashboardModel.setValorEmprestFinancia(
 				Double.parseDouble(SistemaController.isNullOrEmpty(request.getParameter("emprest_financia").trim())));
@@ -70,23 +80,18 @@ public class CalPriceController {
 		return this.dashboardModel;
 	}
 
-	// CALCULAR PRECENTUAL
-	private double getPercentualPriceCalculado(double valorEmprestFinanc, double juroInicial) {
-		return juroInicial / 100;
-	}
-
 	// CALCULAR PRECENTUAL BRUTO
-	public double getTaxaPriceCalculado() {
+	public double getTaxaSacjsCalculado() {
 		return this.dashboardModel.getTaxa() / 100;
 	}
 
 	// ARRAYLIST DO RESULTADOS DO CALCULO
-	public ArrayList<CalculoModel> listaCalPriceModel() {
-		listaPrice = new ArrayList<CalculoModel>();
+	public ArrayList<CalculoModel> listaCalSacjsModel() {
+		listaSacjs = new ArrayList<CalculoModel>();
 		if (this.dashboardModel != null) {
 			calculoModel.setValorEmprestFinac(this.dashboardModel.getValorEmprestFinancia());
 			calculoModel.setPrestacao(this.getCalculoDePrestacao());
-			calculoModel.setJuroInicial(this.getTaxaPriceCalculado());
+			calculoModel.setJuroInicial(this.getTaxaSacjsCalculado());
 			calculoModel.setDataVencimento(this.dashboardModel.getDataPrimeiraParcela());
 
 			for (int i = 0; i < this.dashboardModel.getPrazo(); i++) {
@@ -102,9 +107,13 @@ public class CalPriceController {
 				aux = new Auxilio();
 				aux.setDoubleAux(0.01);
 				calculo.setAuxilio(aux);
-				listaPrice.add(calculo);
+				listaSacjs.add(calculo);
 			}
 		}
-		return listaPrice;
+		return listaSacjs;
+	}
+	
+	public static void main (String [] args) {
+		System.out.println(new CalSacjsController().getCalculoDePrestacao());
 	}
 }

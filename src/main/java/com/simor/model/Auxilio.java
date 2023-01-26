@@ -1,10 +1,13 @@
 package com.simor.model;
 
+import java.sql.Date;
+
 public class Auxilio {
 	// PRIMITIVOS
 	private int intAux;
 	private int tamanho;
 	private double doubleAux;
+	private Date data;
 
 	// ARRAYS
 	private int[] intAnyArray;
@@ -60,5 +63,13 @@ public class Auxilio {
 
 	public void setDoubleAnyArray(double[] doubleAnyArray) {
 		this.doubleAnyArray = doubleAnyArray;
+	}
+
+	public Date getData() {
+		return data;
+	}
+
+	public void setData(Date data) {
+		this.data = data;
 	}
 }
