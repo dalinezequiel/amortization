@@ -11,7 +11,16 @@
 %>
 <%
   if(request.getParameter("calcular") != null){
-	  list = new CalGausController(request, response).listaCalGausModel();
+	  //list = new CalGausController(request, response).listaCalGausModel();
+	  if(request.getParameter("sys_amort").trim().equals("Gaus")){
+		  list = new CalGausController(request, response).listaCalGausModel();
+	  }
+	  else if(request.getParameter("sys_amort").trim().equals("PRICE")){
+		  list = new CalPriceController(request, response).listaCalPriceModel();
+	  }
+	  else if(request.getParameter("sys_amort").trim().equals("SAC")){
+		  list = new CalSacController(request, response).listaCalSacModel();
+	  }
   }
 %>
 
@@ -118,9 +127,10 @@
 									<label>Carência</label> <input type="number" min="0" placeholder="0">
 								</div>
 								<div>
-									<label>Sistema de amortização</label> <select>
+									<label>Sistema de amortização</label> <select name="sys_amort" required>
 										<option>Gaus</option>
 										<option>PRICE</option>
+										<option>SAC</option>
 										<option>SAC.JS</option>
 										<option>SACRE</option>
 									</select>
