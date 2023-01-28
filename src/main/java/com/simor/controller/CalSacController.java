@@ -12,7 +12,7 @@ public class CalSacController {
 	private DashboardModel dashboardModel = null;
 	private static CalculoModel calculoModel, calculo = null;
 	private Auxilio aux = null;
-	private static ArrayList<CalculoModel> listaSacjs = null;
+	private static ArrayList<CalculoModel> listaSac = null;
 
 	public CalSacController(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -30,20 +30,6 @@ public class CalSacController {
 	public DashboardModel calculoModelObject() {
 		return this.dashboardModel;
 	}
-
-	// CALCULAR PRESTAÇÃO
-//	public double getCalculoDePrestacao() {
-//		aux = new Auxilio(4);
-//		aux.setIntAux(2);
-//		aux.setDoubleAux(3);
-//		
-//		// PRIMEIRO CALCÚLO
-//		aux.adicionaDoubleAnyArray(0,
-//				(dashboardModel.getValorEmprestFinancia() / dashboardModel.getPrazo()) + (this.getTaxaSacCalculado() * dashboardModel.getValorEmprestFinancia()));
-//
-//		calculoModel.setPrestacao(aux.getDoubleAnyArray()[0]);
-//		return calculoModel.getPrestacao();
-//	}
 
 	// PEGAR VALORES INFORMADOS NA PAGINA
 	private DashboardModel getCalculoModelData(HttpServletRequest request, HttpServletResponse response)
@@ -71,7 +57,7 @@ public class CalSacController {
 
 	// ARRAYLIST DO RESULTADOS DO CALCULO
 	public ArrayList<CalculoModel> listaCalSacModel() {
-		listaSacjs = new ArrayList<CalculoModel>();
+		listaSac = new ArrayList<CalculoModel>();
 		if (this.dashboardModel != null) {
 			calculoModel.setJuroInicial(this.getTaxaSacCalculado());
 			calculoModel.setDataVencimento(this.dashboardModel.getDataPrimeiraParcela());
@@ -90,10 +76,10 @@ public class CalSacController {
 				aux = new Auxilio();
 				aux.setDoubleAux(0.01);
 				calculo.setAuxilio(aux);
-				listaSacjs.add(calculo);
+				listaSac.add(calculo);
 			}
 		}
-		return listaSacjs;
+		return listaSac;
 	}
 	
 	public static void main (String [] args) {

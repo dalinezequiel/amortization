@@ -2,19 +2,20 @@ package com.simor.controller;
 
 import java.io.IOException;
 import java.sql.Date;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import com.simor.model.*;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-public class CalSacjsController {
+public class CalNPController {
 	private DashboardModel dashboardModel = null;
 	private static CalculoModel calculoModel, calculo = null;
 	private Auxilio aux = null;
-	private static ArrayList<CalculoModel> listaSacjs = null;
+	private static ArrayList<CalculoModel> listaNP = null;
 
-	public CalSacjsController(HttpServletRequest request, HttpServletResponse response)
+	public CalNPController(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		dashboardModel = new DashboardModel();
 		calculoModel = new CalculoModel();
@@ -22,7 +23,7 @@ public class CalSacjsController {
 		this.dashboardModel = getCalculoModelData(request, response);
 	}
 
-	public CalSacjsController() {
+	public CalNPController() {
 		super();
 		dashboardModel = new DashboardModel();
 		calculoModel = new CalculoModel();
@@ -36,31 +37,27 @@ public class CalSacjsController {
 
 	// CALCULAR PRESTAÇÃO
 	public double getCalculoDePrestacao() {
-		aux = new Auxilio(5);
-		aux.setIntAux(2);
-		aux.setDoubleAux(3);
+		aux = new Auxilio(4);
+		aux.setIntAux(1);
+		//aux.setDoubleAux(3);
+		
+		dashboardModel.setValorEmprestFinancia(50000);
+		dashboardModel.setPrazo(12);
+		dashboardModel.setTaxa(1.0);
+		
+		// PRIMEIRO CALCÚLO
+		aux.adicionaDoubleAnyArray(0, Math.pow((aux.getIntAux() + this.getTaxaNPCalculado()), dashboardModel.getPrazo()) * this.getTaxaNPCalculado());
 
-		// PRIMEIRO CALCÚLO
-		calculoModel.setPrestacao(dashboardModel.getValorEmprestFinancia() / dashboardModel.getPrazo());
-		return calculoModel.getPrestacao();
-	}
-	
-	//INDICE DE PONDERACÃO
-	public double getIndicePonderacao() {
-		aux = new Auxilio(5);
-		aux.setIntAux(2);
-		aux.setDoubleAux(3);
-		
-		// PRIMEIRO CALCÚLO
-		aux.adicionaDoubleAnyArray(0, dashboardModel.getValorEmprestFinancia() * this.getTaxaSacjsCalculado() * aux.getDoubleAux());
-		
 		// SEGUNDO CALCÚLO
-		aux.adicionaDoubleAnyArray(1, (aux.getIntAux() * dashboardModel.getPrazo() * this.getTaxaSacjsCalculado()) - (aux.getIntAux() * this.getTaxaSacjsCalculado()));
-		
+		aux.adicionaDoubleAnyArray(1, Math.pow((aux.getIntAux() + this.getTaxaNPCalculado()), dashboardModel.getPrazo()) - aux.getIntAux());
+
 		// TERCEIRO CALCÚLO
-		aux.adicionaDoubleAnyArray(2, (aux.getDoubleAnyArray()[1] + aux.getDoubleAux()) * dashboardModel.getPrazo());
+		aux.adicionaDoubleAnyArray(2, aux.getDoubleAnyArray()[0] / aux.getDoubleAnyArray()[1]);
 		
-		calculoModel.setPrestacao(aux.getDoubleAnyArray()[0] / aux.getDoubleAnyArray()[2]);
+		//QUARTO CALCÚLO
+		aux.adicionaDoubleAnyArray(3, dashboardModel.getValorEmprestFinancia() * aux.getDoubleAnyArray()[2]);
+		
+		calculoModel.setPrestacao(aux.getDoubleAnyArray()[3]);
 		return calculoModel.getPrestacao();
 	}
 
@@ -84,24 +81,25 @@ public class CalSacjsController {
 	}
 
 	// CALCULAR PRECENTUAL BRUTO
-	public double getTaxaSacjsCalculado() {
+	public double getTaxaNPCalculado() {
 		return this.dashboardModel.getTaxa() / 100;
 	}
 
 	// ARRAYLIST DO RESULTADOS DO CALCULO
-	public ArrayList<CalculoModel> listaCalSacjsModel() {
-		listaSacjs = new ArrayList<CalculoModel>();
+	public ArrayList<CalculoModel> listaCalNPModel() {
+		listaNP = new ArrayList<CalculoModel>();
 		if (this.dashboardModel != null) {
 			calculoModel.setValorEmprestFinac(this.dashboardModel.getValorEmprestFinancia());
 			calculoModel.setPrestacao(this.getCalculoDePrestacao());
-			calculoModel.setAmortizacao(calculoModel.getValorEmprestFinac() / dashboardModel.getPrazo());
+			calculoModel.setJuroInicial(this.getTaxaNPCalculado());
 			calculoModel.setDataVencimento(this.dashboardModel.getDataPrimeiraParcela());
 
 			for (int i = 0; i < this.dashboardModel.getPrazo(); i++) {
 				calculo = new CalculoModel();
-				calculoModel.setJuro(this.getIndicePonderacao() * (dashboardModel.getPrazo() - i));
+				calculoModel.setJuro(calculoModel.getJuroInicial() * calculoModel.getValorEmprestFinac());
+				calculoModel.setAmortizacao(calculoModel.getPrestacao() - calculoModel.getJuro());
 				calculoModel.setValorEmprestFinac(calculoModel.getValorEmprestFinac() - calculoModel.getAmortizacao());
-				calculo.setPrestacao(calculoModel.getAmortizacao() + calculoModel.getJuro());
+				calculo.setPrestacao(calculoModel.getPrestacao());
 				calculo.setJuro(calculoModel.getJuro());
 				calculo.setAmortizacao(calculoModel.getAmortizacao());
 				calculo.setValorEmprestFinac(calculoModel.getValorEmprestFinac());
@@ -109,13 +107,15 @@ public class CalSacjsController {
 				aux = new Auxilio();
 				aux.setDoubleAux(0.01);
 				calculo.setAuxilio(aux);
-				listaSacjs.add(calculo);
+				listaNP.add(calculo);
 			}
 		}
-		return listaSacjs;
+		return listaNP;
 	}
 	
 	public static void main (String [] args) {
-		System.out.println("TestaA: " + new CalSacjsController().getCalculoDePrestacao()*12);
+		System.out.print("Testa: ");
+		System.out.println(new CalNPController().getCalculoDePrestacao());
+		System.out.println(new DecimalFormat("###,###.00").format(new CalNPController().getCalculoDePrestacao()));
 	}
 }

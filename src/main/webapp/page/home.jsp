@@ -11,7 +11,7 @@
 %>
 <%
   if(request.getParameter("calcular") != null){
-	  //list = new CalGausController(request, response).listaCalGausModel();
+	  //list = new CalMajsController(request, response).listaCalMajsInversaoModel();
 	  if(request.getParameter("sys_amort").trim().equals("Gaus")){
 		  list = new CalGausController(request, response).listaCalGausModel();
 	  }
@@ -21,6 +21,15 @@
 	  else if(request.getParameter("sys_amort").trim().equals("SAC")){
 		  list = new CalSacController(request, response).listaCalSacModel();
 	  }
+	  else if(request.getParameter("sys_amort").trim().equals("SAC.JS")){
+	      list = new CalSacjsController(request, response).listaCalSacjsModel();
+      }
+	  else if(request.getParameter("sys_amort").trim().equals("SACRE")){
+		  list = new CalSacreController(request, response).listaCalSacreModel();
+	  }
+	  else if(request.getParameter("sys_amort").trim().equals("MAJS/ Hamburgues")){
+          list = new CalMajsController(request, response).listaCalMajsInversaoModel();
+      }
   }
 %>
 
@@ -133,6 +142,7 @@
 										<option>SAC</option>
 										<option>SAC.JS</option>
 										<option>SACRE</option>
+										<option>MAJS/ Hamburgues</option>
 									</select>
 								</div>
 							</div>
@@ -245,9 +255,6 @@
 								<tbody>
 									<%
 									   if(list != null){ 
-										   CalGausController g = new CalGausController(request, response);
-										   System.out.println(g.getCalculoDePrestacao());
-										   System.out.println("Juros: "+g.getCalculoJurosGaus(0,0));
 										   for(int i=0; i<list.size(); i++){
 											   %>
 											   <tr>
@@ -257,9 +264,9 @@
 											    <td></td>
 											    <td><%out.print(SistemaController.mascaraMoeda(list.get(i).getJuro())); %></td>
 											    <td><%out.print(SistemaController.mascaraMoeda(list.get(i).getAmortizacao())); %></td>
-											    <td><%if(list.get(i).getValorEmprestFinac() > list.get(i).getAuxilio().getDoubleAux()){
-											    	out.print(SistemaController.mascaraMoeda(list.get(i).getValorEmprestFinac()));}else
-											    	{out.print("0,00");} %></td>
+											    <td><%/*if(list.get(i).getValorEmprestFinac() > list.get(i).getAuxilio().getDoubleAux()){*/
+											    	out.print(SistemaController.mascaraMoeda(list.get(i).getValorEmprestFinac()));/*}else
+											    	{out.print("0,00");}*/ %></td>
 											    <td></td>
 											    <td></td>
 											    <td></td>

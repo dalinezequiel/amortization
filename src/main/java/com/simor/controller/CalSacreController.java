@@ -32,18 +32,17 @@ public class CalSacreController {
 	}
 
 	// CALCULAR PRESTAÇÃO
-//	public double getCalculoDePrestacao() {
-//		aux = new Auxilio(4);
-//		aux.setIntAux(2);
-//		aux.setDoubleAux(3);
-//		
-//		// PRIMEIRO CALCÚLO
-//		aux.adicionaDoubleAnyArray(0,
-//				(dashboardModel.getValorEmprestFinancia() / dashboardModel.getPrazo()) + (this.getTaxaSacCalculado() * dashboardModel.getValorEmprestFinancia()));
-//
-//		calculoModel.setPrestacao(aux.getDoubleAnyArray()[0]);
-//		return calculoModel.getPrestacao();
-//	}
+	public double getCalculoDePrestacao() {
+		aux = new Auxilio(4);
+		
+		//PRIMEIROMCALCULO
+		aux.adicionaDoubleAnyArray(0, this.dashboardModel.getValorEmprestFinancia() / this.dashboardModel.getPrazo());
+		
+		//PRIMEIROMCALCULO
+		aux.adicionaDoubleAnyArray(1, aux.getDoubleAnyArray()[0] + (this.getTaxaSacreCalculado() * this.dashboardModel.getValorEmprestFinancia()));
+		calculoModel.setPrestacao(aux.getDoubleAnyArray()[1]);
+		return calculoModel.getPrestacao();
+	}
 
 	// PEGAR VALORES INFORMADOS NA PAGINA
 	private DashboardModel getCalculoModelData(HttpServletRequest request, HttpServletResponse response)
@@ -73,19 +72,23 @@ public class CalSacreController {
 	public ArrayList<CalculoModel> listaCalSacreModel() {
 		listaSacre = new ArrayList<CalculoModel>();
 		if (this.dashboardModel != null) {
+			calculoModel.setValorEmprestFinac(this.dashboardModel.getValorEmprestFinancia());
 			calculoModel.setJuroInicial(this.getTaxaSacreCalculado());
 			calculoModel.setDataVencimento(this.dashboardModel.getDataPrimeiraParcela());
-			calculoModel.setAmortizacao(calculoModel.getValorEmprestFinac() / this.dashboardModel.getPrazo());
+			//calculoModel.setAmortizacao(calculoModel.getValorEmprestFinac() / this.dashboardModel.getPrazo());
 
 			for (int i = 0; i < this.dashboardModel.getPrazo(); i++) {
 				calculo = new CalculoModel();
 				calculoModel.setJuro(calculoModel.getJuroInicial() * calculoModel.getValorEmprestFinac());
+				calculoModel.setAmortizacao(this.getCalculoDePrestacao() - calculoModel.getJuro());
 				calculoModel.setValorEmprestFinac(calculoModel.getValorEmprestFinac() - calculoModel.getAmortizacao());
-				calculo.setPrestacao(calculoModel.getAmortizacao() + calculoModel.getJuro());
+				
+				calculo.setPrestacao(this.getCalculoDePrestacao());
 				calculo.setJuro(calculoModel.getJuro());
 				calculo.setAmortizacao(calculoModel.getAmortizacao());
 				calculo.setValorEmprestFinac(calculoModel.getValorEmprestFinac());
 				calculo.setDataVencimento(calculoModel.getDataVencimento());
+				//calculoModel.setValorEmprestFinac(calculoModel.getValorEmprestFinac() - calculoModel.getAmortizacao());
 				
 				aux = new Auxilio();
 				aux.setDoubleAux(0.01);

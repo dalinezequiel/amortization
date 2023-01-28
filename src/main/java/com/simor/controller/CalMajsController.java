@@ -8,13 +8,13 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-public class CalSacjsController {
+public class CalMajsController {
 	private DashboardModel dashboardModel = null;
 	private static CalculoModel calculoModel, calculo = null;
 	private Auxilio aux = null;
-	private static ArrayList<CalculoModel> listaSacjs = null;
+	private static ArrayList<CalculoModel> listaMajs, listaInversao = null;
 
-	public CalSacjsController(HttpServletRequest request, HttpServletResponse response)
+	public CalMajsController(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		dashboardModel = new DashboardModel();
 		calculoModel = new CalculoModel();
@@ -22,46 +22,13 @@ public class CalSacjsController {
 		this.dashboardModel = getCalculoModelData(request, response);
 	}
 
-	public CalSacjsController() {
+	public CalMajsController() {
 		super();
-		dashboardModel = new DashboardModel();
-		calculoModel = new CalculoModel();
-		aux = new Auxilio();
 	}
 
 	// DEVOLVE O OBJECTO CALCULO
 	public DashboardModel calculoModelObject() {
 		return this.dashboardModel;
-	}
-
-	// CALCULAR PRESTAÇÃO
-	public double getCalculoDePrestacao() {
-		aux = new Auxilio(5);
-		aux.setIntAux(2);
-		aux.setDoubleAux(3);
-
-		// PRIMEIRO CALCÚLO
-		calculoModel.setPrestacao(dashboardModel.getValorEmprestFinancia() / dashboardModel.getPrazo());
-		return calculoModel.getPrestacao();
-	}
-	
-	//INDICE DE PONDERACÃO
-	public double getIndicePonderacao() {
-		aux = new Auxilio(5);
-		aux.setIntAux(2);
-		aux.setDoubleAux(3);
-		
-		// PRIMEIRO CALCÚLO
-		aux.adicionaDoubleAnyArray(0, dashboardModel.getValorEmprestFinancia() * this.getTaxaSacjsCalculado() * aux.getDoubleAux());
-		
-		// SEGUNDO CALCÚLO
-		aux.adicionaDoubleAnyArray(1, (aux.getIntAux() * dashboardModel.getPrazo() * this.getTaxaSacjsCalculado()) - (aux.getIntAux() * this.getTaxaSacjsCalculado()));
-		
-		// TERCEIRO CALCÚLO
-		aux.adicionaDoubleAnyArray(2, (aux.getDoubleAnyArray()[1] + aux.getDoubleAux()) * dashboardModel.getPrazo());
-		
-		calculoModel.setPrestacao(aux.getDoubleAnyArray()[0] / aux.getDoubleAnyArray()[2]);
-		return calculoModel.getPrestacao();
 	}
 
 	// PEGAR VALORES INFORMADOS NA PAGINA
@@ -84,38 +51,51 @@ public class CalSacjsController {
 	}
 
 	// CALCULAR PRECENTUAL BRUTO
-	public double getTaxaSacjsCalculado() {
+	public double getTaxaMajsCalculado() {
 		return this.dashboardModel.getTaxa() / 100;
 	}
 
 	// ARRAYLIST DO RESULTADOS DO CALCULO
-	public ArrayList<CalculoModel> listaCalSacjsModel() {
-		listaSacjs = new ArrayList<CalculoModel>();
+	public ArrayList<CalculoModel> listaCalMajsModel() {
+		listaMajs = new ArrayList<CalculoModel>();
 		if (this.dashboardModel != null) {
-			calculoModel.setValorEmprestFinac(this.dashboardModel.getValorEmprestFinancia());
-			calculoModel.setPrestacao(this.getCalculoDePrestacao());
-			calculoModel.setAmortizacao(calculoModel.getValorEmprestFinac() / dashboardModel.getPrazo());
+			calculoModel.setJuroInicial(this.getTaxaMajsCalculado());
 			calculoModel.setDataVencimento(this.dashboardModel.getDataPrimeiraParcela());
+			calculoModel.setAmortizacao(calculoModel.getValorEmprestFinac() / this.dashboardModel.getPrazo());
 
 			for (int i = 0; i < this.dashboardModel.getPrazo(); i++) {
 				calculo = new CalculoModel();
-				calculoModel.setJuro(this.getIndicePonderacao() * (dashboardModel.getPrazo() - i));
+				calculoModel.setJuro(calculoModel.getJuroInicial() * calculoModel.getValorEmprestFinac());
 				calculoModel.setValorEmprestFinac(calculoModel.getValorEmprestFinac() - calculoModel.getAmortizacao());
 				calculo.setPrestacao(calculoModel.getAmortizacao() + calculoModel.getJuro());
 				calculo.setJuro(calculoModel.getJuro());
 				calculo.setAmortizacao(calculoModel.getAmortizacao());
 				calculo.setValorEmprestFinac(calculoModel.getValorEmprestFinac());
 				calculo.setDataVencimento(calculoModel.getDataVencimento());
+				listaMajs.add(calculo);
+			}
+		}
+		return listaMajs;
+	}
+	
+	public ArrayList<CalculoModel> listaCalMajsInversaoModel() {
+		listaInversao = new ArrayList<CalculoModel>();
+		listaMajs = this.listaCalMajsModel();
+		if (listaMajs != null) {
+			for(int i=0; i<listaMajs.size(); i++) {
+				calculo = new CalculoModel();
+				calculo.setPrestacao(listaMajs.get(dashboardModel.getPrazo() - (i+1)).getPrestacao());
+				calculo.setJuro(listaMajs.get(dashboardModel.getPrazo() - (i+1)).getJuro());
+				calculo.setAmortizacao(listaMajs.get(i).getAmortizacao());
+				calculo.setValorEmprestFinac(listaMajs.get(i).getValorEmprestFinac());
+				calculo.setDataVencimento(listaMajs.get(i).getDataVencimento());
+				
 				aux = new Auxilio();
 				aux.setDoubleAux(0.01);
 				calculo.setAuxilio(aux);
-				listaSacjs.add(calculo);
+				listaInversao.add(calculo);
 			}
 		}
-		return listaSacjs;
-	}
-	
-	public static void main (String [] args) {
-		System.out.println("TestaA: " + new CalSacjsController().getCalculoDePrestacao()*12);
+		return listaInversao;
 	}
 }
