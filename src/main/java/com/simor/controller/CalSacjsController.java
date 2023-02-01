@@ -36,7 +36,7 @@ public class CalSacjsController {
 
 	// CALCULAR PRESTAÇÃO
 	public double getCalculoDePrestacao() {
-		aux = new Auxilio(5);
+		aux = new Auxilio(1);//5
 		aux.setIntAux(2);
 		aux.setDoubleAux(3);
 
@@ -47,7 +47,7 @@ public class CalSacjsController {
 	
 	//INDICE DE PONDERACÃO
 	public double getIndicePonderacao() {
-		aux = new Auxilio(5);
+		aux = new Auxilio(3);//5
 		aux.setIntAux(2);
 		aux.setDoubleAux(3);
 		

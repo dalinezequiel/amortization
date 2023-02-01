@@ -111,7 +111,6 @@ html, body {
 
 .conta i {
 	font-size: 28px;
-	/*color:#38445e;*/
 	color: #14854c;
 }
 
@@ -142,7 +141,6 @@ html, body {
 	flex-direction: column;
 	justify-content: space-between;
 	padding: 5px 10px;
-	/*background-color:#f7f7f7;*/
 	box-shadow: 0px 0px 10px #f7f7f7;
 }
 
@@ -218,7 +216,6 @@ table tbody tr td{
 	height:50px;
 	width:80px;
 	margin-left:20px;
-	/*margin-top:20px;*/
 	display:flex;
 	align-items:center;
 	justify-content:center;
@@ -232,8 +229,6 @@ table tbody tr td{
 	border-radius: 3px;
 	height:50px;
 	width:90px;
-	/*margin-left:20px;*/
-	/*margin-top:20px;*/
 	display:flex;
 	align-items:center;
 	justify-content:center;
@@ -288,11 +283,11 @@ table tbody tr td{
 .camp input {
 	padding: 6px 10px;
 	font-size: 16px;
-	outline: none;
+	outline:none;
+	/*outline-color:#1e804f;*/
 	margin: 2px 0px 10px 0px;
 	border: 1px solid #e1e1e1;
 	border-radius: 3px;
-	/*width:270px;*/
 }
 
 .camp select {
@@ -302,7 +297,6 @@ table tbody tr td{
 	margin: 2px 0px 10px 0px;
 	border: 1px solid #e1e1e1;
 	border-radius: 3px;
-	/*width:260px;*/
 }
 
 .camp input[type="text"]{
@@ -318,9 +312,52 @@ table tbody tr td{
 	font-weight:700;
 }
 
-/*.camp .cap-03{
-	padding:0px 20px;
-}*/
+.camp .cap-01 div:nth-child(3) input{
+	background-color:#fafafa;
+}
+
+.camp .cap-01 div:nth-child(4) input{
+	background-color:#fafafa;
+}
+
+.camp .cap-04 .multa{
+	display:flex;
+	flex-direction:row;
+}
+
+.camp .cap-04 .multa div{
+	display:flex;
+	flex-direction:column;
+	width:105px;
+}
+
+.camp .cap-04 .multa div:nth-child(1){
+	margin-right:5px;
+}
+
+.camp .cap-04 .multa div:nth-child(2){
+	margin-left:5px;
+}
+
+
+.camp .cap-03 .indice_actual{
+	display:flex;
+	flex-direction:row;
+}
+
+.camp .cap-03 .indice_actual div{
+	display:flex;
+	flex-direction:column;
+	width:125px;
+}
+
+.camp .cap-03 .indice_actual div:nth-child(1){
+	margin-right:5px;
+}
+
+.camp .cap-03 .indice_actual div:nth-child(2){
+	margin-left:5px;
+}
 
 table tbody tr td{
 	text-align: center;

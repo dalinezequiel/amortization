@@ -11,8 +11,8 @@
 %>
 <%
   if(request.getParameter("calcular") != null){
-	  //list = new CalMajsController(request, response).listaCalMajsInversaoModel();
-	  if(request.getParameter("sys_amort").trim().equals("Gaus")){
+	  list = new App(request, response).sys();
+	  /*if(request.getParameter("sys_amort").trim().equals("Gaus")){
 		  list = new CalGausController(request, response).listaCalGausModel();
 	  }
 	  else if(request.getParameter("sys_amort").trim().equals("PRICE")){
@@ -29,7 +29,7 @@
 	  }
 	  else if(request.getParameter("sys_amort").trim().equals("MAJS/ Hamburgues")){
           list = new CalMajsController(request, response).listaCalMajsInversaoModel();
-      }
+      }*/
   }
 %>
 
@@ -99,41 +99,54 @@
 							<div class="cap-01">
 								<div>
 									<label>Valor do emprest. ou finânc.</label> <input
-										type="text" placeholder="0.00" name="emprest_financia" required>
+										type="text" placeholder="0,00" name="emprest_financia" required>
 								</div>
 								<div>
-									<label>Taxa (%)</label> <input type="text" placeholder="0.00"
+									<label>Taxa (%)</label> <input type="text" placeholder="0,00"
 										name="taxa" required>
 								</div>
 								<div>
 									<label>Essa será sua taxa mensal (%)</label> <input type="text"
-										placeholder="0.00" name="taxa_mensal">
+										placeholder="0,00" name="taxa_mensal" readOnly>
 								</div>
 								<div>
 									<label>Essa será sua taxa anual (%)</label> <input type="text"
-										placeholder="0.00" name="taxa_anual">
+										placeholder="0,00" name="taxa_anual" readOnly>
 								</div>
 
 							</div>
 							<div class="cap-03">
 								<div>
-									<label>Prazo</label> <input type="number" min="0" placeholder="0"
+									<label>Prazo</label> <input type="number" min="0" placeholder="0,00"
 										name="prazo" required>
 								</div>
-								<div>
-									<label>Índice de actualização</label> <select>
-										<option>*Sem índice</option>
-										<option>CDI</option>
-										<option>CUB-SC</option>
-										<option>IGP-M</option>
-										<option>INCC-DI</option>
-										<option>INPC</option>
-										<option>IPCA</option>
-										<option>SELIC</option>
-									</select>
+								<div class="indice_actual">
+									<div>
+									    <label>Índice actuali.</label> <select>
+										   <option disabled selected>Sem índice</option>
+										   <option>CDI</option>
+										   <option>CUB-SC</option>
+										   <option>IGP-M</option>
+										   <option>INCC-DI</option>
+										   <option>INPC</option>
+										   <option>IPCA</option>
+										   <option>SELIC</option>
+									    </select>
+									</div>
+									<div>
+									    <label>Incidên. índice</label> <select disabled>
+										   <option disabled selected>Sem índice</option>
+										   <option>Balão</option>
+										   <option>Balão e parcela</option>
+										   <option>Parcela</option>
+										   <option>Parcela 12m</option>
+										   <option>Saldo devedor</option>
+										   <option>Saldo 12 meses</option>
+									    </select>
+									</div>
 								</div>
 								<div>
-									<label>Carência</label> <input type="number" min="0" placeholder="0">
+									<label>Carência</label> <input type="number" min="0" placeholder="0,00">
 								</div>
 								<div>
 									<label>Sistema de amortização</label> <select name="sys_amort" required>
@@ -156,7 +169,8 @@
 								<div>
 									<label>Tipo do balão</label> <select>
 										<option>Balões e parcelas</option>
-										<option>Sem balões</option>
+										<option selected disabled>Sem balões</option>
+										<option>Somente balões</option>
 									</select>
 								</div>
 								<div>
@@ -168,35 +182,35 @@
 							</div>
 							<div class="cap-04">
 								<div>
-									<label>Periocidicidade do balão</label> <input type="number" min="0" placeholder="0">
+									<label>Periocidicidade do balão</label> <input type="number" min="0" placeholder="0,00" disabled>
 								</div>
 								<div>
-									<label>Quantidade de balões</label> <input type="number" min="0" placeholder="0">
+									<label>Quantidade de balões</label> <input type="number" min="0" placeholder="0,00" disabled>
 								</div>
 								<div>
-									<label>Valor do balão</label> <input type="text" placeholder="0.00">
+									<label>Valor do balão</label> <input type="text" placeholder="0,00" disabled>
 								</div>
-								<div>
-									<label>Juros de atraso (%)</label> <input type="text" placeholder="0.00">
+								<div class="multa">
+									<div>
+									    <label>Multa (%)</label> <input type="text" placeholder="0,00" disabled>
+									</div>
+									<div>
+									    <label>Juro atr. (%)</label> <input type="text" placeholder="0,00" disabled>
+									</div>
 								</div>
 							</div>
 							</div>
 							<div class="cap-05">
 								<div>
-									<!-- <a>Calcular</a> -->
 									<button name="calcular">Calcular</button>
-									<!-- onclick='this.form.action="../index.jsp"' -->
 								</div>
 								<div>
-									<!-- <a>Salvar</a> -->
 									<button name="salvar">Salvar</button>
 								</div>
 								<div>
-									<!-- <a>Consultar</a> -->
 									<button>Consultar</button>
 								</div>
 								<div>
-									<!-- <a>Limpar</a> -->
 									<button>Limpar</button>
 								</div>
 							</div>
