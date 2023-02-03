@@ -7,12 +7,10 @@
         import="com.simor.model.*"
 %>
 <%!
-  private ArrayList<CalculoModel> list = null;
-  private DashboardModel model = null;
+  private AppModel app = null;
 %>
 <%
-  list = new App(request, response).sys();
-  model = new App(request, response).sys_tax();
+  app = new App(request, response).sys_all();
 %>
 
 <!DOCTYPE html>
@@ -97,11 +95,11 @@
 								</div>
 								<div>
 									<label>Essa será sua taxa mensal (%)</label> <input type="text"
-										placeholder="0,00" name="taxa_mensal" value="<%if(model != null){out.print(SistemaController.maskNum(model.getTaxaMensal())); }%>" readOnly>
+										placeholder="0,00" name="taxa_mensal" value="<%if(app.getTax() != null){out.print(SistemaController.maskNum(app.getTax().getTaxaMensal())); }%>" readOnly>
 								</div>
 								<div>
 									<label>Essa será sua taxa anual (%)</label> <input type="text"
-										placeholder="0,00" name="taxa_anual" value="<%if(model != null){out.print(SistemaController.maskNum(model.getTaxaAnual())); }%>" readOnly>
+										placeholder="0,00" name="taxa_anual" value="<%if(app.getTax() != null){out.print(SistemaController.maskNum(app.getTax().getTaxaAnual())); }%>" readOnly>
 								</div>
 
 							</div>
@@ -258,29 +256,29 @@
 								</thead>
 								<tbody>
 									<%
-									   if(list != null){ 
-										   for(int i=0; i<list.size(); i++){
+									   if(app.getList() != null){ 
+										   for(int i=0; i<app.getList().size(); i++){
 											   %>
 											   <tr>
 											    <td><%out.print(SistemaController.getCounter(i)); %></td>
-											    <td><%out.print(SistemaController.getFormatedDate(list.get(i).getDataVencimento().toString()));%></td>
-											    <td><%out.print(SistemaController.mascaraMoeda(list.get(i).getPrestacao())); %></td>
+											    <td><%out.print(SistemaController.getFormatedDate(app.getList().get(i).getDataVencimento().toString()));%></td>
+											    <td><%out.print(SistemaController.mascaraMoeda(app.getList().get(i).getPrestacao())); %></td>
 											    <td></td>
-											    <td><%out.print(SistemaController.mascaraMoeda(list.get(i).getJuro())); %></td>
-											    <td><%out.print(SistemaController.mascaraMoeda(list.get(i).getAmortizacao())); %></td>
-											    <td><%if((list.get(i).getValorEmprestFinac() < list.get(i).getAuxilio().getIntAux()) 
-											    		|| (list.get(i).getValorEmprestFinac() > list.get(i).getAuxilio().getDoubleAux())){
-											    	out.print(SistemaController.mascaraMoeda(list.get(i).getValorEmprestFinac()));}
+											    <td><%out.print(SistemaController.mascaraMoeda(app.getList().get(i).getJuro())); %></td>
+											    <td><%out.print(SistemaController.mascaraMoeda(app.getList().get(i).getAmortizacao())); %></td>
+											    <td><%if((app.getList().get(i).getValorEmprestFinac() < app.getList().get(i).getAuxilio().getIntAux()) 
+											    		|| (app.getList().get(i).getValorEmprestFinac() > app.getList().get(i).getAuxilio().getDoubleAux())){
+											    	out.print(SistemaController.mascaraMoeda(app.getList().get(i).getValorEmprestFinac()));}
 											    else
 											    	{out.print("0,00");} %></td>
 											    <td></td>
 											    <td></td>
 											    <td></td>
-											    <td><%out.print(SistemaController.mascaraMoeda(list.get(i).getPrestacao())); %></td>
+											    <td><%out.print(SistemaController.mascaraMoeda(app.getList().get(i).getPrestacao())); %></td>
 											   </tr>
 											   <%
 										   }
-										   list = SistemaController.getReset();
+										   app.setList(SistemaController.getReset());
 									   }
 									%>
 								</tbody>

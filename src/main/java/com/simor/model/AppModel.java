@@ -3,27 +3,26 @@ package com.simor.model;
 import java.util.*;
 
 public class AppModel {
-	private ArrayList<CalculoModel> listCalculo;
-	private ArrayList<DashboardModel> listDashboardModel;
+	private ArrayList<CalculoModel> list;
+	private DashboardModel tax;
 
 	public AppModel() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
-	public ArrayList<CalculoModel> getListCalculo() {
-		return listCalculo;
+	public ArrayList<CalculoModel> getList() {
+		return list;
 	}
 
-	public void setListCalculo(ArrayList<CalculoModel> listCalculo) {
-		this.listCalculo = listCalculo;
+	public void setList(ArrayList<CalculoModel> list) {
+		this.list = list;
 	}
 
-	public ArrayList<DashboardModel> getListDashboardModel() {
-		return listDashboardModel;
+	public DashboardModel getTax() {
+		return tax;
 	}
 
-	public void setListDashboardModel(ArrayList<DashboardModel> listDashboardModel) {
-		this.listDashboardModel = listDashboardModel;
+	public void setTax(DashboardModel tax) {
+		this.tax = tax;
 	}
 }

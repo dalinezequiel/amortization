@@ -1,7 +1,6 @@
 package com.simor.controller;
 
 import java.io.IOException;
-import java.sql.Date;
 import java.util.ArrayList;
 import com.simor.model.*;
 import jakarta.servlet.ServletException;
@@ -19,7 +18,9 @@ public class CalSacreController {
 		dashboardModel = new DashboardModel();
 		calculoModel = new CalculoModel();
 		aux = new Auxilio();
-		this.dashboardModel = getCalculoModelData(request, response);
+		this.dashboardModel = new App(request, response).getDashboardModel();
+		calculoModel.setValorEmprestFinac(this.dashboardModel.getValorEmprestFinancia());
+		calculoModel.setJuroInicial(this.dashboardModel.getTaxa());
 	}
 
 	public CalSacreController() {
@@ -43,26 +44,7 @@ public class CalSacreController {
 		calculoModel.setPrestacao(aux.getDoubleAnyArray()[1]);
 		return calculoModel.getPrestacao();
 	}
-
-	// PEGAR VALORES INFORMADOS NA PAGINA
-	private DashboardModel getCalculoModelData(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		this.dashboardModel.setValorEmprestFinancia(
-				Double.parseDouble(SistemaController.isNullOrEmpty(request.getParameter("emprest_financia").trim())));
-		calculoModel.setValorEmprestFinac(dashboardModel.getValorEmprestFinancia());
-		this.dashboardModel
-				.setTaxa(Double.parseDouble(SistemaController.isNullOrEmpty(request.getParameter("taxa").trim())));
-		calculoModel.setJuroInicial(dashboardModel.getTaxa());
-		this.dashboardModel.setTaxaMensal(
-				Double.parseDouble(SistemaController.isNullOrEmpty(request.getParameter("taxa_mensal").trim())));
-		this.dashboardModel.setTaxaAnual(
-				Double.parseDouble(SistemaController.isNullOrEmpty(request.getParameter("taxa_anual").trim())));
-		this.dashboardModel
-				.setPrazo(Integer.parseInt(SistemaController.isNullOrEmpty(request.getParameter("prazo").trim())));
-		this.dashboardModel.setDataPrimeiraParcela(Date.valueOf(request.getParameter("ultima_parcela").trim()));
-		return this.dashboardModel;
-	}
-
+	
 	// CALCULAR PRECENTUAL BRUTO
 	public double getTaxaSacreCalculado() {
 		return this.dashboardModel.getTaxa() / 100;
