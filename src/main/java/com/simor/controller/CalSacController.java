@@ -74,7 +74,8 @@ public class CalSacController {
 				calculo.setDataVencimento(calculoModel.getDataVencimento());
 				
 				aux = new Auxilio();
-				aux.setDoubleAux(0.01);
+				aux.setDoubleAux(0.00001);
+				aux.setIntAux(0);
 				calculo.setAuxilio(aux);
 				listaSac.add(calculo);
 			}

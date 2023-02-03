@@ -10,6 +10,7 @@ public class CalculoModel {
 	private double amortizacao;
 	private Date dataVencimento;
 	private Auxilio auxilio;
+	private DashboardModel dashboardModel;
 
 	public double getValorEmprestFinac() {
 		return valorEmprestFinac;
@@ -65,5 +66,13 @@ public class CalculoModel {
 
 	public void setAuxilio(Auxilio auxilio) {
 		this.auxilio = auxilio;
+	}
+
+	public DashboardModel getDashboardModel() {
+		return dashboardModel;
+	}
+
+	public void setDashboardModel(DashboardModel dashboardModel) {
+		this.dashboardModel = dashboardModel;
 	}
 }

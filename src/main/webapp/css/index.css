@@ -320,6 +320,10 @@ table tbody tr td{
 	background-color:#fafafa;
 }
 
+.camp .cap-04 div input{
+	background-color:#fafafa;
+}
+
 .camp .cap-04 .multa{
 	display:flex;
 	flex-direction:row;
@@ -359,6 +363,26 @@ table tbody tr td{
 	margin-left:5px;
 }
 
+
+.camp .cap-01 .mensal_anual{
+	display:flex;
+	flex-direction:row;
+}
+
+.camp .cap-01 .mensal_anual div{
+	display:flex;
+	flex-direction:column;
+	width:125px;
+}
+
+.camp .cap-01 .mensal_anual div:nth-child(1){
+	margin-right:5px;
+}
+
+.camp .cap-01 .mensal_anual div:nth-child(2){
+	margin-left:5px;
+}
+
 table tbody tr td{
-	text-align: center;
+	text-align: center;/*mensal_anual*/
 }

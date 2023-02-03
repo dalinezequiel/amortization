@@ -10,13 +10,14 @@ import java.text.*;
 import java.time.LocalDate;
 
 public class SistemaController {
-	private static DecimalFormat moeda = null;
+	private static DecimalFormat moeda, numero = null;
 	private static Auxilio aux = null;
 	private static Random random = null;
 
 	public SistemaController() {
 		super();
 		moeda = new DecimalFormat("###,###.00");
+		numero = new DecimalFormat("0.0");
 	}
 
 	// GERAR CÓDIGO
@@ -46,6 +47,46 @@ public class SistemaController {
 		}
 		return value;
 	}
+	
+	public static String clean(String value) {
+		aux = new Auxilio();
+		aux.setStringAux("");
+		for(int i=0; i<value.length(); i++) {
+			if(String.valueOf(value.charAt(i)).equals(",")){
+				aux.setStringAux(aux.getStringAux() + ".");
+				System.out.println("Encontrou virgula");
+			}
+			else if(String.valueOf(value.charAt(i)).equals(".")) {
+				aux.setStringAux(aux.getStringAux() + "");
+				System.out.println("Encontrou ponto");
+			}
+			else {
+				aux.setStringAux(aux.getStringAux() + value.charAt(i));
+				//aux.setStringAux(aux.getStringAux());
+			}
+		}
+		return aux.getStringAux();
+	}
+	
+	public static String cleanM(String value) {
+		aux = new Auxilio();
+		aux.setStringAux("");
+		for(int i=0; i<value.length(); i++) {
+			if(String.valueOf(value.charAt(i)).equals(",")){
+				aux.setStringAux(aux.getStringAux() + ".");
+				System.out.println("Encontrou virgula");
+			}
+			/*else if(String.valueOf(value.charAt(i)).equals(".")) {
+				aux.setStringAux(aux.getStringAux() + "");
+				System.out.println("Encontrou ponto"); "31,560.00"
+			}*/
+			else {
+				aux.setStringAux(aux.getStringAux() + value.charAt(i));
+				//aux.setStringAux(aux.getStringAux());
+			}
+		}
+		return aux.getStringAux();
+	}
 
 	// FORMATAR A DATA INFORMADA
 	public static String getFormatedDate(String dat) {
@@ -63,12 +104,18 @@ public class SistemaController {
 		return moeda.format(num);
 	}
 	
+	// FORMATAR A DUAS CASAS DECIMAIS
+	public static String maskNum(double num) {
+		numero = new DecimalFormat("0.00");
+		return numero.format(num);
+	}
+	
 	// DEVEOLVE NULL PARA RESETAR A LISTA
 	public static ArrayList<CalculoModel> getReset() {
 		return null;
 	}
 	
 	public static void main(String [] args) {
-		System.out.print(SistemaController.getCounter(0));
+		System.out.print(SistemaController.cleanM("31,560.00"));
 	}
 }

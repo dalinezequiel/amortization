@@ -4,6 +4,7 @@ import java.sql.Date;
 
 public class Auxilio {
 	// PRIMITIVOS
+	private String stringAux;
 	private int intAux;
 	private int tamanho;
 	private double doubleAux;
@@ -21,6 +22,7 @@ public class Auxilio {
 		super();
 		this.tamanho = tamanho;
 		this.doubleAnyArray = new double[this.tamanho];
+		this.intAnyArray = new int[this.tamanho];
 	}
 
 	// ADICIONAR VALORES NO ARRAY
@@ -31,6 +33,24 @@ public class Auxilio {
 			return -1;
 		}
 		return index;
+	}
+	
+	// ADICIONAR VALORES NO ARRAY
+	public int adicionaIntAnyArray(int index, int value) {
+		if ((index < this.tamanho) && (index >= 0)) {
+			intAnyArray[index] = value;
+		} else {
+			return -1;
+		}
+		return index;
+	}
+
+	public String getStringAux() {
+		return stringAux;
+	}
+
+	public void setStringAux(String stringAux) {
+		this.stringAux = stringAux;
 	}
 
 	public int getIntAux() {

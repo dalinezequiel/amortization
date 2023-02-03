@@ -91,7 +91,8 @@ public class CalMajsController {
 				calculo.setDataVencimento(listaMajs.get(i).getDataVencimento());
 				
 				aux = new Auxilio();
-				aux.setDoubleAux(0.01);
+				aux.setDoubleAux(0.00001);
+				aux.setIntAux(0);
 				calculo.setAuxilio(aux);
 				listaInversao.add(calculo);
 			}

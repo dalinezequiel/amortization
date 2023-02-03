@@ -57,18 +57,18 @@ public class CalGausController {
 	}
 
 	// PEGAR VALORES INFORMADOS NA PAGINA
-	private DashboardModel getCalculoModelData(HttpServletRequest request, HttpServletResponse response)
+	public DashboardModel getCalculoModelData(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		this.dashboardModel.setValorEmprestFinancia(
-				Double.parseDouble(SistemaController.isNullOrEmpty(request.getParameter("emprest_financia").trim())));
+				Double.parseDouble(SistemaController.clean(SistemaController.isNullOrEmpty(request.getParameter("emprest_financia").trim()))));
 		calculoModel.setValorEmprestFinac(dashboardModel.getValorEmprestFinancia());
 		this.dashboardModel
 				.setTaxa(Double.parseDouble(SistemaController.isNullOrEmpty(request.getParameter("taxa").trim())));
 		calculoModel.setJuroInicial(dashboardModel.getTaxa());
 		this.dashboardModel.setTaxaMensal(
-				Double.parseDouble(SistemaController.isNullOrEmpty(request.getParameter("taxa_mensal").trim())));
+				Double.parseDouble(SistemaController.clean(SistemaController.isNullOrEmpty(request.getParameter("taxa_mensal").trim()))));
 		this.dashboardModel.setTaxaAnual(
-				Double.parseDouble(SistemaController.isNullOrEmpty(request.getParameter("taxa_anual").trim())));
+				Double.parseDouble(SistemaController.clean(SistemaController.isNullOrEmpty(request.getParameter("taxa_anual").trim()))));
 		this.dashboardModel
 				.setPrazo(Integer.parseInt(SistemaController.isNullOrEmpty(request.getParameter("prazo").trim())));
 		this.dashboardModel.setDataPrimeiraParcela(Date.valueOf(request.getParameter("ultima_parcela").trim()));
@@ -113,7 +113,8 @@ public class CalGausController {
 				calculo.setDataVencimento(calculoModel.getDataVencimento());
 				
 				aux = new Auxilio();
-				aux.setDoubleAux(0.01);
+				aux.setDoubleAux(0.00001);
+				aux.setIntAux(0);
 				calculo.setAuxilio(aux);
 				listaGaus.add(calculo);
 			}

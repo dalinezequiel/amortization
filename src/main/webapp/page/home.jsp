@@ -7,30 +7,12 @@
         import="com.simor.model.*"
 %>
 <%!
-  ArrayList<CalculoModel> list = null;
+  private ArrayList<CalculoModel> list = null;
+  private DashboardModel model = null;
 %>
 <%
-  if(request.getParameter("calcular") != null){
-	  list = new App(request, response).sys();
-	  /*if(request.getParameter("sys_amort").trim().equals("Gaus")){
-		  list = new CalGausController(request, response).listaCalGausModel();
-	  }
-	  else if(request.getParameter("sys_amort").trim().equals("PRICE")){
-		  list = new CalPriceController(request, response).listaCalPriceModel();
-	  }
-	  else if(request.getParameter("sys_amort").trim().equals("SAC")){
-		  list = new CalSacController(request, response).listaCalSacModel();
-	  }
-	  else if(request.getParameter("sys_amort").trim().equals("SAC.JS")){
-	      list = new CalSacjsController(request, response).listaCalSacjsModel();
-      }
-	  else if(request.getParameter("sys_amort").trim().equals("SACRE")){
-		  list = new CalSacreController(request, response).listaCalSacreModel();
-	  }
-	  else if(request.getParameter("sys_amort").trim().equals("MAJS/ Hamburgues")){
-          list = new CalMajsController(request, response).listaCalMajsInversaoModel();
-      }*/
-  }
+  list = new App(request, response).sys();
+  model = new App(request, response).sys_tax();
 %>
 
 <!DOCTYPE html>
@@ -101,17 +83,25 @@
 									<label>Valor do emprest. ou finânc.</label> <input
 										type="text" placeholder="0,00" name="emprest_financia" required>
 								</div>
-								<div>
-									<label>Taxa (%)</label> <input type="text" placeholder="0,00"
-										name="taxa" required>
+								<div class="mensal_anual">
+									<div>
+									    <label>Taxa (%)</label> <input type="text" placeholder="0,00"
+										    name="taxa" required>
+									</div>
+									<div>
+									    <label>Periôdo</label> <select name="mensal_anual">
+										   <option>Mensal</option>
+										   <option>Anual</option>
+									    </select>
+									</div>
 								</div>
 								<div>
 									<label>Essa será sua taxa mensal (%)</label> <input type="text"
-										placeholder="0,00" name="taxa_mensal" readOnly>
+										placeholder="0,00" name="taxa_mensal" value="<%if(model != null){out.print(SistemaController.maskNum(model.getTaxaMensal())); }%>" readOnly>
 								</div>
 								<div>
 									<label>Essa será sua taxa anual (%)</label> <input type="text"
-										placeholder="0,00" name="taxa_anual" readOnly>
+										placeholder="0,00" name="taxa_anual" value="<%if(model != null){out.print(SistemaController.maskNum(model.getTaxaAnual())); }%>" readOnly>
 								</div>
 
 							</div>
@@ -182,20 +172,20 @@
 							</div>
 							<div class="cap-04">
 								<div>
-									<label>Periocidicidade do balão</label> <input type="number" min="0" placeholder="0,00" disabled>
+									<label>Periocidicidade do balão</label> <input type="number" min="0" placeholder="0,00" readOnly>
 								</div>
 								<div>
-									<label>Quantidade de balões</label> <input type="number" min="0" placeholder="0,00" disabled>
+									<label>Quantidade de balões</label> <input type="number" min="0" placeholder="0,00" readOnly>
 								</div>
 								<div>
-									<label>Valor do balão</label> <input type="text" placeholder="0,00" disabled>
+									<label>Valor do balão</label> <input type="text" placeholder="0,00" readOnly>
 								</div>
 								<div class="multa">
 									<div>
-									    <label>Multa (%)</label> <input type="text" placeholder="0,00" disabled>
+									    <label>Multa (%)</label> <input type="text" placeholder="0,00" readOnly>
 									</div>
 									<div>
-									    <label>Juro atr. (%)</label> <input type="text" placeholder="0,00" disabled>
+									    <label>Juro atr. (%)</label> <input type="text" placeholder="0,00" readOnly>
 									</div>
 								</div>
 							</div>
@@ -278,9 +268,11 @@
 											    <td></td>
 											    <td><%out.print(SistemaController.mascaraMoeda(list.get(i).getJuro())); %></td>
 											    <td><%out.print(SistemaController.mascaraMoeda(list.get(i).getAmortizacao())); %></td>
-											    <td><%/*if(list.get(i).getValorEmprestFinac() > list.get(i).getAuxilio().getDoubleAux()){*/
-											    	out.print(SistemaController.mascaraMoeda(list.get(i).getValorEmprestFinac()));/*}else
-											    	{out.print("0,00");}*/ %></td>
+											    <td><%if((list.get(i).getValorEmprestFinac() < list.get(i).getAuxilio().getIntAux()) 
+											    		|| (list.get(i).getValorEmprestFinac() > list.get(i).getAuxilio().getDoubleAux())){
+											    	out.print(SistemaController.mascaraMoeda(list.get(i).getValorEmprestFinac()));}
+											    else
+											    	{out.print("0,00");} %></td>
 											    <td></td>
 											    <td></td>
 											    <td></td>
