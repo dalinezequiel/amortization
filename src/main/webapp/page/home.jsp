@@ -45,10 +45,10 @@
 				</ul>
 			</div>
 			<div>
-				<ul>
+				<ul class="conf_sair">
 					<li><div class="lg">
 							<i class="fa-solid fa-gear"></i>
-						</div> <a href="configuracao.jsp">Configuração</a>
+						</div> <a href="configuracao.jsp">Configuração</a></li>
 					<li><div class="lg">
 							<i class="fa-sharp fa-solid fa-right-to-bracket"></i>
 						</div> <a href="../index.jsp">Sair Sistema</a></li>
@@ -293,5 +293,6 @@
 		</div>
 	</div>
 	<script src="../script/inicio.js"></script>
+	<script src="../script/home.js"></script>
 </body>
 </html>
