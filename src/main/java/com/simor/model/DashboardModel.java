@@ -17,6 +17,7 @@ public class DashboardModel {
 	private int periodicidadeBalao;
 	private int quantBalao;
 	private double valorBalao;
+	private String calcularAtraso;
 	private DashboardModel dashboardModel;
 	private Auxilio auxilioModel;
 
@@ -131,7 +132,15 @@ public class DashboardModel {
 	public void setValorBalao(double valorBalao) {
 		this.valorBalao = valorBalao;
 	}
-	
+
+	public String getCalcularAtraso() {
+		return calcularAtraso;
+	}
+
+	public void setCalcularAtraso(String calcularAtraso) {
+		this.calcularAtraso = calcularAtraso;
+	}
+
 	public DashboardModel getDashboardModel() {
 		return dashboardModel;
 	}

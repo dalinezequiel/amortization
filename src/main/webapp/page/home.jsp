@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 
 <%@page import="com.simor.controller.*"
         import="java.util.*"
@@ -16,8 +16,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
-<title>SIMOR - Sistema de Amortização</title>
+<meta charset="UTF-8">
+<title>SIMOR - Sistema de AmortizaÃ§Ã£o</title>
 <link rel="stylesheet" type="text/css" href="../css/index.css">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
@@ -48,7 +48,7 @@
 				<ul>
 					<li><div class="lg">
 							<i class="fa-solid fa-gear"></i>
-						</div> <a href="configuracao.jsp">Configuração</a>
+						</div> <a href="configuracao.jsp">ConfiguraÃ§Ã£o</a>
 					<li><div class="lg">
 							<i class="fa-sharp fa-solid fa-right-to-bracket"></i>
 						</div> <a href="../index.jsp">Sair Sistema</a></li>
@@ -59,7 +59,6 @@
 			<div>
 				<div class="conta">
 					<div class="select">
-						<!-- <i class="fa-solid fa-bars"></i> -->
 						<i class="fa-solid fa-chart-pie"></i>
 						<p>Dashboard</p>
 					</div>
@@ -78,7 +77,7 @@
 							<div class="cap">
 							<div class="cap-01">
 								<div>
-									<label>Valor do emprest. ou finânc.</label> <input
+									<label>Valor do emprest. ou finÃ¢nc.</label> <input
 										type="text" placeholder="0,00" name="emprest_financia" required>
 								</div>
 								<div class="mensal_anual">
@@ -87,18 +86,18 @@
 										    name="taxa" required>
 									</div>
 									<div>
-									    <label>Periôdo</label> <select name="mensal_anual">
+									    <label>PeriÃ´do</label> <select name="mensal_anual">
 										   <option>Mensal</option>
 										   <option>Anual</option>
 									    </select>
 									</div>
 								</div>
 								<div>
-									<label>Essa será sua taxa mensal (%)</label> <input type="text"
+									<label>Essa serÃ¡ sua taxa mensal (%)</label> <input type="text"
 										placeholder="0,00" name="taxa_mensal" value="<%if(app.getTax() != null){out.print(SistemaController.maskNum(app.getTax().getTaxaMensal())); }%>" readOnly>
 								</div>
 								<div>
-									<label>Essa será sua taxa anual (%)</label> <input type="text"
+									<label>Essa serÃ¡ sua taxa anual (%)</label> <input type="text"
 										placeholder="0,00" name="taxa_anual" value="<%if(app.getTax() != null){out.print(SistemaController.maskNum(app.getTax().getTaxaAnual())); }%>" readOnly>
 								</div>
 
@@ -110,8 +109,8 @@
 								</div>
 								<div class="indice_actual">
 									<div>
-									    <label>Índice actuali.</label> <select>
-										   <option disabled selected>Sem índice</option>
+									    <label>Ãndice actuali.</label> <select>
+										   <option disabled selected>Sem Ã­ndice</option>
 										   <option>CDI</option>
 										   <option>CUB-SC</option>
 										   <option>IGP-M</option>
@@ -122,10 +121,10 @@
 									    </select>
 									</div>
 									<div>
-									    <label>Incidên. índice</label> <select disabled>
-										   <option disabled selected>Sem índice</option>
-										   <option>Balão</option>
-										   <option>Balão e parcela</option>
+									    <label>IncidÃªn. Ã­ndice</label> <select disabled>
+										   <option disabled selected>Sem Ã­ndice</option>
+										   <option>BalÃ£o</option>
+										   <option>BalÃ£o e parcela</option>
 										   <option>Parcela</option>
 										   <option>Parcela 12m</option>
 										   <option>Saldo devedor</option>
@@ -134,10 +133,10 @@
 									</div>
 								</div>
 								<div>
-									<label>Carência</label> <input type="number" min="0" placeholder="0,00">
+									<label>CarÃªncia</label> <input type="number" min="0" placeholder="0,00">
 								</div>
 								<div>
-									<label>Sistema de amortização</label> <select name="sys_amort" required>
+									<label>Sistema de amortizaÃ§Ã£o</label> <select name="sys_amort" required>
 										<option>Gaus</option>
 										<option>PRICE</option>
 										<option>SAC</option>
@@ -149,34 +148,34 @@
 							</div>
 							<div class="cap-02">
 								<div>
-									<label>Data da contratação</label> <input type="date">
+									<label>Data da contrataÃ§Ã£o</label> <input type="date">
 								</div>
 								<div>
 									<label>Primeira parcela</label> <input type="date" name="ultima_parcela" required>
 								</div>
 								<div>
-									<label>Tipo do balão</label> <select>
-										<option>Balões e parcelas</option>
-										<option selected disabled>Sem balões</option>
-										<option>Somente balões</option>
+									<label>Tipo do balÃ£o</label> <select name="tipo_balao">
+										<option>BalÃµes e parcelas</option>
+										<option selected>Sem balÃµes</option>
+										<option>Somente balÃµes</option>
 									</select>
 								</div>
 								<div>
-									<label>Calcular atraso?</label> <select>
+									<label>Calcular atraso?</label> <select name="calc_atraso">
 										<option>Sim</option>
-										<option>Não</option>
+										<option selected>NÃ£o</option>
 									</select>
 								</div>
 							</div>
 							<div class="cap-04">
-								<div>
-									<label>Periocidicidade do balão</label> <input type="number" min="0" placeholder="0,00" readOnly>
+								<div class="periodo">
+									<label>Periocidicidade do balÃ£o</label> <input type="number" min="0" placeholder="0,00" readOnly>
 								</div>
-								<div>
-									<label>Quantidade de balões</label> <input type="number" min="0" placeholder="0,00" readOnly>
+								<div class="periodo">
+									<label>Quantidade de balÃµes</label> <input type="number" min="0" placeholder="0,00" readOnly>
 								</div>
-								<div>
-									<label>Valor do balão</label> <input type="text" placeholder="0,00" readOnly>
+								<div class="periodo">
+									<label>Valor do balÃ£o</label> <input type="text" placeholder="0,00" readOnly>
 								</div>
 								<div class="multa">
 									<div>
@@ -211,31 +210,31 @@
 								<thead>
 									<tr>
 										<td><div>
-												N°<i class="fa-solid fa-arrow-down-a-z"></i>
+												NÂ°<i class="fa-solid fa-arrow-down-a-z"></i>
 											</div></td>
 										<td><div>
 												Vencimento<i class="fa-solid fa-arrow-down-a-z"></i>
 											</div></td>
 										<td><div>
-												Prestação<i class="fa-solid fa-arrow-down-a-z"></i>
+												PrestaÃ§Ã£o<i class="fa-solid fa-arrow-down-a-z"></i>
 											</div></td>
 										<td><div>
-												Balcão<i class="fa-solid fa-arrow-down-a-z"></i>
+												BalcÃ£o<i class="fa-solid fa-arrow-down-a-z"></i>
 											</div></td>
 										<td><div>
 												Juros<i class="fa-solid fa-arrow-down-a-z"></i>
 											</div></td>
 										<td><div>
-												Amortização<i class="fa-solid fa-arrow-down-a-z"></i>
+												AmortizaÃ§Ã£o<i class="fa-solid fa-arrow-down-a-z"></i>
 											</div></td>
 										<td><div>
 												Saldo Devedor<i class="fa-solid fa-arrow-down-a-z"></i>
 											</div></td>
 										<td><div>
-												Índice<i class="fa-solid fa-arrow-down-a-z"></i>
+												Ãndice<i class="fa-solid fa-arrow-down-a-z"></i>
 											</div></td>
 										<!-- <td><div>
-												Actualização mon.<i class="fa-solid fa-arrow-down-a-z"></i>
+												ActualizaÃ§Ã£o mon.<i class="fa-solid fa-arrow-down-a-z"></i>
 											</div></td>
 										<td><div>
 												Outro<i class="fa-solid fa-arrow-down-a-z"></i>
@@ -293,6 +292,6 @@
 			</div>
 		</div>
 	</div>
-	<!-- <script src="../script/inicio.js"></script> -->
+	<script src="../script/inicio.js"></script>
 </body>
 </html>

@@ -11,6 +11,7 @@ import com.simor.model.*;
 
 public class DashboardController {
 	protected static ArrayList<CalculoModel> list = null;
+	protected ArrayList<Boolean> boolist;
 	protected HttpServletRequest request;
 	protected HttpServletResponse response;
 	protected DashboardModel dashboardModel = null;
@@ -108,6 +109,10 @@ public class DashboardController {
 					Integer.parseInt(SistemaController.isNullOrEmpty(this.request.getParameter("prazo").trim())));
 
 			dashboardModel.setDataPrimeiraParcela(Date.valueOf(this.request.getParameter("ultima_parcela").trim()));
+
+			dashboardModel.setTipoBalao(this.request.getParameter("tipo_balao").trim());
+
+			dashboardModel.setCalcularAtraso(this.request.getParameter("calc_atraso").trim());
 		}
 		return dashboardModel;
 	}

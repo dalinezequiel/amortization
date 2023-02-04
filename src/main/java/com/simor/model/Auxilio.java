@@ -25,7 +25,7 @@ public class Auxilio {
 		this.intAnyArray = new int[this.tamanho];
 	}
 
-	// ADICIONAR VALORES NO ARRAY
+	// ADICIONAR VALORES DOUBLE NO ARRAY
 	public int adicionaDoubleAnyArray(int index, double value) {
 		if ((index < this.tamanho) && (index >= 0)) {
 			doubleAnyArray[index] = value;
@@ -35,7 +35,7 @@ public class Auxilio {
 		return index;
 	}
 	
-	// ADICIONAR VALORES NO ARRAY
+	// ADICIONAR VALORES INT NO ARRAY
 	public int adicionaIntAnyArray(int index, int value) {
 		if ((index < this.tamanho) && (index >= 0)) {
 			intAnyArray[index] = value;
@@ -44,7 +44,7 @@ public class Auxilio {
 		}
 		return index;
 	}
-
+	
 	public String getStringAux() {
 		return stringAux;
 	}
@@ -84,6 +84,7 @@ public class Auxilio {
 	public void setDoubleAnyArray(double[] doubleAnyArray) {
 		this.doubleAnyArray = doubleAnyArray;
 	}
+	
 
 	public Date getData() {
 		return data;
