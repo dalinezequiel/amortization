@@ -11,6 +11,7 @@ public class Auxilio {
 	private Date data;
 
 	// ARRAYS
+	private String[] stringAnyArray;
 	private int[] intAnyArray;
 	private double[] doubleAnyArray;
 
@@ -84,7 +85,14 @@ public class Auxilio {
 	public void setDoubleAnyArray(double[] doubleAnyArray) {
 		this.doubleAnyArray = doubleAnyArray;
 	}
-	
+
+	public String[] getStringAnyArray() {
+		return stringAnyArray;
+	}
+
+	public void setStringAnyArray(String[] stringAnyArray) {
+		this.stringAnyArray = stringAnyArray;
+	}
 
 	public Date getData() {
 		return data;

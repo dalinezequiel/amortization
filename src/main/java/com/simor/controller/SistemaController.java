@@ -13,6 +13,8 @@ public class SistemaController {
 	private static DecimalFormat moeda, numero = null;
 	private static Auxilio aux = null;
 	private static Random random = null;
+	private static CalculoModel calculoModel = null;
+	private static ArrayList<CalculoModel> listData = null;
 
 	public SistemaController() {
 		super();
@@ -115,7 +117,32 @@ public class SistemaController {
 		return null;
 	}
 	
+	//
+	public static ArrayList<CalculoModel> listaDataVencimento(String data, int prazo){
+		listData = new ArrayList<CalculoModel>();
+		aux = new Auxilio(3);
+		aux.setStringAnyArray(data.split("-", 3));
+		aux.adicionaIntAnyArray(1, Integer.parseInt(aux.getStringAnyArray()[1]));
+		aux.adicionaIntAnyArray(2, Integer.parseInt(aux.getStringAnyArray()[2]));
+		for(int i=0; i<prazo; i++) {
+			calculoModel = new CalculoModel();
+			if(aux.getIntAnyArray()[1]==13) {
+				aux.adicionaIntAnyArray(1, 1);
+				aux.adicionaIntAnyArray(2, aux.getIntAnyArray()[2] + 1);
+			}
+			aux.setStringAux(aux.getIntAnyArray()[2]+"-"+String.valueOf(aux.getIntAnyArray()[1])+"-"+aux.getStringAnyArray()[0]);
+			calculoModel.setDataVencimento(Date.valueOf(aux.getStringAux()));
+			aux.adicionaIntAnyArray(1, aux.getIntAnyArray()[1] + 1);
+			listData.add(calculoModel);
+		}
+		return listData;
+	}
+	
 	public static void main(String [] args) {
-		System.out.print(SistemaController.cleanM("31,560.00"));
+		//System.out.print(SistemaController.cleanM("31,560.00"));
+		ArrayList<CalculoModel> list = SistemaController.listaDataVencimento("05-10-2023", 7);
+		for(int i=0; i<list.size(); i++) {
+			System.out.println(SistemaController.getFormatedDate(String.valueOf(list.get(i).getDataVencimento())));
+		}
 	}
 }
