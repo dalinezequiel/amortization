@@ -1,33 +1,30 @@
 package com.simor.controller;
 
 import java.io.IOException;
-import java.sql.Date;
-import java.text.DecimalFormat;
-import java.util.ArrayList;
+
 import com.simor.model.*;
+import java.util.*;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-public class CalNPController {
+public class CalNPController /*extends SerieNPController*/ {
 	private DashboardModel dashboardModel = null;
 	private static CalculoModel calculoModel, calculo = null;
+	private static ArrayList<CalculoModel> listaNP, list = null;
 	private Auxilio aux = null;
-	private static ArrayList<CalculoModel> listaNP = null;
+	private int percentagem;
+	private SerieNPController serieNP=null;
 
 	public CalNPController(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		//super(0.01);
 		dashboardModel = new DashboardModel();
-		calculoModel = new CalculoModel();
 		aux = new Auxilio();
-		this.dashboardModel = getCalculoModelData(request, response);
-	}
-
-	public CalNPController() {
-		super();
-		dashboardModel = new DashboardModel();
 		calculoModel = new CalculoModel();
-		aux = new Auxilio();
+		this.dashboardModel = new App(request, response).getDashboardModel();
+		percentagem = 100;
+		serieNP=new SerieNPController(this.getTaxaNPCalculado());
 	}
 
 	// DEVOLVE O OBJECTO CALCULO
@@ -36,74 +33,37 @@ public class CalNPController {
 	}
 
 	// CALCULAR PRESTAÇÃO
-	public double getCalculoDePrestacao() {
-		aux = new Auxilio(4);
-		aux.setIntAux(1);
-		//aux.setDoubleAux(3);
-		
-		dashboardModel.setValorEmprestFinancia(50000);
-		dashboardModel.setPrazo(12);
-		dashboardModel.setTaxa(1.0);
-		
-		// PRIMEIRO CALCÚLO
-		aux.adicionaDoubleAnyArray(0, Math.pow((aux.getIntAux() + this.getTaxaNPCalculado()), dashboardModel.getPrazo()) * this.getTaxaNPCalculado());
-
-		// SEGUNDO CALCÚLO
-		aux.adicionaDoubleAnyArray(1, Math.pow((aux.getIntAux() + this.getTaxaNPCalculado()), dashboardModel.getPrazo()) - aux.getIntAux());
-
-		// TERCEIRO CALCÚLO
-		aux.adicionaDoubleAnyArray(2, aux.getDoubleAnyArray()[0] / aux.getDoubleAnyArray()[1]);
-		
-		//QUARTO CALCÚLO
-		aux.adicionaDoubleAnyArray(3, dashboardModel.getValorEmprestFinancia() * aux.getDoubleAnyArray()[2]);
-		
-		calculoModel.setPrestacao(aux.getDoubleAnyArray()[3]);
-		return calculoModel.getPrestacao();
+	public double getCalculoDePrestacao(double valor) {
+		return this.serieNP.coeficiente() * valor;
 	}
 
-	// PEGAR VALORES INFORMADOS NA PAGINA
-	private DashboardModel getCalculoModelData(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		this.dashboardModel.setValorEmprestFinancia(
-				Double.parseDouble(SistemaController.isNullOrEmpty(request.getParameter("emprest_financia").trim())));
-		calculoModel.setValorEmprestFinac(dashboardModel.getValorEmprestFinancia());
-		this.dashboardModel
-				.setTaxa(Double.parseDouble(SistemaController.isNullOrEmpty(request.getParameter("taxa").trim())));
-		calculoModel.setJuroInicial(dashboardModel.getTaxa());
-		this.dashboardModel.setTaxaMensal(
-				Double.parseDouble(SistemaController.isNullOrEmpty(request.getParameter("taxa_mensal").trim())));
-		this.dashboardModel.setTaxaAnual(
-				Double.parseDouble(SistemaController.isNullOrEmpty(request.getParameter("taxa_anual").trim())));
-		this.dashboardModel
-				.setPrazo(Integer.parseInt(SistemaController.isNullOrEmpty(request.getParameter("prazo").trim())));
-		this.dashboardModel.setDataPrimeiraParcela(Date.valueOf(request.getParameter("ultima_parcela").trim()));
-		return this.dashboardModel;
-	}
-
-	// CALCULAR PRECENTUAL BRUTO
-	public double getTaxaNPCalculado() {
-		return this.dashboardModel.getTaxa() / 100;
+	// CALCULAR JUROS
+	public double getCalculoJurosNP(int mes, double valor) {
+		return (this.serieNP.taxaMensal(mes) / percentagem) * valor;
 	}
 
 	// ARRAYLIST DO RESULTADOS DO CALCULO
 	public ArrayList<CalculoModel> listaCalNPModel() {
 		listaNP = new ArrayList<CalculoModel>();
+		System.out.println("Prest: " + dashboardModel.getValorEmprestFinancia());
 		if (this.dashboardModel != null) {
 			calculoModel.setValorEmprestFinac(this.dashboardModel.getValorEmprestFinancia());
-			calculoModel.setPrestacao(this.getCalculoDePrestacao());
-			calculoModel.setJuroInicial(this.getTaxaNPCalculado());
+			calculoModel.setPrestacao(this.getCalculoDePrestacao(calculoModel.getValorEmprestFinac()));
 			calculoModel.setDataVencimento(this.dashboardModel.getDataPrimeiraParcela());
 
 			for (int i = 0; i < this.dashboardModel.getPrazo(); i++) {
 				calculo = new CalculoModel();
-				calculoModel.setJuro(calculoModel.getJuroInicial() * calculoModel.getValorEmprestFinac());
+				calculoModel.setJuro(this.getCalculoJurosNP((i + 1), calculoModel.getValorEmprestFinac()));
 				calculoModel.setAmortizacao(calculoModel.getPrestacao() - calculoModel.getJuro());
 				calculoModel.setValorEmprestFinac(calculoModel.getValorEmprestFinac() - calculoModel.getAmortizacao());
 				calculo.setPrestacao(calculoModel.getPrestacao());
 				calculo.setJuro(calculoModel.getJuro());
 				calculo.setAmortizacao(calculoModel.getAmortizacao());
 				calculo.setValorEmprestFinac(calculoModel.getValorEmprestFinac());
-				calculo.setDataVencimento(calculoModel.getDataVencimento());
+				calculo.setDataVencimento(SistemaController.listaDataVencimento(
+						SistemaController.getFormatedDate(String.valueOf(calculoModel.getDataVencimento())),
+						this.dashboardModel.getPrazo()).get(i).getDataVencimento());
+
 				aux = new Auxilio();
 				aux.setDoubleAux(0.00001);
 				aux.setIntAux(0);
@@ -113,10 +73,17 @@ public class CalNPController {
 		}
 		return listaNP;
 	}
-	
-	public static void main (String [] args) {
-		System.out.print("Testa: ");
-		System.out.println(new CalNPController().getCalculoDePrestacao());
-		System.out.println(new DecimalFormat("###,###.00").format(new CalNPController().getCalculoDePrestacao()));
+
+	public void listNP() {
+		list = this.listaCalNPModel();
+		for (int i = 0; i < list.size(); i++) {
+			System.out.println(list.get(i).getPrestacao());
+		}
+	}
+
+	// CALCULAR PRECENTUAL
+	public double getTaxaNPCalculado() {
+		this.dashboardModel.setTaxa(1);
+		return this.dashboardModel.getTaxa() / 100;
 	}
 }

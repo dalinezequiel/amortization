@@ -18,6 +18,8 @@ public class DashboardModel {
 	private int quantBalao;
 	private double valorBalao;
 	private String calcularAtraso;
+	private double multa;
+	private double juroAtraso;
 	private DashboardModel dashboardModel;
 	private Auxilio auxilioModel;
 
@@ -139,6 +141,22 @@ public class DashboardModel {
 
 	public void setCalcularAtraso(String calcularAtraso) {
 		this.calcularAtraso = calcularAtraso;
+	}
+
+	public double getMulta() {
+		return multa;
+	}
+
+	public void setMulta(double multa) {
+		this.multa = multa;
+	}
+
+	public double getJuroAtraso() {
+		return juroAtraso;
+	}
+
+	public void setJuroAtraso(double juroAtraso) {
+		this.juroAtraso = juroAtraso;
 	}
 
 	public DashboardModel getDashboardModel() {

@@ -54,7 +54,7 @@ public class CalGausController {
 		return calculoModel.getPrestacao();
 	}
 
-	// CALCULAR PRECENTUAL BRUTO
+	// CALCULAR PRECENTUAL
 	public double getTaxaGausCalculado() {
 		return this.dashboardModel.getTaxa() / 100;
 	}

@@ -54,7 +54,10 @@ public class CalMajsController {
 				calculo.setJuro(calculoModel.getJuro());
 				calculo.setAmortizacao(calculoModel.getAmortizacao());
 				calculo.setValorEmprestFinac(calculoModel.getValorEmprestFinac());
-				calculo.setDataVencimento(calculoModel.getDataVencimento());
+				//calculo.setDataVencimento(calculoModel.getDataVencimento());
+				calculo.setDataVencimento(SistemaController.listaDataVencimento(
+						SistemaController.getFormatedDate(String.valueOf(calculoModel.getDataVencimento())),
+						this.dashboardModel.getPrazo()).get(i).getDataVencimento());
 				listaMajs.add(calculo);
 			}
 		}

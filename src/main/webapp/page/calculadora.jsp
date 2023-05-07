@@ -52,22 +52,40 @@
 						<p>Calcular valor presente</p>
 					</div>
 					<div class="usuario">
+					<div class="usuari">
 						<div>
 							<img src="../img/user.png">
 						</div>
-						<div>
-							<p>Usuario001</p>
+						<div class="usr_name">
+							<p>Manuel Carlos Macuacua</p>
 						</div>
+					</div>
 					</div>
 				</div>
 				<div class="calculadora">
-					<div>
-						<h3>Calcular valor real do empréstimo | PRICE</h3>
+					<div class="ladora">
+						<div>
+						    <h3>Calcular valor real do empréstimo | PRICE</h3>
+						</div>
+						<div>
+							<button name="salva">Calcular</button>
+						</div>
 					</div>
 					<div class="c-1">
 						<div>
-							<label>Parcela (PMT)</label> <input type="text"
-								placeholder="0,00">
+							<label>Sistema de amortização</label> <select name="sys_amort" required>
+								<option>Gaus</option>
+								<option>PRICE</option>
+								<option>SAC</option>
+								<option>SAC.JS</option>
+								<option>SACRE</option>
+								<option>MAJS/ Hamburgues</option>
+								<option>Não Periódicas</option>
+								<option>SAL</option>
+								</select>
+						</div>
+						<div>
+							<label>Parcela (PMT)</label> <input type="text" placeholder="0,00">
 						</div>
 						<div>
 							<label>Taxa (a.m.)</label> <input type="text" placeholder="0,00%">
@@ -76,20 +94,23 @@
 							<label>Prazo (a.m.)</label> <input type="number" placeholder="0">
 						</div>
 					</div>
-					<div class="c-1-1">
+					<!--<div class="c-1-1">
+						 <div>
+							<label>Valor pago adicional</label> <input type="text"
+								placeholder="0,00">
+						</div> 
+					</div>-->
+					<!-- <div class="c-2">
+						<button>Calcular</button>
+						<button>Limpar</button>
+					</div> -->
+					<div class="c-3">
 						<div>
 							<label>Valor pago adicional</label> <input type="text"
 								placeholder="0,00">
 						</div>
-					</div>
-					<div class="c-2">
-						<button>Calcular</button>
-						<button>Limpar</button>
-					</div>
-					<div class="c-3">
 						<div>
-							<label>Valor do empréstimo (VP)</label> <input type="text"
-								placeholder="0,00">
+							<label>Valor do empréstimo (VP)</label> <input type="text" placeholder="0,00">
 						</div>
 						<div>
 							<label>Valor que você irá pagar</label> <input type="text"
@@ -99,11 +120,11 @@
 							<label>Total pago</label> <input type="text" placeholder="0,00">
 						</div>
 					</div>
+					<!-- <div class="c-2">
+						<button>Calcular</button>
+						<button>Limpar</button>
+					</div> -->
 				</div>
-			</div>
-			<div class="rodape">
-				<p>&copy;2022 - Todos direitos reservados</p>
-				<p>00-00-0000</p>
 			</div>
 		</div>
 	</div>

@@ -63,12 +63,24 @@
 						<p>Dashboard</p>
 					</div>
 					<div class="usuario">
+					<div class="usuari">
 						<div>
 							<img src="../img/user.png">
 						</div>
-						<div>
-							<p>Usuario001</p>
+						<div class="usr_name">
+							<p>Manuel Carlos Macuacua</p>
 						</div>
+					</div>
+					<div>
+					<div class="opcao">
+						<div>
+							<label class="execute" for="calcu"><img src="../img/play.png"></label>
+						</div>
+						<div>
+							<label class="executa" for="calc"><img src="../img/printer-24.png"></label>
+						</div>
+					</div>
+					</div>
 					</div>
 				</div>
 				<div>
@@ -77,7 +89,7 @@
 							<div class="cap">
 							<div class="cap-01">
 								<div>
-									<label>Valor do emprest. ou finânc.</label> <input
+									<label>Valor do emprest. ou finânciamento</label> <input
 										type="text" placeholder="0,00" name="emprest_financia" required>
 								</div>
 								<div class="mensal_anual">
@@ -143,12 +155,14 @@
 										<option>SAC.JS</option>
 										<option>SACRE</option>
 										<option>MAJS/ Hamburgues</option>
+										<option>Não Periódicas</option>
+										<option>SAL</option>
 									</select>
 								</div>
 							</div>
 							<div class="cap-02">
 								<div>
-									<label>Data da contratação</label> <input type="date">
+									<label>Data da contratação</label> <input type="date" name="data_contratacao" required>
 								</div>
 								<div>
 									<label>Primeira parcela</label> <input type="date" name="ultima_parcela" required>
@@ -169,69 +183,62 @@
 							</div>
 							<div class="cap-04">
 								<div class="periodo">
-									<label>Periocidicidade do balão</label> <input type="number" min="0" placeholder="0,00" readOnly>
+									<label>Periocidicidade do balão</label> <input type="text" placeholder="0,00" name="periodo_balao" readOnly>
 								</div>
 								<div class="periodo">
-									<label>Quantidade de balões</label> <input type="number" min="0" placeholder="0,00" readOnly>
+									<label>Quantidade de balões</label> <input type="text" min="0" placeholder="0,00" name="quant_balao" readOnly>
 								</div>
 								<div class="periodo">
-									<label>Valor do balão</label> <input type="text" placeholder="0,00" readOnly>
+									<label>Valor do balão</label> <input type="text" placeholder="0,00" name="valor_balao" readOnly>
 								</div>
 								<div class="multa">
 									<div>
-									    <label>Multa (%)</label> <input type="text" placeholder="0,00" readOnly>
+									    <label>Multa (%)</label> <input type="text" placeholder="0,00" name="multa" readOnly>
 									</div>
 									<div>
-									    <label>Juro atr. (%)</label> <input type="text" placeholder="0,00" readOnly>
+									    <label>Juro atr. (%)</label> <input type="text" placeholder="0,00" name="juro_atraso" readOnly>
 									</div>
 								</div>
 							</div>
 							</div>
 							<div class="cap-05">
-								<div>
-									<button name="calcular">Calcular</button>
-								</div>
-								<div>
-									<button name="salvar">Salvar</button>
-								</div>
-								<div>
-									<button>Consultar</button>
-								</div>
-								<div>
-									<button>Limpar</button>
+							<div>	
+								<div style="display:none">
+									<button id="calcu" type="submit" name="calcular"></button>
 								</div>
 							</div>
 						</div>
+						</div>
 					</form>
 					<div class="tabela">
-					    <h4>Lista de resultados</h4>
+					    <!-- <h4>Lista de resultados</h4> -->
 						<div>
 							<table>
 								<thead>
 									<tr>
 										<td><div>
-												N°<i class="fa-solid fa-arrow-down-a-z"></i>
+												N°
 											</div></td>
 										<td><div>
-												Vencimento<i class="fa-solid fa-arrow-down-a-z"></i>
+												Vencimento
 											</div></td>
 										<td><div>
-												Prestação<i class="fa-solid fa-arrow-down-a-z"></i>
+												Prestação
 											</div></td>
 										<td><div>
-												Balcão<i class="fa-solid fa-arrow-down-a-z"></i>
+												Balcão
 											</div></td>
 										<td><div>
-												Juros<i class="fa-solid fa-arrow-down-a-z"></i>
+												Juros
 											</div></td>
 										<td><div>
-												Amortização<i class="fa-solid fa-arrow-down-a-z"></i>
+												Amortização
 											</div></td>
 										<td><div>
-												Saldo Devedor<i class="fa-solid fa-arrow-down-a-z"></i>
+												Saldo Devedor
 											</div></td>
 										<td><div>
-												Índice<i class="fa-solid fa-arrow-down-a-z"></i>
+												Índice
 											</div></td>
 										<!-- <td><div>
 												Actualização mon.<i class="fa-solid fa-arrow-down-a-z"></i>
@@ -243,13 +250,13 @@
 												Pagamento<i class="fa-solid fa-arrow-down-a-z"></i>
 											</div></td> -->
 										<td><div>
-												Multa<i class="fa-solid fa-arrow-down-a-z"></i>
+												Multa
 											</div></td>
 										<td><div>
-												Juros atraso<i class="fa-solid fa-arrow-down-a-z"></i>
+												Jur. atraso
 											</div></td>
 										<td><div>
-												Enc. Totais<i class="fa-solid fa-arrow-down-a-z"></i>
+												Enc. Totais
 											</div></td>
 									</tr>
 								</thead>
@@ -262,7 +269,7 @@
 											    <td><%out.print(SistemaController.getCounter(i)); %></td>
 											    <td><%out.print(SistemaController.getFormatedDate(app.getList().get(i).getDataVencimento().toString()));%></td>
 											    <td><%out.print(SistemaController.mascaraMoeda(app.getList().get(i).getPrestacao())); %></td>
-											    <td></td>
+											    <td><%out.print(SistemaController.mascaraMoeda(app.getList().get(i).getBalao()).equals(",00")?"0,00": SistemaController.mascaraMoeda(app.getList().get(i).getBalao())); %></td>
 											    <td><%out.print(SistemaController.mascaraMoeda(app.getList().get(i).getJuro())); %></td>
 											    <td><%out.print(SistemaController.mascaraMoeda(app.getList().get(i).getAmortizacao())); %></td>
 											    <td><%if((app.getList().get(i).getValorEmprestFinac() < app.getList().get(i).getAuxilio().getIntAux()) 
@@ -271,8 +278,8 @@
 											    else
 											    	{out.print("0,00");} %></td>
 											    <td></td>
-											    <td></td>
-											    <td></td>
+											    <td><%out.println(SistemaController.mascaraMoeda(app.getLatePayment().getMulta()).equals(",00")?"0,00":SistemaController.mascaraMoeda(app.getLatePayment().getMulta())); %></td>
+											    <td><%out.print(SistemaController.mascaraMoeda(app.getLatePayment().getJuroAtraso()).equals(",00")?"0,00":SistemaController.mascaraMoeda(app.getLatePayment().getJuroAtraso())); %></td>
 											    <td><%out.print(SistemaController.mascaraMoeda(app.getList().get(i).getPrestacao())); %></td>
 											   </tr>
 											   <%
@@ -283,14 +290,28 @@
 								</tbody>
 							</table>
 						</div>
+						<div>
+						<!-- <div class="cap-click">
+								<div>
+									<button name="calcular">Calcular</button>
+								</div>
+								<div>
+									<button name="salvar">Salvar</button>
+								</div>
+						</div> -->
 					</div>
-				</div>
-			</div>
-			<div class="rodape">
+					<!-- <div class="rodape">
 				<p>&copy;2022 - Todos direitos reservados</p>
-				<p><%out.print(SistemaController.getDataActual()); %></p>
+				<p><%//out.print(SistemaController.getDataActual()); %></p>
+				</div> -->
 			</div>
+			</div>
+			<!-- <div class="rodape">
+				<p>&copy;2022 - Todos direitos reservados</p>
+				<p></p>
+			</div> -->
 		</div>
+	</div>
 	</div>
 	<script src="../script/inicio.js"></script>
 	<script src="../script/home.js"></script>

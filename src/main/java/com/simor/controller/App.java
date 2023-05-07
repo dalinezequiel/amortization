@@ -15,10 +15,11 @@ public class App extends DashboardController {
 		this.appModel = new AppModel();
 	}
 
-	// FAZER O SET DOS OBJECTOS NECESSARIOS PARA FUNCIONAMENTO DA PÁGINA DASHBOARD
+	// OBJECTOS NECESSÁRIOS PARA FUNCIONAMENTO DA PÁGINA DASHBOARD
 	public AppModel sys_all() throws ServletException, IOException {
 		this.appModel.setList(this.sys());
 		this.appModel.setTax(this.sys_tax());
+		this.appModel.setLatePayment(this.sys_late_payment());
 		return this.appModel;
 	}
 }

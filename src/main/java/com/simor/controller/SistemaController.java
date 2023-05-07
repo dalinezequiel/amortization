@@ -36,7 +36,7 @@ public class SistemaController {
 			return aux.getIntAux();
 		}
 	}
-	
+
 	// GERAR COUNTER
 	public static int getCounter(int i) {
 		return i + 1;
@@ -49,45 +49,40 @@ public class SistemaController {
 		}
 		return value;
 	}
-	
+
 	public static String clean(String value) {
 		aux = new Auxilio();
 		aux.setStringAux("");
-		for(int i=0; i<value.length(); i++) {
-			if(String.valueOf(value.charAt(i)).equals(",")){
+		for (int i = 0; i < value.length(); i++) {
+			if (String.valueOf(value.charAt(i)).equals(",")) {
 				aux.setStringAux(aux.getStringAux() + ".");
-				System.out.println("Encontrou virgula");
-			}
-			else if(String.valueOf(value.charAt(i)).equals(".")) {
+
+			} else if (String.valueOf(value.charAt(i)).equals(".")) {
 				aux.setStringAux(aux.getStringAux() + "");
-				System.out.println("Encontrou ponto");
+
+			} else {
+				aux.setStringAux(aux.getStringAux() + value.charAt(i));
+			}
+		}
+		return aux.getStringAux();
+	}
+
+	public static String cleanTax(String value) {
+		aux = new Auxilio();
+		aux.setStringAux("");
+		for (int i = 0; i < value.length(); i++) {
+			if (String.valueOf(value.charAt(i)).equals(",")) {
+				aux.setStringAux(aux.getStringAux() + ".");
 			}
 			else {
 				aux.setStringAux(aux.getStringAux() + value.charAt(i));
-				//aux.setStringAux(aux.getStringAux());
 			}
 		}
 		return aux.getStringAux();
 	}
 	
-	public static String cleanM(String value) {
-		aux = new Auxilio();
-		aux.setStringAux("");
-		for(int i=0; i<value.length(); i++) {
-			if(String.valueOf(value.charAt(i)).equals(",")){
-				aux.setStringAux(aux.getStringAux() + ".");
-				System.out.println("Encontrou virgula");
-			}
-			/*else if(String.valueOf(value.charAt(i)).equals(".")) {
-				aux.setStringAux(aux.getStringAux() + "");
-				System.out.println("Encontrou ponto"); "31,560.00"
-			}*/
-			else {
-				aux.setStringAux(aux.getStringAux() + value.charAt(i));
-				//aux.setStringAux(aux.getStringAux());
-			}
-		}
-		return aux.getStringAux();
+	public static String cleanInt(String value) {
+		return value.split(",",2)[0];
 	}
 
 	// FORMATAR A DATA INFORMADA
@@ -105,44 +100,43 @@ public class SistemaController {
 		moeda = new DecimalFormat("###,###.00");
 		return moeda.format(num);
 	}
-	
+
 	// FORMATAR A DUAS CASAS DECIMAIS
 	public static String maskNum(double num) {
 		numero = new DecimalFormat("0.00");
 		return numero.format(num);
 	}
-	
+
 	// DEVEOLVE NULL PARA RESETAR A LISTA
 	public static ArrayList<CalculoModel> getReset() {
 		return null;
 	}
-	
+
 	//
-	public static ArrayList<CalculoModel> listaDataVencimento(String data, int prazo){
+	public static ArrayList<CalculoModel> listaDataVencimento(String data, int prazo) {
 		listData = new ArrayList<CalculoModel>();
 		aux = new Auxilio(3);
 		aux.setStringAnyArray(data.split("-", 3));
 		aux.adicionaIntAnyArray(1, Integer.parseInt(aux.getStringAnyArray()[1]));
 		aux.adicionaIntAnyArray(2, Integer.parseInt(aux.getStringAnyArray()[2]));
-		for(int i=0; i<prazo; i++) {
+		for (int i = 0; i < prazo; i++) {
 			calculoModel = new CalculoModel();
-			if(aux.getIntAnyArray()[1]==13) {
+			if (aux.getIntAnyArray()[1] == 13) {
 				aux.adicionaIntAnyArray(1, 1);
 				aux.adicionaIntAnyArray(2, aux.getIntAnyArray()[2] + 1);
 			}
-			aux.setStringAux(aux.getIntAnyArray()[2]+"-"+String.valueOf(aux.getIntAnyArray()[1])+"-"+aux.getStringAnyArray()[0]);
+			aux.setStringAux(aux.getIntAnyArray()[2] + "-" + String.valueOf(aux.getIntAnyArray()[1]) + "-"
+					+ aux.getStringAnyArray()[0]);
 			calculoModel.setDataVencimento(Date.valueOf(aux.getStringAux()));
 			aux.adicionaIntAnyArray(1, aux.getIntAnyArray()[1] + 1);
 			listData.add(calculoModel);
 		}
 		return listData;
 	}
-	
-	public static void main(String [] args) {
-		//System.out.print(SistemaController.cleanM("31,560.00"));
-		ArrayList<CalculoModel> list = SistemaController.listaDataVencimento("05-10-2023", 7);
-		for(int i=0; i<list.size(); i++) {
-			System.out.println(SistemaController.getFormatedDate(String.valueOf(list.get(i).getDataVencimento())));
-		}
+
+	public static void main(String[] args) {
+		/*System.out.println(SistemaController.clean("31.560,00"));
+		System.out.println("t:"+SistemaController.getSplitNormal(",", "31,560.00"));*/
+		System.out.println(SistemaController.cleanInt("31,560"));
 	}
 }

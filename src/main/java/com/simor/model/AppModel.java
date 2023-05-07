@@ -5,6 +5,7 @@ import java.util.*;
 public class AppModel {
 	private ArrayList<CalculoModel> list;
 	private DashboardModel tax;
+	private DashboardModel latePayment;
 
 	public AppModel() {
 		super();
@@ -24,5 +25,13 @@ public class AppModel {
 
 	public void setTax(DashboardModel tax) {
 		this.tax = tax;
+	}
+
+	public DashboardModel getLatePayment() {
+		return latePayment;
+	}
+
+	public void setLatePayment(DashboardModel latePayment) {
+		this.latePayment = latePayment;
 	}
 }

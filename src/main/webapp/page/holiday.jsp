@@ -10,6 +10,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>SIMOR - Sistema de Amortização</title>
+
 <link rel="stylesheet" type="text/css" href="../css/holiday.css">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
@@ -55,21 +56,28 @@
 						<p>Feriados</p>
 					</div>
 					<div class="usuario">
+					<div class="usuari">
 						<div>
 							<img src="../img/user.png">
 						</div>
-						<div>
-							<p>Usuario001</p>
+						<div class="usr_name">
+							<p>Manuel Carlos Macuacua</p>
 						</div>
 					</div>
-				</div>
-				<div>
-					<div class="camp-head">
-						<h3>Lista de feriados para cálculo de encargos por atraso
-							1960 a 2050</h3>
+					
 					</div>
-					<form action="../FeriadoServ" method="post">
-					<div class="camp">
+				</div>
+				<div class="holiday_id">
+				<form action="../FeriadoServ" method="post">
+					<div class="camp-head">
+						<div>
+						    <h3>Lista de feriados para cálculo de encargos por atraso
+							1960 a 2050</h3>
+						</div>
+						<div>
+							<button name="salva">Salvar</button>
+						</div>
+					</div>
 						<div class="cap-01">
 							<div>
 								<label>Data</label> <input type="date" name="data_feriado" required>
@@ -82,17 +90,6 @@
 							</div>
 
 						</div>
-						<div class="cap-05">
-							<div>
-							    <!-- <a>Salvar</a> -->
-								<button name="salva">Salvar</button>
-							</div>
-							<div>
-								<a>Limpar</a>
-							</div>
-						</div>
-					</div>
-					</form>
 					<div class="tabela">
 						<div>
 						    <%
@@ -103,14 +100,13 @@
 								<thead>
 									<tr>
 										<td><div>
-												Data<i class="fa-solid fa-arrow-down-a-z"></i>
+												Data
 											</div></td>
 										<td><div>
-												Decrição<i class="fa-solid fa-arrow-down-a-z"></i>
+												Decrição
 											</div></td>
-										<td><div>
-												Ano<i class="fa-solid fa-arrow-down-a-z"></i>
-											</div></td>
+										<td>Ano</td>
+										<td>Ação</td>
 									</tr>
 								</thead>
 								<tbody>
@@ -123,6 +119,15 @@
 									       <td><%out.print(listFeriado.get(i).getDataFeriado()); %></td>
 									       <td><%out.print(listFeriado.get(i).getDescricao()); %></td>
 									       <td><%out.print(listFeriado.get(i).getAno()); %></td>
+									       <td>
+									          <div>
+									             <button name="edit" value="<%out.print(listFeriado.get(i).getCodigo()); %>" onclick=''><!-- onclick='this.form.action="../DiagnosticoRelatorioServlet"' -->
+									                <img src="../img/edit-18.png">
+									             </button>
+									             <button name="delete" value="<%out.print(listFeriado.get(i).getCodigo()); %>" onclick=''>
+									                <img src="../img/delete-18.png">
+									             </button></div>
+									       </td>
 									   </tr>
 									  <%
 									  }
@@ -132,11 +137,8 @@
 							</table>
 						</div>
 					</div>
+					</form>
 				</div>
-			</div>
-			<div class="rodape">
-				<p>&copy;2022 - Todos direitos reservados</p>
-				<p>00-00-0000</p>
 			</div>
 		</div>
 	</div>

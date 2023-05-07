@@ -16,6 +16,7 @@ public class DashboardController {
 	protected HttpServletResponse response;
 	protected DashboardModel dashboardModel = null;
 	protected Auxilio aux = null;
+	protected AtrasoController ats = null;
 
 	public DashboardController(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -52,6 +53,12 @@ public class DashboardController {
 
 			} else if (this.request.getParameter("sys_amort").trim().equals("MAJS/ Hamburgues")) {
 				list = new CalMajsController(this.request, this.response).listaCalMajsInversaoModel();
+
+			} else if (this.request.getParameter("sys_amort").trim().equals("Não Periódicas")) {
+				list = new CalNPController(this.request, this.response).listaCalNPModel();
+
+			} else if (this.request.getParameter("sys_amort").trim().equals("SAL")) {
+				list = new CalSalController(this.request, this.response).listaCalSalModel();
 			}
 		}
 		return list;
@@ -93,26 +100,59 @@ public class DashboardController {
 	public DashboardModel getDashboardModel() {
 		dashboardModel = new DashboardModel();
 		if (this.calcular_click()) {
-			dashboardModel.setValorEmprestFinancia(Double.parseDouble(
-					SistemaController.isNullOrEmpty(this.request.getParameter("emprest_financia").trim())));
+			dashboardModel.setValorEmprestFinancia(Double.parseDouble(SistemaController
+					.clean(SistemaController.isNullOrEmpty(this.request.getParameter("emprest_financia").trim()))));
 
-			dashboardModel.setTaxa(
-					Double.parseDouble(SistemaController.isNullOrEmpty(this.request.getParameter("taxa").trim())));
+			dashboardModel.setTaxa(Double.parseDouble(SistemaController
+					.cleanTax(SistemaController.isNullOrEmpty(this.request.getParameter("taxa").trim()))));
 
 			dashboardModel.setTaxaMensal(Double.parseDouble(SistemaController
-					.clean(SistemaController.isNullOrEmpty(this.request.getParameter("taxa_mensal").trim()))));
+					.cleanTax(SistemaController.isNullOrEmpty(this.request.getParameter("taxa_mensal").trim()))));
 
 			dashboardModel.setTaxaAnual(Double.parseDouble(SistemaController
-					.clean(SistemaController.isNullOrEmpty(this.request.getParameter("taxa_anual").trim()))));
+					.cleanTax(SistemaController.isNullOrEmpty(this.request.getParameter("taxa_anual").trim()))));
 
 			dashboardModel.setPrazo(
 					Integer.parseInt(SistemaController.isNullOrEmpty(this.request.getParameter("prazo").trim())));
+			
+			dashboardModel.setDataContratacao(Date.valueOf(this.request.getParameter("data_contratacao").trim()));
 
 			dashboardModel.setDataPrimeiraParcela(Date.valueOf(this.request.getParameter("ultima_parcela").trim()));
 
 			dashboardModel.setTipoBalao(this.request.getParameter("tipo_balao").trim());
 
 			dashboardModel.setCalcularAtraso(this.request.getParameter("calc_atraso").trim());
+
+			dashboardModel.setMulta(Double.parseDouble(SistemaController
+					.cleanTax(SistemaController.isNullOrEmpty(this.request.getParameter("multa").trim()))));
+
+			dashboardModel.setJuroAtraso(Double.parseDouble(SistemaController
+					.cleanTax(SistemaController.isNullOrEmpty(this.request.getParameter("juro_atraso").trim()))));
+			
+			
+			dashboardModel.setPeriodicidadeBalao(Integer.parseInt(SistemaController.isNullOrEmpty(this.request.getParameter("periodo_balao").trim())));
+			dashboardModel.setQuantBalao(Integer.parseInt(SistemaController
+					.cleanInt(SistemaController.isNullOrEmpty(this.request.getParameter("quant_balao").trim()))));
+			dashboardModel.setValorBalao(Double.parseDouble(SistemaController
+					.cleanTax(SistemaController.isNullOrEmpty(this.request.getParameter("valor_balao").trim()))));
+		}
+		return dashboardModel;
+	}
+
+	/* CALCULO DE MULTA E JUROS DE ATRASO */
+	protected DashboardModel sys_late_payment() {
+		ats = new AtrasoController();
+		if (this.calcular_click()) {
+			if (this.dashboardModel.getCalcularAtraso().equals("Sim")) {
+				dashboardModel.setMulta(ats.multa(dashboardModel.getMulta(), dashboardModel.getValorEmprestFinancia())
+						/ this.dashboardModel.getPrazo());
+				dashboardModel.setJuroAtraso(
+						ats.juroAtraso(dashboardModel.getJuroAtraso(), dashboardModel.getValorEmprestFinancia())
+								/ this.dashboardModel.getPrazo());
+				return dashboardModel;
+			}
+			dashboardModel.setMulta(ats.multa(0, 0));
+			dashboardModel.setJuroAtraso(ats.juroAtraso(0, 0));
 		}
 		return dashboardModel;
 	}

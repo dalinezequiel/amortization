@@ -5,6 +5,7 @@ import java.sql.Date;
 public class CalculoModel {
 	private double valorEmprestFinac;
 	private double prestacao;
+	private double balao;
 	private double juro;
 	private double juroInicial;
 	private double amortizacao;
@@ -26,6 +27,14 @@ public class CalculoModel {
 
 	public void setPrestacao(double prestacao) {
 		this.prestacao = prestacao;
+	}
+
+	public double getBalao() {
+		return balao;
+	}
+
+	public void setBalao(double balao) {
+		this.balao = balao;
 	}
 
 	public double getJuro() {

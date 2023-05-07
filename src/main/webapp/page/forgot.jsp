@@ -92,7 +92,7 @@
 				</div>
 			</form>
 			<div class="">
-			<p>
+			<!-- <p> -->
 			<%
 			if(request.getMethod() == "POST"){
 				%>
@@ -110,7 +110,7 @@
 				<%
 			}
 			%>
-			</p>
+			<!-- </p> -->
 			    <!-- <div class="erro_dialogo">
 			         <p>Ocorreu um erro ao tentar recuperar as credênciais.</p>
 			    </div> -->

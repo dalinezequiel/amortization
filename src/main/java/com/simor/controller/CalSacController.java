@@ -10,6 +10,7 @@ import jakarta.servlet.http.HttpServletResponse;
 public class CalSacController {
 	private DashboardModel dashboardModel = null;
 	private static CalculoModel calculoModel, calculo = null;
+	private double[] balaoArray = null;
 	private Auxilio aux = null;
 	private static ArrayList<CalculoModel> listaSac = null;
 
@@ -32,25 +33,6 @@ public class CalSacController {
 		return this.dashboardModel;
 	}
 
-	// PEGAR VALORES INFORMADOS NA PAGINA
-//	private DashboardModel getCalculoModelData(HttpServletRequest request, HttpServletResponse response)
-//			throws ServletException, IOException {
-//		this.dashboardModel.setValorEmprestFinancia(
-//				Double.parseDouble(SistemaController.isNullOrEmpty(request.getParameter("emprest_financia").trim())));
-//		calculoModel.setValorEmprestFinac(dashboardModel.getValorEmprestFinancia());
-//		this.dashboardModel
-//				.setTaxa(Double.parseDouble(SistemaController.isNullOrEmpty(request.getParameter("taxa").trim())));
-//		calculoModel.setJuroInicial(dashboardModel.getTaxa());
-//		this.dashboardModel.setTaxaMensal(
-//				Double.parseDouble(SistemaController.isNullOrEmpty(request.getParameter("taxa_mensal").trim())));
-//		this.dashboardModel.setTaxaAnual(
-//				Double.parseDouble(SistemaController.isNullOrEmpty(request.getParameter("taxa_anual").trim())));
-//		this.dashboardModel
-//				.setPrazo(Integer.parseInt(SistemaController.isNullOrEmpty(request.getParameter("prazo").trim())));
-//		this.dashboardModel.setDataPrimeiraParcela(Date.valueOf(request.getParameter("ultima_parcela").trim()));
-//		return this.dashboardModel;
-//	}
-
 	// CALCULAR PRECENTUAL BRUTO
 	public double getTaxaSacCalculado() {
 		return this.dashboardModel.getTaxa() / 100;
@@ -69,11 +51,17 @@ public class CalSacController {
 				calculoModel.setJuro(calculoModel.getJuroInicial() * calculoModel.getValorEmprestFinac());
 				calculoModel.setValorEmprestFinac(calculoModel.getValorEmprestFinac() - calculoModel.getAmortizacao());
 				calculo.setPrestacao(calculoModel.getAmortizacao() + calculoModel.getJuro());
+				// ********************
+				calculo.setBalao(this.listaBalao()[i]);
+				// ********************
 				calculo.setJuro(calculoModel.getJuro());
 				calculo.setAmortizacao(calculoModel.getAmortizacao());
 				calculo.setValorEmprestFinac(calculoModel.getValorEmprestFinac());
-				calculo.setDataVencimento(calculoModel.getDataVencimento());
-				
+
+				calculo.setDataVencimento(SistemaController.listaDataVencimento(
+						SistemaController.getFormatedDate(String.valueOf(calculoModel.getDataVencimento())),
+						this.dashboardModel.getPrazo()).get(i).getDataVencimento());
+
 				aux = new Auxilio();
 				aux.setDoubleAux(0.00001);
 				aux.setIntAux(0);
@@ -83,8 +71,30 @@ public class CalSacController {
 		}
 		return listaSac;
 	}
-	
-	public static void main (String [] args) {
-		//System.out.println(new CalSacController().getCalculoDePrestacao());
+
+	// CALCULAR BALAO
+	public double[] listaBalao() {
+		balaoArray = new double[this.dashboardModel.getPrazo()];
+		for (int i = 0; i < this.dashboardModel.getPrazo(); i++) {
+			if (((i+1) % this.dashboardModel.getPeriodicidadeBalao() == 0) && (i != 0)) {
+				balaoArray[i] = this.dashboardModel.getValorBalao();
+			} else {
+				balaoArray[i] = 0;
+			}
+		}
+		return balaoArray;
 	}
+
+//	public void testBalao() {
+//		double[] r = this.listaBalao();
+//		for (int i = 0; i < r.length; i++) {
+//			System.out.println((i+1)+" "+r[i]);
+//		}
+//	}
+//
+//	public void print() {
+//		System.out.println("Periocidade: " + this.dashboardModel.getPeriodicidadeBalao());
+//		System.out.println("Quant. balao: " + this.dashboardModel.getQuantBalao());
+//		System.out.println("Valor balao: " + this.dashboardModel.getValorBalao());
+//	}
 }

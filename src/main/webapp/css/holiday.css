@@ -47,7 +47,7 @@ html, body {
 
 .navegacao ul li {
 	padding: 15px 10px;
-	width: 250px;
+	width: 240px;
 	display: flex;
 	flex-direction: row;
 	align-items: center;
@@ -101,7 +101,7 @@ html, body {
 	align-items: center;
 	justify-content: space-between;
 	background-color: #ffffff;
-	padding: 10px 15px 10px 10px;
+	padding: 10px 10px 10px 10px;
 	height: 61px;
 	box-shadow: 3px 2px 5px #f7f7f7;
 }
@@ -129,8 +129,34 @@ html, body {
 	align-items: center;
 }
 
+.usuari {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+.usuari img {
+	background-color: #DBEDEF;
+	border-radius: 50%;
+	cursor: pointer;
+	padding: 3px; /*2px*/
+	transition: 1s;
+}
+
+.usuari img:hover {
+	background-color: #EBEDEF;
+	border-radius: 50%;
+	cursor: pointer;
+	padding: 2px;
+	transition: 1s;
+}
+
 .usuario div:nth-child(2) {
 	padding-left: 5px;
+}
+
+.usr_name p{
+	color: #286d4b;
 }
 
 /**/
@@ -150,41 +176,28 @@ html, body {
 	flex-direction: column;
 	justify-content: space-between;
 	padding: 5px 10px;
-	/*background-color:#f7f7f7;*/
 	box-shadow: 0px 0px 10px #f7f7f7;
 }
 
-/*.vi:nth-child(1) {
-	border-left: 5px solid #14854c;
-}
-
-.vi:nth-child(2) {
-	border-left: 5px solid #c64b4b;
-}
-
-.vi:nth-child(3) {
-	border-left: 5px solid #3d4a65;
-}
-
-.vi:nth-child(4) {
-	border-left: 5px solid #6382ae;
-}*/
-
 .tabela {
 	margin-top: 20px;
-	padding: 10px 200px 10px 10px;
+	padding: 10px 10px 10px 10px;
 }
 
 /**/
 table {
 	border-collapse: collapse;
 	width: 100%;
-	background-color: #f7f7f7;
 	border-radius: 5px 5px 0px 0px;;
 }
 
+table thead{
+	background-color: #FEFEFE;
+	box-shadow: 3px 2px 5px #f7f7f7;
+}
+
 table thead tr td {
-	padding: 5px;
+	padding: 6px 0px;
 	font-weight: 500;
 }
 
@@ -192,11 +205,48 @@ table thead tr td div {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
-	/*color:#ffffff;*/
 }
 
+table tbody tr td:nth-child(1){
+	width:20%;
+}
+
+table tbody tr td:nth-child(3){
+	width:10%;
+	text-align:center;
+}
+
+table thead tr td:nth-child(3){
+	text-align:center;
+}
+
+table thead tr td:nth-child(4){
+	text-align:center;
+}
+
+
 table tbody tr td{
-	padding:5px;
+	padding:5px 0;
+	color: #2E4053;
+}
+
+table tbody tr td:nth-child(4){
+	width:10%;
+}
+
+table tbody tr td div{
+	display:flex;
+	justify-content:center;
+}
+
+table button{
+	border:none;
+	background-color:#ffffff;
+	cursor:pointer;
+}
+
+table button:nth-child(1){
+	margin-right:4px;
 }
 
 /**/
@@ -214,35 +264,33 @@ table tbody tr td{
 	display:flex;
 }
 
-.camp .cap-05 a, .camp .cap-05 button {
-	padding: 10px 67px;
+.camp-head button {
+	padding: 6px 12px;
 	font-size: 16px;
 	border: none;
 	cursor: pointer;
 	border-radius: 3px;
-	height:50px;
-	width:80px;
-	margin-left:20px;
-	/*margin-top:20px;*/
+	/*height:50px;
+	width:80px;*/
 	display:flex;
 	align-items:center;
 	justify-content:center;
 }
 
-.camp .cap-05 div:nth-child(1){
+/*.camp .cap-05 div:nth-child(1){
 	margin-top:20px;
-}
+}*/
 
-.camp .cap-05 div:nth-child(1) button {
+.camp-head button {
 	background-color: #286d4b;
 	color: #ffffff;
 }
 
-.camp .cap-05 div:nth-child(1) button:hover {
+.camp-head button:hover {
 	background-color: #14854c;
 }
 
-.camp .cap-05 div:nth-child(2){
+/*.camp .cap-05 div:nth-child(2){
 	margin-top:10px;
 }
 
@@ -251,49 +299,52 @@ table tbody tr td{
 	color:#286d4b;
 }
 
-.camp .cap-05 div:nth-child(2) a:hover {
+.cap-05 div:nth-child(2) a:hover {
 	background-color:#dadada;
-}
+}*/
 
 /**/
-.camp {
-	display: flex;
-	flex-direction: row;
-	/*justify-content:space-between;*/
-	padding: 2px;
-	padding:10px;
-}
 
 .camp-head{
 	padding:10px;
+	display:flex;
+	flex-direction:row;
+	justify-content:space-between;
+	align-items:center;
 }
 
-.camp input {
+input {
 	padding: 6px 10px;
 	font-size: 16px;
 	outline: none;
 	margin: 2px 0px 10px 0px;
 	border: 1px solid #e1e1e1;
 	border-radius: 3px;
-	width:380px;
+	width:100%;
 }
 
-.camp select {
+.cap-01 div:nth-child(2){
+	padding:0 10px 0 10px;
+}
+
+select {
 	padding: 5px 10px;
 	font-size: 16px;
 	outline: none;
 	margin: 2px 0px 10px 0px;
 	border: 1px solid #e1e1e1;
 	border-radius: 3px;
-	/*width:260px;*/
+	width:100%;
 }
 
+.cap-01{
+	display:flex;
+	flex-direction:row;
+	padding:10px;
+}
 
-.camp .cap-01 div, .camp .cap-02 div, .camp .cap-03 div {
+.cap-01 div {
 	display: flex;
 	flex-direction: column;
+	width:100%;
 }
-
-/*.camp .cap-03{
-	padding:0px 20px;
-}*/

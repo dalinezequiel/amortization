@@ -51,55 +51,56 @@
 						<p>Comparador</p>
 					</div>
 					<div class="usuario">
+					<div class="usuari">
 						<div>
 							<img src="../img/user.png">
 						</div>
-						<div>
-							<p>Usuario001</p>
+						<div class="usr_name">
+							<p>Manuel Carlos Macuacua</p>
 						</div>
+					</div>
 					</div>
 				</div>
 				<div>
 					<div class="tabela">
-						<div>
-							<h3>Comparador entre sistemas | Cálculo normal</h3>
+						<div class="compar">
+							<div>
+							    <h3>Comparador entre sistemas | Cálculo normal</h3>
+							</div>
+							<div>
+							    <button name="salva">Comparar</button>
+						    </div>
 						</div>
 						<div class="tab">
 							<div>
-								<label>Valor do emprest. ou finânciamento</label> <input
-									type="text" placeholder="0,00">
+								<label>Valor do emprest. ou finânciamento</label> <input type="text" placeholder="0,00">
 							</div>
-							<!-- <div>
-								<button>Comparar</button>
-							</div> -->
-							<div class="cap-05">
+							<div>
+							    <label>Taxa (%)</label> <input type="text" placeholder="0,00" name="taxa" required>
+							</div>
+							<div>
+								<label>Prazo</label> <input type="number" min="0" placeholder="0,00" name="prazo" required>
+							</div>
+							<!-- <div class="cap-05">
 								<div>
 									<a>Comparar</a>
 								</div>
 								<div>
 									<a>Limpar</a>
 								</div>
-							</div>
+							</div> -->
 						</div>
 						<div>
 							<table>
 								<thead>
 									<tr>
 										<td><div>
-												Sistema<i class="fa-solid fa-arrow-down-a-z"></i>
+												Sistema
 											</div></td>
-										<td><div>
-												1ª Parcela<i class="fa-solid fa-arrow-down-a-z"></i>
-											</div></td>
-										<td><div>
-												Última parcela<i class="fa-solid fa-arrow-down-a-z"></i>
-											</div></td>
-										<td><div>
-												Total de juros<i class="fa-solid fa-arrow-down-a-z"></i>
-											</div></td>
-										<td><div>
-												Total Pago<i class="fa-solid fa-arrow-down-a-z"></i>
-											</div></td>
+										<td>1ª Parcela</td>
+										<td>Última parcela</td>
+										<td>Total de juros</td>
+										<td>Total Pago</td>
 									</tr>
 								</thead>
 								<tbody></tbody>
@@ -107,10 +108,6 @@
 						</div>
 					</div>
 				</div>
-			</div>
-			<div class="rodape">
-				<p>&copy;2022 - Todos direitos reservados</p>
-				<p>00-00-0000</p>
 			</div>
 		</div>
 	</div>

@@ -18,9 +18,46 @@
 	padding: 10px;
 }
 
-.calculadora div:nth-child(1){
-	padding-bottom:20px;
+.usuario {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
 }
+
+.usuari {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	padding-right: 0px;
+}
+
+.usuari img {
+	background-color: #DBEDEF;
+	border-radius: 50%;
+	cursor: pointer;
+	padding: 3px; /*2px*/
+	transition: 1s;
+}
+
+.usuari img:hover {
+	background-color: #EBEDEF;
+	border-radius: 50%;
+	cursor: pointer;
+	padding: 2px;
+	transition: 1s;
+}
+
+.usuario div:nth-child(2) {
+	padding-left: 5px;
+}
+
+.usr_name p{
+	color: #286d4b;
+}
+
+/*.calculadora div:nth-child(1){
+	padding-bottom:20px;
+}*/
 
 .calculadora .c-1, .calculadora .c-2, .calculadora .c-1-1, .calculadora .c-3 {
 	display: flex;
@@ -30,15 +67,69 @@
 .calculadora .c-1 div, .calculadora .c-1-1 div, .calculadora .c-3 div {
 	display: flex;
 	flex-direction: column;
-	margin-right: 10px;
+	/*margin-right: 10px;*/
+	width:100%;
+}
+
+.calculadora .c-1 div:nth-child(2){
+	margin:0 4px 0 8px;
+}
+
+.calculadora .c-1 div:nth-child(3){
+		margin:0 8px 0 4px;
+}
+
+.calculadora .c-3 div:nth-child(2){
+	margin:0 4px 0 8px;
+}
+
+.calculadora .c-3 div:nth-child(3){
+		margin:0 8px 0 4px;
 }
 
 .calculadora .c-1-1 {
 	padding: 10px 0px 20px 0px;
 }
 
+.calculadora .c-1 {
+	padding-top: 20px;
+}
+
+.ladora{
+	display:flex;
+	flex-direction:row;
+	justify-content:space-between;
+	align-items:center;
+}
+
+.ladora button {
+	background-color: #286d4b;
+	color: #ffffff;
+}
+
+.ladora button:hover {
+	background-color: #14854c;
+}
+
+.ladora button {
+	padding: 6px 12px;
+	font-size: 16px;
+	border: none;
+	cursor: pointer;
+	border-radius: 3px;
+	display:flex;
+	align-items:center;
+	justify-content:center;
+}
+
+/*.calculadora .c-2 {
+	display:flex;
+	justify-content:end;
+}*/
+
 .calculadora .c-3 {
-	padding-top: 60px;
+	padding-top: 30px;
+	padding-bottom: 40px
 }
 
 .calculadora .c-3 input {
@@ -52,6 +143,16 @@
 	border: 1px solid #e1e1e1;
 	border-radius: 3px;
 	text-align: right;
+	width:100%;
+}
+
+.calculadora select {
+	padding: 4px 10px;
+	font-size: 16px;
+	outline: none;
+	margin: 2px 0px 10px 0px;
+	border: 1px solid #e1e1e1;
+	border-radius: 3px;
 }
 
 .calculadora .c-2 button {
@@ -67,8 +168,8 @@
 	border: none;
 	cursor: pointer;
 	border-radius: 3px;
-	height:50px;
-	width:80px;
+	height:45px;
+	width:50px;
 	/*margin-left:20px;*/
 	/*margin-top:20px;*/
 	display:flex;
