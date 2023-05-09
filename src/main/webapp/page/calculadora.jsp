@@ -68,7 +68,7 @@
 						    <h3>Calcular valor real do empréstimo | PRICE</h3>
 						</div>
 						<div>
-							<button name="salva">Calcular</button>
+							<button name="salva"><i class="fa-solid fa-circle-check"></i>Calcular</button>
 						</div>
 					</div>
 					<div class="c-1">

@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+
 import com.simor.model.FeriadoModel;
 
 public class FeriadoDAO {
@@ -58,4 +59,21 @@ public class FeriadoDAO {
 		}
 		return listaFeria;
 	}
+	
+	public static boolean deleteFeriadoId(int id) {
+		try {
+			String SQL_DELETE_QUERY = "DELETE FROM feriado WHERE id_feriado = ?";
+			con = ConnectionDAO.getConnection();
+			pst = con.prepareStatement(SQL_DELETE_QUERY);
+			pst.setInt(1, id);
+			pst.executeUpdate();
+			pst.close();
+
+			return true;
+		} catch (SQLException e) {
+			System.out.println("Ocorreu um erro!\n" + e.getMessage());
+		}
+		return false;
+	}
+
 }

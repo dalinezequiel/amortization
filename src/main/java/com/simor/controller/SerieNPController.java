@@ -18,7 +18,7 @@ public class SerieNPController {
 		this.percentagem = 100;
 		this.taxa = taxa;
 	}
-
+	
 	// DEVOLVE TOTAL DE DIAS DO MÊS
 	public int getDaysOfMounth(int mes) {
 		switch (mes) {
@@ -112,5 +112,9 @@ public class SerieNPController {
 			mes++;
 		}
 		return num / coeficiente;
+	}
+	
+	public static void main(String [] args) {
+		System.out.println(new SerieNPController(0.01).taxaMensal(2)/100*50000);
 	}
 }

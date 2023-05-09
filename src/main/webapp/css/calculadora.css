@@ -102,6 +102,10 @@
 	align-items:center;
 }
 
+.ladora i{
+	padding-right:4px;
+}
+
 .ladora button {
 	background-color: #286d4b;
 	color: #ffffff;

@@ -68,25 +68,25 @@
 					</div>
 				</div>
 				<div class="holiday_id">
-				<form action="../FeriadoServ" method="post">
+				<form action="" method="post">
 					<div class="camp-head">
 						<div>
 						    <h3>Lista de feriados para cálculo de encargos por atraso
 							1960 a 2050</h3>
 						</div>
 						<div>
-							<button name="salva">Salvar</button>
+							<button name="register" value="register" onclick='this.form.action="../FeriadoServ"'><i class="fa-solid fa-circle-check"></i>Salvar</button>
 						</div>
 					</div>
 						<div class="cap-01">
 							<div>
-								<label>Data</label> <input type="date" name="data_feriado" required>
+								<label>Data</label> <input type="date" name="data_feriado">
 							</div>
 							<div>
-								<label>Descrição</label> <input type="text" name="descricao" required>
+								<label>Descrição</label> <input type="text" name="descricao">
 							</div>
 							<div>
-								<label>Ano</label> <input type="number" min="1960" name="ano" required>
+								<label>Ano</label> <input type="number" min="1960" name="ano">
 							</div>
 
 						</div>
@@ -103,7 +103,7 @@
 												Data
 											</div></td>
 										<td><div>
-												Decrição
+												Descrição
 											</div></td>
 										<td>Ano</td>
 										<td>Ação</td>
@@ -121,12 +121,13 @@
 									       <td><%out.print(listFeriado.get(i).getAno()); %></td>
 									       <td>
 									          <div>
-									             <button name="edit" value="<%out.print(listFeriado.get(i).getCodigo()); %>" onclick=''><!-- onclick='this.form.action="../DiagnosticoRelatorioServlet"' -->
+									          <!-- 									             <button name="edit" value="out.print(listFeriado.get(i).getCodigo());" onclick=''>
 									                <img src="../img/edit-18.png">
-									             </button>
-									             <button name="delete" value="<%out.print(listFeriado.get(i).getCodigo()); %>" onclick=''>
+									             </button> -->
+									             <button name="delete" value="<%out.print(listFeriado.get(i).getCodigo()); %>" onclick='this.form.action="../FeriadoRemove"'>
 									                <img src="../img/delete-18.png">
-									             </button></div>
+									             </button>
+									          </div>
 									       </td>
 									   </tr>
 									  <%
@@ -140,6 +141,10 @@
 					</form>
 				</div>
 			</div>
+			<!-- <div class="rodape">
+				<p>&copy;2022 - Todos direitos reservados</p>
+				<p>00-00-0000</p>
+			</div> -->
 		</div>
 	</div>
 	<script src="../script/feriado.js"></script>

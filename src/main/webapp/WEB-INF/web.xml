@@ -49,4 +49,14 @@
     <servlet-name>FeriadoServ</servlet-name>
     <url-pattern>/FeriadoServ</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>FeriadoRemove</display-name>
+    <servlet-name>FeriadoRemove</servlet-name>
+    <servlet-class>com.simor.servelet.FeriadoRemove</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>FeriadoRemove</servlet-name>
+    <url-pattern>/FeriadoRemove</url-pattern>
+  </servlet-mapping>
 </web-app>

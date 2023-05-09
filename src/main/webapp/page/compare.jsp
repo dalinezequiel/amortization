@@ -1,5 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@page import="com.simor.controller.*"
+        import="java.util.*"
+        import="com.simor.dao.*"
+        import="com.simor.model.*"
+%>
+<%!
+   private Appe app=null;
+%>
+<%
+   app=new Appe(request, response);
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -63,17 +74,18 @@
 				</div>
 				<div>
 					<div class="tabela">
+					<form action="" method="post">
 						<div class="compar">
 							<div>
 							    <h3>Comparador entre sistemas | Cálculo normal</h3>
 							</div>
 							<div>
-							    <button name="salva">Comparar</button>
+							    <button type="submit" name="calcular"><i class="fa-solid fa-circle-check"></i>Comparar</button>
 						    </div>
 						</div>
 						<div class="tab">
 							<div>
-								<label>Valor do emprest. ou finânciamento</label> <input type="text" placeholder="0,00">
+								<label>Valor do emprest. ou finânciamento</label> <input type="text" placeholder="0,00" name="emprest_financia" required>
 							</div>
 							<div>
 							    <label>Taxa (%)</label> <input type="text" placeholder="0,00" name="taxa" required>
@@ -81,14 +93,6 @@
 							<div>
 								<label>Prazo</label> <input type="number" min="0" placeholder="0,00" name="prazo" required>
 							</div>
-							<!-- <div class="cap-05">
-								<div>
-									<a>Comparar</a>
-								</div>
-								<div>
-									<a>Limpar</a>
-								</div>
-							</div> -->
 						</div>
 						<div>
 							<table>
@@ -96,16 +100,33 @@
 									<tr>
 										<td><div>
 												Sistema
-											</div></td>
+										</div></td>
 										<td>1ª Parcela</td>
 										<td>Última parcela</td>
 										<td>Total de juros</td>
 										<td>Total Pago</td>
 									</tr>
 								</thead>
-								<tbody></tbody>
+								<tbody>
+								    <%
+								       if(app.sys_appe() != null){
+								    	   for(int i=0; i<app.sys_appe().size(); i++){
+								    	   %>
+								    	      <tr>
+								                   <td><div><%out.print(app.sys_appe().get(i).getSistema()); %></div></td>
+								                   <td><%out.print(SistemaController.mascaraMoeda(app.sys_appe().get(i).getPrimeiraParcela()).equals(",00") || SistemaController.mascaraMoeda(app.sys_appe().get(i).getPrimeiraParcela()).equals("NaN")?"0,00":SistemaController.mascaraMoeda(app.sys_appe().get(i).getPrimeiraParcela())); %></td>
+								                   <td><%out.print(SistemaController.mascaraMoeda(app.sys_appe().get(i).getUltimaParcela()).equals(",00") || SistemaController.mascaraMoeda(app.sys_appe().get(i).getUltimaParcela()).equals("NaN")?"0,00":SistemaController.mascaraMoeda(app.sys_appe().get(i).getUltimaParcela())); %></td>
+								                   <td><%out.print(SistemaController.mascaraMoeda(app.sys_appe().get(i).getTotalJuro()).equals(",00")?"0,00":SistemaController.mascaraMoeda(app.sys_appe().get(i).getTotalJuro())); %></td>
+								                   <td><%out.print(SistemaController.mascaraMoeda(app.sys_appe().get(i).getTotalPago()).equals(",00")?"0,00":SistemaController.mascaraMoeda(app.sys_appe().get(i).getTotalPago())); %></td>
+								              </tr>
+								    	   <%
+								    	   }
+								       }
+								    %>
+								</tbody>
 							</table>
 						</div>
+						</form>
 					</div>
 				</div>
 			</div>

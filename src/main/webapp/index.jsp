@@ -87,9 +87,9 @@
 						<p></p>
 					</div>
 					<div>
-						<i class="fa-brands fa-facebook"></i> <i
-							class="fa-brands fa-instagram"></i> <i
-							class="fa-brands fa-twitter"></i>
+						<a href="https://www.youtube.com/@jorgeabrao" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+						<a href="https://www.instagram.com/jorge.abrao/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+						<a href="https://universoadministracao.com/" target="_blank"><i class="fa-solid fa-globe"></i></a>
 					</div>
 				</div>
 			</form>

@@ -73,12 +73,27 @@ public class CalSacController {
 	}
 
 	// CALCULAR BALAO
+//	public double[] listaBalao() {
+//		balaoArray = new double[this.dashboardModel.getPrazo()];
+//		for (int i = 0; i < this.dashboardModel.getPrazo(); i++) {
+//			if (((i+1) % this.dashboardModel.getPeriodicidadeBalao() == 0) && (i != 0)) {
+//				balaoArray[i] = this.dashboardModel.getValorBalao();
+//			} else {
+//				balaoArray[i] = 0;
+//			}
+//		}
+//		return balaoArray;
+//	}
 	public double[] listaBalao() {
 		balaoArray = new double[this.dashboardModel.getPrazo()];
 		for (int i = 0; i < this.dashboardModel.getPrazo(); i++) {
-			if (((i+1) % this.dashboardModel.getPeriodicidadeBalao() == 0) && (i != 0)) {
-				balaoArray[i] = this.dashboardModel.getValorBalao();
-			} else {
+			if(this.dashboardModel.getPeriodicidadeBalao() != 0) {
+				if (((i+1) % this.dashboardModel.getPeriodicidadeBalao() == 0) && (i != 0)) {
+					balaoArray[i] = this.dashboardModel.getValorBalao();
+				} else {
+					balaoArray[i] = 0;
+				}
+			}else {
 				balaoArray[i] = 0;
 			}
 		}

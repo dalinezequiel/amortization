@@ -8,17 +8,16 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-public class CalNPController /*extends SerieNPController*/ {
+public class CalNPController {
 	private DashboardModel dashboardModel = null;
 	private static CalculoModel calculoModel, calculo = null;
-	private static ArrayList<CalculoModel> listaNP, list = null;
+	private static ArrayList<CalculoModel> listaNP = null;
 	private Auxilio aux = null;
 	private int percentagem;
 	private SerieNPController serieNP=null;
 
 	public CalNPController(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		//super(0.01);
 		dashboardModel = new DashboardModel();
 		aux = new Auxilio();
 		calculoModel = new CalculoModel();
@@ -45,7 +44,6 @@ public class CalNPController /*extends SerieNPController*/ {
 	// ARRAYLIST DO RESULTADOS DO CALCULO
 	public ArrayList<CalculoModel> listaCalNPModel() {
 		listaNP = new ArrayList<CalculoModel>();
-		System.out.println("Prest: " + dashboardModel.getValorEmprestFinancia());
 		if (this.dashboardModel != null) {
 			calculoModel.setValorEmprestFinac(this.dashboardModel.getValorEmprestFinancia());
 			calculoModel.setPrestacao(this.getCalculoDePrestacao(calculoModel.getValorEmprestFinac()));
@@ -72,13 +70,6 @@ public class CalNPController /*extends SerieNPController*/ {
 			}
 		}
 		return listaNP;
-	}
-
-	public void listNP() {
-		list = this.listaCalNPModel();
-		for (int i = 0; i < list.size(); i++) {
-			System.out.println(list.get(i).getPrestacao());
-		}
 	}
 
 	// CALCULAR PRECENTUAL

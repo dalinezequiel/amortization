@@ -1,40 +1,33 @@
 package com.simor.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.sql.Date;
+import java.time.LocalDate;
 import com.simor.model.*;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-public class CalGausController {
+public class CalGausCompare {
 	private DashboardModel dashboardModel = null;
 	private static CalculoModel calculoModel, calculo = null;
 	private Auxilio aux = null;
-	private static ArrayList<CalculoModel> listaGaus = null;
+	protected HttpServletRequest request;
+	protected HttpServletResponse response;
+	private ComparadorModel comRec, comEnv = null;
 
-	public CalGausController(HttpServletRequest request, HttpServletResponse response)
+	public CalGausCompare(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		dashboardModel = new DashboardModel();
-		calculoModel = new CalculoModel();
+		this.request = request;
+		this.response = response;
 		aux = new Auxilio();
-		this.dashboardModel = new App(request, response).getDashboardModel();
-		calculoModel.setPrestacao(this.getCalculoDePrestacao());
+		this.dashboardModel = this.getDashboardModel();
+		this.comEnv = this.listaComparadorModel();
 	}
 
-	public CalGausController(DashboardModel dashboardModel) {
-		super();
-//		dashboardModel = new DashboardModel();
-//		calculoModel = new CalculoModel();
-//		aux = new Auxilio();
-//		this.dashboardModel=dashboardModel;
-//		calculoModel.setPrestacao(this.getCalculoDePrestacao());
-//		System.out.println("Testo gaus: "+this.dashboardModel.getValorEmprestFinancia());
-	}
-
-	// DEVOLVE O OBJECTO CALCULO
-	public DashboardModel calculoModelObject() {
-		return this.dashboardModel;
+	public ComparadorModel sys_gaus() {
+		return this.comEnv;
 	}
 
 	// CALCULAR PRESTAÇÃO
@@ -42,20 +35,16 @@ public class CalGausController {
 		aux = new Auxilio(4);
 		aux.setIntAux(1);
 		aux.setDoubleAux(2);
-
 		// PRIMEIRO CALCÚLO
 		aux.adicionaDoubleAnyArray(0,
 				dashboardModel.getValorEmprestFinancia() * (this.getTaxaGausCalculado() * dashboardModel.getPrazo())
 						+ dashboardModel.getValorEmprestFinancia());
-
 		// SEGUNDO CALCÚLO
 		aux.adicionaDoubleAnyArray(1,
 				((this.getTaxaGausCalculado() * (dashboardModel.getPrazo() - aux.getIntAux()) / aux.getDoubleAux())
 						+ aux.getIntAux()) * dashboardModel.getPrazo());
-
 		// TERCEIRO CALCÚLO
 		aux.adicionaDoubleAnyArray(2, (aux.getDoubleAnyArray()[0] / aux.getDoubleAnyArray()[1]));
-
 		calculoModel.setPrestacao(aux.getDoubleAnyArray()[2]);
 		return calculoModel.getPrestacao();
 	}
@@ -76,18 +65,18 @@ public class CalGausController {
 		aux.adicionaDoubleAnyArray(1, (aux.getIntAux() + (dashboardModel.getPrazo() - index))
 				* ((dashboardModel.getPrazo() - index) / aux.getDoubleAux()));
 		aux.adicionaDoubleAnyArray(2, (aux.getDoubleAnyArray()[0] / aux.getDoubleAnyArray()[1]));
-
 		return aux.getDoubleAnyArray()[2] * (dashboardModel.getPrazo() - index);
 	}
 
-	// ARRAYLIST DO RESULTADOS DO CALCULO
-	public ArrayList<CalculoModel> listaCalGausModel() {
-		listaGaus = new ArrayList<CalculoModel>();
+	public ComparadorModel listaComparadorModel() {
+		calculoModel = new CalculoModel();
+		comRec = new ComparadorModel();
 		if (this.dashboardModel != null) {
 			calculoModel.setValorEmprestFinac(this.dashboardModel.getValorEmprestFinancia());
 			calculoModel.setPrestacao(this.getCalculoDePrestacao());
-			calculoModel.setDataVencimento(this.dashboardModel.getDataPrimeiraParcela());
-			
+			comRec.setSistema("Gaus");
+			comRec.setTotalPago(comRec.getTotalPago() + calculoModel.getValorEmprestFinac());
+
 			for (int i = 0; i < this.dashboardModel.getPrazo(); i++) {
 				calculo = new CalculoModel();
 				calculoModel.setJuro(this.getCalculoJurosGaus(i, calculoModel.getValorEmprestFinac()));
@@ -95,23 +84,51 @@ public class CalGausController {
 				calculoModel.setValorEmprestFinac(calculoModel.getValorEmprestFinac() - calculoModel.getAmortizacao());
 				calculo.setPrestacao(calculoModel.getPrestacao());
 				calculo.setJuro(calculoModel.getJuro());
-				calculo.setAmortizacao(calculoModel.getAmortizacao());
+				/*---------------------------------*/
+				comRec.setTotalJuro(comRec.getTotalJuro() + calculo.getJuro());
+				comRec.setPrimeiraParcela(calculo.getPrestacao());
+				comRec.setUltimaParcela(calculo.getPrestacao());
+				/*---------------------------------*/
 				calculo.setValorEmprestFinac(calculoModel.getValorEmprestFinac());
-				calculo.setDataVencimento(SistemaController.listaDataVencimento(
-						SistemaController.getFormatedDate(String.valueOf(calculoModel.getDataVencimento())),
-						this.dashboardModel.getPrazo()).get(i).getDataVencimento());
-
-				aux = new Auxilio();
-				aux.setDoubleAux(0.00001);
-				aux.setIntAux(0);
-				calculo.setAuxilio(aux);
-				listaGaus.add(calculo);
 			}
+			comRec.setTotalPago(comRec.getTotalPago() + comRec.getTotalJuro());
 		}
-		return listaGaus;
+		return comRec;
 	}
-	public static void main(String[]args) {
-		//CalGausController cp=new CalGausController();
-		System.out.println("OLA MUNDO!!");
+
+	// EVENTO CLICK
+	protected boolean calcular_click() throws ServletException, IOException {
+		if (this.request.getParameter("calcular") != null) {
+			return true;
+		}
+		return false;
+	}
+
+	// PEGAR VALORES INFORMADOS NA PAGINA
+	public DashboardModel getDashboardModel() throws ServletException, IOException {
+		dashboardModel = new DashboardModel();
+		if (this.calcular_click()) {
+			dashboardModel.setValorEmprestFinancia(Double.parseDouble(SistemaController
+					.clean(SistemaController.isNullOrEmpty(this.request.getParameter("emprest_financia").trim()))));
+
+			dashboardModel.setTaxa(Double.parseDouble(SistemaController
+					.cleanTax(SistemaController.isNullOrEmpty(this.request.getParameter("taxa").trim()))));
+
+			dashboardModel.setPrazo(
+					Integer.parseInt(SistemaController.isNullOrEmpty(this.request.getParameter("prazo").trim())));
+			dashboardModel.setTaxaMensal(0);
+			dashboardModel.setTaxaAnual(0);
+			dashboardModel.setDataContratacao(Date.valueOf(LocalDate.now()));
+			dashboardModel.setDataPrimeiraParcela(Date.valueOf(LocalDate.now()));
+			dashboardModel.setTipoBalao("");
+			dashboardModel.setCalcularAtraso("");
+			dashboardModel.setMulta(0);
+			dashboardModel.setJuroAtraso(0);
+			dashboardModel.setPeriodicidadeBalao(0);
+			dashboardModel.setQuantBalao(0);
+			dashboardModel.setValorBalao(0);
+
+		}
+		return dashboardModel;
 	}
 }
