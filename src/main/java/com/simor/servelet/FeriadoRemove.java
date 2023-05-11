@@ -6,7 +6,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-import com.simor.dao.FeriadoDAO;
+import com.simor.dao.HolidayDAO;
 
 /**
  * Servlet implementation class FeriadoRemove
@@ -39,7 +39,7 @@ public class FeriadoRemove extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		if (FeriadoDAO.deleteFeriadoId(Integer.parseInt(request.getParameter("delete").trim()))) {
+		if (HolidayDAO.deleteById(Integer.parseInt(request.getParameter("delete").trim()))) {
 			response.sendRedirect("page/holiday.jsp");
 		}
 		// doGet(request, response);

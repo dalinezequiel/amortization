@@ -9,7 +9,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 import com.simor.controller.ContaController;
-import com.simor.dao.ContaDAO;
+import com.simor.dao.AccountDAO;
 import com.simor.model.ContaModel;
 
 /**
@@ -54,7 +54,7 @@ public class Account extends HttpServlet {
 		contaModel.setSenha(request.getParameter("senha"));
 		contaModel.setComfirmaSenha(request.getParameter("comfirma_senha"));
 
-		if (ContaDAO.insertConta(contaModel)) {
+		if (AccountDAO.insert(contaModel)) {
 			response.sendRedirect("index.jsp");
 		} else {
 			response.sendRedirect("page/credencial.jsp");

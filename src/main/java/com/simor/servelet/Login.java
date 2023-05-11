@@ -1,14 +1,11 @@
 package com.simor.servelet;
 
 import jakarta.servlet.ServletException;
-//import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
-
-import com.simor.dao.ConnectionDAO;
-import com.simor.dao.ContaDAO;
+import com.simor.dao.AccountDAO;
 import com.simor.model.ContaModel;
 
 /**
@@ -17,7 +14,6 @@ import com.simor.model.ContaModel;
 public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private ContaModel contaModel = null;
-
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
@@ -47,15 +43,10 @@ public class Login extends HttpServlet {
 		contaModel.setEmail(request.getParameter("usr_email").trim());
 		contaModel.setUsuario(request.getParameter("usr_email").trim());
 		contaModel.setSenha(request.getParameter("pass").trim());
-		
-		//ConnectionDAO.readProperties();
-		//System.out.println("Servelet: "+ContaDAO.login(contaModel));
-//		if (ContaDAO.login(contaModel)) {
-//			response.sendRedirect("page/home.jsp");
-//		} else {
-//			response.sendRedirect("index.jsp");
-//		}
-		response.sendRedirect("page/home.jsp");
+		if (AccountDAO.login(contaModel)) {
+			response.sendRedirect("page/home.jsp");
+		} else {
+			response.sendRedirect("index.jsp");
+		}
 	}
-
 }

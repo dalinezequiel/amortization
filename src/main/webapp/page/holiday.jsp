@@ -93,8 +93,8 @@
 					<div class="tabela">
 						<div>
 						    <%
-						        FeriadoDAO feria=new FeriadoDAO();
-						        ArrayList<FeriadoModel> listFeriado = null;
+						    HolidayDAO feria=new HolidayDAO();
+						    				        ArrayList<FeriadoModel> listFeriado = null;
 						    %>
 							<table>
 								<thead>
@@ -111,10 +111,10 @@
 								</thead>
 								<tbody>
 								 <%
-								 listFeriado = FeriadoDAO.listaFeriado();
-								  if(feria != null){
-									  for(int i=0; i<listFeriado.size(); i++){
-									  %>
+								 listFeriado = HolidayDAO.list();
+								 						 						  if(feria != null){
+								 						 							  for(int i=0; i<listFeriado.size(); i++){
+								 %>
 									   <tr>
 									       <td><%out.print(listFeriado.get(i).getDataFeriado()); %></td>
 									       <td><%out.print(listFeriado.get(i).getDescricao()); %></td>

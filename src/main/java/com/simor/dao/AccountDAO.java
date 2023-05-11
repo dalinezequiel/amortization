@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 import com.simor.model.ContaModel;
 
-public class ContaDAO {
+public class AccountDAO {
 	private static Connection con = null;
 	private static PreparedStatement pst = null;
 	private static ResultSet rs = null;
@@ -17,16 +17,16 @@ public class ContaDAO {
 	private static ContaModel contModel = null;
 
 	// CRIAR CREDÊNCIAIS DO USUÁRIO
-	public static boolean insertConta(ContaModel conta) {
+	public static boolean insert(ContaModel model) {
 		try {
 			String SQL_INSERT_QUERY = "INSERT INTO account(id_account, email, usr, pass) values(?,?,?,?)";
 			con = ConnectionDAO.getConnection();
 			pst = con.prepareStatement(SQL_INSERT_QUERY);
 
-			pst.setInt(1, conta.getIdConta());
-			pst.setString(2, conta.getEmail());
-			pst.setString(3, conta.getUsuario());
-			pst.setString(4, conta.getSenha());
+			pst.setInt(1, model.getIdConta());
+			pst.setString(2, model.getEmail());
+			pst.setString(3, model.getUsuario());
+			pst.setString(4, model.getSenha());
 
 			pst.execute();
 			return true;
@@ -37,7 +37,7 @@ public class ContaDAO {
 	}
 
 	// CONSULTA CONTA
-	public static ArrayList<ContaModel> listaConta() {
+	public static ArrayList<ContaModel> list() {
 		listaCont = new ArrayList<ContaModel>();
 		try {
 			String SQL_SELECT_QUERY = "SELECT * from account";
@@ -61,14 +61,33 @@ public class ContaDAO {
 	}
 
 	// CONSULTA CONTA
-	public static boolean login(ContaModel conta) {
+	public static boolean login(ContaModel model) {
 		try {
 			String SQL_SELECT_QUERY = "SELECT * from account where (usr=? or email=?) and pass=?";
 			con = ConnectionDAO.getConnection();
 			pst = con.prepareStatement(SQL_SELECT_QUERY);
-			pst.setString(1, conta.getUsuario());
-			pst.setString(2, conta.getEmail());
-			pst.setString(3, conta.getSenha());
+			pst.setString(1, model.getUsuario());
+			pst.setString(2, model.getEmail());
+			pst.setString(3, model.getSenha());
+			rs = pst.executeQuery();
+
+			if (rs.next()) {
+				return true;
+			}
+		} catch (SQLException e) {
+			System.out.println("Ocorreu um erro!\n" + e.getMessage());
+		}
+		return false;
+	}
+
+	// VERIFICAR SE O USUARIO EXISTE ANTES DE ACTUALIZAR
+	public static boolean userExist(ContaModel model) {
+		try {
+			String SQL_SELECT_QUERY = "SELECT * from account where usr=? and email=?";
+			con = ConnectionDAO.getConnection();
+			pst = con.prepareStatement(SQL_SELECT_QUERY);
+			pst.setString(1, model.getUsuario());
+			pst.setString(2, model.getEmail());
 			rs = pst.executeQuery();
 
 			if (rs.next()) {
@@ -81,34 +100,35 @@ public class ContaDAO {
 	}
 
 	// RECUPERAR CREDÊNCIAIS DO USUÁRIO
-	public static boolean recuperarConta(ContaModel contac) {
+	public static boolean recovery(ContaModel model) {
 		// O ID GERADO PELO SISTEMA E O USUÁRIO FUNCIONARÁ COM ID
 		try {
-			String SQL_UPDATE_QUERY = "UPDATE account SET pass = ? WHERE usr = ? and email = ?";
-			con = ConnectionDAO.getConnection();
-			pst = con.prepareStatement(SQL_UPDATE_QUERY);
+			if (userExist(model)) {
+				String SQL_UPDATE_QUERY = "UPDATE account SET pass = ? WHERE usr = ? and email = ?";
+				con = ConnectionDAO.getConnection();
+				pst = con.prepareStatement(SQL_UPDATE_QUERY);
 
-			pst.setString(1, contac.getSenha());
-			pst.setString(2, contac.getUsuario());
-			pst.setString(3, contac.getEmail());
+				pst.setString(1, model.getSenha());
+				pst.setString(2, model.getUsuario());
+				pst.setString(3, model.getEmail());
 
-			pst.executeUpdate();
-			pst.close();
-			con.close();
-
-			return true;
+				pst.executeUpdate();
+				pst.close();
+				con.close();
+				return true;
+			}
 
 		} catch (SQLException e) {
 			System.out.println("Ocorreu um erro!\n" + e.getMessage());
 		}
 		return false;
 	}
-	
-	public static void main(String [] args) {
-		ContaModel c=new ContaModel();
-		c.setEmail("");
-		c.setUsuario("test");
-		c.setSenha("nova");
-		System.out.println(ContaDAO.login(c));
+
+	public static void main(String[] args) {
+		ContaModel c = new ContaModel();
+		c.setEmail("marcia.pedro@gmail.com");
+		c.setUsuario("marcia.pedro");
+		c.setSenha("marcia2023");
+		System.out.println(AccountDAO.recovery(c));
 	}
 }

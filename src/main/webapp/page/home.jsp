@@ -277,13 +277,14 @@
 											    	out.print(SistemaController.mascaraMoeda(app.getList().get(i).getValorEmprestFinac()));}
 											    else
 											    	{out.print("0,00");} %></td>
-											    <td></td>
+											    <td>0,00</td>
 											    <td><%out.println(SistemaController.mascaraMoeda(app.getLatePayment().getMulta()).equals(",00")?"0,00":SistemaController.mascaraMoeda(app.getLatePayment().getMulta())); %></td>
 											    <td><%out.print(SistemaController.mascaraMoeda(app.getLatePayment().getJuroAtraso()).equals(",00")?"0,00":SistemaController.mascaraMoeda(app.getLatePayment().getJuroAtraso())); %></td>
 											    <td><%out.print(SistemaController.mascaraMoeda(app.getList().get(i).getPrestacao())); %></td>
 											   </tr>
 											   <%
 										   }
+										   app.getList().clear();
 										   app.setList(SistemaController.getReset());
 									   }
 									%>

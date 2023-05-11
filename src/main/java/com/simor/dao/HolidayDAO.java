@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 import com.simor.model.FeriadoModel;
 
-public class FeriadoDAO {
+public class HolidayDAO {
 	private static Connection con = null;
 	private static PreparedStatement pst = null;
 	private static ResultSet rs = null;
@@ -17,7 +17,7 @@ public class FeriadoDAO {
 	private static FeriadoModel feriaModel = null;
 
 	// REGISTO NO CACHE
-	public static boolean insertIntoFeriado(FeriadoModel feria) {
+	public static boolean insert(FeriadoModel feria) {
 		try {
 			String SQL_INSERT_QUERY = "INSERT INTO holiday(id_holiday, holiday, description, holyear) values(?,?,?,?)";
 			con = ConnectionDAO.getConnection();
@@ -37,7 +37,7 @@ public class FeriadoDAO {
 	}
 
 	// CONSULTA FERIADO
-	public static ArrayList<FeriadoModel> listaFeriado() {
+	public static ArrayList<FeriadoModel> list() {
 		listaFeria = new ArrayList<FeriadoModel>();
 		try {
 			String SQL_SELECT_QUERY = "SELECT * from holiday";
@@ -59,8 +59,8 @@ public class FeriadoDAO {
 		}
 		return listaFeria;
 	}
-	
-	public static boolean deleteFeriadoId(int id) {
+
+	public static boolean deleteById(int id) {
 		try {
 			String SQL_DELETE_QUERY = "DELETE FROM holiday WHERE id_holiday = ?";
 			con = ConnectionDAO.getConnection();

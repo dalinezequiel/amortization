@@ -9,7 +9,7 @@ import java.sql.Date;
 import java.time.LocalDate;
 
 import com.simor.controller.SistemaController;
-import com.simor.dao.FeriadoDAO;
+import com.simor.dao.HolidayDAO;
 import com.simor.model.*;
 
 /**
@@ -35,7 +35,7 @@ public class FeriadoServ extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		if (this.feriadoParameter(request, response) != null) {
-			if (FeriadoDAO.insertIntoFeriado(this.feriadoParameter(request, response))) {
+			if (HolidayDAO.insert(this.feriadoParameter(request, response))) {
 				response.sendRedirect("page/holiday.jsp");
 			}
 		} else {

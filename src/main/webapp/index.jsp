@@ -62,16 +62,16 @@
 			<form action="Login" method="post">
 				<div class="p-2-2">
 					<div>
-						<label>Usuário ou email</label> <input type="text">
+						<label>Usuário ou email</label> <input type="text" name="usr_email">
 					</div>
 					<div>
-						<label>Senha</label> <input type="password">
+						<label>Senha</label> <input type="password" name="pass">
 					</div>
 					<div class="error">
 						<p>Usuário ou Senha incorrectos!</p>
 					</div>
 					<div>
-						<button onclick='this.form.action="page/home.jsp"'>Log in</button>
+						<button>Log in</button><!-- onclick='this.form.action="page/home.jsp"' -->
 					</div>
 					<div class="p-2-2-1">
 						<div>
