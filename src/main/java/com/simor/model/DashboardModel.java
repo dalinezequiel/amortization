@@ -7,6 +7,8 @@ public class DashboardModel {
 	private double taxa;
 	private double taxaMensal;
 	private double taxaAnual;
+	private double valorPrestacao;
+	private double valorAdicional;
 	private int prazo;
 	private String indiceActualizacao;
 	private int carencia;
@@ -53,6 +55,22 @@ public class DashboardModel {
 
 	public void setTaxaAnual(double taxaAnual) {
 		this.taxaAnual = taxaAnual;
+	}
+
+	public double getValorPrestacao() {
+		return valorPrestacao;
+	}
+
+	public void setValorPrestacao(double valorPrestacao) {
+		this.valorPrestacao = valorPrestacao;
+	}
+
+	public double getValorAdicional() {
+		return valorAdicional;
+	}
+
+	public void setValorAdicional(double valorAdicional) {
+		this.valorAdicional = valorAdicional;
 	}
 
 	public int getPrazo() {

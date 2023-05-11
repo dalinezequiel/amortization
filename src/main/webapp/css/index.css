@@ -225,11 +225,7 @@ html, body {
 }
 
 .tabela {
-	/*margin-top: 10px;*/ /*30px*/
 	padding: 10px 10px 10px 10px;
-	/*display:flex;
-	flex-direction:column;
-	justify-content:space-between;*/
 }
 
 .tabela h4 {
@@ -240,11 +236,9 @@ html, body {
 	font-size: 15px;
 }
 
-/**/
 table {
 	border-collapse: collapse;
 	width: 100%;
-	/*background-color: #F8F9F9;*/
 	border-radius: 5px 5px 0px 0px;
 	font-size: 15px;
 }
@@ -271,27 +265,16 @@ table tbody tr td {
 	color: #2E4053;
 }
 
-/*table tbody tr td{
-	text-align: center;
-}*/
-
-/**/
-/*.captu{
-	display:flex;
-	flex-direction:column;
-	justify-content:space-between;
-}*/
 .rodape {
 	display: flex;
 	flex-direction: row;
 	align-items: center;
 	justify-content: space-between;
-	background-color: #f7f7f7;/*#f2f7f7*/
+	background-color: #f7f7f7;
 	padding: 5px 15px 5px 10px;
 	margin:0px 10px;
 }
 
-/**/
 .camp .cap-05 div {
 	display: flex;
 }
@@ -346,19 +329,17 @@ table tbody tr td {
 }
 
 .camp .cap-05 div:nth-child(1) {
-	margin-top: 6px; /*20px*/
+	margin-top: 6px;
 }
 
 .camp .cap-05 div:nth-child(1) button, .camp .cap-05 div:nth-child(2) button,
 	.camp .cap-05 div:nth-child(3) button {
 	background-color: #dadada;
-	/*color: #ffffff;*/
 	color: #286d4b;
 }
 
 .camp .cap-05 div:nth-child(1) button:hover, .camp .cap-05 div:nth-child(2) button:hover,
 	.camp .cap-05 div:nth-child(3) button:hover {
-	/*background-color: #14854c;*/
 	background-color: #dadada;
 	color: #286d4b;
 }
@@ -372,8 +353,6 @@ table tbody tr td {
 }
 
 .camp .cap-05 div:nth-child(4) button {
-	/*background-color:#e1e1e1;
-	color:#286d4b;*/
 	background-color: #dadada;
 }
 
@@ -381,12 +360,10 @@ table tbody tr td {
 	background-color: #dadada;
 }
 
-/**/
 .camp {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
-	/*padding-right: 10px;*/
 }
 
 .camp .cap {
@@ -426,10 +403,6 @@ table tbody tr td {
 	flex-direction: column;
 }
 
-/*.camp .cap-01 div:nth-child(1) input {
-	font-weight: 700;
-}*/
-
 .camp .cap-01 div:nth-child(3) input {
 	background-color: #fafafa;
 }
@@ -450,7 +423,6 @@ table tbody tr td {
 .camp .cap-04 .multa div {
 	display: flex;
 	flex-direction: column;
-	/*width: 100%;*/
 }
 
 .camp .cap-04 .multa div input{

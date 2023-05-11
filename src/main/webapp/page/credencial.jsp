@@ -53,18 +53,12 @@
 			</div>
 		</div>
 		<div class="pa-2">
-			<form action="../ContaServ" method="post">
+			<form action="../Account" method="post">
 				<div class="p-2-1">
 					<h2>Credêncial</h2>
 					<p>Criação de credênciais</p>
 				</div>
 				<div class="p-2-2">
-					<div class="cf">
-						<label>Perfil</label> <select name="perfil">
-							<option disabled>Administrador</option>
-							<option>Normal</option>
-						</select>
-					</div>
 					<div class="cf">
 						<label>Email</label><input type="email" name="email" required>
 					</div>

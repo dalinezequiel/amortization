@@ -59,4 +59,34 @@
     <servlet-name>FeriadoRemove</servlet-name>
     <url-pattern>/FeriadoRemove</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Forgot</display-name>
+    <servlet-name>Forgot</servlet-name>
+    <servlet-class>com.simor.servelet.Forgot</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Forgot</servlet-name>
+    <url-pattern>/Forgot</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Account</display-name>
+    <servlet-name>Account</servlet-name>
+    <servlet-class>com.simor.servelet.Account</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Account</servlet-name>
+    <url-pattern>/Account</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Login</display-name>
+    <servlet-name>Login</servlet-name>
+    <servlet-class>com.simor.servelet.Login</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Login</servlet-name>
+    <url-pattern>/Login</url-pattern>
+  </servlet-mapping>
 </web-app>

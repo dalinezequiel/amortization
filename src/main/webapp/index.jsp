@@ -59,7 +59,7 @@
 					<label>Novo no Simor?<a href="page/credencial.jsp">Criar credênciais</a></label>
 				</div>
 			</div>
-			<form action="indexa.jsp">
+			<form action="Login" method="post">
 				<div class="p-2-2">
 					<div>
 						<label>Usuário ou email</label> <input type="text">

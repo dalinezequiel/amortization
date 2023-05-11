@@ -1,5 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"
+	
+	import="com.simor.controller.*"
+%>
+<%!
+   private Appo app=null;
+%>
+<%
+   app=new Appo(request, response);
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -63,16 +72,17 @@
 					</div>
 				</div>
 				<div class="calculadora">
+				<form action="" method="post">
 					<div class="ladora">
 						<div>
 						    <h3>Calcular valor real do empréstimo | PRICE</h3>
 						</div>
 						<div>
-							<button name="salva"><i class="fa-solid fa-circle-check"></i>Calcular</button>
+							<button type="submit" name="calcular"><i class="fa-solid fa-circle-check"></i>Calcular</button>
 						</div>
 					</div>
 					<div class="c-1">
-						<div>
+						<!-- <div>
 							<label>Sistema de amortização</label> <select name="sys_amort" required>
 								<option>Gaus</option>
 								<option>PRICE</option>
@@ -83,15 +93,19 @@
 								<option>Não Periódicas</option>
 								<option>SAL</option>
 								</select>
+						</div> -->
+						<div>
+							<label>Parcela (PMT)</label> <input type="text" placeholder="0,00" name="parcela" required>
 						</div>
 						<div>
-							<label>Parcela (PMT)</label> <input type="text" placeholder="0,00">
+							<label>Taxa (a.m.)</label> <input type="text" placeholder="0,00%" name="taxa">
 						</div>
 						<div>
-							<label>Taxa (a.m.)</label> <input type="text" placeholder="0,00%">
+							<label>Prazo (a.m.)</label> <input type="number" placeholder="0" name="prazo" required>
 						</div>
 						<div>
-							<label>Prazo (a.m.)</label> <input type="number" placeholder="0">
+							<label>Valor pago adicional</label> <input type="text"
+								placeholder="0,00" name="adicional">
 						</div>
 					</div>
 					<!--<div class="c-1-1">
@@ -106,24 +120,21 @@
 					</div> -->
 					<div class="c-3">
 						<div>
-							<label>Valor pago adicional</label> <input type="text"
-								placeholder="0,00">
-						</div>
-						<div>
 							<label>Valor do empréstimo (VP)</label> <input type="text" placeholder="0,00">
 						</div>
 						<div>
 							<label>Valor que você irá pagar</label> <input type="text"
-								placeholder="0,00">
+								placeholder="0,00" value='<%out.print(SistemaController.mascaraMoeda(app.sys_cal().get(0)).equals(",00") || SistemaController.mascaraMoeda(app.sys_cal().get(0)).equals("NaN")?"0,00":SistemaController.mascaraMoeda(app.sys_cal().get(0))); %>'readOnly>
 						</div>
 						<div>
-							<label>Total pago</label> <input type="text" placeholder="0,00">
+							<label>Total pago</label> <input type="text" placeholder="0,00" value='<%out.print(SistemaController.mascaraMoeda(app.sys_cal().get(0)).equals(",00") || SistemaController.mascaraMoeda(app.sys_cal().get(1)).equals("NaN")?"0,00":SistemaController.mascaraMoeda(app.sys_cal().get(1))); %>' readOnly>
 						</div>
 					</div>
 					<!-- <div class="c-2">
 						<button>Calcular</button>
 						<button>Limpar</button>
 					</div> -->
+					</form>
 				</div>
 			</div>
 		</div>

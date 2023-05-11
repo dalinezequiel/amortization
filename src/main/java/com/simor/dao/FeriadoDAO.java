@@ -19,7 +19,7 @@ public class FeriadoDAO {
 	// REGISTO NO CACHE
 	public static boolean insertIntoFeriado(FeriadoModel feria) {
 		try {
-			String SQL_INSERT_QUERY = "INSERT INTO feriado(id_feriado, data_feriado, descricao, ano) values(?,?,?,?)";
+			String SQL_INSERT_QUERY = "INSERT INTO holiday(id_holiday, holiday, description, holyear) values(?,?,?,?)";
 			con = ConnectionDAO.getConnection();
 			pst = con.prepareStatement(SQL_INSERT_QUERY);
 
@@ -40,17 +40,17 @@ public class FeriadoDAO {
 	public static ArrayList<FeriadoModel> listaFeriado() {
 		listaFeria = new ArrayList<FeriadoModel>();
 		try {
-			String SQL_SELECT_QUERY = "SELECT * from feriado";
+			String SQL_SELECT_QUERY = "SELECT * from holiday";
 			con = ConnectionDAO.getConnection();
 			pst = con.prepareStatement(SQL_SELECT_QUERY);
 			rs = pst.executeQuery();
 
 			while (rs.next()) {
 				feriaModel = new FeriadoModel();
-				feriaModel.setCodigo(rs.getInt("id_feriado"));
-				feriaModel.setDataFeriado(rs.getDate("data_feriado"));
-				feriaModel.setDescricao(rs.getString("descricao"));
-				feriaModel.setAno(rs.getInt("ano"));
+				feriaModel.setCodigo(rs.getInt("id_holiday"));
+				feriaModel.setDataFeriado(rs.getDate("holiday"));
+				feriaModel.setDescricao(rs.getString("description"));
+				feriaModel.setAno(rs.getInt("holyear"));
 
 				listaFeria.add(feriaModel);
 			}
@@ -62,7 +62,7 @@ public class FeriadoDAO {
 	
 	public static boolean deleteFeriadoId(int id) {
 		try {
-			String SQL_DELETE_QUERY = "DELETE FROM feriado WHERE id_feriado = ?";
+			String SQL_DELETE_QUERY = "DELETE FROM holiday WHERE id_holiday = ?";
 			con = ConnectionDAO.getConnection();
 			pst = con.prepareStatement(SQL_DELETE_QUERY);
 			pst.setInt(1, id);

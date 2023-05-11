@@ -4,12 +4,6 @@
 <%@ page
    import="com.simor.dao.*, com.simor.model.*"
  %>
- 
- <%
-	String user = request.getParameter("usuario");
-	//user="voa";
- %>
- 
 <!DOCTYPE html>
 <html>
 <head>
@@ -63,7 +57,7 @@
 			</div>
 		</div>
 		<div class="pa-2">
-			<form method="post"> <!--  action="../forgotServ" -->
+			<form method="post" action="../Forgot"> <!--  action="../forgotServ" -->
 				<div class="p-2-1">
 					<h2>Credêncial</h2>
 					<p>Recuperação de credênciais</p>
@@ -91,30 +85,6 @@
 					</div>
 				</div>
 			</form>
-			<div class="">
-			<!-- <p> -->
-			<%
-			if(request.getMethod() == "POST"){
-				%>
-				<div class="erro_dialogo">
-			         <p>Metodo POST</p>
-			    </div>
-				<%
-			}
-			if(request.getParameter("salvar") != null){
-				%>
-				<!-- Resultado do requestDispacher servelet: /*user* -->
-				<div class="erro_dialogo">
-			         <p>Ocorreu um erro ao tentar recuperar as credênciais.</p>
-			    </div>
-				<%
-			}
-			%>
-			<!-- </p> -->
-			    <!-- <div class="erro_dialogo">
-			         <p>Ocorreu um erro ao tentar recuperar as credênciais.</p>
-			    </div> -->
-			</div>
 		</div>
 	</div>
 </body>

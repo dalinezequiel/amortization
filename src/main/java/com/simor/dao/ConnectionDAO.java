@@ -1,81 +1,90 @@
 package com.simor.dao;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.Properties;
 
-import com.simor.model.DatabaseModel;
+import com.simor.model.DatabasePropertyModel;
 
 public class ConnectionDAO {
 	private static Connection connection = null;
-	private static File file = null;
-	private static FileReader fileReader = null;
-	private static BufferedReader bufferedReader = null;
-	private static DatabaseModel databaseModel = null;
-
-	private static String server;
-	private static String database;
-	private static int port;
-	private static String user;
-	private static String pass;
-	private static String driver;
-	private static String url;
-	//private static String resultConnection;
+	private static DatabasePropertyModel databaseModel = null;
+	private static FileOutputStream fos = null;
+	private static FileInputStream fis = null;
+	private static Properties props = null;
 
 	public ConnectionDAO() {
 		super();
-		databaseModel = new DatabaseModel();
-		//resultConnection = "org.postgresql.jdbc.PgConnection";
 	}
 	
-	//OBJECTO DATABASEMODEL
-	public static DatabaseModel getDatabaseModel() {
-		readFromFile();
-		getConnection();
-		databaseModel = new DatabaseModel();
-		if (String.valueOf(getConnection()).contains("org.postgresql.jdbc.PgConnection")) {
-			databaseModel.setServer(server);
-			databaseModel.setDatabase(database);
-			databaseModel.setPort(port);
-			databaseModel.setUser(user);
-			databaseModel.setPass(pass);
-			
-			return databaseModel;
-		}
-		return null;
-	}
-
-	// LEITURA DOS DADOS DE CONFIGURAÇÃO DO BANCO DO FICHEIRO
-	public static void readFromFile() {
-		file = new File("C:\\Users\\Public\\simor_set.txt");//C:\\Users\\Public\\simor_set.txt
+	/* WRITE PROPERTIES */
+	public static boolean writeProperties(DatabasePropertyModel model) {
+		File file =new File("resources/application.properties");
 		try {
-			fileReader = new FileReader(file);
-			bufferedReader = new BufferedReader(fileReader);
-			server = bufferedReader.readLine();
-			database = bufferedReader.readLine();
-			port = Integer.parseInt(bufferedReader.readLine());
-			user = bufferedReader.readLine();
-			pass = bufferedReader.readLine();
+			file.setReadable(true, false);
+			fos = new FileOutputStream(file);
+			props = new Properties();
+			props.setProperty("simor.datasource.server", model.getServer());
+			props.setProperty("simor.datasource.databasename", model.getDatabase());
+			props.setProperty("simor.datasource.port", String.valueOf(model.getPort()));
+			props.setProperty("simor.datasource.username", model.getUser());
+			props.setProperty("simor.datasource.password", model.getPass());
+			props.store(fos, "Database configuration");
+			fos.close();
+			System.out.println("File created successfully!");
+			return true;
 
-			bufferedReader.close();
-			fileReader.close();
 		} catch (Exception ex) {
-			System.out.println(ex.getMessage());
+			System.out.println("Properties problems!\n" + ex.getMessage());
 		}
+		return false;
 	}
 
-	// RETORNA A CONEXÃO COM O BANCO DE DADOS
-	public static Connection getConnection() { // static
-		readFromFile();
-		driver = "org.postgresql.Driver";
-		url = "jdbc:postgresql://" + server + ":" + port + "/" + database;
-
+	/* READ PROPERTIES */
+	public static DatabasePropertyModel readProperties() {
+		//File file =new File("application.properties");
+		databaseModel = new DatabasePropertyModel();;
+		props = new Properties();
 		try {
-			Class.forName(driver);
-			connection = DriverManager.getConnection(url, user, pass);
+			//fis=new FileInputStream(file);
+			//props.load(fis);
+			databaseModel.setDriver("org.postgresql.Driver");
+			
+//			databaseModel.setServer(props.getProperty("simor.datasource.server"));
+//			databaseModel.setDatabase(props.getProperty("simor.datasource.databasename"));
+//			databaseModel.setPort(Integer.parseInt(props.getProperty("simor.datasource.port")));
+//			databaseModel.setUser(props.getProperty("simor.datasource.username"));
+//			databaseModel.setPass(props.getProperty("simor.datasource.password"));
+			databaseModel.setServer("localhost");
+			databaseModel.setDatabase("simor");
+			databaseModel.setPort(5432);
+			databaseModel.setUser("postgres");
+			databaseModel.setPass("hund,70");
+			
+			databaseModel.setUrl("jdbc:postgresql://" + databaseModel.getServer() + ":" + databaseModel.getPort() + "/" + databaseModel.getDatabase());
+			fis.close();
+			System.out.println(databaseModel.getServer());
+			System.out.println(databaseModel.getDatabase());
+			System.out.println(databaseModel.getPort());
+			System.out.println(databaseModel.getUser());
+			System.out.println(databaseModel.getPass());
+			System.out.println("Lido!!");
+		}catch(Exception ex) {
+			System.out.println("Ocorreu um erro ao tentar ler as propriedades do banco!\n"+ex.getMessage());
+		}
+		return databaseModel;
+	}
+
+
+	public static Connection getConnection() {
+		databaseModel=readProperties();
+		try {
+			Class.forName(databaseModel.getDriver());
+			connection = DriverManager.getConnection(databaseModel.getUrl(), databaseModel.getUser(), databaseModel.getPass());
 			return connection;
 		} catch (ClassNotFoundException ex) {
 			System.out.println(ex.getMessage());
@@ -86,7 +95,16 @@ public class ConnectionDAO {
 	}
 
 	public static void main(String[] args) {
-		System.out.println(ConnectionDAO.getConnection());
-		System.out.println(ConnectionDAO.getDatabaseModel().getDatabase());
+//		DatabasePropertyModel databaseModel=new DatabasePropertyModel();
+//		databaseModel.setServer("localhost");
+//		databaseModel.setDatabase("simor");
+//		databaseModel.setPort(5432);
+//		databaseModel.setUser("postgres");
+//		databaseModel.setPass("root");
+//		ConnectionDAO.writeProperties(databaseModel);
+		ConnectionDAO.readProperties();
+		//System.out.println(ConnectionDAO.getConnection());
+//		System.out.println("Ola");
+//		ConnectionDAO.readFromFileWW();
 	}
 }
