@@ -89,4 +89,14 @@
     <servlet-name>Login</servlet-name>
     <url-pattern>/Login</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Report</display-name>
+    <servlet-name>Report</servlet-name>
+    <servlet-class>com.simor.servelet.Report</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Report</servlet-name>
+    <url-pattern>/Report</url-pattern>
+  </servlet-mapping>
 </web-app>

@@ -68,23 +68,24 @@
 							<img src="../img/user.png">
 						</div>
 						<div class="usr_name">
-							<p>Manuel Carlos Macuacua</p>
+							<!-- <p>Manuel Carlos Macuacua</p> -->
+							<p><%out.print(request.getParameter("login")); %></p>
 						</div>
 					</div>
 					<div>
 					<div class="opcao">
 						<div>
-							<label class="execute" for="calcu"><img src="../img/play.png"></label>
+							<label class="execute" for="calculate"><img src="../img/play.png"></label>
 						</div>
 						<div>
-							<label class="executa" for="calc"><img src="../img/printer-24.png"></label>
+							<label class="executa" for="printer"><img src="../img/printer-24.png"></label>
 						</div>
 					</div>
 					</div>
 					</div>
 				</div>
 				<div>
-					<form action="" method="POST">
+					<form method="POST">
 						<div class="camp">
 							<div class="cap">
 							<div class="cap-01">
@@ -204,7 +205,10 @@
 							<div class="cap-05">
 							<div>	
 								<div style="display:none">
-									<button id="calcu" type="submit" name="calcular"></button>
+									<button id="calculate" type="submit" name="calcular" onclick='this.form.action=""'></button>
+								</div>
+								<div style="display:none">
+									<button id="printer" type="submit" name="print" onclick='this.form.action="../Report"'></button>
 								</div>
 							</div>
 						</div>

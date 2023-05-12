@@ -225,7 +225,7 @@ html, body {
 }
 
 .tabela {
-	padding: 10px 10px 10px 10px;
+	padding: 0px 10px 10px 10px;
 }
 
 .tabela h4 {
@@ -249,7 +249,8 @@ table thead{
 
 table thead tr td {
 	padding: 6px 0px;
-	font-weight: 500;
+	font-weight: bold;
+	
 	flex-direction: row;
 	justify-content: center;
 }
@@ -261,8 +262,10 @@ table thead tr td div {
 }
 
 table tbody tr td {
-	padding: 2px;
+	padding: 3px 0px;
 	color: #2E4053;
+	/*text-align:right;
+	padding:3px 18px 3px 0px;*/
 }
 
 .rodape {

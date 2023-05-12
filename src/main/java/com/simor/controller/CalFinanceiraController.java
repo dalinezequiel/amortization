@@ -10,43 +10,38 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 public class CalFinanceiraController {
-	private CalFinanceiraModel fin = null;
-	private DashboardModel dashboardModel = null;
+	protected CalFinanceiraModel calulate = null;
+	protected DashboardModel dashboardModel = null;
 	protected HttpServletRequest request;
 	protected HttpServletResponse response;
 
 	public CalFinanceiraController(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		dashboardModel = new DashboardModel();
-		fin = new CalFinanceiraModel();
+		calulate = new CalFinanceiraModel();
 		this.request = request;
 		this.response = response;
 		this.dashboardModel = this.getDashboardModel();
-		
-		System.out.println("Prest: "+this.dashboardModel.getValorPrestacao());
-		System.out.println("Taxa: "+this.dashboardModel.getTaxa());
-		System.out.println("Prazo: "+this.dashboardModel.getPrazo());
-		System.out.println("Adicional: "+this.dashboardModel.getValorAdicional());
-		System.out.println();
-		System.out.println("Emprestimo: "+this.emprestimo());
-		System.out.println("Valor a Pagar: "+this.valorPagar());
-		System.out.println("Total Pago: "+this.totalPago());
 	}
 
-	public double valorPagar() {
-		this.fin.setValorPagar(this.dashboardModel.getValorPrestacao() * this.dashboardModel.getPrazo());
-		return this.fin.getValorPagar();
+	// VALOR A PAGAR
+	protected double valorPagar() {
+		this.calulate.setValorPagar(this.dashboardModel.getValorPrestacao() * this.dashboardModel.getPrazo());
+		return this.calulate.getValorPagar();
 	}
-	
-	public double totalPago() {
-		this.fin.setValorPago(this.valorPagar()+this.dashboardModel.getValorAdicional());
-		return this.fin.getValorPago();
+
+	// TOTAL PAGO
+	protected double totalPago() {
+		this.calulate.setValorPago(this.valorPagar() + this.dashboardModel.getValorAdicional());
+		return this.calulate.getValorPago();
 	}
-	
-	public double emprestimo(){
-		double v1=(Math.pow(this.dashboardModel.getValorPrestacao()*(1+this.dashboardModel.getTaxa()/100), this.dashboardModel.getPrazo())-1);
-		double v2=Math.pow(1+this.dashboardModel.getTaxa()/100, this.dashboardModel.getPrazo())*(this.dashboardModel.getTaxa()/100);
-		return v1/v2;
+
+	// VALOR DO EMPRESTIMO
+	protected double valorEmprestimo() {
+		this.calulate.setValorEmprestimo(this.dashboardModel.getValorPrestacao()
+				* ((1 - Math.pow(1 + (this.dashboardModel.getTaxa() / 100), -this.dashboardModel.getPrazo()))
+						/ (this.dashboardModel.getTaxa() / 100)));
+		return this.calulate.getValorEmprestimo();
 	}
 
 	// EVENTO CLICK
@@ -58,7 +53,7 @@ public class CalFinanceiraController {
 	}
 
 	// PEGAR VALORES INFORMADOS NA PAGINA
-	public DashboardModel getDashboardModel() throws ServletException, IOException {
+	protected DashboardModel getDashboardModel() throws ServletException, IOException {
 		dashboardModel = new DashboardModel();
 		if (this.calcular_click()) {
 			dashboardModel.setValorPrestacao(Double.parseDouble(SistemaController
@@ -69,7 +64,7 @@ public class CalFinanceiraController {
 
 			dashboardModel.setPrazo(
 					Integer.parseInt(SistemaController.isNullOrEmpty(this.request.getParameter("prazo").trim())));
-			
+
 			dashboardModel.setValorAdicional(Double.parseDouble(SistemaController
 					.cleanTax(SistemaController.isNullOrEmpty(this.request.getParameter("adicional").trim()))));
 		}

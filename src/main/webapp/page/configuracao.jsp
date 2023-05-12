@@ -69,14 +69,6 @@
 					<div class="info">
 						<div class="in-1">
 							<div class="cf">
-								<label>Database Management System</label> <select>
-									<option disabled>Microsoft Access</option>
-									<option disabled>Microsoft SQL Server</option>
-									<option disabled>MySQL</option>
-									<option>PostgreSQL</option>
-								</select>
-							</div>
-							<div class="cf">
 								<label>Server</label> <input type="text"
 									placeholder="Default: localhost">
 							</div>
@@ -94,22 +86,8 @@
 							<div class="cf">
 								<label>Password</label> <input type="password">
 							</div>
-							<div class="botao">
-								<div>
-									<button>Salvar</button>
-								</div>
-								<div>
-									<button>Testar Conexão</button>
-								</div>
-							</div>
 						</div>
 						<div class="in-2">
-							<div class="cf">
-								<label>Perfil</label> <select>
-									<option disabled>Administrador</option>
-									<option>Normal</option>
-								</select>
-							</div>
 							<div>
 								<label>Email</label><input type="email">
 							</div>
@@ -122,28 +100,9 @@
 							<div>
 								<label>Comfirmar Senha</label><input type="password">
 							</div>
-							<div class="bota">
-								<div>
-									<button>Salvar</button>
-								</div>
-								<div>
-									<button>Excluir</button>
-								</div>
-							</div>
 						</div>
 						<div class="in-3">
-							<div>
-								<label>Sobre Aplicação</label>
-								<p>
-									Categoria "Sistema Finânceiro"<br> Sub Categoria "Gestão
-									de Amortização"<br> Versão 1.0.0 <br> &copy;2022
-									Dalin Academy&#8482;<br> &copy;Todos direitos reservados
-								</p>
-							</div>
-							<div>
-								<label>Website Oficial</label> <a
-									href="https://www.simor.com">https://www.simor.com</a>
-							</div>
+							
 						</div>
 					</div>
 					<div class="serv">
@@ -163,10 +122,6 @@
 						</div>
 					</div>
 				</div>
-			</div>
-			<div class="rodape">
-				<p>&copy;2022 - Todos direitos reservados</p>
-				<p>00-00-0000</p>
 			</div>
 		</div>
 	</div>

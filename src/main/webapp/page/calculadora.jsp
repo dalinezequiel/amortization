@@ -56,7 +56,6 @@
 			<div>
 				<div class="conta">
 					<div class="select">
-						<!-- <i class="fa-solid fa-bars"></i> -->
 						<i class="fa-solid fa-calculator"></i>
 						<p>Calcular valor presente</p>
 					</div>
@@ -82,18 +81,6 @@
 						</div>
 					</div>
 					<div class="c-1">
-						<!-- <div>
-							<label>Sistema de amortização</label> <select name="sys_amort" required>
-								<option>Gaus</option>
-								<option>PRICE</option>
-								<option>SAC</option>
-								<option>SAC.JS</option>
-								<option>SACRE</option>
-								<option>MAJS/ Hamburgues</option>
-								<option>Não Periódicas</option>
-								<option>SAL</option>
-								</select>
-						</div> -->
 						<div>
 							<label>Parcela (PMT)</label> <input type="text" placeholder="0,00" name="parcela" required>
 						</div>
@@ -108,32 +95,19 @@
 								placeholder="0,00" name="adicional">
 						</div>
 					</div>
-					<!--<div class="c-1-1">
-						 <div>
-							<label>Valor pago adicional</label> <input type="text"
-								placeholder="0,00">
-						</div> 
-					</div>-->
-					<!-- <div class="c-2">
-						<button>Calcular</button>
-						<button>Limpar</button>
-					</div> -->
 					<div class="c-3">
 						<div>
-							<label>Valor do empréstimo (VP)</label> <input type="text" placeholder="0,00">
+							<label>Valor do empréstimo (VP)</label> <input type="text" 
+							placeholder="0,00" value='<%out.print(SistemaController.mascaraMoeda(app.sys_cal().get(2)).equals(",00") || SistemaController.mascaraMoeda(app.sys_cal().get(2)).equals("NaN")?"0,00":SistemaController.mascaraMoeda(app.sys_cal().get(2))); %>'readOnly>
 						</div>
 						<div>
 							<label>Valor que você irá pagar</label> <input type="text"
 								placeholder="0,00" value='<%out.print(SistemaController.mascaraMoeda(app.sys_cal().get(0)).equals(",00") || SistemaController.mascaraMoeda(app.sys_cal().get(0)).equals("NaN")?"0,00":SistemaController.mascaraMoeda(app.sys_cal().get(0))); %>'readOnly>
 						</div>
 						<div>
-							<label>Total pago</label> <input type="text" placeholder="0,00" value='<%out.print(SistemaController.mascaraMoeda(app.sys_cal().get(0)).equals(",00") || SistemaController.mascaraMoeda(app.sys_cal().get(1)).equals("NaN")?"0,00":SistemaController.mascaraMoeda(app.sys_cal().get(1))); %>' readOnly>
+							<label>Total pago</label> <input type="text" placeholder="0,00" value='<%out.print(SistemaController.mascaraMoeda(app.sys_cal().get(1)).equals(",00") || SistemaController.mascaraMoeda(app.sys_cal().get(1)).equals("NaN")?"0,00":SistemaController.mascaraMoeda(app.sys_cal().get(1))); %>' readOnly>
 						</div>
 					</div>
-					<!-- <div class="c-2">
-						<button>Calcular</button>
-						<button>Limpar</button>
-					</div> -->
 					</form>
 				</div>
 			</div>
