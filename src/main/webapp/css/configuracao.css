@@ -33,6 +33,35 @@
 	background-color: #1e804f;
 }
 
+.usuario {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+.usuari {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	padding-right: 0px;
+}
+
+.usuari img {
+	background-color: #DBEDEF;
+	border-radius: 50%;
+	cursor: pointer;
+	padding: 3px; /*2px*/
+	transition: 1s;
+}
+
+.usuari img:hover {
+	background-color: #EBEDEF;
+	border-radius: 50%;
+	cursor: pointer;
+	padding: 2px;
+	transition: 1s;
+}
+
 /**/
 .config{
 	display:flex;

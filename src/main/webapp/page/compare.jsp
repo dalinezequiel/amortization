@@ -57,7 +57,6 @@
 			<div>
 				<div class="conta">
 					<div class="select">
-						<!-- <i class="fa-solid fa-bars"></i> -->
 						<i class="fa-solid fa-money-bill-transfer"></i>
 						<p>Comparador</p>
 					</div>
@@ -67,7 +66,7 @@
 							<img src="../img/user.png">
 						</div>
 						<div class="usr_name">
-							<p>Manuel Carlos Macuacua</p>
+							<p><%out.print(Profile.sys_profile()); %></p>
 						</div>
 					</div>
 					</div>

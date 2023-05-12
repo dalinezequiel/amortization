@@ -1,8 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 
-<%@ page import="com.simor.dao.*, com.simor.model.*"
-	import="java.util.*"%>
+<%@ page import="com.simor.dao.*" 
+         import="com.simor.controller.*"
+         import="com.simor.model.*"
+         import="java.util.*"%>
+	
 <!DOCTYPE html>
 <html>
 <head>
@@ -59,7 +62,7 @@
 								<img src="../img/user.png">
 							</div>
 							<div class="usr_name">
-								<p>Manuel Carlos Macuacua</p>
+								<p><%out.print(Profile.sys_profile()); %></p>
 							</div>
 						</div>
 

@@ -144,7 +144,7 @@ html, body {
 	background-color: #EBEDEF;
 	border-radius: 50%;
 	cursor: pointer;
-	padding: 2px;
+	padding: 3px;
 	transition: 1s;
 }
 
@@ -155,19 +155,16 @@ html, body {
 }
 
 .opcao .execute img {
-	background-color: #DBEDEF;/*#EBEDEF;*/
-	border-radius: 5px;
-	cursor: pointer;
-	padding: 1px;
-	transition: 1s;
-}
-
-.opcao .execute img:hover {
 	background-color: #DBEDEF;
 	border-radius: 5px;
 	cursor: pointer;
 	padding: 1px;
-	transition: 1s;
+	transition: 0.2s;
+}
+
+.opcao .execute img:hover {
+	background-color: #C9E4E7;
+	transition: 0.2s;
 }
 
 .opcao .executa img{
@@ -175,8 +172,14 @@ html, body {
 	border-radius: 5px;
 	cursor: pointer;
 	padding: 5px;
-	transition: 1s;
+	transition: 0.2s;
 }
+
+.opcao .executa img:hover{
+	background-color: #C9E4E7;
+	transition: 0.2s;
+}
+
 
 .usuario div:nth-child(2) {
 	padding-left: 5px;

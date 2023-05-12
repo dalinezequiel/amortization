@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@page import="com.simor.controller.*"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -47,17 +48,19 @@
 			<div>
 				<div class="conta">
 					<div class="select">
-						<!-- <i class="fa-solid fa-bars"></i> -->
 						<i class="fa-solid fa-gear"></i>
 						<p>Configuração</p>
 					</div>
 					<div class="usuario">
-						<div>
-							<img src="../img/user.png">
+						<div class="usuari">
+							<div>
+								<img src="../img/user.png">
+							</div>
+							<div class="usr_name">
+								<p><%out.print(Profile.sys_profile()); %></p>
+							</div>
 						</div>
-						<div>
-							<p>Usuario001</p>
-						</div>
+
 					</div>
 				</div>
 				<div class="config">

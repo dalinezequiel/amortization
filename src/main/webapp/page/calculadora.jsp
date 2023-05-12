@@ -65,7 +65,7 @@
 							<img src="../img/user.png">
 						</div>
 						<div class="usr_name">
-							<p>Manuel Carlos Macuacua</p>
+							<p><%out.print(Profile.sys_profile()); %></p>
 						</div>
 					</div>
 					</div>

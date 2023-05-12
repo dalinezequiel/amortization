@@ -6,7 +6,6 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-import com.simor.dao.AccountDAO;
 import com.simor.model.*;
 
 public class App extends DashboardController {
@@ -22,12 +21,6 @@ public class App extends DashboardController {
 		this.appModel.setList(this.sys());
 		this.appModel.setTax(this.sys_tax());
 		this.appModel.setLatePayment(this.sys_late_payment());
-		this.appModel.setProfile(this.sys_profile());
 		return this.appModel;
-	}
-
-	// USUARIO DA APLICAÇÃO
-	private String sys_profile() {
-		return AccountDAO.userTransit().getTransit();
 	}
 }

@@ -35,7 +35,7 @@
 						</div> <a href="home.jsp">Dashboard</a></li>
 					<li><div class="lg">
 							<i class="fa-solid fa-calculator"></i>
-						</div> <a href="calculadora.jsp">Calcular VP</a></li>
+						</div> <a href="calculadora.jsp?">Calcular VP</a></li>
 					<li><div class="lg">
 							<i class="fa-solid fa-calendar-days"></i>
 						</div> <a href="holiday.jsp">Feriados</a></li>
@@ -68,7 +68,7 @@
 							<img src="../img/user.png">
 						</div>
 						<div class="usr_name">
-							<p><%out.print(app.getProfile());%></p>
+							<p><%out.print(Profile.sys_profile()); %></p>
 						</div>
 					</div>
 					<div>
