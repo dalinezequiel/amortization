@@ -15,244 +15,216 @@ import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Phrase;
+import com.itextpdf.text.pdf.ColumnText;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
+
 /**
  * Servlet implementation class Report
  */
 public class Report extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
+
 	private Document document = null;
-	private float [] sizeHead;
-	private static Font fonteNormal, fonteTitulo, masterFont, normalFont14, normalFont12, fonteSubTitulo = null;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public Report() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+	private PdfPTable header, body, bodyData = null;
+	private PdfPCell simor, sir, user, usrDate, finance, space = null;
+	private PdfPCell sistema, valor, taxa, prazo, prestacao = null;
+	private float[] columnSize = { 190, 120, 100, 100, 160 };
+	private static Font normalFont12, boldTitleFont18, normalFont14 = null;
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public Report() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		//doGet(request, response);
-		this.report(0, "", request, response);
-	}
-	
-	public void report(int id, String paciente, HttpServletRequest request, HttpServletResponse response) 
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		// doGet(request, response);
+		this.report(request, response);
+		// new Reporteia().report(request, response);
+	}
+
+	public void report(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		document = new Document(PageSize.A4, 50f, 50f, 50f, 50f);
-		masterFont = new Font(Font.FontFamily.TIMES_ROMAN, 20, Font.BOLD);
-		fonteNormal = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.NORMAL);
-		fonteTitulo = new Font(Font.FontFamily.TIMES_ROMAN, 18, Font.BOLD);
+		normalFont12 = new Font(Font.FontFamily.UNDEFINED, 12, Font.NORMAL);
+		boldTitleFont18 = new Font(Font.FontFamily.UNDEFINED, 18, Font.BOLD);
 		normalFont14 = new Font(Font.FontFamily.UNDEFINED, 14, Font.NORMAL);
-		normalFont12 = new Font(Font.FontFamily.UNDEFINED, 10, Font.BOLD);
-		fonteSubTitulo = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.BOLD);
 
 		try {
 			response.setContentType("application/pdf");
-			response.addHeader("Content-Dispostion", "inline; filename=relatorio_diagnostico.pdf");
-			
-			PdfWriter.getInstance(document, response.getOutputStream());
+			response.addHeader("Content-Dispostion", "inline; filename=amortizacao.pdf");
+
+			// HEADER
+			PdfWriter writer = PdfWriter.getInstance(document, response.getOutputStream());
 			document.open();
 
-			//Criando tabela
-			PdfPTable head = new PdfPTable(1);
-			float [] sizeHead = {250};
-			//head.setTotalWidth(sizeHead);
-			head.setWidthPercentage(100);
-			head.setHorizontalAlignment(Element.ALIGN_LEFT);
-			head.setSpacingBefore(0f);
-			head.setSpacingAfter(0f);
-//			head.setM
-			
-			//Adicionando cabeçalho inicial
-			PdfPCell simor = new PdfPCell(new Paragraph("SIMOR", fonteTitulo));
+			header = new PdfPTable(1);
+			header.setWidthPercentage(100);
+			header.setHorizontalAlignment(Element.ALIGN_LEFT);
+			header.setSpacingBefore(0f);
+			header.setSpacingAfter(0f);
+
+			simor = new PdfPCell(new Paragraph("SIMOR", boldTitleFont18));
 			simor.setHorizontalAlignment(Element.ALIGN_LEFT);
 			simor.setBorderWidth(0.0f);
 			simor.setPaddingLeft(0);
-			
-			PdfPCell sir = new PdfPCell(new Paragraph("Sistema de Amortização"));
+
+			sir = new PdfPCell(new Paragraph("Sistema de Amortização"));
 			sir.setHorizontalAlignment(Element.ALIGN_LEFT);
 			sir.setBorderWidth(0f);
 			sir.setPaddingLeft(0);
-			
-			PdfPCell user = new PdfPCell(new Paragraph("User", fonteNormal));
+
+			user = new PdfPCell(new Paragraph("User", normalFont12));
 			user.setHorizontalAlignment(Element.ALIGN_LEFT);
 			user.setBorderWidth(0.0f);
 			user.setPaddingLeft(0);
-			
-			PdfPCell usrDate = new PdfPCell(new Paragraph(String.valueOf(Date.valueOf(LocalDate.now())), fonteNormal));
+
+			usrDate = new PdfPCell(new Paragraph(String.valueOf(Date.valueOf(LocalDate.now())), normalFont12));
 			usrDate.setHorizontalAlignment(Element.ALIGN_LEFT);
 			usrDate.setBorderWidth(0.0f);
 			usrDate.setPaddingLeft(0);
-			
-			PdfPCell emprestFinan = new PdfPCell(new Paragraph("Dados do Emprestímo ou Finânciamento", normalFont14));
-			emprestFinan.setHorizontalAlignment(Element.ALIGN_LEFT);
-			emprestFinan.setBorderWidth(0.0f);
-			
-			PdfPCell space = new PdfPCell(new Paragraph(" "));
+			usrDate.setPaddingBottom(10);
+
+			finance = new PdfPCell(new Paragraph("Dados do Emprestímo ou Finânciamento", normalFont14));
+			finance.setHorizontalAlignment(Element.ALIGN_LEFT);
+			finance.setBorderWidth(0.0f);
+			finance.setPaddingBottom(6);
+			finance.setPaddingLeft(0);
+
+			space = new PdfPCell(new Paragraph(" "));
 			space.setBorderWidth(0f);
-			
 
-			head.addCell(simor);
-			head.addCell(sir);
-			head.addCell(space);
-			head.addCell(user);
-			head.addCell(usrDate);
-//			head.addCell(emprestFinan);
-			
-			document.add(head);
-			document.add(new Paragraph("Dados do Emprestímo ou Finânciamento", normalFont14));
-			document.add(new Paragraph(" "));
+			header.addCell(simor);
+			header.addCell(sir);
+			header.addCell(space);
+			header.addCell(user);
+			header.addCell(usrDate);
+			header.addCell(finance);
+			document.add(header);
 
-			//Tabela de diagnósticos
-			PdfPTable table = new PdfPTable(5);
-			float [] sizeHeader = {190, 120, 100, 100, 160};
-			table.setTotalWidth(sizeHeader);
-			table.setWidthPercentage(100);
-			table.setSpacingBefore(0f);
-		    table.setSpacingAfter(0f);
-			
-			//Cabeçalho
-			PdfPCell coluna1 = new PdfPCell(new Paragraph("Sistema", normalFont12));
-			PdfPCell coluna2 = new PdfPCell(new Paragraph("Valor", normalFont12));
-			PdfPCell coluna3 = new PdfPCell(new Paragraph("Taxa", normalFont12));
-			PdfPCell coluna4 = new PdfPCell(new Paragraph("Prazo", normalFont12));
-			PdfPCell coluna5 = new PdfPCell(new Paragraph("Primeira Prestação", normalFont12));
-			
-			coluna1.setPadding(8.0f);
-			coluna2.setPadding(8.0f);
-			coluna3.setPadding(8.0f);
-			coluna4.setPadding(8.0f);
-			coluna5.setPadding(8.0f);
-			
-			coluna1.setBorderWidth(0.01f);
-			coluna2.setBorderWidth(0.01f);
-			coluna3.setBorderWidth(0.01f);
-			coluna4.setBorderWidth(0.01f);
-			coluna5.setBorderWidth(0.01f);
-			
-			coluna1.setBorderColor(BaseColor.GRAY);
-			coluna2.setBorderColor(BaseColor.GRAY);
-			coluna3.setBorderColor(BaseColor.GRAY);
-			coluna4.setBorderColor(BaseColor.GRAY);
-			coluna5.setBorderColor(BaseColor.GRAY);
+			// BODY
+			body = new PdfPTable(5);
+			body.setTotalWidth(columnSize);
+			body.setWidthPercentage(100);
+			body.setSpacingBefore(0f);
+			body.setSpacingAfter(0f);
 
-			coluna1.setBackgroundColor(BaseColor.LIGHT_GRAY); 
-			coluna2.setBackgroundColor(BaseColor.LIGHT_GRAY);
-			coluna3.setBackgroundColor(BaseColor.LIGHT_GRAY);
-			coluna4.setBackgroundColor(BaseColor.LIGHT_GRAY);
-			coluna5.setBackgroundColor(BaseColor.LIGHT_GRAY);
-			
-			coluna1.setHorizontalAlignment(Element.ALIGN_LEFT);
-			coluna2.setHorizontalAlignment(Element.ALIGN_RIGHT);
-			coluna3.setHorizontalAlignment(Element.ALIGN_RIGHT);
-			coluna4.setHorizontalAlignment(Element.ALIGN_RIGHT);
-			coluna5.setHorizontalAlignment(Element.ALIGN_RIGHT);
-			
-			table.addCell(coluna1);
-			table.addCell(coluna2);
-			table.addCell(coluna3);
-			table.addCell(coluna4);
-			table.addCell(coluna5);
-			
-			//
-			//Adicionando dados na tabela de forma dinamica
-//			ArrayList<DiagnosticoModel> listaDiag = null;
-//			if((id != 0) || ((paciente != null) && (!paciente.isEmpty())) ) {
-//				listaDiag  = DiagnosticoDAO.listaDiagnosticoByMultipleParameters(id, paciente, "");
-//			}else {
-//				listaDiag  = DiagnosticoDAO.listaDiagnostico();
-//			}
-//			
-//			PdfPCell cellCodigo = null;
-//			PdfPCell cellAvalia = null;
-//			PdfPCell cellDiagnostico = null;
-//			PdfPCell cellResposta = null;
-//			PdfPCell cellUltimaActualizacao = null;
-//
-//			for(int i=0; i<listaDiag.size(); i++) {
-//				
-//				cellCodigo = new PdfPCell(new Paragraph(String.valueOf(listaDiag.get(i).getIdDiagnostico()), fonteNormal));
-//				cellCodigo.setPadding(8.0f);
-//				cellCodigo.setBorderWidth(0.01f);
-//				cellCodigo.setBackgroundColor(BaseColor.WHITE);
-//				
-//				cellAvalia = new PdfPCell(new Paragraph(String.valueOf(listaDiag.get(i).getIdAvaliacao()), fonteNormal));
-//				cellAvalia.setPadding(8.0f);
-//				cellAvalia.setBorderWidth(0.01f);
-//				cellAvalia.setBackgroundColor(BaseColor.WHITE);
-//				
-//				cellDiagnostico = new PdfPCell(new Paragraph(listaDiag.get(i).getDiagnostico(), fonteNormal));
-//				cellDiagnostico.setPadding(8.0f);
-//				cellDiagnostico.setBorderWidth(0.01f);
-//				cellDiagnostico.setBackgroundColor(BaseColor.WHITE);
-//				
-//				cellResposta = new PdfPCell(new Paragraph(listaDiag.get(i).getResposta(), fonteNormal));
-//				cellResposta.setPadding(8.0f);
-//				cellResposta.setBorderWidth(0.01f);
-//				cellResposta.setBackgroundColor(BaseColor.WHITE);
-//				
-//				cellUltimaActualizacao = new PdfPCell(new Paragraph(listaDiag.get(i).getPaciente(), fonteNormal));
-//				cellUltimaActualizacao.setPadding(8.0f);
-//				cellUltimaActualizacao.setBorderWidth(0.01f);
-//				cellUltimaActualizacao.setBackgroundColor(BaseColor.WHITE);
-//				
-//				table.addCell(cellCodigo);
-//				table.addCell(cellAvalia);
-//				table.addCell(cellDiagnostico);
-//				table.addCell(cellResposta);
-//				table.addCell(cellUltimaActualizacao);
-//			}
-			
-			
-			//Footer
-			PdfPTable tableFooter = new PdfPTable(2);
-			float [] sizeFooter = {630,135};
-			tableFooter.setTotalWidth(sizeFooter);
-			tableFooter.setWidthPercentage(100);
-			tableFooter.setHorizontalAlignment(Element.ALIGN_RIGHT);
-			tableFooter.setSpacingBefore(0f);
-		    tableFooter.setSpacingAfter(0f);
-			
-			//Cabeçalho
-			PdfPCell footer1 = new PdfPCell(new Paragraph("TOTAL", fonteSubTitulo));
-//			PdfPCell footer2 = new PdfPCell(new Paragraph(String.valueOf(listaDiag.size()), fonteSubTitulo));
+			// BODY STRUCTURE
+			sistema = new PdfPCell(new Paragraph("Sistema", normalFont12));
+			valor = new PdfPCell(new Paragraph("Valor", normalFont12));
+			taxa = new PdfPCell(new Paragraph("Taxa", normalFont12));
+			prazo = new PdfPCell(new Paragraph("Prazo", normalFont12));
+			prestacao = new PdfPCell(new Paragraph("Primeira Prestação", normalFont12));
 
-			footer1.setPadding(8.0f);
-//			footer2.setPadding(8.0f);
-//			footer2.setHorizontalAlignment(Element.ALIGN_CENTER);
+			sistema.setPadding(8.0f);
+			valor.setPadding(8.0f);
+			taxa.setPadding(8.0f);
+			prazo.setPadding(8.0f);
+			prestacao.setPadding(8.0f);
 
-			footer1.setBorderWidth(0.1f);
-			//footer2.setBorderWidth(0.1f);
-			
-			//Adicionando cabeçalho a tabela
-			tableFooter.addCell(footer1);
-			//tableFooter.addCell(footer2);
+			sistema.setBorderWidth(0.01f);
+			valor.setBorderWidth(0.01f);
+			taxa.setBorderWidth(0.01f);
+			prazo.setBorderWidth(0.01f);
+			prestacao.setBorderWidth(0.01f);
 
-			document.add(table);
-			document.add(new Paragraph(" "));
-			document.add(tableFooter);
+			sistema.setBorderColor(BaseColor.GRAY);
+			valor.setBorderColor(BaseColor.GRAY);
+			taxa.setBorderColor(BaseColor.GRAY);
+			prazo.setBorderColor(BaseColor.GRAY);
+			prestacao.setBorderColor(BaseColor.GRAY);
+
+			sistema.setBackgroundColor(BaseColor.LIGHT_GRAY);
+			valor.setBackgroundColor(BaseColor.LIGHT_GRAY);
+			taxa.setBackgroundColor(BaseColor.LIGHT_GRAY);
+			prazo.setBackgroundColor(BaseColor.LIGHT_GRAY);
+			prestacao.setBackgroundColor(BaseColor.LIGHT_GRAY);
+
+			sistema.setHorizontalAlignment(Element.ALIGN_LEFT);
+			valor.setHorizontalAlignment(Element.ALIGN_RIGHT);
+			taxa.setHorizontalAlignment(Element.ALIGN_RIGHT);
+			prazo.setHorizontalAlignment(Element.ALIGN_RIGHT);
+			prestacao.setHorizontalAlignment(Element.ALIGN_RIGHT);
+
+			body.addCell(sistema);
+			body.addCell(valor);
+			body.addCell(taxa);
+			body.addCell(prazo);
+			body.addCell(prestacao);
+
+			bodyData = new PdfPTable(5);
+			bodyData.setTotalWidth(columnSize);
+			bodyData.setWidthPercentage(100);
+			bodyData.setSpacingBefore(0f);
+			bodyData.setSpacingAfter(0f);
+
+			// BODY DATA
+			sistema = new PdfPCell(new Paragraph("MAJS/ Hamburgues", normalFont12));
+			valor = new PdfPCell(new Paragraph("R$ 1.000,00", normalFont12));
+			taxa = new PdfPCell(new Paragraph("1,00%", normalFont12));
+			prazo = new PdfPCell(new Paragraph("12,00", normalFont12));
+			prestacao = new PdfPCell(new Paragraph("12/05/2023", normalFont12));
+
+			sistema.setPadding(8.0f);
+			valor.setPadding(8.0f);
+			taxa.setPadding(8.0f);
+			prazo.setPadding(8.0f);
+			prestacao.setPadding(8.0f);
+
+			sistema.setBorderColor(BaseColor.GRAY);
+			valor.setBorderColor(BaseColor.GRAY);
+			taxa.setBorderColor(BaseColor.GRAY);
+			prazo.setBorderColor(BaseColor.GRAY);
+			prestacao.setBorderColor(BaseColor.GRAY);
+
+			sistema.setHorizontalAlignment(Element.ALIGN_LEFT);
+			valor.setHorizontalAlignment(Element.ALIGN_RIGHT);
+			taxa.setHorizontalAlignment(Element.ALIGN_RIGHT);
+			prazo.setHorizontalAlignment(Element.ALIGN_RIGHT);
+			prestacao.setHorizontalAlignment(Element.ALIGN_RIGHT);
+
+			bodyData.addCell(sistema);
+			bodyData.addCell(valor);
+			bodyData.addCell(taxa);
+			bodyData.addCell(prazo);
+			bodyData.addCell(prestacao);
+
+			// FOOTER
+			this.onEndPage(writer, document);
+			document.add(body);
+			document.add(bodyData);
 			document.close();
-			
-		}catch(Exception ex) {
+
+		} catch (Exception ex) {
 			System.out.println(ex.getMessage());
 			document.close();
 		}
+	}
+
+	public void onEndPage(PdfWriter writer, Document document) {
+		ColumnText.showTextAligned(writer.getDirectContent(), Element.ALIGN_CENTER,
+				new Phrase("https://universoadministracao.com/"), 140, 30, 0);
+		ColumnText.showTextAligned(writer.getDirectContent(), Element.ALIGN_CENTER,
+				new Phrase("page " + document.getPageNumber()), 530, 30, 0);
 	}
 }

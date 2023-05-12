@@ -15,14 +15,14 @@ import com.simor.model.*;
 /**
  * Servlet implementation class FeriadoServ
  */
-public class FeriadoServ extends HttpServlet {
+public class Holiday extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private FeriadoModel feria = null;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public FeriadoServ() {
+	public Holiday() {
 		super();
 		// TODO Auto-generated constructor stub
 	}

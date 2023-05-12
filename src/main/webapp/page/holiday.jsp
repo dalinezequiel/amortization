@@ -1,10 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-	
-<%@ page
-   import="com.simor.dao.*, com.simor.model.*"
-   import="java.util.*"
- %>
+
+<%@ page import="com.simor.dao.*, com.simor.model.*"
+	import="java.util.*"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -56,28 +54,31 @@
 						<p>Feriados</p>
 					</div>
 					<div class="usuario">
-					<div class="usuari">
-						<div>
-							<img src="../img/user.png">
+						<div class="usuari">
+							<div>
+								<img src="../img/user.png">
+							</div>
+							<div class="usr_name">
+								<p>Manuel Carlos Macuacua</p>
+							</div>
 						</div>
-						<div class="usr_name">
-							<p>Manuel Carlos Macuacua</p>
-						</div>
-					</div>
-					
+
 					</div>
 				</div>
 				<div class="holiday_id">
-				<form action="" method="post">
-					<div class="camp-head">
-						<div>
-						    <h3>Lista de feriados para cálculo de encargos por atraso
-							1960 a 2050</h3>
+					<form action="" method="post">
+						<div class="camp-head">
+							<div>
+								<h3>Lista de feriados para cálculo de encargos por atraso
+									1960 a 2050</h3>
+							</div>
+							<div>
+								<button name="register" value="register"
+									onclick='this.form.action="../Holiday"'>
+									<i class="fa-solid fa-circle-check"></i>Salvar
+								</button>
+							</div>
 						</div>
-						<div>
-							<button name="register" value="register" onclick='this.form.action="../FeriadoServ"'><i class="fa-solid fa-circle-check"></i>Salvar</button>
-						</div>
-					</div>
 						<div class="cap-01">
 							<div>
 								<label>Data</label> <input type="date" name="data_feriado">
@@ -90,54 +91,61 @@
 							</div>
 
 						</div>
-					<div class="tabela">
-						<div>
-						    <%
-						    HolidayDAO feria=new HolidayDAO();
-						    				        ArrayList<FeriadoModel> listFeriado = null;
-						    %>
-							<table>
-								<thead>
-									<tr>
-										<td><div>
-												Data
-											</div></td>
-										<td><div>
-												Descrição
-											</div></td>
-										<td>Ano</td>
-										<td>Ação</td>
-									</tr>
-								</thead>
-								<tbody>
-								 <%
-								 listFeriado = HolidayDAO.list();
-								 						 						  if(feria != null){
-								 						 							  for(int i=0; i<listFeriado.size(); i++){
-								 %>
-									   <tr>
-									       <td><%out.print(listFeriado.get(i).getDataFeriado()); %></td>
-									       <td><%out.print(listFeriado.get(i).getDescricao()); %></td>
-									       <td><%out.print(listFeriado.get(i).getAno()); %></td>
-									       <td>
-									          <div>
-									          <!-- 									             <button name="edit" value="out.print(listFeriado.get(i).getCodigo());" onclick=''>
-									                <img src="../img/edit-18.png">
-									             </button> -->
-									             <button name="delete" value="<%out.print(listFeriado.get(i).getCodigo()); %>" onclick='this.form.action="../FeriadoRemove"'>
-									                <img src="../img/delete-18.png">
-									             </button>
-									          </div>
-									       </td>
-									   </tr>
-									  <%
-									  }
-								  }
-								 %>
-								</tbody>
-							</table>
+						<div class="tabela">
+							<div>
+								<%
+								HolidayDAO feria = new HolidayDAO();
+								ArrayList<FeriadoModel> listFeriado = null;
+								%>
+								<table>
+									<thead>
+										<tr>
+											<td><div>Data</div></td>
+											<td><div>Descrição</div></td>
+											<td>Ano</td>
+											<td>Ação</td>
+										</tr>
+									</thead>
+									<tbody>
+										<%
+										listFeriado = HolidayDAO.list();
+										if (feria != null) {
+											for (int i = 0; i < listFeriado.size(); i++) {
+										%>
+										<tr>
+											<td>
+												<%
+												out.print(listFeriado.get(i).getDataFeriado());
+												%>
+											</td>
+											<td>
+												<%
+												out.print(listFeriado.get(i).getDescricao());
+												%>
+											</td>
+											<td>
+												<%
+												out.print(listFeriado.get(i).getAno());
+												%>
+											</td>
+											<td>
+												<div>
+													<button name="delete"
+														value="<%out.print(listFeriado.get(i).getCodigo());%>"
+														onclick='this.form.action="../FeriadoRemove"'>
+														<img src="../img/delete-18.png">
+													</button>
+												</div>
+											</td>
+										</tr>
+										<%
+										}
+										}
+										%>
+									</tbody>
+								</table>
+							</div>
 						</div>
-					</div>
 					</form>
 				</div>
 			</div>

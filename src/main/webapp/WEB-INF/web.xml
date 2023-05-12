@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://jakarta.ee/xml/ns/jakartaee" xmlns:web="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd http://xmlns.jcp.org/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="5.0">
-  <display-name>Simort</display-name>
+  <display-name>simor</display-name>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.jsp</welcome-file>
@@ -11,43 +11,13 @@
   </welcome-file-list>
   <servlet>
     <description></description>
-    <display-name>Home</display-name>
-    <servlet-name>Home</servlet-name>
-    <servlet-class>com.simor.servelet.Home</servlet-class>
+    <display-name>Holiday</display-name>
+    <servlet-name>Holiday</servlet-name>
+    <servlet-class>com.simor.servelet.Holiday</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>Home</servlet-name>
-    <url-pattern>/Home</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>ContaServ</display-name>
-    <servlet-name>ContaServ</servlet-name>
-    <servlet-class>com.simor.servelet.ContaServ</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>ContaServ</servlet-name>
-    <url-pattern>/ContaServ</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>forgotServ</display-name>
-    <servlet-name>forgotServ</servlet-name>
-    <servlet-class>com.simor.servelet.forgotServ</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>forgotServ</servlet-name>
-    <url-pattern>/forgotServ</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>FeriadoServ</display-name>
-    <servlet-name>FeriadoServ</servlet-name>
-    <servlet-class>com.simor.servelet.FeriadoServ</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>FeriadoServ</servlet-name>
-    <url-pattern>/FeriadoServ</url-pattern>
+    <servlet-name>Holiday</servlet-name>
+    <url-pattern>/Holiday</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
