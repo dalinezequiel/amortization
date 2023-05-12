@@ -6,6 +6,7 @@ public class AppModel {
 	private ArrayList<CalculoModel> list;
 	private DashboardModel tax;
 	private DashboardModel latePayment;
+	private String profile;
 
 	public AppModel() {
 		super();
@@ -33,5 +34,13 @@ public class AppModel {
 
 	public void setLatePayment(DashboardModel latePayment) {
 		this.latePayment = latePayment;
+	}
+
+	public String getProfile() {
+		return profile;
+	}
+
+	public void setProfile(String profile) {
+		this.profile = profile;
 	}
 }

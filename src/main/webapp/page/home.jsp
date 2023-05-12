@@ -68,8 +68,7 @@
 							<img src="../img/user.png">
 						</div>
 						<div class="usr_name">
-							<!-- <p>Manuel Carlos Macuacua</p> -->
-							<p><%out.print(request.getParameter("login")); %></p>
+							<p><%out.print(app.getProfile());%></p>
 						</div>
 					</div>
 					<div>

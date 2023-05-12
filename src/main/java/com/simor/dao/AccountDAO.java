@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import com.simor.model.ContaModel;
+import com.simor.model.TransitModel;
 
 public class AccountDAO {
 	private static Connection con = null;
@@ -15,6 +16,7 @@ public class AccountDAO {
 
 	private static ArrayList<ContaModel> listaCont = null;
 	private static ContaModel contModel = null;
+	private static TransitModel transitModel = null;
 
 	// CRIAR CREDÊNCIAIS DO USUÁRIO
 	public static boolean insert(ContaModel model) {
@@ -99,6 +101,57 @@ public class AccountDAO {
 		return false;
 	}
 
+	// SALVAR DADOS TRANSITORIOS
+	public static boolean transit(TransitModel model) {
+		try {
+			String SQL_INSERT_QUERY = "INSERT INTO transit(transit) VALUES(?)";
+			con = ConnectionDAO.getConnection();
+			pst = con.prepareStatement(SQL_INSERT_QUERY);
+			pst.setString(1, model.getTransit());
+			pst.execute();
+			return true;
+		} catch (SQLException e) {
+			System.out.println("Ocorreu um erro!\n" + e.getMessage());
+		}
+		return false;
+	}
+
+	// SELECIONAR OS DADOS TRANSITÓRIOS
+	public static TransitModel userTransit() {
+		try {
+			String SQL_SELECT_QUERY = "select * from transit";
+			con = ConnectionDAO.getConnection();
+			pst = con.prepareStatement(SQL_SELECT_QUERY);
+			rs = pst.executeQuery();
+
+			if (rs.next()) {
+				transitModel = new TransitModel();
+				transitModel.setIdTransit(rs.getInt("id_transit"));
+				transitModel.setTransit(rs.getString("transit"));
+			}
+			deleteTransit();
+
+		} catch (SQLException e) {
+			System.out.println("Ocorreu um erro!\n" + e.getMessage());
+		}
+		return transitModel;
+	}
+
+	// DELETAR DADOS TRANSITÓRIOS (TEMPORÁRIOS)
+	public static boolean deleteTransit() {
+		try {
+			String SQL_DELETE_QUERY = "DELETE FROM transit";
+			con = ConnectionDAO.getConnection();
+			pst = con.prepareStatement(SQL_DELETE_QUERY);
+			pst.executeUpdate();
+			pst.close();
+			return true;
+		} catch (SQLException e) {
+			System.out.println("Ocorreu um erro!\n" + e.getMessage());
+		}
+		return false;
+	}
+
 	// RECUPERAR CREDÊNCIAIS DO USUÁRIO
 	public static boolean recovery(ContaModel model) {
 		// O ID GERADO PELO SISTEMA E O USUÁRIO FUNCIONARÁ COM ID
@@ -127,8 +180,10 @@ public class AccountDAO {
 	public static void main(String[] args) {
 		ContaModel c = new ContaModel();
 		c.setEmail("marcia.pedro@gmail.com");
-		c.setUsuario("marcia.pedro");
-		c.setSenha("marcia2023");
-		System.out.println(AccountDAO.recovery(c));
+		c.setUsuario("marcia.pedo");
+		// c.setSenha("marcia2023");
+		System.out.println(AccountDAO.userTransit().getIdTransit());
+		System.out.println(AccountDAO.userTransit().getTransit());
+		// System.out.println(AccountDAO.recovery(c));
 	}
 }

@@ -7,6 +7,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import com.simor.dao.AccountDAO;
 import com.simor.model.ContaModel;
+import com.simor.model.TransitModel;
 
 /**
  * Servlet implementation class Login
@@ -14,6 +15,8 @@ import com.simor.model.ContaModel;
 public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private ContaModel contaModel = null;
+	private TransitModel transit = null;
+
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
@@ -30,6 +33,7 @@ public class Login extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		// response.getWriter().append("Served at: ").append(request.getContextPath());
+
 	}
 
 	/**
@@ -44,6 +48,24 @@ public class Login extends HttpServlet {
 		contaModel.setUsuario(request.getParameter("usr_email").trim());
 		contaModel.setSenha(request.getParameter("pass").trim());
 		if (AccountDAO.login(contaModel)) {
+			transit = new TransitModel();
+			if ((!contaModel.getUsuario().isEmpty() && contaModel.getUsuario() != null)
+					&& (!contaModel.getEmail().isEmpty() && contaModel.getEmail() != null)) {
+				transit.setTransit(contaModel.getEmail());
+				AccountDAO.transit(transit);
+
+			} else if (!contaModel.getUsuario().isEmpty() && contaModel.getUsuario() != null) {
+				transit.setTransit(contaModel.getUsuario());
+				AccountDAO.transit(transit);
+
+			} else if (!contaModel.getEmail().isEmpty() && contaModel.getEmail() != null) {
+				transit.setTransit(contaModel.getEmail());
+				AccountDAO.transit(transit);
+			} else {
+				transit.setTransit("user.default");
+				AccountDAO.transit(transit);
+			}
+			
 			response.sendRedirect("page/home.jsp");
 		} else {
 			response.sendRedirect("index.jsp");
