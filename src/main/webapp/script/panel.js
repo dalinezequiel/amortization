@@ -87,6 +87,8 @@ const input_cap_03 = document.querySelectorAll(".cap-03 input");
 const conf_sair = document.querySelectorAll(".conf_sair a");
 const select_amort = document.getElementsByName("sys_amort");
 const balao_type = document.querySelectorAll(".cap-02 option");
+const carencia=document.getElementsByName("carencia");
+const tipo_carencia=document.getElementsByName("tipo_carencia");
 
 // SALVAR VALORES NO SESSIONSTORAGE
 btn_calcular[0].addEventListener('click', function() {
@@ -104,6 +106,9 @@ btn_calcular[0].addEventListener('click', function() {
 	sessionStorage.setItem("periodo_balao", periodo_balao[0].value);
 	sessionStorage.setItem("quant_balao", quant_balao[0].value);
 	sessionStorage.setItem("valor_balao", valor_balao[0].value);
+	
+	sessionStorage.setItem("carencia", carencia[0].value);
+	sessionStorage.setItem("tipo_carencia", tipo_carencia[0].value);
 })
 
 // PREENCHER INPUTS COM DADOS DO SESSIONSTORAGE
@@ -135,6 +140,13 @@ window.addEventListener('load', function() {
 		periodo_balao[0].value = "";
 		quant_balao[0].value = "";
 		valor_balao[0].value = "";
+	}
+	
+	carencia[0].value=sessionStorage.getItem("carencia");
+	tipo_carencia[0].value=sessionStorage.getItem("tipo_carencia");
+	
+	if (tipo_carencia[0].value == "") {
+		tipo_carencia[0].value = "Sem juros";
 	}
 })
 

@@ -480,6 +480,27 @@ table tbody tr td:nth-child(11){
 	margin-left: 5px;
 }
 
+
+.camp .cap-03 .carencia{
+	display: flex;
+	flex-direction: row;
+}
+
+.camp .cap-03 .carencia div {
+	display: flex;
+	flex-direction: column;
+	width: 125px;
+}
+
+.camp .cap-03 .carencia div:nth-child(1) {
+	margin-right: 5px;
+}
+
+.camp .cap-03 .carencia div:nth-child(2) {
+	margin-left: 5px;
+}
+
+
 .camp .cap-01 .mensal_anual {
 	display: flex;
 	flex-direction: row;

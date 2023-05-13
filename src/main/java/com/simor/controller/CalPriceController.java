@@ -150,10 +150,9 @@ public class CalPriceController {
 	
 	//CARENCIA SEM PAGAMENTO DE JUROS
 	//int carencia;
-	String comJuro="nao";
+//	String comJuro="sim";
 	public ArrayList<CalculoModel> listaCalPriceModel() {
 		listaPrice = new ArrayList<CalculoModel>();
-		//carencia=this.dashboardModel.getCarencia();
 		if (this.dashboardModel != null) {
 			calculoModel.setValorEmprestFinac(this.dashboardModel.getValorEmprestFinancia());
 			calculoModel.setPrestacao(0);
@@ -162,30 +161,58 @@ public class CalPriceController {
 
 			if(this.dashboardModel.getCarencia() >0) {
 				double novo=0;
-				for (int i = 0; i < this.dashboardModel.getPrazo(); i++) {
-					if(i<=this.dashboardModel.getCarencia()) {
-						novo+=calculoModel.getJuro();
+				if(this.dashboardModel.getTipoCarencia().equals("Sem juros")) { 
+					for (int i = 0; i < this.dashboardModel.getPrazo(); i++) {
+						if(i<=this.dashboardModel.getCarencia()) {
+							novo+=calculoModel.getJuro();
+						}
+						if ((i + 1) > this.dashboardModel.getCarencia()) {
+							calculoModel.setPrestacao(this.getCalculoDePrestacao(this.dashboardModel.getPrazo()-this.dashboardModel.getCarencia(),this.dashboardModel.getValorEmprestFinancia()+ novo));
+						}
+						
+						calculo = new CalculoModel();
+						calculoModel.setJuro(calculoModel.getJuroInicial() * calculoModel.getValorEmprestFinac());
+						calculoModel.setAmortizacao(calculoModel.getPrestacao() - calculoModel.getJuro());
+						calculoModel.setValorEmprestFinac(calculoModel.getValorEmprestFinac() - calculoModel.getAmortizacao());
+						calculo.setPrestacao(calculoModel.getPrestacao());
+						calculo.setJuro(calculoModel.getJuro());
+						calculo.setAmortizacao(calculoModel.getAmortizacao());
+						calculo.setValorEmprestFinac(calculoModel.getValorEmprestFinac());
+						calculo.setDataVencimento(SistemaController.listaDataVencimento(
+								SistemaController.getFormatedDate(String.valueOf(calculoModel.getDataVencimento())),
+								this.dashboardModel.getPrazo()).get(i).getDataVencimento());
+						aux = new Auxilio();
+						aux.setDoubleAux(0.00001);
+						aux.setIntAux(0);
+						calculo.setAuxilio(aux);
+						listaPrice.add(calculo);
 					}
-					if ((i + 1) > this.dashboardModel.getCarencia()) {
-						calculoModel.setPrestacao(this.getCalculoDePrestacao(this.dashboardModel.getPrazo()-this.dashboardModel.getCarencia(),this.dashboardModel.getValorEmprestFinancia()+ novo));
+				}else if(this.dashboardModel.getTipoCarencia().equals("Com juros")){
+
+					for (int i = 0; i < this.dashboardModel.getPrazo(); i++) {
+						calculo = new CalculoModel();
+						calculoModel.setJuro(calculoModel.getJuroInicial() * calculoModel.getValorEmprestFinac());
+						if ((i + 1) > this.dashboardModel.getCarencia()) {
+							calculoModel.setPrestacao(this.getCalculoDePrestacao(this.dashboardModel.getPrazo()-this.dashboardModel.getCarencia()));
+							calculoModel.setAmortizacao(calculoModel.getPrestacao() - calculoModel.getJuro());
+						}
+						if(i<=this.dashboardModel.getCarencia()) {
+							calculoModel.setPrestacao(calculoModel.getJuro() + calculoModel.getAmortizacao());
+						}
+						calculoModel.setValorEmprestFinac(calculoModel.getValorEmprestFinac() - calculoModel.getAmortizacao());
+						calculo.setPrestacao(calculoModel.getPrestacao());
+						calculo.setJuro(calculoModel.getJuro());
+						calculo.setAmortizacao(calculoModel.getAmortizacao());
+						calculo.setValorEmprestFinac(calculoModel.getValorEmprestFinac());
+						calculo.setDataVencimento(SistemaController.listaDataVencimento(
+								SistemaController.getFormatedDate(String.valueOf(calculoModel.getDataVencimento())),
+								this.dashboardModel.getPrazo()).get(i).getDataVencimento());
+						aux = new Auxilio();
+						aux.setDoubleAux(0.00001);
+						aux.setIntAux(0);
+						calculo.setAuxilio(aux);
+						listaPrice.add(calculo);
 					}
-					
-					calculo = new CalculoModel();
-					calculoModel.setJuro(calculoModel.getJuroInicial() * calculoModel.getValorEmprestFinac());
-					calculoModel.setAmortizacao(calculoModel.getPrestacao() - calculoModel.getJuro());
-					calculoModel.setValorEmprestFinac(calculoModel.getValorEmprestFinac() - calculoModel.getAmortizacao());
-					calculo.setPrestacao(calculoModel.getPrestacao());
-					calculo.setJuro(calculoModel.getJuro());
-					calculo.setAmortizacao(calculoModel.getAmortizacao());
-					calculo.setValorEmprestFinac(calculoModel.getValorEmprestFinac());
-					calculo.setDataVencimento(SistemaController.listaDataVencimento(
-							SistemaController.getFormatedDate(String.valueOf(calculoModel.getDataVencimento())),
-							this.dashboardModel.getPrazo()).get(i).getDataVencimento());
-					aux = new Auxilio();
-					aux.setDoubleAux(0.00001);
-					aux.setIntAux(0);
-					calculo.setAuxilio(aux);
-					listaPrice.add(calculo);
 				}
 			}else {
 				
@@ -213,44 +240,6 @@ public class CalPriceController {
 			}
 		return listaPrice;
 	}
-	
-	//CARENCIA COM PAGAMENTO DE JUROS
-	/*
-	 public ArrayList<CalculoModel> listaCalPriceModel() {
-		listaPrice = new ArrayList<CalculoModel>();
-		if (this.dashboardModel != null) {
-			calculoModel.setValorEmprestFinac(this.dashboardModel.getValorEmprestFinancia());
-			calculoModel.setPrestacao(0);
-
-			calculoModel.setJuroInicial(this.getTaxaPriceCalculado());
-			calculoModel.setDataVencimento(this.dashboardModel.getDataPrimeiraParcela());
-
-			for (int i = 0; i < this.dashboardModel.getPrazo(); i++) {
-				if ((i + 1) > car) {
-					calculoModel.setPrestacao(this.getCalculoDePrestacao(10));
-				}
-				
-				calculo = new CalculoModel();
-				calculoModel.setJuro(calculoModel.getJuroInicial() * calculoModel.getValorEmprestFinac());
-				calculoModel.setAmortizacao(calculoModel.getPrestacao() - calculoModel.getJuro());
-				calculoModel.setValorEmprestFinac(calculoModel.getValorEmprestFinac() - calculoModel.getAmortizacao());
-				calculo.setPrestacao(calculoModel.getPrestacao());
-				calculo.setJuro(calculoModel.getJuro());
-				calculo.setAmortizacao(calculoModel.getAmortizacao());
-				calculo.setValorEmprestFinac(calculoModel.getValorEmprestFinac());
-				calculo.setDataVencimento(SistemaController.listaDataVencimento(
-						SistemaController.getFormatedDate(String.valueOf(calculoModel.getDataVencimento())),
-						this.dashboardModel.getPrazo()).get(i).getDataVencimento());
-				aux = new Auxilio();
-				aux.setDoubleAux(0.00001);
-				aux.setIntAux(0);
-				calculo.setAuxilio(aux);
-				listaPrice.add(calculo);
-			}
-		}
-		return listaPrice;
-	}*/
-	
 	public static void main(String[]args) {
 		System.out.println(new CalPriceController().getCalculoDePrestacao(10));
 		System.out.println(new CalPriceController().getCalculoDePrestacao(10, 51005));

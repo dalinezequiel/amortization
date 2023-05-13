@@ -12,6 +12,7 @@ public class DashboardModel {
 	private int prazo;
 	private String indiceActualizacao;
 	private int carencia;
+	private String tipoCarencia;
 	private String sistemaAmortizacao;
 	private Date dataContratacao;
 	private Date dataPrimeiraParcela;
@@ -24,6 +25,11 @@ public class DashboardModel {
 	private double juroAtraso;
 	private DashboardModel dashboardModel;
 	private Auxilio auxilioModel;
+
+	public DashboardModel() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	public double getValorEmprestFinancia() {
 		return valorEmprestFinancia;
@@ -95,6 +101,14 @@ public class DashboardModel {
 
 	public void setCarencia(int carencia) {
 		this.carencia = carencia;
+	}
+
+	public String getTipoCarencia() {
+		return tipoCarencia;
+	}
+
+	public void setTipoCarencia(String tipoCarencia) {
+		this.tipoCarencia = tipoCarencia;
 	}
 
 	public String getSistemaAmortizacao() {

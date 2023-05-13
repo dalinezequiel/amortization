@@ -144,8 +144,17 @@
 									    </select>
 									</div>
 								</div>
-								<div>
-									<label>Carência</label> <input type="number" min="0" placeholder="0,00" name="carencia">
+								<div class="carencia">
+									<div>
+									    <label>Carência</label> <input type="number" min="0" placeholder="0,00" name="carencia">
+									</div>
+									<div>
+									    <label>Tipo de Carência</label> 
+									    <select name="tipo_carencia">
+										   <option>Sem juros</option>
+										   <option>Com juros</option>
+									    </select>
+									</div>
 								</div>
 								<div>
 									<label>Sistema de amortização</label> <select name="sys_amort" required>
@@ -252,10 +261,10 @@
 											   <tr>
 											    <td><%out.print(SistemaController.getCounter(i)); %></td>
 											    <td><%out.print(SistemaController.getFormatedDate(app.getList().get(i).getDataVencimento().toString()));%></td>
-											    <td><%out.print(SistemaController.mascaraMoeda(app.getList().get(i).getPrestacao())); %></td>
+											    <td><%out.print(SistemaController.mascaraMoeda(app.getList().get(i).getPrestacao()).equals(",00")||SistemaController.mascaraMoeda(app.getList().get(i).getPrestacao()).equals("NaN")?"0,00":SistemaController.mascaraMoeda(app.getList().get(i).getPrestacao())); %></td>
 											    <td><%out.print(SistemaController.mascaraMoeda(app.getList().get(i).getBalao()).equals(",00")?"0,00": SistemaController.mascaraMoeda(app.getList().get(i).getBalao())); %></td>
 											    <td><%out.print(SistemaController.mascaraMoeda(app.getList().get(i).getJuro())); %></td>
-											    <td><%out.print(SistemaController.mascaraMoeda(app.getList().get(i).getAmortizacao())); %></td>
+											    <td><%out.print(SistemaController.mascaraMoeda(app.getList().get(i).getAmortizacao()).equals(",00")||SistemaController.mascaraMoeda(app.getList().get(i).getAmortizacao()).equals("NaN")?"0,00":SistemaController.mascaraMoeda(app.getList().get(i).getAmortizacao())); %></td>
 											    <td><%if((app.getList().get(i).getValorEmprestFinac() < app.getList().get(i).getAuxilio().getIntAux()) 
 											    		|| (app.getList().get(i).getValorEmprestFinac() > app.getList().get(i).getAuxilio().getDoubleAux())){
 											    	out.print(SistemaController.mascaraMoeda(app.getList().get(i).getValorEmprestFinac()));}

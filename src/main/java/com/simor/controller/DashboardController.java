@@ -114,7 +114,7 @@ public class DashboardController {
 
 			dashboardModel.setPrazo(
 					Integer.parseInt(SistemaController.isNullOrEmpty(this.request.getParameter("prazo").trim())));
-			
+
 			dashboardModel.setDataContratacao(Date.valueOf(this.request.getParameter("data_contratacao").trim()));
 
 			dashboardModel.setDataPrimeiraParcela(Date.valueOf(this.request.getParameter("ultima_parcela").trim()));
@@ -128,16 +128,17 @@ public class DashboardController {
 
 			dashboardModel.setJuroAtraso(Double.parseDouble(SistemaController
 					.cleanTax(SistemaController.isNullOrEmpty(this.request.getParameter("juro_atraso").trim()))));
-			
-			
-			dashboardModel.setPeriodicidadeBalao(Integer.parseInt(SistemaController.isNullOrEmpty(this.request.getParameter("periodo_balao").trim())));
+
+			dashboardModel.setPeriodicidadeBalao(Integer
+					.parseInt(SistemaController.isNullOrEmpty(this.request.getParameter("periodo_balao").trim())));
 			dashboardModel.setQuantBalao(Integer.parseInt(SistemaController
 					.cleanInt(SistemaController.isNullOrEmpty(this.request.getParameter("quant_balao").trim()))));
 			dashboardModel.setValorBalao(Double.parseDouble(SistemaController
 					.cleanTax(SistemaController.isNullOrEmpty(this.request.getParameter("valor_balao").trim()))));
-			
+
 			dashboardModel.setCarencia(Integer.parseInt(SistemaController
 					.cleanInt(SistemaController.isNullOrEmpty(this.request.getParameter("carencia").trim()))));
+			dashboardModel.setTipoCarencia(this.request.getParameter("tipo_carencia").trim());
 		}
 		return dashboardModel;
 	}
