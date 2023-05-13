@@ -214,7 +214,6 @@
 						</div>
 					</form>
 					<div class="tabela">
-					    <!-- <h4>Lista de resultados</h4> -->
 						<div>
 							<table>
 								<thead>
@@ -225,24 +224,12 @@
 										<td><div>
 												Vencimento
 											</div></td>
-										<td><div>
-												Prestação
-											</div></td>
-										<td><div>
-												Balcão
-											</div></td>
-										<td><div>
-												Juros
-											</div></td>
-										<td><div>
-												Amortização
-											</div></td>
-										<td><div>
-												Saldo Devedor
-											</div></td>
-										<td><div>
-												Índice
-											</div></td>
+										<td>Prestação</td>
+										<td>Balcão</td>
+										<td>Juros</td>
+										<td>Amortização</td>
+										<td>Saldo Devedor</td>
+										<td>Índice</td>
 										<!-- <td><div>
 												Actualização mon.<i class="fa-solid fa-arrow-down-a-z"></i>
 											</div></td>
@@ -252,15 +239,9 @@
 										<!-- <td><div>
 												Pagamento<i class="fa-solid fa-arrow-down-a-z"></i>
 											</div></td> -->
-										<td><div>
-												Multa
-											</div></td>
-										<td><div>
-												Jur. atraso
-											</div></td>
-										<td><div>
-												Enc. Totais
-											</div></td>
+										<td>Multa</td>
+										<td>Jur. atraso</td>
+										<td>Enc. Totais</td>
 									</tr>
 								</thead>
 								<tbody>

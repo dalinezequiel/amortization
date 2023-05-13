@@ -71,7 +71,7 @@
 						<p>Usuário ou Senha incorrectos!</p>
 					</div>
 					<div>
-						<button name="login" value="teste">Log in</button><!-- onclick='this.form.action="page/home.jsp"' -->
+						<button name="login" value="teste">Log in</button>
 					</div>
 					<div class="p-2-2-1">
 						<div>

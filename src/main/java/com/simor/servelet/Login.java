@@ -52,18 +52,18 @@ public class Login extends HttpServlet {
 			if ((!contaModel.getUsuario().isEmpty() && contaModel.getUsuario() != null)
 					&& (!contaModel.getEmail().isEmpty() && contaModel.getEmail() != null)) {
 				transit.setTransit(contaModel.getEmail());
-				AccountDAO.transit(transit);
+				AccountDAO.updateTransit(transit);
 
 			} else if (!contaModel.getUsuario().isEmpty() && contaModel.getUsuario() != null) {
 				transit.setTransit(contaModel.getUsuario());
-				AccountDAO.transit(transit);
+				AccountDAO.updateTransit(transit);
 
 			} else if (!contaModel.getEmail().isEmpty() && contaModel.getEmail() != null) {
 				transit.setTransit(contaModel.getEmail());
-				AccountDAO.transit(transit);
+				AccountDAO.updateTransit(transit);
 			} else {
 				transit.setTransit("user.default");
-				AccountDAO.transit(transit);
+				AccountDAO.updateTransit(transit);
 			}
 			
 			response.sendRedirect("page/home.jsp");

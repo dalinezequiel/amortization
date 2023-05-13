@@ -65,9 +65,9 @@
 				</div>
 				<div class="config">
 					<div class="butoe">
-						<button>Database</button>
-						<button>User</button>
-						<button>Help And Support</button>
+						<button>Minha Conta</button>
+						<!-- <button>User</button> -->
+						<button>Ajuda e Suporte</button>
 					</div>
 					<div class="info">
 						<div class="in-1">

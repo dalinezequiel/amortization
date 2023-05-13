@@ -101,21 +101,6 @@ public class AccountDAO {
 		return false;
 	}
 
-	// SALVAR DADOS TRANSITORIOS
-	public static boolean transit(TransitModel model) {
-		try {
-			String SQL_INSERT_QUERY = "INSERT INTO transit(transit) VALUES(?)";
-			con = ConnectionDAO.getConnection();
-			pst = con.prepareStatement(SQL_INSERT_QUERY);
-			pst.setString(1, model.getTransit());
-			pst.execute();
-			return true;
-		} catch (SQLException e) {
-			System.out.println("Ocorreu um erro!\n" + e.getMessage());
-		}
-		return false;
-	}
-
 	// SELECIONAR OS DADOS TRANSITÓRIOS
 	public static TransitModel userTransit() {
 		try {
@@ -129,23 +114,28 @@ public class AccountDAO {
 				transitModel.setIdTransit(rs.getInt("id_transit"));
 				transitModel.setTransit(rs.getString("transit"));
 			}
-			deleteTransit();
+			//deleteTransit();
 
 		} catch (SQLException e) {
 			System.out.println("Ocorreu um erro!\n" + e.getMessage());
 		}
 		return transitModel;
 	}
-
-	// DELETAR DADOS TRANSITÓRIOS (TEMPORÁRIOS)
-	public static boolean deleteTransit() {
+	
+	// ACTUALIZAR DADOS TRANSITÓRIOS (TEMPORÁRIOS)
+	public static boolean updateTransit(TransitModel model) {
 		try {
-			String SQL_DELETE_QUERY = "DELETE FROM transit";
+			String SQL_UPDATE_QUERY = "UPDATE transit SET transit = ? WHERE id_transit = 1";
 			con = ConnectionDAO.getConnection();
-			pst = con.prepareStatement(SQL_DELETE_QUERY);
+			pst = con.prepareStatement(SQL_UPDATE_QUERY);
+			pst.setString(1, model.getTransit());
+
 			pst.executeUpdate();
 			pst.close();
+			con.close();
+
 			return true;
+
 		} catch (SQLException e) {
 			System.out.println("Ocorreu um erro!\n" + e.getMessage());
 		}
@@ -175,15 +165,5 @@ public class AccountDAO {
 			System.out.println("Ocorreu um erro!\n" + e.getMessage());
 		}
 		return false;
-	}
-
-	public static void main(String[] args) {
-		ContaModel c = new ContaModel();
-		c.setEmail("marcia.pedro@gmail.com");
-		c.setUsuario("marcia.pedo");
-		// c.setSenha("marcia2023");
-		System.out.println(AccountDAO.userTransit().getIdTransit());
-		System.out.println(AccountDAO.userTransit().getTransit());
-		// System.out.println(AccountDAO.recovery(c));
 	}
 }

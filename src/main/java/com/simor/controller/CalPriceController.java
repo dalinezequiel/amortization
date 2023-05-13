@@ -63,6 +63,36 @@ public class CalPriceController {
 	}
 
 	// ARRAYLIST DO RESULTADOS DO CALCULO
+//	public ArrayList<CalculoModel> listaCalPriceModel() {
+//		listaPrice = new ArrayList<CalculoModel>();
+//		if (this.dashboardModel != null) {
+//			calculoModel.setValorEmprestFinac(this.dashboardModel.getValorEmprestFinancia());
+//			calculoModel.setPrestacao(this.getCalculoDePrestacao());
+//			calculoModel.setJuroInicial(this.getTaxaPriceCalculado());
+//			calculoModel.setDataVencimento(this.dashboardModel.getDataPrimeiraParcela());
+//
+//			for (int i = 0; i < this.dashboardModel.getPrazo(); i++) {
+//				calculo = new CalculoModel();
+//				calculoModel.setJuro(calculoModel.getJuroInicial() * calculoModel.getValorEmprestFinac());
+//				calculoModel.setAmortizacao(calculoModel.getPrestacao() - calculoModel.getJuro());
+//				calculoModel.setValorEmprestFinac(calculoModel.getValorEmprestFinac() - calculoModel.getAmortizacao());
+//				calculo.setPrestacao(calculoModel.getPrestacao());
+//				calculo.setJuro(calculoModel.getJuro());
+//				calculo.setAmortizacao(calculoModel.getAmortizacao());
+//				calculo.setValorEmprestFinac(calculoModel.getValorEmprestFinac());
+//				calculo.setDataVencimento(SistemaController.listaDataVencimento(
+//						SistemaController.getFormatedDate(String.valueOf(calculoModel.getDataVencimento())),
+//						this.dashboardModel.getPrazo()).get(i).getDataVencimento());
+//				aux = new Auxilio();
+//				aux.setDoubleAux(0.00001);
+//				aux.setIntAux(0);
+//				calculo.setAuxilio(aux);
+//				listaPrice.add(calculo);
+//			}
+//		}
+//		return listaPrice;
+//	}
+	int car=2;
 	public ArrayList<CalculoModel> listaCalPriceModel() {
 		listaPrice = new ArrayList<CalculoModel>();
 		if (this.dashboardModel != null) {
@@ -70,27 +100,103 @@ public class CalPriceController {
 			calculoModel.setPrestacao(this.getCalculoDePrestacao());
 			calculoModel.setJuroInicial(this.getTaxaPriceCalculado());
 			calculoModel.setDataVencimento(this.dashboardModel.getDataPrimeiraParcela());
-
+			
 			for (int i = 0; i < this.dashboardModel.getPrazo(); i++) {
-				calculo = new CalculoModel();
-				calculoModel.setJuro(calculoModel.getJuroInicial() * calculoModel.getValorEmprestFinac());
-				calculoModel.setAmortizacao(calculoModel.getPrestacao() - calculoModel.getJuro());
-				calculoModel.setValorEmprestFinac(calculoModel.getValorEmprestFinac() - calculoModel.getAmortizacao());
-				calculo.setPrestacao(calculoModel.getPrestacao());
-				calculo.setJuro(calculoModel.getJuro());
-				calculo.setAmortizacao(calculoModel.getAmortizacao());
-				calculo.setValorEmprestFinac(calculoModel.getValorEmprestFinac());
-				//calculo.setDataVencimento(calculoModel.getDataVencimento());
-				calculo.setDataVencimento(SistemaController.listaDataVencimento(
-						SistemaController.getFormatedDate(String.valueOf(calculoModel.getDataVencimento())),
-						this.dashboardModel.getPrazo()).get(i).getDataVencimento());
-				aux = new Auxilio();
-				aux.setDoubleAux(0.00001);
-				aux.setIntAux(0);
-				calculo.setAuxilio(aux);
-				listaPrice.add(calculo);
+				if((i+1) > car) {
+					calculo = new CalculoModel();
+					calculoModel.setJuro(calculoModel.getJuroInicial() * calculoModel.getValorEmprestFinac());
+					calculoModel.setAmortizacao(calculoModel.getPrestacao() - calculoModel.getJuro());
+					calculoModel.setValorEmprestFinac(calculoModel.getValorEmprestFinac() - calculoModel.getAmortizacao());
+					calculo.setPrestacao(calculoModel.getPrestacao());
+					calculo.setJuro(calculoModel.getJuro());
+					calculo.setAmortizacao(calculoModel.getAmortizacao());
+					calculo.setValorEmprestFinac(calculoModel.getValorEmprestFinac());
+					calculo.setDataVencimento(SistemaController.listaDataVencimento(
+							SistemaController.getFormatedDate(String.valueOf(calculoModel.getDataVencimento())),
+							this.dashboardModel.getPrazo()).get(i).getDataVencimento());
+					aux = new Auxilio();
+					aux.setDoubleAux(0.00001);
+					aux.setIntAux(0);
+					calculo.setAuxilio(aux);
+					listaPrice.add(calculo);
+					
+				}else {
+					calculo = new CalculoModel();
+					calculoModel.setPrestacao(0);
+					calculo.setJuro(calculoModel.getJuro());
+					calculo.setAmortizacao(calculoModel.getAmortizacao());
+					calculo.setValorEmprestFinac(calculoModel.getValorEmprestFinac());
+					calculo.setDataVencimento(SistemaController.listaDataVencimento(
+							SistemaController.getFormatedDate(String.valueOf(calculoModel.getDataVencimento())),
+							this.dashboardModel.getPrazo()).get(i).getDataVencimento());
+					
+					aux = new Auxilio();
+					aux.setDoubleAux(0.00001);
+					aux.setIntAux(0);
+					calculo.setAuxilio(aux);
+					listaPrice.add(calculo);
+
+				}
 			}
 		}
 		return listaPrice;
 	}
+	
+//	int car=4;
+//	public ArrayList<CalculoModel> listaCalGausModel() {
+//		listaGaus = new ArrayList<CalculoModel>();
+//		if (this.dashboardModel != null) {
+//			calculoModel.setValorEmprestFinac(this.dashboardModel.getValorEmprestFinancia());
+//			calculoModel.setPrestacao(this.getCalculoDePrestacao());
+//			calculoModel.setDataVencimento(this.dashboardModel.getDataPrimeiraParcela());
+//			
+//			//prazo-=car;
+//			this.dashboardModel.setPrazo(this.dashboardModel.getPrazo()-car);
+//			for (int i = 0; i < this.dashboardModel.getPrazo(); i++) {
+//				calculo = new CalculoModel();
+//				if((i+1) > car) {
+////					prazo-=car;
+////					calculo = new CalculoModel();
+//					calculoModel.setJuro(this.getCalculoJurosGaus(i, calculoModel.getValorEmprestFinac()));
+//					calculoModel.setAmortizacao(calculoModel.getPrestacao() - calculoModel.getJuro());
+//					calculoModel.setValorEmprestFinac(calculoModel.getValorEmprestFinac() - calculoModel.getAmortizacao());
+//					calculo.setPrestacao(calculoModel.getPrestacao());
+//					calculo.setJuro(calculoModel.getJuro());
+//					calculo.setAmortizacao(calculoModel.getAmortizacao());
+//					calculo.setValorEmprestFinac(calculoModel.getValorEmprestFinac());
+//					calculo.setDataVencimento(SistemaController.listaDataVencimento(
+//							SistemaController.getFormatedDate(String.valueOf(calculoModel.getDataVencimento())),
+//							this.dashboardModel.getPrazo()).get(i).getDataVencimento());
+//
+//					aux = new Auxilio();
+//					aux.setDoubleAux(0.00001);
+//					aux.setIntAux(0);
+//					calculo.setAuxilio(aux);
+//				}else {
+//					
+////					calculo = new CalculoModel();
+////					calculo.setPrestacao(0);
+//					
+//					calculoModel.setJuro(this.getCalculoJurosGaus(i, calculoModel.getValorEmprestFinac()));
+//					calculoModel.setAmortizacao(calculoModel.getPrestacao() - calculoModel.getJuro());
+//					calculoModel.setValorEmprestFinac(calculoModel.getValorEmprestFinac() - calculoModel.getAmortizacao());
+//					calculo.setPrestacao(0);
+//					calculo.setJuro(calculoModel.getJuro());
+//					calculo.setAmortizacao(calculoModel.getAmortizacao());
+//					calculo.setValorEmprestFinac(calculoModel.getValorEmprestFinac());
+//					calculo.setDataVencimento(SistemaController.listaDataVencimento(
+//							SistemaController.getFormatedDate(String.valueOf(calculoModel.getDataVencimento())),
+//							this.dashboardModel.getPrazo()).get(i).getDataVencimento());
+//
+//					aux = new Auxilio();
+//					aux.setDoubleAux(0.00001);
+//					aux.setIntAux(0);
+//					calculo.setAuxilio(aux);
+//				}
+//				listaGaus.add(calculo);
+//			}
+//		}
+//		return listaGaus;
+//	}
+
 }

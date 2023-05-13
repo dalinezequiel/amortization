@@ -8,17 +8,6 @@ window.addEventListener('load', function() {
 
 	/*balao_type[0].disabled = true;
 	balao_type[2].disabled = true;*/
-
-	/*if (cbo_tipo_balao[0].value == "Sem balões"){
-		periodo_balao[0].value = "";
-		quant_balao[0].value = "";
-		valor_balao[0].value = "";
-	}
-	
-	if (cbo_atraso[0].value != "Sim"){
-		input_atraso[0].value = "";
-		input_atraso[1].value = "";
-	}*/
 })
 
 //BLOQUEAR INPUTS ATRASO
@@ -52,13 +41,6 @@ cbo_tipo_balao[0].addEventListener('change', function() {
 				input_balao[i].style.backgroundColor = "#ffffff";
 				input_balao[i].readOnly = false;
 			}
-			/*if(select_amort[0].value=="PRICE"){
-				alert("PRICE");
-				balao_type[2].disabled=false;
-			}else if(select_amort[0].value=="SAC"){
-					alert("SAC");
-					balao_type[2].disabled=true;
-				}*/
 		}
 
 	} else {
@@ -154,11 +136,6 @@ window.addEventListener('load', function() {
 		quant_balao[0].value = "";
 		valor_balao[0].value = "";
 	}
-
-	/*if (cbo_atraso[0].value != "Sim"){
-		input_atraso[0].value = "";
-		input_atraso[1].value = "";
-	}*/
 })
 
 select_amort[0].addEventListener('change', function() {
@@ -185,8 +162,39 @@ const tipo_balao = document.getElementsByName("tipo_balao");
 const periodo_balao = document.getElementsByName("periodo_balao");
 const quant_balao = document.getElementsByName("quant_balao");
 const valor_balao = document.getElementsByName("valor_balao");
+const periodo_div=document.getElementsByClassName("periodo");
 
 periodo_balao[0].addEventListener('mouseleave', function() {
+	if (tipo_balao[0].value == "Balões e parcelas") {
+		if (input_cap_03[0].value != "" && periodo_balao[0].value != "") {
+			quant_balao[0].value = parseInt(parseInt(input_cap_03[0].value) / parseInt(periodo_balao[0].value)) + ",00";
+		} else {
+			quant_balao[0].value = "0,00";
+		}
+	}
+})
+
+quant_balao[0].addEventListener('mouseleave', function() {
+	if (tipo_balao[0].value == "Balões e parcelas") {
+		if (input_cap_03[0].value != "" && periodo_balao[0].value != "") {
+			quant_balao[0].value = parseInt(parseInt(input_cap_03[0].value) / parseInt(periodo_balao[0].value)) + ",00";
+		} else {
+			quant_balao[0].value = "0,00";
+		}
+	}
+})
+
+periodo_div[0].addEventListener('mouseleave', function() {
+	if (tipo_balao[0].value == "Balões e parcelas") {
+		if (input_cap_03[0].value != "" && periodo_balao[0].value != "") {
+			quant_balao[0].value = parseInt(parseInt(input_cap_03[0].value) / parseInt(periodo_balao[0].value)) + ",00";
+		} else {
+			quant_balao[0].value = "0,00";
+		}
+	}
+})
+
+periodo_div[1].addEventListener('mouseleave', function() {
 	if (tipo_balao[0].value == "Balões e parcelas") {
 		if (input_cap_03[0].value != "" && periodo_balao[0].value != "") {
 			quant_balao[0].value = parseInt(parseInt(input_cap_03[0].value) / parseInt(periodo_balao[0].value)) + ",00";

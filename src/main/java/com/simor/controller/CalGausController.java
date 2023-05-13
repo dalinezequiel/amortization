@@ -24,12 +24,6 @@ public class CalGausController {
 
 	public CalGausController(DashboardModel dashboardModel) {
 		super();
-//		dashboardModel = new DashboardModel();
-//		calculoModel = new CalculoModel();
-//		aux = new Auxilio();
-//		this.dashboardModel=dashboardModel;
-//		calculoModel.setPrestacao(this.getCalculoDePrestacao());
-//		System.out.println("Testo gaus: "+this.dashboardModel.getValorEmprestFinancia());
 	}
 
 	// DEVOLVE O OBJECTO CALCULO
@@ -47,22 +41,19 @@ public class CalGausController {
 		aux.adicionaDoubleAnyArray(0,
 				dashboardModel.getValorEmprestFinancia() * (this.getTaxaGausCalculado() * dashboardModel.getPrazo())
 						+ dashboardModel.getValorEmprestFinancia());
-
 		// SEGUNDO CALCÚLO
 		aux.adicionaDoubleAnyArray(1,
 				((this.getTaxaGausCalculado() * (dashboardModel.getPrazo() - aux.getIntAux()) / aux.getDoubleAux())
 						+ aux.getIntAux()) * dashboardModel.getPrazo());
-
 		// TERCEIRO CALCÚLO
 		aux.adicionaDoubleAnyArray(2, (aux.getDoubleAnyArray()[0] / aux.getDoubleAnyArray()[1]));
-
 		calculoModel.setPrestacao(aux.getDoubleAnyArray()[2]);
 		return calculoModel.getPrestacao();
 	}
 
 	// CALCULAR PRECENTUAL
 	public double getTaxaGausCalculado() {
-		return this.dashboardModel.getTaxa() / 100;
+		return this.dashboardModel.getTaxa() / 100; 
 	}
 
 	public double getCalculoJurosGaus(int index, double v) {
@@ -76,7 +67,6 @@ public class CalGausController {
 		aux.adicionaDoubleAnyArray(1, (aux.getIntAux() + (dashboardModel.getPrazo() - index))
 				* ((dashboardModel.getPrazo() - index) / aux.getDoubleAux()));
 		aux.adicionaDoubleAnyArray(2, (aux.getDoubleAnyArray()[0] / aux.getDoubleAnyArray()[1]));
-
 		return aux.getDoubleAnyArray()[2] * (dashboardModel.getPrazo() - index);
 	}
 
@@ -109,9 +99,5 @@ public class CalGausController {
 			}
 		}
 		return listaGaus;
-	}
-	public static void main(String[]args) {
-		//CalGausController cp=new CalGausController();
-		System.out.println("OLA MUNDO!!");
 	}
 }

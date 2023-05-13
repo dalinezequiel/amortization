@@ -28,9 +28,11 @@ public class Report extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	private Document document = null;
-	private PdfPTable header, body, bodyData = null;
+	private PdfPTable header, body, bodyData, body1, bodyData1, header1 = null;
 	private PdfPCell simor, sir, user, usrDate, finance, space = null;
 	private PdfPCell sistema, valor, taxa, prazo, prestacao = null;
+	private PdfPCell vencimento, prestaca,juro,amortizacao,saldoDevedor=null;
+
 	private float[] columnSize = { 190, 120, 100, 100, 160 };
 	private static Font normalFont12, boldTitleFont18, normalFont14 = null;
 
@@ -171,6 +173,7 @@ public class Report extends HttpServlet {
 			body.addCell(taxa);
 			body.addCell(prazo);
 			body.addCell(prestacao);
+			document.add(body);
 
 			bodyData = new PdfPTable(5);
 			bodyData.setTotalWidth(columnSize);
@@ -208,11 +211,142 @@ public class Report extends HttpServlet {
 			bodyData.addCell(taxa);
 			bodyData.addCell(prazo);
 			bodyData.addCell(prestacao);
+			document.add(bodyData);
+			
+			
+			
+			// BODY
+			header1 = new PdfPTable(1);
+			header1.setWidthPercentage(100);
+			header1.setHorizontalAlignment(Element.ALIGN_LEFT);
+			header1.setSpacingBefore(0f);
+			header1.setSpacingAfter(0f);
+			
+			finance = new PdfPCell(new Paragraph("Dados do Resultantes", normalFont14));
+			finance.setHorizontalAlignment(Element.ALIGN_LEFT);
+			finance.setBorderWidth(0.0f);
+			finance.setPaddingTop(20);
+			finance.setPaddingBottom(6);
+			finance.setPaddingLeft(0);
+			header1.addCell(finance);
+			document.add(header1);
+						body1 = new PdfPTable(5);
+						columnSize= new float[5];
+						columnSize[0]=130;
+						columnSize[1]=130;
+						columnSize[2]=120;
+						columnSize[3]=130;
+						columnSize[4]=160;
+						body1.setTotalWidth(columnSize);
+						body1.setWidthPercentage(100);
+						body1.setSpacingBefore(0f);
+						body1.setSpacingAfter(0f);
+
+						// BODY STRUCTURE
+						vencimento = new PdfPCell(new Paragraph("Vencimento", normalFont12));
+						prestaca = new PdfPCell(new Paragraph("Prestação", normalFont12));
+						juro = new PdfPCell(new Paragraph("Juros", normalFont12));
+						amortizacao = new PdfPCell(new Paragraph("Amortização", normalFont12));
+						saldoDevedor = new PdfPCell(new Paragraph("Saldo Devedor", normalFont12));
+
+						vencimento.setPadding(8.0f);
+						prestaca.setPadding(8.0f);
+						juro.setPadding(8.0f);
+						amortizacao.setPadding(8.0f);
+						saldoDevedor.setPadding(8.0f);
+
+						vencimento.setBorderWidth(0.01f);
+						prestaca.setBorderWidth(0.01f);
+						juro.setBorderWidth(0.01f);
+						amortizacao.setBorderWidth(0.01f);
+						saldoDevedor.setBorderWidth(0.01f);
+
+						vencimento.setBorderColor(BaseColor.GRAY);
+						prestaca.setBorderColor(BaseColor.GRAY);
+						juro.setBorderColor(BaseColor.GRAY);
+						amortizacao.setBorderColor(BaseColor.GRAY);
+						saldoDevedor.setBorderColor(BaseColor.GRAY);
+
+						vencimento.setBackgroundColor(BaseColor.LIGHT_GRAY);
+						prestaca.setBackgroundColor(BaseColor.LIGHT_GRAY);
+						juro.setBackgroundColor(BaseColor.LIGHT_GRAY);
+						amortizacao.setBackgroundColor(BaseColor.LIGHT_GRAY);
+						saldoDevedor.setBackgroundColor(BaseColor.LIGHT_GRAY);
+
+						vencimento.setHorizontalAlignment(Element.ALIGN_LEFT);
+						prestaca.setHorizontalAlignment(Element.ALIGN_RIGHT);
+						juro.setHorizontalAlignment(Element.ALIGN_RIGHT);
+						amortizacao.setHorizontalAlignment(Element.ALIGN_RIGHT);
+						saldoDevedor.setHorizontalAlignment(Element.ALIGN_RIGHT);
+
+						body1.addCell(vencimento);
+						body1.addCell(prestaca);
+						body1.addCell(juro);
+						body1.addCell(amortizacao);
+						body1.addCell(saldoDevedor);
+						document.add(body1);
+
+						bodyData1 = new PdfPTable(5);
+						bodyData1.setTotalWidth(columnSize);
+						bodyData1.setWidthPercentage(100);
+						bodyData1.setSpacingBefore(0f);
+						bodyData1.setSpacingAfter(0f);
+
+						// BODY DATA
+						sistema = new PdfPCell(new Paragraph("12/05/2023", normalFont12));
+						valor = new PdfPCell(new Paragraph("R$ 1.000,00", normalFont12));
+						taxa = new PdfPCell(new Paragraph("R$ 1.000,00", normalFont12));
+						prazo = new PdfPCell(new Paragraph("R$ 1.000,00", normalFont12));
+						prestacao = new PdfPCell(new Paragraph("R$ 1.000,00", normalFont12));
+
+						sistema.setPadding(8.0f);
+						valor.setPadding(8.0f);
+						taxa.setPadding(8.0f);
+						prazo.setPadding(8.0f);
+						prestacao.setPadding(8.0f);
+						
+						sistema.setBorderWidthLeft(0f);
+						sistema.setBorderWidthTop(0f);
+						sistema.setBorderWidthBottom(0f);
+						
+						prestacao.setBorderWidthRight(0f);
+						prestacao.setBorderWidthTop(0f);
+						prestacao.setBorderWidthBottom(0f);
+						
+						valor.setBorderWidthBottom(0f);
+						taxa.setBorderWidthBottom(0f);
+						prazo.setBorderWidthBottom(0f);
+
+						sistema.setBorderColor(BaseColor.GRAY);
+						valor.setBorderColor(BaseColor.GRAY);
+						taxa.setBorderColor(BaseColor.GRAY);
+						prazo.setBorderColor(BaseColor.GRAY);
+						prestacao.setBorderColor(BaseColor.GRAY);
+
+						sistema.setHorizontalAlignment(Element.ALIGN_LEFT);
+						valor.setHorizontalAlignment(Element.ALIGN_RIGHT);
+						taxa.setHorizontalAlignment(Element.ALIGN_RIGHT);
+						prazo.setHorizontalAlignment(Element.ALIGN_RIGHT);
+						prestacao.setHorizontalAlignment(Element.ALIGN_RIGHT);
+
+						bodyData1.addCell(sistema);
+						bodyData1.addCell(valor);
+						bodyData1.addCell(taxa);
+						bodyData1.addCell(prazo);
+						bodyData1.addCell(prestacao);
+						document.add(bodyData1);
+
+//						document.add(body1);
+//						document.add(bodyData1);
+			
+			//this.prestacao(document, request, response);
 
 			// FOOTER
 			this.onEndPage(writer, document);
-			document.add(body);
-			document.add(bodyData);
+//			document.add(body);
+//			document.add(bodyData);
+//			document.add(body1);
+//			document.add(bodyData1);
 			document.close();
 
 		} catch (Exception ex) {
@@ -220,6 +354,116 @@ public class Report extends HttpServlet {
 			document.close();
 		}
 	}
+	
+	public void prestacao(Document document, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		document = new Document(PageSize.A4, 50f, 50f, 50f, 50f);
+		normalFont12 = new Font(Font.FontFamily.UNDEFINED, 12, Font.NORMAL);
+		boldTitleFont18 = new Font(Font.FontFamily.UNDEFINED, 18, Font.BOLD);
+		normalFont14 = new Font(Font.FontFamily.UNDEFINED, 14, Font.NORMAL);
+
+		try {
+//			response.setContentType("application/pdf");
+//			response.addHeader("Content-Dispostion", "inline; filename=amortizacao.pdf");
+//
+//			// HEADER
+			PdfWriter.getInstance(document, response.getOutputStream());
+			document.open();
+			
+			// BODY
+			body1 = new PdfPTable(5);
+			body1.setTotalWidth(columnSize);
+			body1.setWidthPercentage(100);
+			body1.setSpacingBefore(0f);
+			body1.setSpacingAfter(0f);
+
+			// BODY STRUCTURE
+			vencimento = new PdfPCell(new Paragraph("Vencimento", normalFont12));
+			prestaca = new PdfPCell(new Paragraph("Prestação", normalFont12));
+			juro = new PdfPCell(new Paragraph("Juros", normalFont12));
+			amortizacao = new PdfPCell(new Paragraph("Amortização", normalFont12));
+			saldoDevedor = new PdfPCell(new Paragraph("Saldo Devedor", normalFont12));
+
+			vencimento.setPadding(8.0f);
+			prestaca.setPadding(8.0f);
+			juro.setPadding(8.0f);
+			amortizacao.setPadding(8.0f);
+			saldoDevedor.setPadding(8.0f);
+
+			vencimento.setBorderWidth(0.01f);
+			prestaca.setBorderWidth(0.01f);
+			juro.setBorderWidth(0.01f);
+			amortizacao.setBorderWidth(0.01f);
+			saldoDevedor.setBorderWidth(0.01f);
+
+			vencimento.setBorderColor(BaseColor.GRAY);
+			prestaca.setBorderColor(BaseColor.GRAY);
+			juro.setBorderColor(BaseColor.GRAY);
+			amortizacao.setBorderColor(BaseColor.GRAY);
+			saldoDevedor.setBorderColor(BaseColor.GRAY);
+
+			vencimento.setBackgroundColor(BaseColor.LIGHT_GRAY);
+			prestaca.setBackgroundColor(BaseColor.LIGHT_GRAY);
+			juro.setBackgroundColor(BaseColor.LIGHT_GRAY);
+			amortizacao.setBackgroundColor(BaseColor.LIGHT_GRAY);
+			saldoDevedor.setBackgroundColor(BaseColor.LIGHT_GRAY);
+
+			vencimento.setHorizontalAlignment(Element.ALIGN_LEFT);
+			prestaca.setHorizontalAlignment(Element.ALIGN_RIGHT);
+			juro.setHorizontalAlignment(Element.ALIGN_RIGHT);
+			amortizacao.setHorizontalAlignment(Element.ALIGN_RIGHT);
+			saldoDevedor.setHorizontalAlignment(Element.ALIGN_RIGHT);
+
+			body1.addCell(vencimento);
+			body1.addCell(prestaca);
+			body1.addCell(juro);
+			body1.addCell(amortizacao);
+			body1.addCell(saldoDevedor);
+
+			bodyData1 = new PdfPTable(5);
+			bodyData1.setTotalWidth(columnSize);
+			bodyData1.setWidthPercentage(100);
+			bodyData1.setSpacingBefore(0f);
+			bodyData1.setSpacingAfter(0f);
+
+			// BODY DATA
+			sistema = new PdfPCell(new Paragraph("MAJS/ Hamburgues", normalFont12));
+			valor = new PdfPCell(new Paragraph("R$ 1.000,00", normalFont12));
+			taxa = new PdfPCell(new Paragraph("1,00%", normalFont12));
+			prazo = new PdfPCell(new Paragraph("12,00", normalFont12));
+			prestacao = new PdfPCell(new Paragraph("12/05/2023", normalFont12));
+
+			sistema.setPadding(8.0f);
+			valor.setPadding(8.0f);
+			taxa.setPadding(8.0f);
+			prazo.setPadding(8.0f);
+			prestacao.setPadding(8.0f);
+
+			sistema.setBorderColor(BaseColor.GRAY);
+			valor.setBorderColor(BaseColor.GRAY);
+			taxa.setBorderColor(BaseColor.GRAY);
+			prazo.setBorderColor(BaseColor.GRAY);
+			prestacao.setBorderColor(BaseColor.GRAY);
+
+			sistema.setHorizontalAlignment(Element.ALIGN_LEFT);
+			valor.setHorizontalAlignment(Element.ALIGN_RIGHT);
+			taxa.setHorizontalAlignment(Element.ALIGN_RIGHT);
+			prazo.setHorizontalAlignment(Element.ALIGN_RIGHT);
+			prestacao.setHorizontalAlignment(Element.ALIGN_RIGHT);
+
+			bodyData1.addCell(sistema);
+			bodyData1.addCell(valor);
+			bodyData1.addCell(taxa);
+			bodyData1.addCell(prazo);
+			bodyData1.addCell(prestacao);
+
+			document.add(body1);
+			document.add(bodyData1);
+
+		} catch (Exception ex) {
+			System.out.println(ex.getMessage());
+		}
+	}
+
 
 	public void onEndPage(PdfWriter writer, Document document) {
 		ColumnText.showTextAligned(writer.getDirectContent(), Element.ALIGN_CENTER,
