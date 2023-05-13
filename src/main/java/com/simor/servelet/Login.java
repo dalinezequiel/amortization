@@ -66,7 +66,7 @@ public class Login extends HttpServlet {
 				AccountDAO.updateTransit(transit);
 			}
 			
-			response.sendRedirect("page/home.jsp");
+			response.sendRedirect("page/panel.jsp");
 		} else {
 			response.sendRedirect("index.jsp");
 		}

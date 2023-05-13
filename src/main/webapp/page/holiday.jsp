@@ -26,16 +26,16 @@
 				<ul class="u1">
 					<li><div class="lg">
 							<i class="fa-solid fa-chart-pie"></i>
-						</div> <a href="home.jsp">Dashboard</a></li>
+						</div> <a href="panel.jsp">Dashboard</a></li>
 					<li><div class="lg">
 							<i class="fa-solid fa-calculator"></i>
-						</div> <a href="calculadora.jsp">Calcular VP</a></li>
+						</div> <a href="calculator.jsp">Calcular VP</a></li>
 					<li><div class="lg">
 							<i class="fa-solid fa-calendar-days"></i>
 						</div> <a href="holiday.jsp">Feriados</a></li>
 					<li><div class="lg">
 							<i class="fa-solid fa-money-bill-transfer"></i>
-						</div> <a href="compare.jsp">Comparador</a></li>
+						</div> <a href="comparator.jsp">Comparador</a></li>
 				</ul>
 			</div>
 			<div>
@@ -158,6 +158,6 @@
 			</div> -->
 		</div>
 	</div>
-	<script src="../script/feriado.js"></script>
+	<script src="../script/holiday.js"></script>
 </body>
 </html>

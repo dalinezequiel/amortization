@@ -6,8 +6,8 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>SIMOR - Sistema de Amortização</title>
-<link rel="stylesheet" type="text/css" href="../css/index.css">
-<link rel="stylesheet" type="text/css" href="../css/configuracao.css">
+<link rel="stylesheet" type="text/css" href="../css/panel.css">
+<link rel="stylesheet" type="text/css" href="../css/configuration.css">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
 </head>
@@ -21,23 +21,23 @@
 				<ul class="u1">
 					<li><div class="lg">
 							<i class="fa-solid fa-chart-pie"></i>
-						</div> <a href="home.jsp">Dashboard</a></li>
+						</div> <a href="panel.jsp">Dashboard</a></li>
 					<li><div class="lg">
 							<i class="fa-solid fa-calculator"></i>
-						</div> <a href="calculadora.jsp">Calcular VP</a></li>
+						</div> <a href="calculator.jsp">Calcular VP</a></li>
 					<li><div class="lg">
 							<i class="fa-solid fa-calendar-days"></i>
 						</div> <a href="holiday.jsp">Feriados</a></li>
 					<li><div class="lg">
 							<i class="fa-solid fa-money-bill-transfer"></i>
-						</div> <a href="compare.jsp">Comparador</a></li>
+						</div> <a href="comparator.jsp">Comparador</a></li>
 				</ul>
 			</div>
 			<div>
 				<ul class="u2">
 					<li><div class="lg">
 							<i class="fa-solid fa-gear"></i>
-						</div> <a href="configuracao.jsp">Configuração</a>
+						</div> <a href="configuration.jsp">Configuração</a>
 					<li><div class="lg">
 							<i class="fa-sharp fa-solid fa-right-to-bracket"></i>
 						</div> <a href="../index.jsp">Sair Sistema</a></li>
@@ -128,6 +128,6 @@
 			</div>
 		</div>
 	</div>
-	<script type="text/javascript" src="../script/configuracao.js"></script>
+	<script type="text/javascript" src="../script/configuration.js"></script>
 </body>
 </html>

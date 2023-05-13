@@ -5,7 +5,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>SIMOR - Sistema de Amortização</title>
-<link rel="stylesheet" type="text/css" href="css/login.css">
+<link rel="stylesheet" type="text/css" href="css/index.css">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
 </head>

@@ -122,7 +122,7 @@ public class CalPriceController {
 					
 				}else {
 					calculo = new CalculoModel();
-					calculoModel.setPrestacao(0);
+//					calculoModel.setPrestacao(0);
 					calculo.setJuro(calculoModel.getJuro());
 					calculo.setAmortizacao(calculoModel.getAmortizacao());
 					calculo.setValorEmprestFinac(calculoModel.getValorEmprestFinac());

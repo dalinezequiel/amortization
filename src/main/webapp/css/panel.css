@@ -1,0 +1,504 @@
+@charset "UTF-8";
+
+@import
+	url('https://fonts.googleapis.com/css2?family=Montserrat:wght@900&family=Mulish:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;0,1000;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900;1,1000&family=Oswald:wght@200;300;400;500;600;700&family=Oxygen:wght@300;400;700&family=Poppins:wght@100;200;300;400&family=Roboto:wght@900&display=swap')
+	;
+
+* {
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
+	text-decoration: none;
+	font-family: Mulish, sans-serif;
+	box-sizing: border-box;
+}
+
+html, body {
+	height: 100%;
+}
+
+.parent {
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	flex-direction: row;
+}
+
+.navegacao {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	background-color: #286d4b;
+	height: 100%;
+}
+
+.usr_name p{
+	color: #286d4b;
+}
+
+.navegacao ul li {
+	padding: 15px 10px;
+	width: 240px;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+.navegacao ul li i {
+	font-size: 20px;
+	color: #f7f7f7;
+}
+
+.navegacao .u1 li:nth-child(1) {
+	background-color: #1e804f;
+}
+
+.navegacao ul li a {
+	font-size: 16px;
+	color: #f7f7f7;
+	padding-left: 10px;
+	width: 100%;
+}
+
+.navegacao ul li:hover {
+	background-color: #1e804f;
+}
+
+.logo {
+	padding: 11px 0px;
+	padding-left: 10px;
+	height: 60px;
+	border-bottom: 1px solid #1e804f;
+	box-shadow: -3px 10px 10px #2b7450;
+}
+
+.logo a {
+	color: #f7f7f7;
+	font-weight: 900;
+}
+
+.navegacao .lg {
+	width: 30px;
+}
+
+.menu {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.conta {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+	background-color: #ffffff;
+	padding: 10px 10px 10px 10px;
+	height: 61px;
+	box-shadow: 3px 2px 5px #f7f7f7;
+}
+
+.conta .select {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+}
+
+.conta .select i {
+	padding-right: 5px;
+}
+
+.conta i {
+	font-size: 28px;
+	color: #14854c;
+}
+
+.usuario {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+.usuari {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	padding-right: 50px;
+}
+
+.usuari img {
+	background-color: #DBEDEF;
+	border-radius: 50%;
+	cursor: pointer;
+	padding: 3px; /*2px*/
+	transition: 1s;
+}
+
+.usuari img:hover {
+	background-color: #EBEDEF;
+	border-radius: 50%;
+	cursor: pointer;
+	padding: 3px;
+	transition: 1s;
+}
+
+.opcao {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+.opcao .execute img {
+	background-color: #DBEDEF;
+	border-radius: 5px;
+	cursor: pointer;
+	padding: 1px;
+	transition: 0.2s;
+}
+
+.opcao .execute img:hover {
+	background-color: #C9E4E7;
+	transition: 0.2s;
+}
+
+.opcao .executa img{
+	background-color: #DBEDEF;
+	border-radius: 5px;
+	cursor: pointer;
+	padding: 5px;
+	transition: 0.2s;
+}
+
+.opcao .executa img:hover{
+	background-color: #C9E4E7;
+	transition: 0.2s;
+}
+
+
+.usuario div:nth-child(2) {
+	padding-left: 5px;
+}
+
+/**/
+.visual {
+	display: flex;
+	flex-direction: row;
+	padding: 10px;
+	justify-content: space-between;
+}
+
+.visual .vi {
+	width: 265px;
+	height: 110px;
+	border: none;
+	border-radius: 5px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	padding: 5px 10px;
+	box-shadow: 0px 0px 10px #f7f7f7;
+}
+
+.vi:nth-child(1) {
+	border-left: 5px solid #14854c;
+}
+
+.vi:nth-child(2) {
+	border-left: 5px solid #c64b4b;
+}
+
+.vi:nth-child(3) {
+	border-left: 5px solid #3d4a65;
+}
+
+.vi:nth-child(4) {
+	border-left: 5px solid #6382ae;
+}
+
+.cap-click {
+	display: flex;
+	flex-direction: row;
+	padding: 0px 10px;
+}
+
+.tabela {
+	padding: 0px 10px 10px 10px;
+}
+
+.tabela h4 {
+	padding-bottom: 5px;
+}
+
+.camp {
+	font-size: 15px;
+}
+
+table {
+	border-collapse: collapse;
+	width: 100%;
+	border-radius: 5px 5px 0px 0px;
+	font-size: 15px;
+}
+table thead{
+	background-color: #FEFEFE;
+	box-shadow: 3px 2px 5px #f7f7f7;
+}
+
+table thead tr td {
+	padding: 6px 0px;
+	font-weight: bold;
+	flex-direction: row;
+	text-align:right;
+}
+
+table thead tr td:nth-child(3),
+table thead tr td:nth-child(4),
+table thead tr td:nth-child(5),
+table thead tr td:nth-child(6),
+table thead tr td:nth-child(7),
+table thead tr td:nth-child(8),
+table thead tr td:nth-child(9),
+table thead tr td:nth-child(10)
+table thead tr td:nth-child(11){
+	padding: 6px;
+}
+
+table thead tr td div {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+table tbody tr td {
+	padding: 3px 0px;
+	color: #2E4053;
+}
+
+table tbody tr td:nth-child(3),
+table tbody tr td:nth-child(4),
+table tbody tr td:nth-child(5),
+table tbody tr td:nth-child(6),
+table tbody tr td:nth-child(7),
+table tbody tr td:nth-child(8),
+table tbody tr td:nth-child(9),
+table tbody tr td:nth-child(10),
+table tbody tr td:nth-child(11){
+	padding: 3px 6px;
+	text-align:right;
+}
+
+.rodape {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+	background-color: #f7f7f7;
+	padding: 5px 15px 5px 10px;
+	margin:0px 10px;
+}
+
+.camp .cap-05 div {
+	display: flex;
+}
+
+.camp .cap-05 a {
+	padding: 10px 67px;
+	font-size: 16px;
+	border: none;
+	cursor: pointer;
+	border-radius: 3px;
+	height: 50px;
+	width: 80px;
+	margin-left: 20px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.cap-click {
+	display: flex;
+	flex-direction: row;
+	padding-top: 10px;
+	/*justify-content:space-between;*/
+	/*width:600px;*/
+}
+
+.cap-click button {
+	padding: 5px 67px;
+	font-size: 14px;
+	border: none;
+	cursor: pointer;
+	border-radius: 3px;
+	height: 35px;
+	width: 70px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: green;
+}
+
+.camp .cap-05 button {
+	padding: 5px 67px;
+	font-size: 14px;
+	border: none;
+	cursor: pointer;
+	border-radius: 3px;
+	height: 40px;
+	width: 70px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.camp .cap-05 div:nth-child(1) {
+	margin-top: 6px;
+}
+
+.camp .cap-05 div:nth-child(1) button, .camp .cap-05 div:nth-child(2) button,
+	.camp .cap-05 div:nth-child(3) button {
+	background-color: #dadada;
+	color: #286d4b;
+}
+
+.camp .cap-05 div:nth-child(1) button:hover, .camp .cap-05 div:nth-child(2) button:hover,
+	.camp .cap-05 div:nth-child(3) button:hover {
+	background-color: #dadada;
+	color: #286d4b;
+}
+
+.camp .cap-05 div:nth-child(2) {
+	padding: 10px 0px;
+}
+
+.camp .cap-05 div:nth-child(4) {
+	padding-top: 18px;
+}
+
+.camp .cap-05 div:nth-child(4) button {
+	background-color: #dadada;
+}
+
+.camp .cap-05 div:nth-child(4) button:hover {
+	background-color: #dadada;
+}
+
+.camp {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.camp .cap {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	padding: 10px;
+	width: 100%;
+}
+
+.camp input {
+	padding: 6px 10px;
+	font-size: 16px;
+	outline: none;
+	/*outline-color:#1e804f;*/
+	margin: 2px 0px 10px 0px;
+	border: 1px solid #e1e1e1;
+	border-radius: 3px;
+}
+
+.camp select {
+	padding: 5px 10px;
+	font-size: 16px;
+	outline: none;
+	margin: 2px 0px 10px 0px;
+	border: 1px solid #e1e1e1;
+	border-radius: 3px;
+}
+
+.camp input[type="text"] {
+	text-align: right;
+}
+
+.camp .cap-01 div, .camp .cap-02 div, .camp .cap-03 div, .camp .cap-04 div
+	{
+	display: flex;
+	flex-direction: column;
+}
+
+.camp .cap-01 div:nth-child(3) input {
+	background-color: #fafafa;
+}
+
+.camp .cap-01 div:nth-child(4) input {
+	background-color: #fafafa;
+}
+
+.camp .cap-04 div input {
+	background-color: #fafafa;
+}
+
+.camp .cap-04 .multa {
+	display: flex;
+	flex-direction: row;
+}
+
+.camp .cap-04 .multa div {
+	display: flex;
+	flex-direction: column;
+}
+
+.camp .cap-04 .multa div input{
+	width:100%;
+}
+
+.camp .cap-04 .multa div:nth-child(1) {
+	margin-right: 5px;
+}
+
+.camp .cap-04 .multa div:nth-child(2) {
+	margin-left: 5px;
+}
+
+.camp .cap-03 .indice_actual {
+	display: flex;
+	flex-direction: row;
+}
+
+.camp .cap-03 .indice_actual div {
+	display: flex;
+	flex-direction: column;
+	width: 125px;
+}
+
+.camp .cap-03 .indice_actual div:nth-child(1) {
+	margin-right: 5px;
+}
+
+.camp .cap-03 .indice_actual div:nth-child(2) {
+	margin-left: 5px;
+}
+
+.camp .cap-01 .mensal_anual {
+	display: flex;
+	flex-direction: row;
+}
+
+.camp .cap-01 .mensal_anual div {
+	display: flex;
+	flex-direction: column;
+	width: 125px;
+}
+
+.camp .cap-01 .mensal_anual div:nth-child(1) {
+	margin-right: 5px;
+}
+
+.camp .cap-01 .mensal_anual div:nth-child(2) {
+	margin-left: 5px;
+}
+
+.camp .cap-01, .camp .cap-02, .camp .cap-03, .camp .cap-04 {
+	width: 255px;
+}
