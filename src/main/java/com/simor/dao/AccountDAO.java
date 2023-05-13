@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import com.simor.model.ContaModel;
-import com.simor.model.TransitModel;
+import com.simor.model.ProfileModel;
 
 public class AccountDAO {
 	private static Connection con = null;
@@ -16,7 +16,7 @@ public class AccountDAO {
 
 	private static ArrayList<ContaModel> listaCont = null;
 	private static ContaModel contModel = null;
-	private static TransitModel transitModel = null;
+	private static ProfileModel profileModel = null;
 
 	// CRIAR CREDÊNCIAIS DO USUÁRIO
 	public static boolean insert(ContaModel model) {
@@ -69,8 +69,8 @@ public class AccountDAO {
 			con = ConnectionDAO.getConnection();
 			pst = con.prepareStatement(SQL_SELECT_QUERY);
 			pst.setString(1, model.getUsuario());
-			pst.setString(2, model.getEmail());
-			pst.setString(3, model.getSenha());
+			pst.setString(2, model.getEmail().toLowerCase());
+			pst.setString(3, model.getSenha().toLowerCase());
 			rs = pst.executeQuery();
 
 			if (rs.next()) {
@@ -101,34 +101,33 @@ public class AccountDAO {
 		return false;
 	}
 
-	// SELECIONAR OS DADOS TRANSITÓRIOS
-	public static TransitModel userTransit() {
+	// SELECIONAR PERFIL
+	public static ProfileModel userProfile() {
 		try {
-			String SQL_SELECT_QUERY = "select * from transit";
+			String SQL_SELECT_QUERY = "select * from profile";
 			con = ConnectionDAO.getConnection();
 			pst = con.prepareStatement(SQL_SELECT_QUERY);
 			rs = pst.executeQuery();
 
 			if (rs.next()) {
-				transitModel = new TransitModel();
-				transitModel.setIdTransit(rs.getInt("id_transit"));
-				transitModel.setTransit(rs.getString("transit"));
+				profileModel = new ProfileModel();
+				profileModel.setIdProfile(rs.getInt("id_profile"));
+				profileModel.setProfile(rs.getString("profile"));
 			}
-			//deleteTransit();
 
 		} catch (SQLException e) {
 			System.out.println("Ocorreu um erro!\n" + e.getMessage());
 		}
-		return transitModel;
+		return profileModel;
 	}
 	
-	// ACTUALIZAR DADOS TRANSITÓRIOS (TEMPORÁRIOS)
-	public static boolean updateTransit(TransitModel model) {
+	// ACTUALIZAR PERFIL (TEMPORÁRIO)
+	public static boolean updateProfile(ProfileModel model) {
 		try {
-			String SQL_UPDATE_QUERY = "UPDATE transit SET transit = ? WHERE id_transit = 1";
+			String SQL_UPDATE_QUERY = "UPDATE profile SET profile = ? WHERE id_profile = 1";
 			con = ConnectionDAO.getConnection();
 			pst = con.prepareStatement(SQL_UPDATE_QUERY);
-			pst.setString(1, model.getTransit());
+			pst.setString(1, model.getProfile());
 
 			pst.executeUpdate();
 			pst.close();

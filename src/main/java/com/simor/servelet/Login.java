@@ -7,7 +7,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import com.simor.dao.AccountDAO;
 import com.simor.model.ContaModel;
-import com.simor.model.TransitModel;
+import com.simor.model.ProfileModel;
 
 /**
  * Servlet implementation class Login
@@ -15,7 +15,7 @@ import com.simor.model.TransitModel;
 public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private ContaModel contaModel = null;
-	private TransitModel transit = null;
+	private ProfileModel profile = null;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -44,26 +44,26 @@ public class Login extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		contaModel = new ContaModel();
-		contaModel.setEmail(request.getParameter("usr_email").trim());
-		contaModel.setUsuario(request.getParameter("usr_email").trim());
+		contaModel.setEmail(request.getParameter("usr_email").trim().toLowerCase().replace(" ", ""));
+		contaModel.setUsuario(request.getParameter("usr_email").trim().toLowerCase().replace(" ", ""));
 		contaModel.setSenha(request.getParameter("pass").trim());
 		if (AccountDAO.login(contaModel)) {
-			transit = new TransitModel();
+			profile = new ProfileModel();
 			if ((!contaModel.getUsuario().isEmpty() && contaModel.getUsuario() != null)
 					&& (!contaModel.getEmail().isEmpty() && contaModel.getEmail() != null)) {
-				transit.setTransit(contaModel.getEmail());
-				AccountDAO.updateTransit(transit);
+				profile.setProfile(contaModel.getEmail());
+				AccountDAO.updateProfile(profile);
 
 			} else if (!contaModel.getUsuario().isEmpty() && contaModel.getUsuario() != null) {
-				transit.setTransit(contaModel.getUsuario());
-				AccountDAO.updateTransit(transit);
+				profile.setProfile(contaModel.getUsuario());
+				AccountDAO.updateProfile(profile);
 
 			} else if (!contaModel.getEmail().isEmpty() && contaModel.getEmail() != null) {
-				transit.setTransit(contaModel.getEmail());
-				AccountDAO.updateTransit(transit);
+				profile.setProfile(contaModel.getEmail());
+				AccountDAO.updateProfile(profile);
 			} else {
-				transit.setTransit("user.default");
-				AccountDAO.updateTransit(transit);
+				profile.setProfile("user.blank");
+				AccountDAO.updateProfile(profile);
 			}
 			
 			response.sendRedirect("page/panel.jsp");

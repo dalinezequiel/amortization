@@ -33,7 +33,7 @@ public class Report extends HttpServlet {
 	private PdfPCell sistema, valor, taxa, prazo, prestacao = null;
 	private PdfPCell vencimento, prestaca,juro,amortizacao,saldoDevedor=null;
 
-	private float[] columnSize = { 190, 120, 100, 100, 160 };
+	private float[] columnSize = { 130, 130, 120, 130, 160 };
 	private static Font normalFont12, boldTitleFont18, normalFont14 = null;
 
 	/**
@@ -231,12 +231,12 @@ public class Report extends HttpServlet {
 			header1.addCell(finance);
 			document.add(header1);
 						body1 = new PdfPTable(5);
-						columnSize= new float[5];
+						/*columnSize= new float[5];
 						columnSize[0]=130;
 						columnSize[1]=130;
 						columnSize[2]=120;
 						columnSize[3]=130;
-						columnSize[4]=160;
+						columnSize[4]=160;*/
 						body1.setTotalWidth(columnSize);
 						body1.setWidthPercentage(100);
 						body1.setSpacingBefore(0f);

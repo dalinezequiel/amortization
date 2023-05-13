@@ -49,8 +49,8 @@ public class Account extends HttpServlet {
 		// TODO Auto-generated method stub
 		contaModel = new ContaModel();
 		contaModel.setIdConta(ContaController.getUserId());
-		contaModel.setEmail(request.getParameter("email"));
-		contaModel.setUsuario(request.getParameter("usuario"));
+		contaModel.setEmail(request.getParameter("email").trim().toLowerCase().replace(" ", ""));
+		contaModel.setUsuario(request.getParameter("usuario").trim().toLowerCase().replace(" ", ""));
 		contaModel.setSenha(request.getParameter("senha"));
 		contaModel.setComfirmaSenha(request.getParameter("comfirma_senha"));
 
@@ -59,10 +59,5 @@ public class Account extends HttpServlet {
 		} else {
 			response.sendRedirect("page/credencial.jsp");
 		}
-		// doGet(request, response);
-
-//		RequestDispatcher red=request.getRequestDispatcher("page/credencial.jsp");
-//		red.forward(request, response);
 	}
-
 }

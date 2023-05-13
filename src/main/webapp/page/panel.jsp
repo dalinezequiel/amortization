@@ -145,7 +145,7 @@
 									</div>
 								</div>
 								<div>
-									<label>Carência</label> <input type="number" min="0" placeholder="0,00">
+									<label>Carência</label> <input type="number" min="0" placeholder="0,00" name="carencia">
 								</div>
 								<div>
 									<label>Sistema de amortização</label> <select name="sys_amort" required>

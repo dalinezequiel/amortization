@@ -135,6 +135,9 @@ public class DashboardController {
 					.cleanInt(SistemaController.isNullOrEmpty(this.request.getParameter("quant_balao").trim()))));
 			dashboardModel.setValorBalao(Double.parseDouble(SistemaController
 					.cleanTax(SistemaController.isNullOrEmpty(this.request.getParameter("valor_balao").trim()))));
+			
+			dashboardModel.setCarencia(Integer.parseInt(SistemaController
+					.cleanInt(SistemaController.isNullOrEmpty(this.request.getParameter("carencia").trim()))));
 		}
 		return dashboardModel;
 	}

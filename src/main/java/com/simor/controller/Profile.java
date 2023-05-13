@@ -10,6 +10,6 @@ public class Profile {
 
 	// USUARIO DA APLICAÇÃO
 	public static String sys_profile() {
-		return AccountDAO.userTransit().getTransit();
+		return AccountDAO.userProfile().getProfile();
 	}
 }
