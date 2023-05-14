@@ -44,72 +44,142 @@ public class CalSacController {
 		if (this.dashboardModel != null) {
 			calculoModel.setJuroInicial(this.getTaxaSacCalculado());
 			calculoModel.setDataVencimento(this.dashboardModel.getDataPrimeiraParcela());
-			calculoModel.setAmortizacao(calculoModel.getValorEmprestFinac() / this.dashboardModel.getPrazo());
+			calculoModel.setAmortizacao(calculoModel.getValorEmprestFinac() / 11);
+			calculoModel.setPrestacao(0);
 
-			for (int i = 0; i < this.dashboardModel.getPrazo(); i++) {
-				calculo = new CalculoModel();
-				calculoModel.setJuro(calculoModel.getJuroInicial() * calculoModel.getValorEmprestFinac());
-				calculoModel.setValorEmprestFinac(calculoModel.getValorEmprestFinac() - calculoModel.getAmortizacao());
-				calculo.setPrestacao(calculoModel.getAmortizacao() + calculoModel.getJuro());
-				// ********************
-				calculo.setBalao(this.listaBalao()[i]);
-				// ********************
-				calculo.setJuro(calculoModel.getJuro());
-				calculo.setAmortizacao(calculoModel.getAmortizacao());
-				calculo.setValorEmprestFinac(calculoModel.getValorEmprestFinac());
+			double somaJuro = 0;
+			if (this.dashboardModel.getCarencia() > 0) {
+				if (this.dashboardModel.getTipoCarencia().equals("Sem juros")) {
+					for (int i = 0; i < this.dashboardModel.getPrazo(); i++) {
+						calculo = new CalculoModel();
+						calculoModel.setJuro(calculoModel.getJuroInicial() * calculoModel.getValorEmprestFinac());
 
-				calculo.setDataVencimento(SistemaController.listaDataVencimento(
-						SistemaController.getFormatedDate(String.valueOf(calculoModel.getDataVencimento())),
-						this.dashboardModel.getPrazo()).get(i).getDataVencimento());
+						if (i < this.dashboardModel.getCarencia()) {
+							somaJuro += calculoModel.getJuro();
+						}
+						if ((i + 1) > this.dashboardModel.getCarencia()) {
+							calculoModel.setAmortizacao((this.dashboardModel.getValorEmprestFinancia() + somaJuro)
+									/ (this.dashboardModel.getPrazo() - this.dashboardModel.getCarencia()));
+							calculoModel.setValorEmprestFinac(
+									calculoModel.getValorEmprestFinac() - calculoModel.getAmortizacao());
+							calculo.setPrestacao(calculoModel.getAmortizacao() + calculoModel.getJuro());
 
-				aux = new Auxilio();
-				aux.setDoubleAux(0.00001);
-				aux.setIntAux(0);
-				calculo.setAuxilio(aux);
-				listaSac.add(calculo);
+						} else {
+							calculoModel.setAmortizacao(calculoModel.getPrestacao() - calculoModel.getJuro());
+							calculoModel.setValorEmprestFinac(
+									calculoModel.getValorEmprestFinac() - calculoModel.getAmortizacao());
+							calculo.setPrestacao(calculoModel.getAmortizacao() + calculoModel.getJuro());
+						}
+
+						calculo.setJuro(calculoModel.getJuro());
+						calculo.setAmortizacao(calculoModel.getAmortizacao());
+						calculo.setValorEmprestFinac(calculoModel.getValorEmprestFinac());
+						// ********************
+						calculo.setBalao(this.listaBalao()[i]);
+						// ********************
+						calculo.setDataVencimento(SistemaController.listaDataVencimento(
+								SistemaController.getFormatedDate(String.valueOf(calculoModel.getDataVencimento())),
+								this.dashboardModel.getPrazo()).get(i).getDataVencimento());
+
+						aux = new Auxilio();
+						aux.setDoubleAux(0.00001);
+						aux.setIntAux(0);
+						calculo.setAuxilio(aux);
+						listaSac.add(calculo);
+					}
+				} else if (this.dashboardModel.getTipoCarencia().equals("Com juros")) {
+					for (int i = 0; i < this.dashboardModel.getPrazo(); i++) {
+						calculo = new CalculoModel();
+
+						if (i < this.dashboardModel.getCarencia()) {
+							somaJuro += calculoModel.getJuro();
+						}
+						if ((i + 1) > this.dashboardModel.getCarencia()) {
+							calculoModel.setJuro(calculoModel.getJuroInicial() * calculoModel.getValorEmprestFinac());
+							calculoModel.setAmortizacao((this.dashboardModel.getValorEmprestFinancia())
+									/ (this.dashboardModel.getPrazo() - this.dashboardModel.getCarencia()));
+							calculoModel.setValorEmprestFinac(
+									calculoModel.getValorEmprestFinac() - calculoModel.getAmortizacao());
+							calculo.setPrestacao(calculoModel.getAmortizacao() + calculoModel.getJuro());
+
+						} else {
+							calculoModel.setAmortizacao(calculoModel.getPrestacao() - calculoModel.getJuro());
+							calculoModel.setValorEmprestFinac(
+									calculoModel.getValorEmprestFinac() - calculoModel.getAmortizacao());
+							calculo.setPrestacao(calculoModel.getAmortizacao() + calculoModel.getJuro());
+						}
+
+						if (i < this.dashboardModel.getCarencia()) {
+							calculoModel.setAmortizacao(0);
+							calculoModel.setJuro(
+									calculoModel.getJuroInicial() * this.dashboardModel.getValorEmprestFinancia());
+							calculoModel.setValorEmprestFinac(this.dashboardModel.getValorEmprestFinancia());
+							calculo.setPrestacao(calculoModel.getAmortizacao() + calculoModel.getJuro());
+						}
+
+						calculo.setJuro(calculoModel.getJuro());
+						calculo.setAmortizacao(calculoModel.getAmortizacao());
+						calculo.setValorEmprestFinac(calculoModel.getValorEmprestFinac());
+						// ********************
+						calculo.setBalao(this.listaBalao()[i]);
+						// ********************
+						calculo.setDataVencimento(SistemaController.listaDataVencimento(
+								SistemaController.getFormatedDate(String.valueOf(calculoModel.getDataVencimento())),
+								this.dashboardModel.getPrazo()).get(i).getDataVencimento());
+
+						aux = new Auxilio();
+						aux.setDoubleAux(0.00001);
+						aux.setIntAux(0);
+						calculo.setAuxilio(aux);
+						listaSac.add(calculo);
+					}
+				}
+
+			} else {
+
+				calculoModel.setAmortizacao(calculoModel.getValorEmprestFinac() / this.dashboardModel.getPrazo());
+				for (int i = 0; i < this.dashboardModel.getPrazo(); i++) {
+					calculo = new CalculoModel();
+					calculoModel.setJuro(calculoModel.getJuroInicial() * calculoModel.getValorEmprestFinac());
+					calculoModel
+							.setValorEmprestFinac(calculoModel.getValorEmprestFinac() - calculoModel.getAmortizacao());
+					calculo.setPrestacao(calculoModel.getAmortizacao() + calculoModel.getJuro());
+					// ********************
+					calculo.setBalao(this.listaBalao()[i]);
+					// ********************
+					calculo.setJuro(calculoModel.getJuro());
+					calculo.setAmortizacao(calculoModel.getAmortizacao());
+					calculo.setValorEmprestFinac(calculoModel.getValorEmprestFinac());
+
+					calculo.setDataVencimento(SistemaController.listaDataVencimento(
+							SistemaController.getFormatedDate(String.valueOf(calculoModel.getDataVencimento())),
+							this.dashboardModel.getPrazo()).get(i).getDataVencimento());
+
+					aux = new Auxilio();
+					aux.setDoubleAux(0.00001);
+					aux.setIntAux(0);
+					calculo.setAuxilio(aux);
+					listaSac.add(calculo);
+				}
 			}
 		}
 		return listaSac;
 	}
 
 	// CALCULAR BALAO
-//	public double[] listaBalao() {
-//		balaoArray = new double[this.dashboardModel.getPrazo()];
-//		for (int i = 0; i < this.dashboardModel.getPrazo(); i++) {
-//			if (((i+1) % this.dashboardModel.getPeriodicidadeBalao() == 0) && (i != 0)) {
-//				balaoArray[i] = this.dashboardModel.getValorBalao();
-//			} else {
-//				balaoArray[i] = 0;
-//			}
-//		}
-//		return balaoArray;
-//	}
 	public double[] listaBalao() {
 		balaoArray = new double[this.dashboardModel.getPrazo()];
 		for (int i = 0; i < this.dashboardModel.getPrazo(); i++) {
-			if(this.dashboardModel.getPeriodicidadeBalao() != 0) {
-				if (((i+1) % this.dashboardModel.getPeriodicidadeBalao() == 0) && (i != 0)) {
+			if (this.dashboardModel.getPeriodicidadeBalao() != 0) {
+				if (((i + 1) % this.dashboardModel.getPeriodicidadeBalao() == 0) && (i != 0)) {
 					balaoArray[i] = this.dashboardModel.getValorBalao();
 				} else {
 					balaoArray[i] = 0;
 				}
-			}else {
+			} else {
 				balaoArray[i] = 0;
 			}
 		}
 		return balaoArray;
 	}
-
-//	public void testBalao() {
-//		double[] r = this.listaBalao();
-//		for (int i = 0; i < r.length; i++) {
-//			System.out.println((i+1)+" "+r[i]);
-//		}
-//	}
-//
-//	public void print() {
-//		System.out.println("Periocidade: " + this.dashboardModel.getPeriodicidadeBalao());
-//		System.out.println("Quant. balao: " + this.dashboardModel.getQuantBalao());
-//		System.out.println("Valor balao: " + this.dashboardModel.getValorBalao());
-//	}
 }
