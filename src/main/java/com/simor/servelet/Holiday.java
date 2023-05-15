@@ -37,6 +37,8 @@ public class Holiday extends HttpServlet {
 		if (this.feriadoParameter(request, response) != null) {
 			if (HolidayDAO.insert(this.feriadoParameter(request, response))) {
 				response.sendRedirect("page/holiday.jsp");
+			}else {
+				response.sendRedirect("page/holiday.jsp");
 			}
 		} else {
 			response.sendRedirect("page/holiday.jsp");

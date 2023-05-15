@@ -79,4 +79,14 @@
     <servlet-name>Delecount</servlet-name>
     <url-pattern>/Delecount</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>UpdateFeriado</display-name>
+    <servlet-name>UpdateFeriado</servlet-name>
+    <servlet-class>com.simor.servelet.UpdateFeriado</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UpdateFeriado</servlet-name>
+    <url-pattern>/UpdateFeriado</url-pattern>
+  </servlet-mapping>
 </web-app>

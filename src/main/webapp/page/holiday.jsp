@@ -4,8 +4,11 @@
 <%@ page import="com.simor.dao.*" 
          import="com.simor.controller.*"
          import="com.simor.model.*"
-         import="java.util.*"%>
-	
+         import="java.util.*"
+         import="java.sql.*"%>
+<%
+    HolidayCom.sys_del(String.valueOf(HolidayCom.sys_hol(request.getParameter("edit"), request, response).getDataFeriado()), request, response);
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -84,21 +87,21 @@
 						</div>
 						<div class="cap-01">
 							<div>
-								<label>Data</label> <input type="date" name="data_feriado">
+								<label>Data</label> <input type="date" name="data_feriado" value="<%out.print(HolidayCom.sys_hol(request.getParameter("edit"), request, response).getDataFeriado().equals(java.sql.Date.valueOf("2000-01-01"))?"":HolidayCom.sys_hol(request.getParameter("edit"), request, response).getDataFeriado());%>">
 							</div>
 							<div>
-								<label>Descrição</label> <input type="text" name="descricao">
+								<label>Descrição</label> <input type="text" name="descricao" value="<%out.print(HolidayCom.sys_hol(request.getParameter("edit"), request, response).getDescricao()==null?"":HolidayCom.sys_hol(request.getParameter("edit"), request, response).getDescricao());%>"> 
 							</div>
 							<div>
-								<label>Ano</label> <input type="number" min="1960" name="ano">
+								<label>Ano</label> <input type="number" min="1960" name="ano" value="<%out.print(HolidayCom.sys_hol(request.getParameter("edit"), request, response).getAno()==0?"":HolidayCom.sys_hol(request.getParameter("edit"), request, response).getAno());%>">
 							</div>
 
 						</div>
 						<div class="tabela">
 							<div>
 								<%
-								HolidayDAO feria = new HolidayDAO();
-								ArrayList<FeriadoModel> listFeriado = null;
+								    HolidayDAO feria = new HolidayDAO();
+								    ArrayList<FeriadoModel> listFeriado = null;
 								%>
 								<table>
 									<thead>
@@ -111,9 +114,9 @@
 									</thead>
 									<tbody>
 										<%
-										listFeriado = HolidayDAO.list();
-										if (feria != null) {
-											for (int i = 0; i < listFeriado.size(); i++) {
+											listFeriado = HolidayDAO.list();
+											if (feria != null) {
+												for (int i = 0; i < listFeriado.size(); i++) {
 										%>
 										<tr>
 											<td>
@@ -133,6 +136,11 @@
 											</td>
 											<td>
 												<div>
+												    <button name="edit"
+														value="<%out.print(listFeriado.get(i).getDataFeriado());%>"
+														onclick=''>
+														<img src="../img/edit-18.png">
+													</button>
 													<button name="delete"
 														value="<%out.print(listFeriado.get(i).getCodigo());%>"
 														onclick='this.form.action="../FeriadoRemove"'>

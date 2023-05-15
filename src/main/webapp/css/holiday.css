@@ -70,7 +70,6 @@ html, body {
 }
 
 .logo {
-	/*background-color:#14854c;*/ /* #38445e;#6587b7;  #e1e1e1;*/
 	padding: 11px 0px;
 	padding-left: 10px;
 	height: 60px;
@@ -119,7 +118,6 @@ html, body {
 
 .conta i {
 	font-size: 28px;
-	/*color:#38445e;*/
 	color: #14854c;
 }
 
@@ -139,7 +137,7 @@ html, body {
 	background-color: #DBEDEF;
 	border-radius: 50%;
 	cursor: pointer;
-	padding: 3px; /*2px*/
+	padding: 3px;
 	transition: 1s;
 }
 
@@ -222,6 +220,7 @@ table thead tr td:nth-child(3){
 
 table thead tr td:nth-child(4){
 	text-align:center;
+	width:10%;
 }
 
 
@@ -246,7 +245,7 @@ table button{
 }
 
 table button:nth-child(1){
-	margin-right:4px;
+	margin-right:6px;
 }
 
 /**/
