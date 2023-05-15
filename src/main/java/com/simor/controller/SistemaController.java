@@ -133,10 +133,14 @@ public class SistemaController {
 		}
 		return listData;
 	}
+	
+//	public static String print(double text) {
+//		return String.valueOf(mascaraMoeda(text)).equals(",00")||String.valueOf(mascaraMoeda(text)).equals("NaN")?"0,00":mascaraMoeda(text);
+//	}
 
 	public static void main(String[] args) {
 		/*System.out.println(SistemaController.clean("31.560,00"));
 		System.out.println("t:"+SistemaController.getSplitNormal(",", "31,560.00"));*/
-		System.out.println(SistemaController.cleanInt("31,560"));
+//		System.out.println(SistemaController.print(0));
 	}
 }

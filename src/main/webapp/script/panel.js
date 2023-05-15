@@ -1,13 +1,6 @@
 
 window.addEventListener('load', function() {
-	quant_balao[0].style.backgroundColor = "#fafafa";
-	quant_balao[0].readOnly = true;
 
-	input_cap_02[1].style.backgroundColor = "#fafafa";
-	input_cap_02[1].readOnly = true;
-
-	/*balao_type[0].disabled = true;
-	balao_type[2].disabled = true;*/
 })
 
 //BLOQUEAR INPUTS ATRASO
@@ -40,6 +33,8 @@ cbo_tipo_balao[0].addEventListener('change', function() {
 			if (i != 1) {
 				input_balao[i].style.backgroundColor = "#ffffff";
 				input_balao[i].readOnly = false;
+
+				carencia[0].value = "0";
 			}
 		}
 
@@ -87,8 +82,8 @@ const input_cap_03 = document.querySelectorAll(".cap-03 input");
 const conf_sair = document.querySelectorAll(".conf_sair a");
 const select_amort = document.getElementsByName("sys_amort");
 const balao_type = document.querySelectorAll(".cap-02 option");
-const carencia=document.getElementsByName("carencia");
-const tipo_carencia=document.getElementsByName("tipo_carencia");
+const carencia = document.getElementsByName("carencia");
+const tipo_carencia = document.getElementsByName("tipo_carencia");
 
 // SALVAR VALORES NO SESSIONSTORAGE
 btn_calcular[0].addEventListener('click', function() {
@@ -106,7 +101,7 @@ btn_calcular[0].addEventListener('click', function() {
 	sessionStorage.setItem("periodo_balao", periodo_balao[0].value);
 	sessionStorage.setItem("quant_balao", quant_balao[0].value);
 	sessionStorage.setItem("valor_balao", valor_balao[0].value);
-	
+
 	sessionStorage.setItem("carencia", carencia[0].value);
 	sessionStorage.setItem("tipo_carencia", tipo_carencia[0].value);
 })
@@ -128,6 +123,26 @@ window.addEventListener('load', function() {
 	quant_balao[0].value = sessionStorage.getItem("quant_balao");
 	valor_balao[0].value = sessionStorage.getItem("valor_balao");
 
+
+	input_cap_02[1].style.backgroundColor = "#fafafa";
+	input_cap_02[1].readOnly = true;
+
+	if (sessionStorage.getItem("sys_amort") == "PRICE") {
+		balao_type[0].disabled = false;
+		balao_type[2].disabled = false;
+
+	} else if (sessionStorage.getItem("sys_amort") == "SAC") {
+		balao_type[0].disabled = false;
+		balao_type[2].disabled = true;
+
+	} else {
+		balao_type[0].disabled = true;
+		balao_type[2].disabled = true;
+	}
+
+
+
+
 	if (cbo_tipo_balao[0].value == "") {
 		cbo_tipo_balao[0].value = "Sem balões";
 	}
@@ -140,15 +155,46 @@ window.addEventListener('load', function() {
 		periodo_balao[0].value = "";
 		quant_balao[0].value = "";
 		valor_balao[0].value = "";
+
+		periodo_balao[0].style.backgroundColor = "#fafafa";
+		periodo_balao[0].readOnly = true;
+		valor_balao[0].style.backgroundColor = "#fafafa";
+		valor_balao[0].readOnly = true;
+
+	} else {
+
+		periodo_balao[0].style.backgroundColor = "#ffffff";
+		periodo_balao[0].readOnly = false;
+		valor_balao[0].style.backgroundColor = "#ffffff";
+		valor_balao[0].readOnly = false;
+
+		carencia[0].value = "0";
 	}
-	
-	carencia[0].value=sessionStorage.getItem("carencia");
-	tipo_carencia[0].value=sessionStorage.getItem("tipo_carencia");
-	
+
+	carencia[0].value = sessionStorage.getItem("carencia");
+	tipo_carencia[0].value = sessionStorage.getItem("tipo_carencia");
+
 	if (tipo_carencia[0].value == "") {
 		tipo_carencia[0].value = "Sem juros";
 	}
 })
+
+/**/
+carencia[0].addEventListener('input', function() {
+	if (carencia[0].value > 0) {
+		periodo_balao[0].style.backgroundColor = "#fafafa";
+		periodo_balao[0].readOnly = true;
+		valor_balao[0].style.backgroundColor = "#fafafa";
+		valor_balao[0].readOnly = true;
+
+		periodo_balao[0].value = "";
+		quant_balao[0].value = "";
+		valor_balao[0].value = "";
+
+		cbo_tipo_balao[0].value = "Sem balões";
+	}
+})
+/**/
 
 select_amort[0].addEventListener('change', function() {
 	if (select_amort[0].value == "PRICE") {
@@ -160,6 +206,16 @@ select_amort[0].addEventListener('change', function() {
 	} else {
 		balao_type[0].disabled = true;
 		balao_type[2].disabled = true;
+		cbo_tipo_balao[0].value = "Sem balões";
+
+		periodo_balao[0].style.backgroundColor = "#fafafa";
+		periodo_balao[0].readOnly = true;
+		valor_balao[0].style.backgroundColor = "#fafafa";
+		valor_balao[0].readOnly = true;
+
+		periodo_balao[0].value = "";
+		quant_balao[0].value = "";
+		valor_balao[0].value = "";
 	}
 });
 
@@ -174,7 +230,7 @@ const tipo_balao = document.getElementsByName("tipo_balao");
 const periodo_balao = document.getElementsByName("periodo_balao");
 const quant_balao = document.getElementsByName("quant_balao");
 const valor_balao = document.getElementsByName("valor_balao");
-const periodo_div=document.getElementsByClassName("periodo");
+const periodo_div = document.getElementsByClassName("periodo");
 
 periodo_balao[0].addEventListener('mouseleave', function() {
 	if (tipo_balao[0].value == "Balões e parcelas") {

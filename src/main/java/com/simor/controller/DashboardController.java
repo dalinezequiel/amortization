@@ -118,6 +118,8 @@ public class DashboardController {
 			dashboardModel.setDataContratacao(Date.valueOf(this.request.getParameter("data_contratacao").trim()));
 
 			dashboardModel.setDataPrimeiraParcela(Date.valueOf(this.request.getParameter("ultima_parcela").trim()));
+			
+			dashboardModel.setSistemaAmortizacao(this.request.getParameter("sys_amort").trim());
 
 			dashboardModel.setTipoBalao(this.request.getParameter("tipo_balao").trim());
 

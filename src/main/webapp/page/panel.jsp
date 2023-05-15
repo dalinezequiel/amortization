@@ -265,11 +265,7 @@
 											    <td><%out.print(SistemaController.mascaraMoeda(app.getList().get(i).getBalao()).equals(",00")?"0,00": SistemaController.mascaraMoeda(app.getList().get(i).getBalao())); %></td>
 											    <td><%out.print(SistemaController.mascaraMoeda(app.getList().get(i).getJuro()).equals(",00")||SistemaController.mascaraMoeda(app.getList().get(i).getJuro()).equals("NaN")?"0,00":SistemaController.mascaraMoeda(app.getList().get(i).getJuro())); %></td>
 											    <td><%out.print(SistemaController.mascaraMoeda(app.getList().get(i).getAmortizacao()).equals(",00")||SistemaController.mascaraMoeda(app.getList().get(i).getAmortizacao()).equals("NaN")?"0,00":SistemaController.mascaraMoeda(app.getList().get(i).getAmortizacao())); %></td>
-											    <td><%if((app.getList().get(i).getValorEmprestFinac() < app.getList().get(i).getAuxilio().getIntAux()) 
-											    		|| (app.getList().get(i).getValorEmprestFinac() > app.getList().get(i).getAuxilio().getDoubleAux())){
-											    	out.print(SistemaController.mascaraMoeda(app.getList().get(i).getValorEmprestFinac()));}
-											    else
-											    	{out.print("0,00");} %></td>
+											    <td><%out.print(SistemaController.mascaraMoeda(app.getList().get(i).getValorEmprestFinac()).equals(",00")||SistemaController.mascaraMoeda(app.getList().get(i).getValorEmprestFinac()).equals("NaN")?"0,00":SistemaController.mascaraMoeda(app.getList().get(i).getValorEmprestFinac())); %></td>
 											    <td>0,00</td>
 											    <td><%out.println(SistemaController.mascaraMoeda(app.getLatePayment().getMulta()).equals(",00")||SistemaController.mascaraMoeda(app.getLatePayment().getMulta()).equals("NaN")?"0,00":SistemaController.mascaraMoeda(app.getLatePayment().getMulta())); %></td>
 											    <td><%out.print(SistemaController.mascaraMoeda(app.getLatePayment().getJuroAtraso()).equals(",00")||SistemaController.mascaraMoeda(app.getLatePayment().getJuroAtraso()).equals("NaN")?"0,00":SistemaController.mascaraMoeda(app.getLatePayment().getJuroAtraso())); %></td>
