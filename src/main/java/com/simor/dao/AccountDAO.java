@@ -82,6 +82,28 @@ public class AccountDAO {
 		return false;
 	}
 
+	public static ContaModel info_prof(String profile) {
+		try {
+			String SQL_SELECT_QUERY = "SELECT * from account where usr=? or email=?";
+			con = ConnectionDAO.getConnection();
+			pst = con.prepareStatement(SQL_SELECT_QUERY);
+			pst.setString(1, profile);
+			pst.setString(2, profile);
+			rs = pst.executeQuery();
+
+			if (rs.next()) {
+				contModel = new ContaModel();
+				contModel.setIdConta(rs.getInt("id_account"));
+				contModel.setUsuario(rs.getString("usr"));
+				contModel.setEmail(rs.getString("email"));
+				contModel.setSenha(rs.getString("pass"));
+			}
+		} catch (SQLException e) {
+			System.out.println("Ocorreu um erro!\n" + e.getMessage());
+		}
+		return contModel;
+	}
+
 	// VERIFICAR SE O USUARIO EXISTE ANTES DE ACTUALIZAR
 	public static boolean userExist(ContaModel model) {
 		try {
@@ -120,7 +142,7 @@ public class AccountDAO {
 		}
 		return profileModel;
 	}
-	
+
 	// ACTUALIZAR PERFIL (TEMPORÁRIO)
 	public static boolean updateProfile(ProfileModel model) {
 		try {
@@ -160,6 +182,23 @@ public class AccountDAO {
 				return true;
 			}
 
+		} catch (SQLException e) {
+			System.out.println("Ocorreu um erro!\n" + e.getMessage());
+		}
+		return false;
+	}
+
+	// EXCLUÍ A CONTA DO USUÁRIO
+	public static boolean deleteAccountId(int id_account) {
+		try {
+			String SQL_DELETE_QUERY = "DELETE FROM account WHERE id_account = ?";
+			con = ConnectionDAO.getConnection();
+			pst = con.prepareStatement(SQL_DELETE_QUERY);
+			pst.setInt(1, id_account);
+			pst.executeUpdate();
+			pst.close();
+
+			return true;
 		} catch (SQLException e) {
 			System.out.println("Ocorreu um erro!\n" + e.getMessage());
 		}

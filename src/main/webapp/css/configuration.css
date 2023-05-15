@@ -50,7 +50,7 @@
 	background-color: #DBEDEF;
 	border-radius: 50%;
 	cursor: pointer;
-	padding: 3px; /*2px*/
+	padding: 3px;
 	transition: 1s;
 }
 
@@ -62,16 +62,13 @@
 	transition: 1s;
 }
 
-/**/
 .config{
 	display:flex;
 	flex-direction:row;
 	padding:10px;
 }
 
-.config .butoe, .config .info, .config .serv{
-	height:580px;
-}
+
 
 .config .butoe{
 	width:200px;
@@ -81,12 +78,7 @@
 }
 
 .config .info{
-	width:600px;
-	border-right:1px solid #ededed;
-}
-
-.config .serv{
-	width:250px;
+	width:100%;
 }
 
 .config .info{
@@ -112,126 +104,120 @@
 	background-color:#ededed;
 }
 
-/**/
 .config .info{
-	display:flex;
-	flex-direction:column;
 	padding-right:20px;
 }
 
-.config .info .cf{
+.config .cf{
 	display:flex;
 	flex-direction:column;
 }
 
-.config label{
-	font-size:15px;
+
+.us{
+	text-align:right;
 }
 
-.config .info .cf input{
-	padding: 6px 10px;
-	font-size: 15px;
-	outline: none;
-	margin: 2px 0px 10px 0px;
-	border: 1px solid #e1e1e1;
-	border-radius: 3px;
+.us:nth-child(2){
+	padding:10px 0px;
 }
 
-.config .info .cf select{
-	padding: 5px 6px;
-	font-size: 15px;
-	outline: none;
-	margin: 2px 0px 10px 0px;
-	border: 1px solid #e1e1e1;
-	border-radius: 3px;
-}
-
-/**/
-.config .botao{
-	display:flex;
-}
-
-.config .botao button{
-	padding: 10px 15px;
-	font-size: 16px;
-	border: none;
-	cursor: pointer;
-	color: #ffffff;
-	border-radius: 3px;
-	background-color: #286d4b;
-}
-
-.config .botao button:hover{
-	background-color:#14854c;
-}
-
-.config .botao div:nth-child(2){
-	margin:0px 10px;
-}
-
-/**/
-.config .serv{
+.us, .user_conf{
 	display:flex;
 	flex-direction:column;
+}
+
+.in-1{
+	display:flex;
+	flex-direction:row;
 	justify-content:space-between;
 }
 
-.config .serv .ser-2 i{
-	font-size:28px;
-	padding-right:5px;
-	color:#d5d5d5;
+.us label:nth-child(1){/*#E9E9E9*/
+	font-size:16px;
+	font-weight:bold;
 }
 
-.config .serv .ser-2 label{
-	color:#c64b4b;
-	font-weight:500;
+.us label:nth-child(2){
+    color:#5C5C5C;
 }
 
-
-.info .in-2 div{
+.del_conta{
 	display:flex;
-	flex-direction:column;
+	align-items:center;
+	margin-top:40px;
+	padding:20px 0;
+	justify-content:space-between;
+	border-top:1px solid #F6F6F6 ;
 }
 
-.info .in-2 div input{
-	padding: 6px 10px;
-	font-size: 15px;
-	outline: none;
-	margin: 2px 0px 10px 0px;
-	border: 1px solid #e1e1e1;
-	border-radius: 3px;
+.del_conta button{
+	padding:6px 10px;
+	font-size:16px;
+	border:0.5px solid #D8D8D8;
+	background-color:#F6F6F6;
+	border-radius: 5px;
+	color:#E73A15;
+	font-weight:bold;
+	cursor:pointer;
 }
 
-.info .in-2 .bota{
+.del_conta button:hover{
+	/*background-color:#F0F0F0;*/
+	color:#ffffff;
+	background-color:#E73A15;
+	border:0.5px solid #E73A15;
+} 
+
+.in-2 a{
+	padding:20px;
+	font-size:18px;
+	border:none;
+	background-color: #F8F8F8;
+	cursor:pointer;
+	width:100%;
+}
+
+.in-2 a:hover{
+	background-color: #F5F5F5;
+}
+
+.univer{
 	display:flex;
 	flex-direction:row;
+	padding:20px 0;
+	justify-content:space-between;
 }
 
-.info .in-2 .bota button{
-	padding: 10px 15px;
-	font-size: 16px;
-	border: none;
-	cursor: pointer;
-	color: #ffffff;
-	border-radius: 3px;
-	background-color: #286d4b;
+.univer div{
+	width:200px;
+	height:150px;
+	background-color: #F8F8F8;
 }
 
-.info .in-2 .bota button:hover{
-	background-color:#14854c;
-}
-
-.info .in-2 .bota div:nth-child(2){
-	margin:0px 10px;
-}
-
-/**/
-.info .in-3 div{
-	padding-bottom:20px;
+.admins a{
 	display:flex;
-	flex-direction:column;
+	align-items:center;
+	border-radius:5px;
+	color:286d4b;
 }
 
-.info .in-3 p, .info .in-3 a{
-	font-weight:300;
+.admins i:nth-child(1){
+	padding-left:10px;
+}
+
+.in-1 img {
+	background-color: #DBEDEF;
+	border-radius: 50%;
+	cursor: pointer;
+	padding: 3px;
+	transition: 1s;
+}
+
+.in-1 img:hover {
+	background-color: #EBEDEF;
+	border-radius: 50%;
+	cursor: pointer;
+	padding: 3px;
+	transition: 1s;
 }

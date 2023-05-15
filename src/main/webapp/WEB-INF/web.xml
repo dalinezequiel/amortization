@@ -69,4 +69,14 @@
     <servlet-name>Report</servlet-name>
     <url-pattern>/Report</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Delecount</display-name>
+    <servlet-name>Delecount</servlet-name>
+    <servlet-class>com.simor.servelet.Delecount</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Delecount</servlet-name>
+    <url-pattern>/Delecount</url-pattern>
+  </servlet-mapping>
 </web-app>

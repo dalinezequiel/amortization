@@ -66,62 +66,46 @@
 				<div class="config">
 					<div class="butoe">
 						<button>Minha Conta</button>
-						<!-- <button>User</button> -->
 						<button>Ajuda e Suporte</button>
 					</div>
 					<div class="info">
-						<div class="in-1">
-							<div class="cf">
-								<label>Server</label> <input type="text"
-									placeholder="Default: localhost">
-							</div>
-							<div class="cf">
-								<label>Database</label> <input type="text">
-							</div>
-							<div class="cf">
-								<label>Port</label> <input type="number"
-									placeholder="Default: 5432">
-							</div>
-							<div class="cf">
-								<label>Username</label> <input type="text"
-									placeholder="Default: postgres">
-							</div>
-							<div class="cf">
-								<label>Password</label> <input type="password">
-							</div>
+						<div class="in-1-1">
+							<div class="in-1">
+							    <div>
+							          <img src="../img/user-128.png">
+							    </div>
+							     <div class="user_conf">
+							          <div class="us">
+							               <label>Usuário</label>
+							               <label><%out.print(Profile.sys_profile()); %></label>
+							          </div>
+							          <div class="us">
+							               <label>Email</label>
+							               <label><%out.print(Profile.sys_prof(Profile.sys_profile()).getEmail()); %></label>
+							          </div>
+							          <div class="us">
+							               <label>Senha</label>
+							               <label><%out.print(Profile.sys_prof(Profile.sys_profile()).getSenha()); %></label>
+							          </div>
+							      </div>
+							  </div><form action="" method="post">
+							  <div class="del_conta">
+							      <div>
+							          <h4>Deletar esta conta</h4>
+							          <p>Uma vez conta deletada, não terá mais acesso ao sistema. Por favor, tenha certeza.</p>
+							      </div>
+							      <div>
+							          <button value="<%out.print(Profile.sys_prof(Profile.sys_profile()).getIdConta()); %>" onclick='this.form.action="../Delecount"' name="delete_account">Deletar esta conta</button>
+							      </div>
+							  </div></form>
 						</div>
 						<div class="in-2">
-							<div>
-								<label>Email</label><input type="email">
-							</div>
-							<div>
-								<label>Usuário</label><input type="text">
-							</div>
-							<div>
-								<label>Senha</label><input type="password">
-							</div>
-							<div>
-								<label>Comfirmar Senha</label><input type="password">
-							</div>
+						    <div class="admins">
+						        <a href="https://universoadministracao.com/">Universo Administração<i class="fa-solid fa-arrow-right"></i></a>
+						    </div>
 						</div>
 						<div class="in-3">
 							
-						</div>
-					</div>
-					<div class="serv">
-						<div class="ser-1">
-							<div>
-								<label>Server: N/E</label>
-							</div>
-							<div>
-								<label>Database: N/E</label>
-							</div>
-							<div>
-								<label>Port: N/E</label>
-							</div>
-						</div>
-						<div class="ser-2">
-							<i class="fa-solid fa-database"></i><label>Disconnected</label>
 						</div>
 					</div>
 				</div>
